@@ -5,12 +5,14 @@
 #
 # Genetic Programming - First example using deap
 # Reference: https://github.com/DEAP/deap/blob/08986fc3848144903048c722564b7b1d92db33a1/examples/gp/symbreg.py
+#            https://github.com/DEAP/deap/blob/08986fc3848144903048c722564b7b1d92db33a1/examples/gp/spambase.py
 
 import operator
 import math
 import random
 import re
 import numpy
+import time
 
 from deap import algorithms
 from deap import base
@@ -19,10 +21,12 @@ from deap import tools
 from deap import gp
 
 
+start = time.time()
+
 # The reviews and the scores are global
 reviews = []
 reviews_scores = []
-
+best_fitness = 0
 
 # Define new functions
 # Protected Div (check division by zero)
@@ -164,8 +168,9 @@ pset.addPrimitive(operator.sub, [float,float], float)
 pset.addPrimitive(operator.mul, [float,float], float)
 pset.addPrimitive(protectedDiv, [float,float], float)
 
-#pset.addPrimitive(math.cos, [float], float)
-#pset.addPrimitive(math.sin, [float], float)
+pset.addPrimitive(math.cos, [float], float)
+pset.addPrimitive(math.sin, [float], float)
+
 pset.addPrimitive(protectedLog, [float], float)
 pset.addPrimitive(invertSignal, [float], float)
 
@@ -177,7 +182,7 @@ pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
 
-pset.addEphemeralConstant("rand1to5", lambda: float(random.randint(0,1)), float)
+pset.addEphemeralConstant("rand", lambda: float(random.randint(-1,1)), float)
 
 
 pset.renameArguments(ARG0='x')
@@ -186,7 +191,9 @@ creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
-toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=5)
+#toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=5)
+
+toolbox.register("expr", gp.genFull, pset=pset, min_=1, max_=7)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
@@ -196,6 +203,7 @@ toolbox.register("compile", gp.compile, pset=pset)
 def evalSymbReg(individual):
     global reviews
     global reviews_scores
+    global best_fitness
     fitnessReturn = 0
 
     # Transform the tree expression in a callable function
@@ -217,27 +225,19 @@ def evalSymbReg(individual):
         print("[calculated]:" + str(func(reviews[index])))
         #logs
     
+    if best_fitness < fitnessReturn:
+        best_fitness = fitnessReturn
+
+
     #logs    
     print("[function]: " + str(individual))
     print("[fitness]: " + str(fitnessReturn))
     print("\n\n")   
     #logs
 
-    #return math.fsum(sqerrors) / len(reviews),  
     return fitnessReturn,
-    
-
-    #reviews_samp = random.sample(reviews, 1)
-    #print(reviews_samp)
-
-    # Evaluate the mean squared error between the expression
-    # and the real function : x**4 + x**3 + x**2 + x
-    #sqerrors = ((func(x) - x**4 - x**3 - x**2 - x)**2 for x in points)
-    #return math.fsum(sqerrors) / len(points),
 
 
-
-#toolbox.register("evaluate", evalSymbReg, points=[x/10. for x in range(-10,10)])
 toolbox.register("evaluate", evalSymbReg) # , points=[x for x in reviews])
 
 
@@ -250,6 +250,9 @@ toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_v
 toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
 
 def main():
+
+    global best_fitness
+
     random.seed(10)
 
     pop = toolbox.population(n=5)
@@ -273,49 +276,27 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 80, stats=mstats,
+    pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 50, stats=mstats,
                                    halloffame=hof, verbose=False)#True)
-
-
-    #polaritySum("instantly I good nice bad love this camera so much hate")
-    #positiveHashtags("instantly I #good nice #bad love this camera so much #hate so")
-    #negativeHashtags("instantly I #good nice #bad love this camera so much #hate so")
-
-    #getReviews()
-
-    
-    #logs
-    #print("\n")
-    #for i in reviews:
-        #print(i)
-        #print("\n")
-
-
-    #print("\n\n")
-    #print(reviews)
-    #print(len(reviews))
-    #print("\n\n")
-    #print(reviews_scores)
-    #print(len(reviews_scores))
-    #logs
 
     #logs
     #print("\n")
     #for i in pop:
     #    print(i)
     print("\n")
+    print("[best fitness]: " + str(best_fitness))
     print(hof[0]) 
     #logs 
 
-
-    # UNCOMENT
     return pop, log, hof
-    # UNCOMENT
+
 
 if __name__ == "__main__":
     main()
 
 
+end = time.time()
+print("Script ends after " + str(format(end - start, '.3g')) + " seconds")
 
 
 # TO-DO: uppercasepositive uppercasenegative 

@@ -5,3 +5,5 @@ Disciplines
  * [Computational Intelligence](https://airtonbjunior.github.io/mestrado/Computational%20Intelligence/)
    * Genetic Algorithms
    * Evolutionary Algorithms
+ 
+ * Data structure and algorithm analysis

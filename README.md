@@ -2,6 +2,6 @@
 Repository of the projects developed for the - [UFG master's program](http://www.inf.ufg.br/mestrado/)
 
 Disciplines
- * Computational Intelligence
+ * [Computational Intelligence](https://airtonbjunior.github.io/mestrado/Computational%20Intelligence/)
    * Genetic Algorithms
    * Evolutionary Algorithms

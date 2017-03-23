@@ -2,9 +2,9 @@
 Repository of the projects developed for the - [UFG master's program](http://www.inf.ufg.br/mestrado/)
 
 * Disciplines (2017.1)
-  * [Computational Intelligence](https://airtonbjunior.github.io/mestrado/Computational%20Intelligence/)
+  * [Computational Intelligence](https://airtonbjunior.github.io/mestrado/ComputationalIntelligence/)
     * Heuristics, metaheuristics and bio inspired algorithms 
-      * Presentation - [[Scribd]](https://pt.scribd.com/document/342446728/Heuristicas-metaheuristicas-e-algoritmos-bio-inspirados)
+      * Presentation - [[Scribd]](https://pt.scribd.com/document/342446728/Heuristicas-metaheuristicas-e-algoritmos-bio-inspirados) [[Browser]](https://airtonbjunior.github.io/mestrado/ComputationalIntelligence/trabalho1/IC_1.pdf)
     * Genetic Algorithms
     * Evolutionary Algorithms
  

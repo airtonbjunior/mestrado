@@ -9,5 +9,7 @@ Repository of the projects developed for the - [UFG master's program](http://www
       * Presentation
       * Code
     * Evolutionary Algorithms
+      * Presentation
+      * Code
  
   * Data structure and algorithm analysis

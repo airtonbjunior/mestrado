@@ -6,7 +6,7 @@ Repository of the projects developed for the - [UFG master's program](http://www
     * Heuristics, metaheuristics and bio inspired algorithms 
       * Presentation - [[Scribd]](https://pt.scribd.com/document/342446728/Heuristicas-metaheuristicas-e-algoritmos-bio-inspirados) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/heuristics-metaheuristcs/IC_1.pdf)
     * Genetic Algorithms
-      * Presentation
+      * Presentation - [[Scribd]](https://pt.scribd.com/document/343821183/Algoritmos-Geneticos) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/heuristics-metaheuristcs/IC_1.pdf)
       * Code
     * Evolutionary Algorithms
       * Presentation

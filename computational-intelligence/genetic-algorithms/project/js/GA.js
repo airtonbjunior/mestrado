@@ -131,6 +131,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 			child1.push(chromosome2[i]);
 		}
 
+		log("Crossover generate the childs " + child1 + " and " + child2);
+
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
 		$scope.nextGeneration[$scope.nextGenerationIndex] = child1;
 
@@ -139,15 +141,25 @@ AG.controller('AGController', ['$scope', function($scope) {
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
 		$scope.nextGeneration[$scope.nextGenerationIndex] = child2;
 
-		//log("Crossover finished");
+		log("Crossover finished");
+	}
+
+
+	$scope.mutate = function() {
+		// do mutate
 	}
 
 	
+	/* Flow of GA */ 
 	$scope.createPopulation(); // The first population, create randomly
 	$scope.evaluateAllChromosomes();
 	$scope.tournament();
 	$scope.crossover();
-	log($scope.nextGeneration);
+	$scope.mutate();
+	//log($scope.nextGeneration);
+
+
+
 
 
 	/* Aux functions */

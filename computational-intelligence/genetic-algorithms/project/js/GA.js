@@ -180,6 +180,6 @@ AG.controller('AGController', ['$scope', function($scope) {
 	[ ] Crossover probability
 	[ ] Mutate probability
 	[ ] Fathers are all diying
-
+	[ ] Select to choose the types of fathers selections (tournament, wheel, etc)
 
 */

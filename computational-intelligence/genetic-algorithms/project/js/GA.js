@@ -145,16 +145,21 @@ AG.controller('AGController', ['$scope', function($scope) {
 	}
 
 
+	/* Mutate a chromosome - random position */
 	$scope.mutate = function(chromosome) {
 		// do mutate
 		// one bit
 
+		log("mutate the chromosome " + chromosome);
+		var mutationPosition = Math.floor(Math.random() * $scope.sizeChromosome);
 		// didact way
-		if (chromosome[Math.floor(Math.random() * $scope.sizeChromosome)] == 0) {
-			chromosome[Math.floor(Math.random() * $scope.sizeChromosome)] = 1
+		if (chromosome[mutationPosition] == 0) {
+			chromosome[mutationPosition] = 1
 		} else {
-			chromosome[Math.floor(Math.random() * $scope.sizeChromosome)] = 0
+			chromosome[mutationPosition] = 0
 		}
+
+		log("chromosome mutated on position " + mutationPosition + ". The result is " + chromosome);
 	}
 
 	
@@ -163,7 +168,9 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.evaluateAllChromosomes(); // The first evaluation
 	$scope.tournament();
 	$scope.crossover();
-	$scope.mutate(/*crhomosome*/);
+
+	var chromosomeTest = [1,0,0,0,1,0]
+	$scope.mutate(chromosomeTest);
 	//log($scope.nextGeneration);
 
 

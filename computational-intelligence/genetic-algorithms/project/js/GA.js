@@ -17,12 +17,28 @@ AG.controller('AGController', ['$scope', function($scope) {
 	/* Main Variables */
 
 
+	/* Main Functions */
+
+	/* Create the population randomly */
+	$scope.createPopulation = function() {
+		log("I'll create the population");
+		for (var i = 0; i < $scope.populationSize; i++) {
+			
+			$scope.population[i] = new Array();
+			
+			for (var j = 0; j < $scope.sizeChromosome; j++)
+				$scope.population[i].push(Math.round(Math.random()));
+
+		}
+		log("Population created. Size: " + $scope.populationSize);
+	}
 
 
 
 	/* Evaluate each chromosome by the evaluate function - based on maxSizeBag - I want maximize the value here, respecting the constraints*/
 	$scope.evaluateFunction = function(chromosome) {
-		
+		log("I'll evaluate the chromosome " + chromosome);
+
 		var totalWeight = 0;
 		var totalValue  = 0;
 
@@ -33,42 +49,58 @@ AG.controller('AGController', ['$scope', function($scope) {
 			}
 		}
 
-
 		if(totalWeight > $scope.maxSizeBag) 
 			chromosome['evaluateValue'] = 0; // penalize here!
 		else
 			chromosome['evaluateValue'] = totalValue;
 		
+		log("The evaluate value of chromosome " + chromosome + " is " + chromosome['evaluateValue']);
 	}
 
 
 
-
-
-	/* Create the population randomly */
-	$scope.createPopulation = function() {
+	/* Evaluate All Chromosomes */
+	$scope.evaluateAllChromosomes = function() {
 		for (var i = 0; i < $scope.populationSize; i++) {
-			
-			$scope.population[i] = new Array();
-			
-			for (var j = 0; j < $scope.sizeChromosome; j++)
-				$scope.population[i].push(Math.round(Math.random()));
-
+			$scope.evaluateFunction($scope.population[i]);
 		}
 	}
 
 
+	/* Tournament - Choose the fathers */ 
+	$scope.tournament = function() {
+		log("Starting tournament");
+
+		var chromosome1, chromosome2;
+
+		for (var i = 0; i < $scope.populationSize/2; i++) { // half the population to crossover
+			
+			chromosome1 = $scope.population[Math.floor(Math.random() * $scope.populationSize)]; // choose randomly
+			chromosome2 = $scope.population[Math.floor(Math.random() * $scope.populationSize)]; // choose randomly
+
+			log("the choosed chromosome are [" + chromosome1 + "] and [" + chromosome2 + "]")
+
+			if(chromosome1['evaluateValue'] >= chromosome2['evaluateValue']) { // greater and equal. In this case, doesn't matter
+				log("Chromosome 1 wins - score: Chromosome 1 [" + chromosome1['evaluateValue'] + "] X [" + chromosome2['evaluateValue'] + "] Chromossome 2");
+			}
+			else {
+				log("Chromosome 2 wins - score: Chromosome 1 [" + chromosome1['evaluateValue'] + "] X [" + chromosome2['evaluateValue'] + "] Chromossome 2");
+			}
+			//$scope.crossover(chromosome1, chromosome2);
+		}
+
+		
+	}
+
+
+	$scope.crossover = function(chromosome1, chromosome2) {
+		// do crossover
+	}
 
 	
 	$scope.createPopulation();
-	$scope.evaluateFunction($scope.population[0])
-
-
-	log(itens);		
-	log($scope.population);
-
-
-
+	$scope.evaluateAllChromosomes();
+	$scope.tournament();
 
 
 	/* Aux functions */

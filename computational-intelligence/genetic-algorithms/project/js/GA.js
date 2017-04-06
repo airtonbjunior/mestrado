@@ -145,17 +145,25 @@ AG.controller('AGController', ['$scope', function($scope) {
 	}
 
 
-	$scope.mutate = function() {
+	$scope.mutate = function(chromosome) {
 		// do mutate
+		// one bit
+
+		// didact way
+		if (chromosome[Math.floor(Math.random() * $scope.sizeChromosome)] == 0) {
+			chromosome[Math.floor(Math.random() * $scope.sizeChromosome)] = 1
+		} else {
+			chromosome[Math.floor(Math.random() * $scope.sizeChromosome)] = 0
+		}
 	}
 
 	
 	/* Flow of GA */ 
 	$scope.createPopulation(); // The first population, create randomly
-	$scope.evaluateAllChromosomes();
+	$scope.evaluateAllChromosomes(); // The first evaluation
 	$scope.tournament();
 	$scope.crossover();
-	$scope.mutate();
+	$scope.mutate(/*crhomosome*/);
 	//log($scope.nextGeneration);
 
 

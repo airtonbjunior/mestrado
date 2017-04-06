@@ -16,6 +16,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.maxSizeBag = 100;
 	/* Main Variables */
 
+	$scope.winnersGeneration = [];
+
 
 	/* Main Functions */
 
@@ -82,14 +84,13 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 			if(chromosome1['evaluateValue'] >= chromosome2['evaluateValue']) { // greater and equal. In this case, doesn't matter
 				log("Chromosome 1 wins - score: Chromosome 1 [" + chromosome1['evaluateValue'] + "] X [" + chromosome2['evaluateValue'] + "] Chromossome 2");
+				$scope.winnersGeneration.push(chromosome1);
 			}
 			else {
 				log("Chromosome 2 wins - score: Chromosome 1 [" + chromosome1['evaluateValue'] + "] X [" + chromosome2['evaluateValue'] + "] Chromossome 2");
+				$scope.winnersGeneration.push(chromosome2);
 			}
-			//$scope.crossover(chromosome1, chromosome2);
-		}
-
-		
+		}	
 	}
 
 

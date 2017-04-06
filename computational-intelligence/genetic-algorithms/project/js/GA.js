@@ -26,7 +26,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	/* Create the population randomly */
 	$scope.createPopulation = function() {
-		log("I'll create the population");
+		log("Creating population");
 		for (var i = 0; i < $scope.populationSize; i++) {
 			
 			$scope.population[i] = new Array();
@@ -42,7 +42,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	/* Evaluate each chromosome by the evaluate function - based on maxSizeBag - I want maximize the value here, respecting the constraints*/
 	$scope.evaluateFunction = function(chromosome) {
-		log("I'll evaluate the chromosome " + chromosome);
+		log("Evaluate the chromosome " + chromosome);
 
 		var totalWeight = 0;
 		var totalValue  = 0;
@@ -93,7 +93,9 @@ AG.controller('AGController', ['$scope', function($scope) {
 				log("Chromosome 2 wins - score: Chromosome 1 [" + chromosome1['evaluateValue'] + "] X [" + chromosome2['evaluateValue'] + "] Chromossome 2");
 				$scope.winnersGeneration.push(chromosome2);
 			}
-		}	
+		}
+
+		log("Choosed " + $scope.winnersGeneration.length + " winners chromosomes on tournament");
 	}
 
 
@@ -110,12 +112,11 @@ AG.controller('AGController', ['$scope', function($scope) {
 			$scope.doCrossover(chromosome1, chromosome2, crossPoint);
 		}
 
-		// do crossover
-
 		$scope.winnersGeneration = []; // Kill all fathers! ¬¬
 	}
 
 
+	/* Crossover in fact */
 	$scope.doCrossover = function (chromosome1, chromosome2, crossPoint) {
 		log("Starting crossover with " + chromosome1 + " and " + chromosome2 + " using the crosspoint " + crossPoint);
 
@@ -140,6 +141,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
 		$scope.nextGeneration[$scope.nextGenerationIndex] = child2;
+
+		$scope.nextGenerationIndex++;
 
 		log("Crossover finished");
 	}
@@ -171,7 +174,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	var chromosomeTest = [1,0,0,0,1,0]
 	$scope.mutate(chromosomeTest);
-	//log($scope.nextGeneration);
+
+	log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
 
 
 

@@ -7,6 +7,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.populationSize       = 20;
 	$scope.mutationProability   = 0;
 	$scope.crossoverProbability = 0;
+	$scope.elitism 				= false;
 	/* GA Parameters */
 
 
@@ -16,7 +17,9 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.maxSizeBag = 100;
 	/* Main Variables */
 
-	$scope.winnersGeneration = [];
+	$scope.winnersGeneration   = [];
+	$scope.nextGeneration      = [];
+	$scope.nextGenerationIndex = 0;
 
 
 	/* Main Functions */
@@ -52,7 +55,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 
 		if(totalWeight > $scope.maxSizeBag) 
-			chromosome['evaluateValue'] = 0; // penalize here!
+			chromosome['evaluateValue'] = 1/(totalWeight - $scope.maxSizeBag); // penalize here! exceeded^-1
 		else
 			chromosome['evaluateValue'] = totalValue;
 		
@@ -94,14 +97,57 @@ AG.controller('AGController', ['$scope', function($scope) {
 	}
 
 
-	$scope.crossover = function(chromosome1, chromosome2) {
+	$scope.crossover = function() {
+		var crossPoint = 0;
+		var chromosome1, chromosome2; 
+
+		for (var i = 0; i < $scope.winnersGeneration.length; i++) {
+			chromosome1 = $scope.winnersGeneration[Math.floor(Math.random() * $scope.winnersGeneration.length)];
+			chromosome2 = $scope.winnersGeneration[Math.floor(Math.random() * $scope.winnersGeneration.length)];
+
+			crossPoint = Math.floor(Math.random() * $scope.sizeChromosome + 1);
+
+			$scope.doCrossover(chromosome1, chromosome2, crossPoint);
+		}
+
 		// do crossover
+
+		$scope.winnersGeneration = []; // Kill all fathers! ¬¬
+	}
+
+
+	$scope.doCrossover = function (chromosome1, chromosome2, crossPoint) {
+		log("Starting crossover with " + chromosome1 + " and " + chromosome2 + " using the crosspoint " + crossPoint);
+
+		var child1 = []
+		var child2 = [];
+		
+		for (var i = 0; i < crossPoint; i++) {
+			child1.push(chromosome1[i]);
+			child2.push(chromosome2[i]);
+		}
+		for (var i = crossPoint; i <= $scope.sizeChromosome; i++) {
+			child2.push(chromosome1[i]);
+			child1.push(chromosome2[i]);
+		}
+
+		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
+		$scope.nextGeneration[$scope.nextGenerationIndex] = child1;
+
+		$scope.nextGenerationIndex++;
+
+		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
+		$scope.nextGeneration[$scope.nextGenerationIndex] = child2;
+
+		//log("Crossover finished");
 	}
 
 	
-	$scope.createPopulation();
+	$scope.createPopulation(); // The first population, create randomly
 	$scope.evaluateAllChromosomes();
 	$scope.tournament();
+	$scope.crossover();
+	log($scope.nextGeneration);
 
 
 	/* Aux functions */
@@ -114,3 +160,14 @@ AG.controller('AGController', ['$scope', function($scope) {
 	}
 
 }]);
+
+
+/*
+	TO-DO:
+
+	[ ] Crossover probability
+	[ ] Mutate probability
+	[ ] Fathers are all diying
+
+
+*/

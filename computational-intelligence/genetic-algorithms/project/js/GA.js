@@ -5,7 +5,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	/* GA Parameters */
 	$scope.generations          = 0;
 	$scope.populationSize       = 20;
-	$scope.mutationProability   = 0;
+	$scope.mutationProability   = 0.3;
 	$scope.crossoverProbability = 0;
 	$scope.elitism 				= false;
 	/* GA Parameters */
@@ -153,7 +153,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 		// do mutate
 		// one bit
 
-		log("mutate the chromosome " + chromosome);
+		log("## MUTATION ## Mutate the chromosome " + chromosome);
 		var mutationPosition = Math.floor(Math.random() * $scope.sizeChromosome);
 		// didact way
 		if (chromosome[mutationPosition] == 0) {
@@ -172,8 +172,13 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.tournament();
 	$scope.crossover();
 
-	var chromosomeTest = [1,0,0,0,1,0]
-	$scope.mutate(chromosomeTest);
+	var chromosomeTest = [1,0,0,0,1,0];
+
+	if(Math.random() < $scope.mutationProability) { // Mutation probability
+		
+		$scope.mutate(chromosomeTest);
+	}
+	
 
 	log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
 

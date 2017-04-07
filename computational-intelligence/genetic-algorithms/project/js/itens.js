@@ -36,7 +36,7 @@ itens = [
     currency: "R$"
   }, 
     {
-    name: "Item 2", 
+    name: "Item 6", 
     weight: "15", 
     unityMeasure: "Kg", 
     value: "80", 

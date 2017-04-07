@@ -3,7 +3,7 @@ var AG = angular.module('AG', []);
 AG.controller('AGController', ['$scope', function($scope) {
 
 	/* GA Parameters */
-	$scope.generations          = 0;
+	$scope.generations          = 5;
 	$scope.populationSize       = 20;
 	$scope.mutationProability   = 0.3;
 	$scope.crossoverProbability = 0;
@@ -54,10 +54,14 @@ AG.controller('AGController', ['$scope', function($scope) {
 			}
 		}
 
-		if(totalWeight > $scope.maxSizeBag) 
-			chromosome['evaluateValue'] = 1/(totalWeight - $scope.maxSizeBag); // penalize here! exceeded^-1
-		else
+		if(totalWeight > parseInt($scope.maxSizeBag)) {
+			chromosome['evaluateValue'] = parseFloat(1/(totalWeight - $scope.maxSizeBag)); // penalize here! exceeded^-1
+			chromosome['weightValue']   = 0;	
+		}
+		else {
 			chromosome['evaluateValue'] = totalValue;
+			chromosome['weightValue']   = totalWeight;
+		}
 		
 		log("The evaluate value of chromosome " + chromosome + " is " + chromosome['evaluateValue']);
 	}
@@ -161,7 +165,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 		// do mutate
 		// one bit
 
-		log("#### MUTATION #### Mutate the chromosome " + chromosome);
+		log("=== MUTATION === Mutate the chromosome " + chromosome);
 		var mutationPosition = Math.floor(Math.random() * $scope.sizeChromosome);
 		// didact way
 		if (chromosome[mutationPosition] == 0) {
@@ -175,19 +179,38 @@ AG.controller('AGController', ['$scope', function($scope) {
 		log("chromosome mutated on position " + mutationPosition + ". The result is " + chromosome);
 	}
 
+	$scope.getBestChromosomeValue = function() {
+		var bestValue = 0;
+		for(var i = 0; i < $scope.populationSize; i++) {
+			if ($scope.population[i]['evaluateValue'] > bestValue) {
+				bestValue = i;
+			}
+		}
+		return bestValue;
+	}
+
 	
 	$scope.start = function() {
 
-		log($scope.populationSize);
-
 		/* Flow of GA */ 
 		$scope.createPopulation(); // The first population, create randomly
-		$scope.evaluateAllChromosomes(); // The first evaluation
-		$scope.tournament();
-		$scope.crossover();
 		
+		for (var i = 1; i <= $scope.generations; i++) {
+			log("################ Starting generation " + i + " ################");
+			
+			if (i > 1) $scope.population = $scope.nextGeneration.slice();
+			
+			$scope.nextGenerationIndex = 0;
+			$scope.evaluateAllChromosomes(); // The first evaluation
+			$scope.tournament();
+			$scope.crossover(); // mutate occurs inside the crossover
 
-		log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
+			log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
+
+		}
+
+		var bestValueChromosome = $scope.getBestChromosomeValue();
+		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
 	}
 
 
@@ -217,5 +240,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	[ ] Mutate probability
 	[ ] Fathers are all diying
 	[ ] Select to choose the types of fathers selections (tournament, wheel, etc)
+	[ ] Population odd (when pop/2 on crossover)
+	[ ] I'm always doing the crossover. If I don'd do, I need to reply the fathers to the next generation?
 
 */

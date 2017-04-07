@@ -235,7 +235,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	var bestChromosomeValuesHistory = {
 	  // A labels array that can contain any sort of values
-	  labels: ['Generation'],
+	  labels: ['Generations'],
 	  // Our series array that contains series objects or in this case series data arrays
 	  series: [
 	    $scope.bestValuesHistory
@@ -244,7 +244,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	chart = new Chartist.Line('.ct-chart', bestChromosomeValuesHistory);
 
-	
+
 }]);
 
 

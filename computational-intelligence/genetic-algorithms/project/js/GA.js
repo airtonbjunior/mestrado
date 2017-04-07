@@ -134,15 +134,23 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		log("Crossover generate the childs " + child1 + " and " + child2);
 
+		if(Math.random() < $scope.mutationProability)  // Mutation probability
+			child1 = $scope.mutate(child1);
+
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
 		$scope.nextGeneration[$scope.nextGenerationIndex] = child1;
 
 		$scope.nextGenerationIndex++;
 
+
+		// Two times to be more didact
+		if(Math.random() < $scope.mutationProability)  // Mutation probability
+			child2 = $scope.mutate(child2);
+
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
 		$scope.nextGeneration[$scope.nextGenerationIndex] = child2;
 
-		$scope.nextGenerationIndex++;
+		$scope.nextGenerationIndex++; // Restart this in some place - I don't know the best place to do that yet
 
 		log("Crossover finished");
 	}
@@ -153,7 +161,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 		// do mutate
 		// one bit
 
-		log("## MUTATION ## Mutate the chromosome " + chromosome);
+		log("#### MUTATION #### Mutate the chromosome " + chromosome);
 		var mutationPosition = Math.floor(Math.random() * $scope.sizeChromosome);
 		// didact way
 		if (chromosome[mutationPosition] == 0) {
@@ -162,25 +170,29 @@ AG.controller('AGController', ['$scope', function($scope) {
 			chromosome[mutationPosition] = 0
 		}
 
+		return chromosome;
+
 		log("chromosome mutated on position " + mutationPosition + ". The result is " + chromosome);
 	}
 
 	
-	/* Flow of GA */ 
-	$scope.createPopulation(); // The first population, create randomly
-	$scope.evaluateAllChromosomes(); // The first evaluation
-	$scope.tournament();
-	$scope.crossover();
+	$scope.start = function() {
 
-	var chromosomeTest = [1,0,0,0,1,0];
+		log($scope.populationSize);
 
-	if(Math.random() < $scope.mutationProability) { // Mutation probability
+		/* Flow of GA */ 
+		$scope.createPopulation(); // The first population, create randomly
+		$scope.evaluateAllChromosomes(); // The first evaluation
+		$scope.tournament();
+		$scope.crossover();
 		
-		$scope.mutate(chromosomeTest);
-	}
-	
 
-	log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
+		log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
+	}
+
+
+
+
 
 
 

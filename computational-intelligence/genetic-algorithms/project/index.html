@@ -5,15 +5,29 @@
 </head>
 <body ng-app="AG" ng-controller="AGController">
 
-	<input value={{generations}} /> 
-	<input value={{populationSize}} /> 
-	<input value={{mutationProability}} /> 
-	<input value={{crossoverProbability}} /> 
+	<div class="input-value">
+		<input value={{generations}} ng-model="generations"/> 
+		<span>Generations</span>
+	</div>
+	<div class="input-value">
+		<input value={{populationSize}} ng-model="populationSize"/> 
+		<span>Population Size</span>
+	</div>
+	<div class="input-value">
+		<input value={{crossoverProbability}} ng-model="crossoverProbability"/> 
+		<span>Crossover Probability</span>
+	</div>
+	<div class="input-value">
+		<input value={{mutationProability}} ng-model="mutationProability"/> 
+		<span>Mutation Probability</span>
+	</div>
+	<div class="input-value">
+		<input value={{maxSizeBag}} ng-model="maxSizeBag"/>
+		<span>Max Weight Bag</span> 
+	</div>
 
-	<input value={{maxSizeBag}} /> 
 
-
-	<button>Start</button>
+	<button ng-click="start()">Start</button>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
 	<script type="text/javascript" src="js/itens.js"></script>

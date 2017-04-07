@@ -20,6 +20,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.winnersGeneration   = [];
 	$scope.nextGeneration      = [];
 	$scope.nextGenerationIndex = 0;
+	$scope.bestValuesHistory   = [];
 
 
 	/* Main Functions */
@@ -206,18 +207,17 @@ AG.controller('AGController', ['$scope', function($scope) {
 			$scope.crossover(); // mutate occurs inside the crossover
 
 			log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
-
+			$scope.bestValuesHistory.push($scope.population[$scope.getBestChromosomeValue()]['evaluateValue']);
+			log("The best value of generation " + i + " is " + $scope.bestValuesHistory[$scope.bestValuesHistory.length-1]);
+			
+			
 		}
 
 		var bestValueChromosome = $scope.getBestChromosomeValue();
+		chart = new Chartist.Line('.ct-chart', bestChromosomeValuesHistory);
+		
 		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
 	}
-
-
-
-
-
-
 
 
 
@@ -230,14 +230,30 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 	}
 
+
+
+
+	var bestChromosomeValuesHistory = {
+	  // A labels array that can contain any sort of values
+	  labels: ['Generation'],
+	  // Our series array that contains series objects or in this case series data arrays
+	  series: [
+	    $scope.bestValuesHistory
+	  ]
+	};
+
+	chart = new Chartist.Line('.ct-chart', bestChromosomeValuesHistory);
+
+	
 }]);
 
 
 /*
 	TO-DO:
 
+	[ ] Update the graph each generation
+	[ ] Best of each generation to show on screen the evolution
 	[ ] Crossover probability
-	[ ] Mutate probability
 	[ ] Fathers are all diying
 	[ ] Select to choose the types of fathers selections (tournament, wheel, etc)
 	[ ] Population odd (when pop/2 on crossover)

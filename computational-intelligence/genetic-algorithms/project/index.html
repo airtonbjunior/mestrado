@@ -16,11 +16,11 @@
 				<input value={{populationSize}} ng-model="populationSize" type="number"/> 
 			</div>
 			<div class="input-value">
-				<p>Crossover Probability</p>		
+				<p>Crossover Probability %</p>		
 				<input value={{crossoverProbability}} ng-model="crossoverProbability" type="number"/> 
 			</div>
 			<div class="input-value">
-				<p>Mutation Probability</p>			
+				<p>Mutation Probability %</p>			
 				<input value={{mutationProability}} ng-model="mutationProability" type="number"/> 
 			</div>
 			<div class="input-value">
@@ -35,16 +35,17 @@
 			<button class="btn-start" ng-click="start()">Start</button>
 		</div>
 
+		<div id="ct-chart" class="ct-chart ct-perfect-fourth">
+		</div>
 
-		<div id="ct-chart" class="ct-chart ct-perfect-fourth"></div>
 	</div>
 
 	<div class="container-itens">
 	<div id="{{item.name}}" class="itens {{item.name}}" data-ng-repeat="item in itens">
 		<div id="{{item.name}}">
 			<p>{{item.name}}</p>
-			<p><span>Weigth</span>{{item.weight}}</p>
-			<p><span>Value</span>{{item.value}}</p>
+			<p><span>Weigth: </span>{{item.weight}}</p>
+			<p><span>Value: </span>{{item.value}}</p>
 		</div>
 	</div>
 	</div>

@@ -3,9 +3,9 @@ var AG = angular.module('AG', []);
 AG.controller('AGController', ['$scope', function($scope) {
 
 	/* GA Parameters */
-	$scope.generations          = 5;
+	$scope.generations          = parseInt(5);
 	$scope.populationSize       = 20;
-	$scope.mutationProability   = 0.3;
+	$scope.mutationProability   = 3;
 	$scope.crossoverProbability = 0;
 	$scope.elitism 				= false;
 	/* GA Parameters */
@@ -140,7 +140,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		log("Crossover generate the childs " + child1 + " and " + child2);
 
-		if(Math.random() < $scope.mutationProability)  // Mutation probability
+		if(Math.random() < ($scope.mutationProability / 100))  // Mutation probability
 			child1 = $scope.mutate(child1);
 
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
@@ -150,7 +150,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 
 		// Two times to be more didact
-		if(Math.random() < $scope.mutationProability)  // Mutation probability
+		if(Math.random() < ($scope.mutationProability / 100))  // Mutation probability
 			child2 = $scope.mutate(child2);
 
 		$scope.nextGeneration[$scope.nextGenerationIndex] = new Array();
@@ -196,7 +196,9 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		/* Flow of GA */ 
 		$scope.createPopulation(); // The first population, create randomly
+		$scope.bestValuesHistory = []; // Clean the history. Here, the user clicks again on start button, so we don't need store the history of other turns
 		$scope.cleanClasses();
+
 		
 		for (var i = 1; i <= $scope.generations; i++) {
 			log("################ Starting generation " + i + " ################");
@@ -216,17 +218,20 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 
 		var bestValueChromosome = $scope.getBestChromosomeValue();
-		chart = new Chartist.Line('.ct-chart', bestChromosomeValuesHistory);
-		
+		chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [$scope.bestValuesHistory]}, options);
 		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
 		
+		$scope.paintChoosedItens();
+	}
 
+
+	/* Set the chossed itens with "selected" class */
+	$scope.paintChoosedItens = function() { 
 		for (var i = 0; i < $scope.sizeChromosome; i++) {
 			if($scope.population[$scope.getBestChromosomeValue()][i] == 1)
 				document.getElementById($scope.itens[i].name).className += " selected";
 		}
 	}
-
 
 	/* Clean the "selected" classes */
 	$scope.cleanClasses = function() {
@@ -246,20 +251,16 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 	}
 
-
-
-
-	var bestChromosomeValuesHistory = {
-	  // A labels array that can contain any sort of values
-	  labels: ['Generations'],
-	  // Our series array that contains series objects or in this case series data arrays
-	  series: [
-	    $scope.bestValuesHistory
-	  ]
+	/* Graph config options */
+	var options = {
+	  showPoint: false,
+	  lineSmooth: true,
+	  axisX: {
+	    showGrid: true,
+	    showLabel: true,
+	  },
+	  showArea: true
 	};
-
-	chart = new Chartist.Line('.ct-chart', bestChromosomeValuesHistory);
-
 
 }]);
 

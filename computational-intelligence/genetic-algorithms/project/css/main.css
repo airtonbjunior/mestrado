@@ -1,0 +1,61 @@
+/* Simple CSS Reset */
+* {
+	margin: 0;
+	padding: 0;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+:root {
+	--btn-color: #F3F0E8;
+}
+
+body {
+	background: #f7b733;
+}
+
+.container {
+	display: flex;
+}
+
+
+.input-value input {
+	padding: 5px;
+	margin: 5px;
+	width: 95%;
+}
+
+
+.btn-start {
+	padding: 10px;
+	margin-top: 10px;
+	width: 100%;
+
+	background: var(--btn-color);
+}
+
+.input-value {
+	width: 100%;
+	margin: 2px;
+}
+
+.params-inputs {
+	background: #dfdce3; /* just test */
+	width: 300px;
+
+	margin-left: 30px;
+	margin-top: 15px;
+	padding: 20px;
+
+	overflow: hidden;
+
+}
+
+.ct-chart {
+	width: 50%; /* Just for test - define the best way here */
+	height: 400px;
+	margin-top: 15px;
+	flex-grow: 1;
+}

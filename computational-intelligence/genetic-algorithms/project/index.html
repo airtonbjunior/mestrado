@@ -5,43 +5,44 @@
 </head>
 <body ng-app="AG" ng-controller="AGController">
 
-	<div class="input-value">
-		<input value={{generations}} ng-model="generations"/> 
-		<span>Generations</span>
-	</div>
-	<div class="input-value">
-		<input value={{populationSize}} ng-model="populationSize"/> 
-		<span>Population Size</span>
-	</div>
-	<div class="input-value">
-		<input value={{crossoverProbability}} ng-model="crossoverProbability"/> 
-		<span>Crossover Probability</span>
-	</div>
-	<div class="input-value">
-		<input value={{mutationProability}} ng-model="mutationProability"/> 
-		<span>Mutation Probability</span>
-	</div>
-	<div class="input-value">
-		<input value={{maxSizeBag}} ng-model="maxSizeBag"/>
-		<span>Max Weight Bag</span> 
-	</div>
-	<div class="input-value">
-		<input type="checkbox" ng-model="elitism" />
-		<span>Elitism</span> 
-	</div>
+<div class="container">
+	<div class="params-inputs">
+		<div class="input-value">
+			<p>Generations</p>
+			<input value={{generations}} ng-model="generations" type="number"/> 
+		</div>
+		<div class="input-value">
+			<p>Population Size</p>
+			<input value={{populationSize}} ng-model="populationSize" type="number"/> 
+		</div>
+		<div class="input-value">
+			<p>Crossover Probability</p>		
+			<input value={{crossoverProbability}} ng-model="crossoverProbability" type="number"/> 
+		</div>
+		<div class="input-value">
+			<p>Mutation Probability</p>			
+			<input value={{mutationProability}} ng-model="mutationProability" type="number"/> 
+		</div>
+		<div class="input-value">
+			<p>Max Weight Bag</p>
+			<input value={{maxSizeBag}} ng-model="maxSizeBag" type="number"/> 
+		</div>
+		<div class="input-checkbox">
+			<span>Elitism</span>
+			<input type="checkbox" ng-model="elitism" /> 
+		</div>
 
-	<button ng-click="start()">Start</button>
-
+		<button class="btn-start" ng-click="start()">Start</button>
+	</div>
 
 
 	<div id="ct-chart" class="ct-chart ct-perfect-fourth"></div>
+</div>
 
 
 
-
-
+	<!-- Third-part code -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
-	
     <link rel="stylesheet" href="css/lib-graph/chartist.min.css">
     <script src="js/lib-graph/chartist.min.js"></script>
 

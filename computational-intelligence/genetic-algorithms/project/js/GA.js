@@ -22,6 +22,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.nextGenerationIndex = 0;
 	$scope.bestValuesHistory   = [];
 
+	$scope.itens = itens;
 
 	/* Main Functions */
 
@@ -195,6 +196,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		/* Flow of GA */ 
 		$scope.createPopulation(); // The first population, create randomly
+		$scope.cleanClasses();
 		
 		for (var i = 1; i <= $scope.generations; i++) {
 			log("################ Starting generation " + i + " ################");
@@ -217,6 +219,20 @@ AG.controller('AGController', ['$scope', function($scope) {
 		chart = new Chartist.Line('.ct-chart', bestChromosomeValuesHistory);
 		
 		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
+		
+
+		for (var i = 0; i < $scope.sizeChromosome; i++) {
+			if($scope.population[$scope.getBestChromosomeValue()][i] == 1)
+				document.getElementById($scope.itens[i].name).className += " selected";
+		}
+	}
+
+
+	/* Clean the "selected" classes */
+	$scope.cleanClasses = function() {
+		for (var i = 0; i < $scope.sizeChromosome; i++) {
+			document.getElementById($scope.itens[i].name).classList.remove("selected");
+		}
 	}
 
 

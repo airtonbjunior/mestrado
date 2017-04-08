@@ -5,41 +5,49 @@
 </head>
 <body ng-app="AG" ng-controller="AGController">
 
-<div class="container">
-	<div class="params-inputs">
-		<div class="input-value">
-			<p>Generations</p>
-			<input value={{generations}} ng-model="generations" type="number"/> 
-		</div>
-		<div class="input-value">
-			<p>Population Size</p>
-			<input value={{populationSize}} ng-model="populationSize" type="number"/> 
-		</div>
-		<div class="input-value">
-			<p>Crossover Probability</p>		
-			<input value={{crossoverProbability}} ng-model="crossoverProbability" type="number"/> 
-		</div>
-		<div class="input-value">
-			<p>Mutation Probability</p>			
-			<input value={{mutationProability}} ng-model="mutationProability" type="number"/> 
-		</div>
-		<div class="input-value">
-			<p>Max Weight Bag</p>
-			<input value={{maxSizeBag}} ng-model="maxSizeBag" type="number"/> 
-		</div>
-		<div class="input-checkbox">
-			<span>Elitism</span>
-			<input type="checkbox" ng-model="elitism" /> 
+	<div class="container">
+		<div class="params-inputs">
+			<div class="input-value">
+				<p>Generations</p>
+				<input value={{generations}} ng-model="generations" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Population Size</p>
+				<input value={{populationSize}} ng-model="populationSize" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Crossover Probability</p>		
+				<input value={{crossoverProbability}} ng-model="crossoverProbability" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Mutation Probability</p>			
+				<input value={{mutationProability}} ng-model="mutationProability" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Max Weight Bag</p>
+				<input value={{maxSizeBag}} ng-model="maxSizeBag" type="number"/> 
+			</div>
+			<div class="input-checkbox">
+				<span>Elitism</span>
+				<input type="checkbox" ng-model="elitism" /> 
+			</div>
+
+			<button class="btn-start" ng-click="start()">Start</button>
 		</div>
 
-		<button class="btn-start" ng-click="start()">Start</button>
+
+		<div id="ct-chart" class="ct-chart ct-perfect-fourth"></div>
 	</div>
 
-
-	<div id="ct-chart" class="ct-chart ct-perfect-fourth"></div>
-</div>
-
-
+	<div class="container-itens">
+	<div id="{{item.name}}" class="itens {{item.name}}" data-ng-repeat="item in itens">
+		<div id="{{item.name}}">
+			<p>{{item.name}}</p>
+			<p><span>Weigth</span>{{item.weight}}</p>
+			<p><span>Value</span>{{item.value}}</p>
+		</div>
+	</div>
+	</div>
 
 	<!-- Third-part code -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Playfair+Display');
 /* Simple CSS Reset */
 * {
 	margin: 0;
@@ -9,14 +10,25 @@
             box-sizing: border-box;
 }
 :root {
+	--bg-page-color: #E3E98B;
 	--btn-color: #F3F0E8;
-	--bag-iten-selected-color: yellow;
-	--bg-color-bag-item: blue;
-	--bg-itens-div: red;
+	--bag-iten-selected-color: #CB6217;
+	--bg-color-bag-item: #E3E98B;
+	--bg-itens-div: #33878B;
 }
 
 body {
-	background: #f7b733;
+	background: var(--bg-page-color);
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Crimson Text', serif;
+	margin-top: 10px;
+}
+
+p, span {
+	font-family: 'Playfair Display', serif;	
 }
 
 .container {
@@ -71,8 +83,8 @@ body {
 	background-color: var(--bg-itens-div);
 
     overflow-x: auto; /* <-- show horizontal scrollbar */
-    overflow-y:hidden; /* <-- hide vertical scrollbar */
-    white-space:nowrap;
+    overflow-y: hidden; /* <-- hide vertical scrollbar */
+    white-space: nowrap;
 }
 
 .itens{

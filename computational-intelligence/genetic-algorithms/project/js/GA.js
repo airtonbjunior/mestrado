@@ -3,7 +3,7 @@ var AG = angular.module('AG', []);
 AG.controller('AGController', ['$scope', function($scope) {
 
 	/* GA Parameters */
-	$scope.generations          = parseInt(5);
+	$scope.generations          = 10;
 	$scope.populationSize       = 20;
 	$scope.mutationProability   = 3;
 	$scope.crossoverProbability = 0;
@@ -24,6 +24,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	$scope.itens = itens;
 
+	$scope.logInfo = [];
 	/* Main Functions */
 
 	/* Create the population randomly */
@@ -84,7 +85,9 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		var chromosome1, chromosome2;
 
-		for (var i = 0; i < $scope.populationSize/2; i++) { // half the population to crossover
+
+		var i = 0; // outside for because I'll put a verification here in the future!
+		for (i; i < $scope.populationSize/2; i++) { // half the population to crossover
 			
 			chromosome1 = $scope.population[Math.floor(Math.random() * $scope.populationSize)]; // choose randomly
 			chromosome2 = $scope.population[Math.floor(Math.random() * $scope.populationSize)]; // choose randomly
@@ -191,8 +194,17 @@ AG.controller('AGController', ['$scope', function($scope) {
 		return bestValue;
 	}
 
-	
+
+	// test
+	$scope.start2 = function() {
+		document.getElementById("loading-icon").className += "fa fa-refresh fa-spin fa-3x fa-fw";
+		$scope.start();
+	}
+
+
 	$scope.start = function() {
+
+		//document.getElementById("loading-icon").className += "fa fa-refresh fa-spin fa-3x fa-fw";
 
 		/* Flow of GA */ 
 		$scope.createPopulation(); // The first population, create randomly
@@ -203,18 +215,23 @@ AG.controller('AGController', ['$scope', function($scope) {
 		for (var i = 1; i <= $scope.generations; i++) {
 			log("################ Starting generation " + i + " ################");
 			
-			if (i > 1) $scope.population = $scope.nextGeneration.slice();
+			if (i > 1) $scope.population = $scope.nextGeneration.slice(); // Copy the next generation for the population array
+			$scope.nextGenerationIndex = 0;	
 			
-			$scope.nextGenerationIndex = 0;
-			$scope.evaluateAllChromosomes(); // The first evaluation
+			$scope.evaluateAllChromosomes();
 			$scope.tournament();
-			$scope.crossover(); // mutate occurs inside the crossover
+			$scope.crossover(); // mutation occurs inside the crossover
+
+			//if($scope.elitism) {
+				// See
+				//log("Elitism activated");
+				//$scope.nextGeneration[$scope.nextGenerationIndex - 1] = $scope.population[$scope.getBestChromosomeValue()]; // Replace the last index
+				//log("Chromosome " + $scope.population[$scope.getBestChromosomeValue()] + " with weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue'] + " and value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " goes to next generation by elitism");
+			//}
 
 			log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
 			$scope.bestValuesHistory.push($scope.population[$scope.getBestChromosomeValue()]['evaluateValue']);
-			log("The best value of generation " + i + " is " + $scope.bestValuesHistory[$scope.bestValuesHistory.length-1]);
-			
-			
+			log("The best value of generation " + i + " is " + $scope.bestValuesHistory[$scope.bestValuesHistory.length-1]);			
 		}
 
 		var bestValueChromosome = $scope.getBestChromosomeValue();
@@ -224,6 +241,29 @@ AG.controller('AGController', ['$scope', function($scope) {
 		$scope.paintChoosedItens();
 	}
 
+
+
+	/* Aux functions */
+	function log(info, textarea) {
+		if (!!!textarea) {
+			//$scope.logInfo.push(info);
+			console.log(info);
+		}
+		else { // link the textarea here }
+			
+		}
+	}
+
+	/* Graph config options */
+	var options = {
+	  showPoint: false,
+	  lineSmooth: true,
+	  axisX: {
+	    showGrid: true,
+	    showLabel: true,
+	  },
+	  showArea: true
+	};
 
 	/* Set the chossed itens with "selected" class */
 	$scope.paintChoosedItens = function() { 
@@ -240,27 +280,6 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 	}
 
-
-
-	/* Aux functions */
-	function log(info, textarea) {
-		if (!!!textarea)
-			console.log(info)
-		else { // link the textarea here }
-			
-		}
-	}
-
-	/* Graph config options */
-	var options = {
-	  showPoint: false,
-	  lineSmooth: true,
-	  axisX: {
-	    showGrid: true,
-	    showLabel: true,
-	  },
-	  showArea: true
-	};
 
 }]);
 

@@ -12,9 +12,9 @@
 :root {
 	--bg-page-color: #E3E98B;
 	--btn-color: #F3F0E8;
-	--bag-iten-selected-color: #CB6217;
+	--bag-iten-selected-color: #EAC14D;
 	--bg-color-bag-item: #E3E98B;
-	--bg-itens-div: #33878B;
+	--bg-itens-div: #E3E98B;
 }
 
 body {
@@ -57,12 +57,14 @@ p, span {
 }
 
 .params-inputs {
-	background: #dfdce3; /* just test */
+	background: #EAC14D; /* just test */
 	width: 300px;
 
 	margin-left: 30px;
 	margin-top: 15px;
 	padding: 20px;
+
+	padding-bottom: 15px;
 
 	overflow: hidden;
 
@@ -96,6 +98,8 @@ p, span {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-right: 15px;
+
+	border: 1px solid;
 }
 
 .itens:first-child {

@@ -25,6 +25,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.itens = itens;
 
 	$scope.logInfo = [];
+	$scope.startButtonLabel = "Start";
 	/* Main Functions */
 
 	/* Create the population randomly */
@@ -82,6 +83,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 	/* Tournament - Choose the fathers */ 
 	$scope.tournament = function() {
 		log("Starting tournament");
+
+
 
 		var chromosome1, chromosome2;
 
@@ -195,17 +198,11 @@ AG.controller('AGController', ['$scope', function($scope) {
 	}
 
 
-	// test
-	$scope.start2 = function() {
-		document.getElementById("loading-icon").className += "fa fa-refresh fa-spin fa-3x fa-fw";
-		$scope.start();
-	}
-
-
 	$scope.start = function() {
 
 		//document.getElementById("loading-icon").className += "fa fa-refresh fa-spin fa-3x fa-fw";
-
+		$scope.startButtonLabel = "Processing...";
+		
 		/* Flow of GA */ 
 		$scope.createPopulation(); // The first population, create randomly
 		$scope.bestValuesHistory = []; // Clean the history. Here, the user clicks again on start button, so we don't need store the history of other turns
@@ -239,6 +236,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
 		
 		$scope.paintChoosedItens();
+		$scope.startButtonLabel = "Start";
 	}
 
 

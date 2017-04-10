@@ -44,37 +44,51 @@ itens = [
   },
   {
     name: "Item 7", 
-    weight: "15", 
+    weight: "35", 
     unityMeasure: "Kg", 
-    value: "80", 
+    value: "75", 
     currency: "R$"
   },
   {
     name: "Item 8", 
-    weight: "15", 
+    weight: "5", 
     unityMeasure: "Kg", 
-    value: "80", 
+    value: "10", 
     currency: "R$"
   },
   {
     name: "Item 9", 
-    weight: "15", 
+    weight: "40", 
     unityMeasure: "Kg", 
-    value: "80", 
+    value: "130", 
     currency: "R$"
   },
   {
     name: "Item 10", 
-    weight: "15", 
+    weight: "90", 
     unityMeasure: "Kg", 
-    value: "80", 
+    value: "90", 
     currency: "R$"
   }, 
   {
     name: "Item 11", 
-    weight: "15", 
+    weight: "30", 
     unityMeasure: "Kg", 
-    value: "80", 
+    value: "110", 
+    currency: "R$"
+  },  
+  {
+    name: "Item 12", 
+    weight: "65", 
+    unityMeasure: "Kg", 
+    value: "10", 
+    currency: "R$"
+  },  
+  {
+    name: "Item 13", 
+    weight: "50", 
+    unityMeasure: "Kg", 
+    value: "150", 
     currency: "R$"
   }  
 ];

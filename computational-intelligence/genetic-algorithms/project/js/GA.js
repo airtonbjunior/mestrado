@@ -84,10 +84,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.tournament = function() {
 		log("Starting tournament");
 
-
-
 		var chromosome1, chromosome2;
-
 
 		var i = 0; // outside for because I'll put a verification here in the future!
 		for (i; i < $scope.populationSize/2; i++) { // half the population to crossover
@@ -225,12 +222,12 @@ AG.controller('AGController', ['$scope', function($scope) {
 			$scope.tournament();
 			$scope.crossover(); // mutation occurs inside the crossover
 
-			//if($scope.elitism) {
+			if($scope.elitism) {
 				// See
-				//log("Elitism activated");
-				//$scope.nextGeneration[$scope.nextGenerationIndex - 1] = $scope.population[$scope.getBestChromosomeValue()]; // Replace the last index
-				//log("Chromosome " + $scope.population[$scope.getBestChromosomeValue()] + " with weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue'] + " and value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " goes to next generation by elitism");
-			//}
+				log("Elitism activated");
+				$scope.nextGeneration[0] = $scope.population[$scope.getBestChromosomeValue()]; // Replace the first index
+				log("Chromosome " + $scope.population[$scope.getBestChromosomeValue()] + " with weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue'] + " and value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " goes to next generation by elitism");
+			}
 
 			log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
 			$scope.bestValuesHistory.push($scope.population[$scope.getBestChromosomeValue()]['evaluateValue']);
@@ -245,8 +242,11 @@ AG.controller('AGController', ['$scope', function($scope) {
 			$scope.paintChoosedItens();
 		}, 1000);
 
+		//setTimeout(function() {
+		//	$scope.result = "The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue'] 
+		//}, 60);
+
 		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
-		
 	}
 
 

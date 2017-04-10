@@ -10,11 +10,12 @@
             box-sizing: border-box;
 }
 :root {
-	--bg-page-color: #E3E98B;
+	--bg-page-color: #3F4D58;
 	--btn-color: #F3F0E8;
 	--bag-iten-selected-color: #EAC14D;
 	--bg-color-bag-item: #E3E98B;
-	--bg-itens-div: #EAC14D;
+	--bg-itens-div: #CAD26D;
+	--bg-params-input: #CAD26D;
 }
 
 body {
@@ -24,7 +25,7 @@ body {
 h1 {
 	text-align: center;
 	font-family: 'Quicksand', sans-serif;
-
+	color: var(--bg-params-input);
 	margin-top: 10px;
 }
 
@@ -58,7 +59,7 @@ p, span {
 }
 
 .params-inputs {
-	background: #EAC14D; /* just test */
+	background: var(--bg-params-input);
 	width: 300px;
 
 	margin-left: 30px;
@@ -76,6 +77,8 @@ p, span {
 	width: 60%; /* Just for test - define the best way here */
 	height: 400px;
 	flex-grow: 1;
+
+	margin-top: 30px;
 
 	display: flex;
   	justify-content: center;
@@ -106,7 +109,7 @@ p, span {
 	margin-bottom: 10px;
 	margin-right: 15px;
 
-	border: 1px solid;
+	border: 1px dashed;
 }
 
 .itens:first-child {
@@ -118,7 +121,7 @@ p, span {
 }
 
 #loading-icon {
-
+	z-index: 2;
 }
 
 .hide-load {
@@ -128,4 +131,20 @@ p, span {
 .title-iten-bag {
 	text-align: center;
 	font-weight: bold;
+}
+
+.ct-series-a .ct-area {
+    fill: #FEF0D6;
+}
+
+.ct-series-a .ct-line {
+	stroke: #FEF0D6;
+}
+
+.ct-grid {
+	stroke: #FEF0D6;
+}
+
+.ct-label {
+	color: #FEF0D6;
 }

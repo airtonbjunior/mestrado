@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Crimson+Text|Playfair+Display');
 /* Simple CSS Reset */
 * {
 	margin: 0;
@@ -23,12 +23,13 @@ body {
 
 h1 {
 	text-align: center;
-	font-family: 'Crimson Text', serif;
+	font-family: 'Quicksand', sans-serif;
+
 	margin-top: 10px;
 }
 
 p, span {
-	font-family: 'Playfair Display', serif;	
+	font-family: 'Quicksand', sans-serif;
 }
 
 .container {
@@ -122,4 +123,9 @@ p, span {
 
 .hide-load {
 	display: none;
+}
+
+.title-iten-bag {
+	text-align: center;
+	font-weight: bold;
 }

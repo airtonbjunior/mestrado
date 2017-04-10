@@ -14,7 +14,7 @@
 	--btn-color: #F3F0E8;
 	--bag-iten-selected-color: #EAC14D;
 	--bg-color-bag-item: #E3E98B;
-	--bg-itens-div: #E3E98B;
+	--bg-itens-div: #EAC14D;
 }
 
 body {
@@ -67,14 +67,18 @@ p, span {
 	padding-bottom: 15px;
 
 	overflow: hidden;
+	border: 1px solid;
 
 }
 
 .ct-chart {
-	width: 50%; /* Just for test - define the best way here */
+	width: 60%; /* Just for test - define the best way here */
 	height: 400px;
-	margin-top: 15px;
 	flex-grow: 1;
+
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
 }
 
 
@@ -87,6 +91,8 @@ p, span {
     overflow-x: auto; /* <-- show horizontal scrollbar */
     overflow-y: hidden; /* <-- hide vertical scrollbar */
     white-space: nowrap;
+
+    border: 1px solid;
 }
 
 .itens{
@@ -108,4 +114,12 @@ p, span {
 
 .selected {
 	background: var(--bag-iten-selected-color);
+}
+
+#loading-icon {
+
+}
+
+.hide-load {
+	display: none;
 }

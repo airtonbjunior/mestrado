@@ -198,10 +198,15 @@ AG.controller('AGController', ['$scope', function($scope) {
 	}
 
 
-	$scope.start = function() {
-
-		//document.getElementById("loading-icon").className += "fa fa-refresh fa-spin fa-3x fa-fw";
+	$scope.startGA = function() {
+		document.getElementById("loading-icon").classList.remove("hide-load");
 		$scope.startButtonLabel = "Processing...";
+		document.getElementById("loading-icon").className += " fa fa-spinner fa-spin fa-5x fa-fw";
+		setTimeout($scope.start, 50);
+	}
+
+
+	$scope.start = function() {
 		
 		/* Flow of GA */ 
 		$scope.createPopulation(); // The first population, create randomly
@@ -232,14 +237,24 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 
 		var bestValueChromosome = $scope.getBestChromosomeValue();
-		chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [$scope.bestValuesHistory]}, options);
+		
+		setTimeout(function(){
+			document.getElementById("loading-icon").className += " hide-load";
+			chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [$scope.bestValuesHistory]}, options);
+			$scope.paintChoosedItens();
+		}, 1000);
+
 		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
 		
-		$scope.paintChoosedItens();
-		$scope.startButtonLabel = "Start";
 	}
 
 
+
+	$scope.cleanLoading = function () {
+		log("CALLBACK FUNCTION!!!!!!");
+		$scope.startButtonLabel = "Start";
+		//document.getElementById("loading-icon").classList.remove("fa fa-refresh fa-spin fa-3x fa-fw");	
+	}
 
 	/* Aux functions */
 	function log(info, textarea) {
@@ -257,7 +272,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	  showPoint: false,
 	  lineSmooth: true,
 	  axisX: {
-	    showGrid: true,
+	    showGrid: false,
 	    showLabel: true,
 	  },
 	  showArea: true
@@ -269,6 +284,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 			if($scope.population[$scope.getBestChromosomeValue()][i] == 1)
 				document.getElementById($scope.itens[i].name).className += " selected";
 		}
+		$scope.startButtonLabel = "Start";
 	}
 
 	/* Clean the "selected" classes */

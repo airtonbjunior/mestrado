@@ -201,7 +201,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.startGA = function() {
 		document.getElementById("loading-icon").classList.remove("hide-load");
 		//$scope.startButtonLabel = "Processing...";
-		document.getElementById("loading-icon").className += " fa fa-spinner fa-spin fa-5x fa-fw";
+		document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
 		
 		setTimeout($scope.start, 50); // JS don't write on DOM before function start finish, so I call a little timeout here.
 	}

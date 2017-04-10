@@ -3,10 +3,10 @@ var AG = angular.module('AG', []);
 AG.controller('AGController', ['$scope', function($scope) {
 
 	/* GA Parameters */
-	$scope.generations          = 10;
+	$scope.generations          = 20;
 	$scope.populationSize       = 20;
 	$scope.mutationProability   = 3;
-	$scope.crossoverProbability = 0;
+	$scope.crossoverProbability = 100;
 	$scope.elitism 				= false;
 	/* GA Parameters */
 

@@ -136,21 +136,32 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	/* Crossover in fact */
 	$scope.doCrossover = function (chromosome1, chromosome2, crossPoint) {
-		log("Starting crossover with [" + chromosome1 + "] and [" + chromosome2 + "] using the crosspoint " + crossPoint);
+		
 
 		var child1 = []
 		var child2 = [];
 		
-		for (var i = 0; i < crossPoint; i++) {
-			child1.push(chromosome1[i]);
-			child2.push(chromosome2[i]);
-		}
-		for (var i = crossPoint; i <= $scope.sizeChromosome; i++) {
-			child2.push(chromosome1[i]);
-			child1.push(chromosome2[i]);
-		}
 
-		log("Crossover generate the childs [" + child1 + "] and [" + child2 + "]");
+		if(Math.random() > ($scope.crossoverProbability / 100)) // Crossover probability
+		{ 
+			log("The crossover didn't occurs");
+			child1 = chromosome1;
+			child2 = chromosome2;
+		}
+		else 
+		{
+			log("Starting crossover with [" + chromosome1 + "] and [" + chromosome2 + "] using the crosspoint " + crossPoint);
+			for (var i = 0; i < crossPoint; i++) {
+				child1.push(chromosome1[i]);
+				child2.push(chromosome2[i]);
+			}
+			for (var i = crossPoint; i <= $scope.sizeChromosome; i++) {
+				child2.push(chromosome1[i]);
+				child1.push(chromosome2[i]);
+			}
+
+			log("Crossover generate the childs [" + child1 + "] and [" + child2 + "]");
+		}
 
 		if(Math.random() < ($scope.mutationProability / 100))  // Mutation probability
 			child1 = $scope.mutate(child1);
@@ -315,12 +326,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 /*
 	TO-DO:
 
-	[ ] Update the graph each generation
-	[ ] Best of each generation to show on screen the evolution
-	[ ] Crossover probability
-	[ ] Fathers are all diying
 	[ ] Select to choose the types of fathers selections (tournament, wheel, etc)
-	[ ] Population odd (when pop/2 on crossover)
-	[ ] I'm always doing the crossover. If I don'd do, I need to reply the fathers to the next generation?
+	[ ] Population odd
 
 */

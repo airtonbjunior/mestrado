@@ -51,6 +51,7 @@ p, span {
 	width: 100%;
 
 	background: var(--btn-color);
+	border: 0px;
 }
 
 .input-value {
@@ -122,6 +123,7 @@ p, span {
 
 #loading-icon {
 	z-index: 2;
+	color: var(--bg-params-input);
 }
 
 #result {

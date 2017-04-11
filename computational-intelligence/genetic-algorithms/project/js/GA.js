@@ -21,16 +21,19 @@ AG.controller('AGController', ['$scope', function($scope) {
 	$scope.nextGeneration      = [];
 	$scope.nextGenerationIndex = 0;
 	$scope.bestValuesHistory   = [];
+	$scope.bestChromosomeValue = [];
+		$scope.bestChromosomeValue['evaluateValue'] = -1000;
+		$scope.bestChromosomeValue['weightValue']   = 0;
 
 	$scope.itens = itens;
 
-	$scope.logInfo = [];
+	//$scope.logInfo = [];
 	$scope.startButtonLabel = "Start";
 	/* Main Functions */
 
 	/* Create the population randomly */
 	$scope.createPopulation = function() {
-		log("Creating population");
+		log("==== Creating population ====");
 		for (var i = 0; i < $scope.populationSize; i++) {
 			
 			$scope.population[i] = new Array();
@@ -45,44 +48,50 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 
 	/* Evaluate each chromosome by the evaluate function - based on maxSizeBag - I want maximize the value here, respecting the constraints*/
-	$scope.evaluateFunction = function(chromosome) {
-		log("Evaluate the chromosome " + chromosome);
-
+	$scope.evaluateFunction = function(index) {
 		var totalWeight = 0;
 		var totalValue  = 0;
 
-		for (var i = 0; i < chromosome.length; i++) {
-			if(chromosome[i] === 1) {
+		for (var i = 0; i < $scope.population[index].length; i++) {
+			if($scope.population[index][i] === 1) {
 				totalWeight += parseInt(itens[i].weight);  // change if I want a floor weight. I can use parselFloat();
 				totalValue  += parseInt(itens[i].value);
 			}
 		}
 
 		if(totalWeight > parseInt($scope.maxSizeBag)) {
-			chromosome['evaluateValue'] = parseFloat(1/(totalWeight - $scope.maxSizeBag)); // penalize here! exceeded^-1
-			chromosome['weightValue']   = 0;	
+			$scope.population[index]['evaluateValue'] = parseFloat(1/(totalWeight - $scope.maxSizeBag)); // penalize here! exceeded^-1
+			$scope.population[index]['weightValue']   = 0;	
 		}
 		else {
-			chromosome['evaluateValue'] = totalValue;
-			chromosome['weightValue']   = totalWeight;
+			$scope.population[index]['evaluateValue'] = totalValue;
+			$scope.population[index]['weightValue']   = totalWeight;
 		}
 		
-		log("The evaluate value of chromosome " + chromosome + " is " + chromosome['evaluateValue']);
+		if($scope.population[index]['evaluateValue'] > $scope.bestChromosomeValue['evaluateValue']) {
+			$scope.bestChromosomeValue = $scope.population[index].slice();
+			$scope.bestChromosomeValue['evaluateValue'] = $scope.population[index]['evaluateValue'];
+			$scope.bestChromosomeValue['weightValue']   = $scope.population[index]['weightValue'];
+		}
+
+		log("Chromosome " + $scope.population[index] + " has a value of " + $scope.population[index]['evaluateValue']);
 	}
 
 
 
 	/* Evaluate All Chromosomes */
 	$scope.evaluateAllChromosomes = function() {
+		log("==== Start Evaluation Function ====");
 		for (var i = 0; i < $scope.populationSize; i++) {
-			$scope.evaluateFunction($scope.population[i]);
+			$scope.evaluateFunction(i);
 		}
+		bestValueChromosome = $scope.getBestChromosomeValue();
 	}
 
 
 	/* Tournament - Choose the fathers */ 
 	$scope.tournament = function() {
-		log("Starting tournament");
+		log("==== Start tournament ====");
 
 		var chromosome1, chromosome2;
 
@@ -91,8 +100,6 @@ AG.controller('AGController', ['$scope', function($scope) {
 			
 			chromosome1 = $scope.population[Math.floor(Math.random() * $scope.populationSize)]; // choose randomly
 			chromosome2 = $scope.population[Math.floor(Math.random() * $scope.populationSize)]; // choose randomly
-
-			log("the choosed chromosome are [" + chromosome1 + "] and [" + chromosome2 + "]")
 
 			if(chromosome1['evaluateValue'] >= chromosome2['evaluateValue']) { // greater and equal. In this case, doesn't matter
 				log("Chromosome 1 wins - score: Chromosome 1 [" + chromosome1['evaluateValue'] + "] X [" + chromosome2['evaluateValue'] + "] Chromossome 2");
@@ -109,6 +116,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 
 	$scope.crossover = function() {
+		log("==== Start Crossover ====");
+
 		var crossPoint = 0;
 		var chromosome1, chromosome2; 
 
@@ -127,7 +136,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 	/* Crossover in fact */
 	$scope.doCrossover = function (chromosome1, chromosome2, crossPoint) {
-		log("Starting crossover with " + chromosome1 + " and " + chromosome2 + " using the crosspoint " + crossPoint);
+		log("Starting crossover with [" + chromosome1 + "] and [" + chromosome2 + "] using the crosspoint " + crossPoint);
 
 		var child1 = []
 		var child2 = [];
@@ -141,7 +150,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 			child1.push(chromosome2[i]);
 		}
 
-		log("Crossover generate the childs " + child1 + " and " + child2);
+		log("Crossover generate the childs [" + child1 + "] and [" + child2 + "]");
 
 		if(Math.random() < ($scope.mutationProability / 100))  // Mutation probability
 			child1 = $scope.mutate(child1);
@@ -151,7 +160,6 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 		$scope.nextGenerationIndex++;
 
-
 		// Two times to be more didact
 		if(Math.random() < ($scope.mutationProability / 100))  // Mutation probability
 			child2 = $scope.mutate(child2);
@@ -160,30 +168,28 @@ AG.controller('AGController', ['$scope', function($scope) {
 		$scope.nextGeneration[$scope.nextGenerationIndex] = child2;
 
 		$scope.nextGenerationIndex++; // Restart this in some place - I don't know the best place to do that yet
-
-		log("Crossover finished");
 	}
 
 
 	/* Mutate a chromosome - random position */
 	$scope.mutate = function(chromosome) {
+		log("==== Start Mutate Function ====");
 		// do mutate
 		// one bit
-
-		log("=== MUTATION === Mutate the chromosome " + chromosome);
+		log("Mutate the chromosome [" + chromosome + "]");
 		var mutationPosition = Math.floor(Math.random() * $scope.sizeChromosome);
-		// didact way
+		// didact way (I can use NOT here)
 		if (chromosome[mutationPosition] == 0) {
 			chromosome[mutationPosition] = 1
 		} else {
 			chromosome[mutationPosition] = 0
 		}
 
+		log("Chromosome mutated on position " + mutationPosition + ". The result is [" + chromosome + "]");
 		return chromosome;
-
-		log("chromosome mutated on position " + mutationPosition + ". The result is " + chromosome);
 	}
 
+	/* Get the best chromosome of the actual generation */
 	$scope.getBestChromosomeValue = function() {
 		var bestValue = 0;
 		for(var i = 0; i < $scope.populationSize; i++) {
@@ -215,26 +221,30 @@ AG.controller('AGController', ['$scope', function($scope) {
 		for (var i = 1; i <= $scope.generations; i++) {
 			log("################ Starting generation " + i + " ################");
 			
-			if (i > 1) $scope.population = $scope.nextGeneration.slice(); // Copy the next generation for the population array
+			if (i > 1) 
+				$scope.population = $scope.nextGeneration.slice(); // Copy the next generation for the population array
+			
 			$scope.nextGenerationIndex = 0;	
 			
+			/* Main cycle */
 			$scope.evaluateAllChromosomes();
 			$scope.tournament();
 			$scope.crossover(); // mutation occurs inside the crossover
 
+
 			if($scope.elitism) {
-				// See
 				log("Elitism activated");
-				$scope.nextGeneration[0] = $scope.population[$scope.getBestChromosomeValue()]; // Replace the first index
-				log("Chromosome " + $scope.population[$scope.getBestChromosomeValue()] + " with weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue'] + " and value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " goes to next generation by elitism");
+				//$scope.nextGeneration[0] = $scope.population[bestValueChromosome]; // Replace the first index (anyone can be replaced here)
+				$scope.nextGeneration[0] = $scope.bestChromosomeValue;
+				log("Chromosome [" + $scope.bestChromosomeValue + "] with weight " + $scope.bestChromosomeValue['weightValue'] + " and value " + $scope.bestChromosomeValue['evaluateValue'] + " goes to next generation by elitism");
 			}
 
 			log("Next generation has " + $scope.nextGenerationIndex + " chromosomes");
-			$scope.bestValuesHistory.push($scope.population[$scope.getBestChromosomeValue()]['evaluateValue']);
-			log("The best value of generation " + i + " is " + $scope.bestValuesHistory[$scope.bestValuesHistory.length-1]);			
-		}
+			$scope.bestValuesHistory.push($scope.bestChromosomeValue['evaluateValue']);
+			log("The best value of generation " + i + " is " + $scope.bestChromosomeValue['evaluateValue']);	
 
-		var bestValueChromosome = $scope.getBestChromosomeValue();
+			$scope.bestChromosomeValue['evaluateValue'] = -1000;		
+		}
 		
 		setTimeout(function(){
 			document.getElementById("loading-icon").className += " hide-load";
@@ -242,11 +252,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 			$scope.paintChoosedItens();
 		}, 1000);
 
-		//setTimeout(function() {
-		//	$scope.result = "The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue'] 
-		//}, 60);
-
-		log("The best chromosome is " + $scope.population[$scope.getBestChromosomeValue()] + " with the value " + $scope.population[$scope.getBestChromosomeValue()]['evaluateValue'] + " and weight " + $scope.population[$scope.getBestChromosomeValue()]['weightValue']);
+		//bestValueChromosome = $scope.getBestChromosomeValue();
+		log("The best chromosome is [" + $scope.population[bestValueChromosome] + "] with the value " + $scope.population[bestValueChromosome]['evaluateValue'] + " and weight " + $scope.population[bestValueChromosome]['weightValue']);
 	}
 
 

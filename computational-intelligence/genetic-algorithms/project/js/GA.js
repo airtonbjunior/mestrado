@@ -250,6 +250,8 @@ AG.controller('AGController', ['$scope', function($scope) {
 			document.getElementById("loading-icon").className += " hide-load";
 			chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [$scope.bestValuesHistory]}, options);
 			$scope.paintChoosedItens();
+			//alert("The best chromosome is " + $scope.bestChromosomeValue);
+
 		}, 1000);
 
 		//bestValueChromosome = $scope.getBestChromosomeValue();
@@ -293,6 +295,10 @@ AG.controller('AGController', ['$scope', function($scope) {
 				document.getElementById($scope.itens[i].name).className += " selected";
 		}
 		$scope.startButtonLabel = "Start";
+
+		setTimeout(function() {
+			document.getElementById('result').innerHTML = "The best chromosome is [" + $scope.population[bestValueChromosome] + "] with the value " + $scope.population[bestValueChromosome]['evaluateValue'] + " and weight " + $scope.population[bestValueChromosome]['weightValue'];
+		}, 50);
 	}
 
 	/* Clean the "selected" classes */

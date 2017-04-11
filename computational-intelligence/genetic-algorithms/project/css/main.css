@@ -124,6 +124,14 @@ p, span {
 	z-index: 2;
 }
 
+#result {
+	text-align: center;
+	color: var(--bg-params-input);
+	font-family: 'Quicksand', sans-serif;
+	margin-bottom: -5px;
+	margin-top: 3px;
+}
+
 .hide-load {
 	display: none;
 }

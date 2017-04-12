@@ -1,3 +1,14 @@
+/* 
+Airton Bordin Junior
+airtonbjunior@gmail.com
+
+
+Genetic Algorithms
+
+Computational Intelligence - Federal University of Goias (UFG)
+UFG master's program 
+*/
+
 var AG = angular.module('AG', []);
 
 AG.controller('AGController', ['$scope', function($scope) {
@@ -69,7 +80,7 @@ AG.controller('AGController', ['$scope', function($scope) {
 		}
 		
 		if($scope.population[index]['evaluateValue'] > $scope.bestChromosomeValue['evaluateValue']) {
-			$scope.bestChromosomeValue = $scope.population[index].slice();
+			$scope.bestChromosomeValue 	= $scope.population[index].slice();
 			$scope.bestChromosomeValue['evaluateValue'] = $scope.population[index]['evaluateValue'];
 			$scope.bestChromosomeValue['weightValue']   = $scope.population[index]['weightValue'];
 		}
@@ -325,8 +336,6 @@ AG.controller('AGController', ['$scope', function($scope) {
 
 /*
 	TO-DO:
-
 	[ ] Select to choose the types of fathers selections (tournament, wheel, etc)
-	[ ] Population odd
 
 */

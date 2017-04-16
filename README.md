@@ -9,7 +9,7 @@ Repository of the projects developed for the - [UFG master's program](http://www
       * Presentation - [[Scribd]](https://pt.scribd.com/document/343821183/Algoritmos-Geneticos) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-algorithms/presentation/IC_2.pdf)
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/computational-intelligence/genetic-algorithms/project) [[Demo]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-algorithms/project/)
     * Evolutionary Algorithms
-      * Presentation
+      * Presentation [[Scribd]](https://pt.scribd.com/document/343821183/Algoritmos-Geneticos) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-algorithms/presentation/IC_2.pdf)
       * Code
  
   * Data structure and algorithm analysis

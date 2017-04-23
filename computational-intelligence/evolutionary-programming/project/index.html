@@ -20,11 +20,11 @@
 				<input id="mutateVariation" type="number"/> 
 			</div>
 			<div id="radio-funcs" class="input-radiobox">
-			  <input type="radio" name="func" value="beale" checked> Beale<br>
-			  <input type="radio" name="func" value="other"> Other<br>
-			  <input type="radio" name="func" value="other2"> Other2
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="0" checked> Beale<br>
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"> Matya<br>
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"> Other2
 			</div>
-
+			<span id="min-func"></span><span id="max-func"></span>
 			<button id="btn-start" class="btn-start">Start</button>
 		</div>
 

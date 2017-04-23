@@ -19,6 +19,7 @@
 				<p>Mutation Variation </p>			
 				<input id="mutateVariation" type="number"/> 
 			</div>
+			<p>Functions </p>
 			<div id="radio-funcs" class="input-radiobox">
 			  
 			  <input type="radio" name="func" onclick="changeFunction(this);" value="0" checked><span> Beale</span>
@@ -29,9 +30,12 @@
 			  
 			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"><span> Other2</span>
 			  <i id="other-function" class="fa fa-question-circle-o" aria-hidden="true"></i>
-
+			  
 			</div>
-			<span id="min-func"></span><span id="max-func"></span>
+			<div class="min-max-func-label">
+				<span id="min-func"></span>
+				<span id="max-func"></span>
+			</div>
 			<button id="btn-start" class="btn-start">Start</button>
 		</div>
 
@@ -47,6 +51,10 @@
 		 &nbsp			
 	</div>
 	
+	<div id="screen-log">
+
+	</div>
+
 	<!--
 	<div class="container-itens">
 		<div id="{{item.name}}" class="itens {{item.name}}" data-ng-repeat="item in itens">

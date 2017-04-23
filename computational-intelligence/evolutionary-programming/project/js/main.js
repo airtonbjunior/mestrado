@@ -10,8 +10,8 @@ UFG master's program
 
 /* Main variables */
 POPULATION         = [];
-POPULATION_SIZE    = 4;
-GENERATIONS        = 30;
+POPULATION_SIZE    = 50;
+GENERATIONS        = 50;
 FUNCTION_CHOOSED   = 0;
 FUNC_LOWER_LIMIT   = -4.5;
 FUNC_UPPER_LIMIT   = 4.5;
@@ -162,9 +162,8 @@ function start() {
 function initializeUI() {
 
 	new Opentip("#beale-function", { target: true, tipJoint: "left" }).setContent("1 + 2 + 3");
-	new Opentip("#matya-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
+	new Opentip("#matya-function", { target: true, tipJoint: "left" }).setContent("4 + 5 + 6");
 	new Opentip("#other-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
-
 
 	document.getElementById("btn-start").addEventListener("click", startPreparation);
 

@@ -39,7 +39,7 @@ p, span {
 
 
 .input-value input {
-	padding: 5px;
+	padding: 10px;
 	margin: 5px;
 	width: 95%;
 }
@@ -47,7 +47,7 @@ p, span {
 
 .btn-start {
 	padding: 10px;
-	margin-top: 10px;
+	margin-top: 30px;
 	width: 100%;
 
 	background: var(--btn-color);
@@ -67,11 +67,8 @@ p, span {
 	margin-top: 15px;
 	padding: 20px;
 
-	padding-bottom: 15px;
-
 	overflow: hidden;
 	border: 1px solid;
-
 }
 
 .ct-chart {
@@ -118,8 +115,18 @@ p, span {
 	margin-left: 15px;
 }
 
+.min-max-func-label {
+	margin-top: 10px;
+	text-align: center;
+}
+
 .selected {
 	background: var(--bag-iten-selected-color);
+}
+
+#radio-funcs {
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 #loading-icon {

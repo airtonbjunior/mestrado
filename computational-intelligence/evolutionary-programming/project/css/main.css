@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand|Crimson+Text|Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Quicksand|Crimson+Text|Playfair+Display');
 /* Simple CSS Reset */
 * {
 	margin: 0;
@@ -10,12 +10,12 @@
             box-sizing: border-box;
 }
 :root {
-	--bg-page-color: #3F4D58;
-	--btn-color: #F3F0E8;
+	--bg-page-color: #49B571;
+	--btn-color: #49B571;
 	--bag-iten-selected-color: #EAC14D;
 	--bg-color-bag-item: #E3E98B;
 	--bg-itens-div: #CAD26D;
-	--bg-params-input: #CAD26D;
+	--bg-params-input: #F5F5F5;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
 
 h1 {
 	text-align: center;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Cinzel', serif;
 	color: var(--bg-params-input);
 	margin-top: 10px;
 }
@@ -51,6 +51,7 @@ p, span {
 	width: 100%;
 
 	background: var(--btn-color);
+	color: white;
 	border: 0px;
 }
 
@@ -68,7 +69,7 @@ p, span {
 	padding: 20px;
 
 	overflow: hidden;
-	border: 1px solid;
+	/*border: 1px solid;*/
 }
 
 .ct-chart {

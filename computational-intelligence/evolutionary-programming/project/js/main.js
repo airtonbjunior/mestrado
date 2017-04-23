@@ -24,7 +24,7 @@ BEST_EACH_GEN      = [];
 FUNCTIONS = [];
 FUNCTIONS.push({name: 'beale', min: -4.5, max: 4.5});
 FUNCTIONS.push({name: 'matya', min: -10, max: 10});
-
+FUNCTIONS.push({name: 'booth', min: -10, max: 10});
 
 /* Main functions */
 /* Create the population */
@@ -36,7 +36,7 @@ function createPopulation() {
 		
 		x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT);
 		y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT);
-		
+
 		POPULATION.push(
 			{
 				x_value: x,
@@ -55,6 +55,9 @@ function evaluate(values, func) {
 	        break;
 	    case "1":
 	        return parseFloat(matya(values[0], values[1]));
+	        break;
+	    case "2":
+	        return parseFloat(booth(values[0], values[1]));
 	        break;
 	    default:
 	        //alert("Choose one function");
@@ -113,7 +116,6 @@ function sortComparator(a, b) {
 
 /* Initialize de UI */
 initializeUI();
-
 
 /* Pre-start 
  * Loading icon, change the button label, set timeout and call start()
@@ -237,6 +239,11 @@ function beale(x, y) {
  */
 function matya(x, y) {
 	return 0.26 * (Math.pow(x, 2) + Math.pow(x, 2)) - 0.48*x*y;
+}
+
+
+function booth(x, y) {
+	return Math.pow((x + 2*y - 7), 2) + Math.pow((2*x + y -5), 2);
 }
 
 

@@ -19,6 +19,8 @@ FUNC_UPPER_LIMIT   = 4.5;
 GAUSS_VARIATION    = 2;
 CHILD_POPULATION   = [];
 
+BEST_EACH_GEN      = [];
+
 /* Main functions */
 /* Create the population */
 function createPopulation() {
@@ -71,6 +73,8 @@ function nextGeneration() {
 	
 	POPULATION = population_all.slice(0, POPULATION_SIZE);
 	CHILD_POPULATION = [];
+
+	BEST_EACH_GEN.push(POPULATION[0].fitness);
 }
 
 
@@ -85,8 +89,10 @@ function sortComparator(a, b) {
 
 
 initializeUI();
+
 function start() {
 	/* Main workflow */
+	getVariables();
 	createPopulation();
 
 	for(var i = 0; i < GENERATIONS; i++) {
@@ -98,6 +104,15 @@ function start() {
 
 		nextGeneration();
 	}
+	
+	document.getElementById("result").value = "The best value is " + POPULATION[0].fitness;
+	
+	//log(BEST_EACH_GEN);
+
+	chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [BEST_EACH_GEN]}, options);
+
+	POPULATION    = []; // Reset, because the user can click start again
+	BEST_EACH_GEN = []; // Reset, because the user can click start again
 	/* Main workflow */
 }
 
@@ -107,11 +122,17 @@ function initializeUI() {
 
 	document.getElementById("btn-start").addEventListener("click", start);
 
-	document.getElementById("generations").value 	 = GENERATIONS;
-	document.getElementById("populationSize").value  = POPULATION_SIZE;
+	document.getElementById("generations").value = GENERATIONS;
+	document.getElementById("populationSize").value = POPULATION_SIZE;
 	document.getElementById("mutateVariation").value = GAUSS_VARIATION;
 
 	FUNCTION_CHOOSED = document.querySelector('input[name="func"]:checked').value;
+}
+
+function getVariables() {
+	GENERATIONS = document.getElementById("generations").value;
+	POPULATION_SIZE = document.getElementById("populationSize").value;
+	GAUSS_VARIATION = document.getElementById("mutateVariation").value;
 }
 
 function getRandom(min, max) {
@@ -121,6 +142,18 @@ function getRandom(min, max) {
 function log(msg, input) {
 	console.log(msg);
 }
+
+var options = {
+  showPoint: false,
+  lineSmooth: true,
+  axisX: {
+    showGrid: false,
+    showLabel: true,
+  },
+  showArea: true
+};
+
+
 /* Aux functions */
 
 

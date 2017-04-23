@@ -10,14 +10,16 @@ UFG master's program
 
 /* Main variables */
 POPULATION         = [];
-POPULATION_SIZE    = 10;
-LOWER_LIMIT        = -4.5;
-UPPER_LIMIT        = 4.5;
+POPULATION_SIZE    = 4;
+GENERATIONS        = 30;
 FUNCTION_CHOOSED   = "beale";
+FUNC_LOWER_LIMIT   = -4.5;
+FUNC_UPPER_LIMIT   = 4.5;
+
 GAUSS_VARIATION    = 2;
 CHILD_POPULATION   = [];
 
-
+/* Main functions */
 /* Create the population */
 function createPopulation() {
 	log("==== Creating population ====");
@@ -25,8 +27,8 @@ function createPopulation() {
 
 	for (var i = 0; i < POPULATION_SIZE; i++) {		
 		
-		x = getRandom(LOWER_LIMIT, UPPER_LIMIT);
-		y = getRandom(LOWER_LIMIT, UPPER_LIMIT);
+		x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT);
+		y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT);
 		
 		POPULATION.push(
 			{
@@ -36,8 +38,6 @@ function createPopulation() {
 			}
 		);
 	}
-
-	log(POPULATION);
 }
 
 /* Evaluate using the function choosed */
@@ -52,8 +52,8 @@ function mutate() {
 
 	for(var i = 0; i < POPULATION_SIZE; i++) {
 
-		x = POPULATION[0].x_value + getRandom(LOWER_LIMIT, UPPER_LIMIT);
-		y = POPULATION[0].y_value + getRandom(LOWER_LIMIT, UPPER_LIMIT);
+		x = POPULATION[0].x_value + (GAUSS_VARIATION * getRandom(-1, 1));
+		y = POPULATION[0].y_value + (GAUSS_VARIATION * getRandom(-1, 1));
 		
 		CHILD_POPULATION.push(
 			{
@@ -63,7 +63,14 @@ function mutate() {
 			}
 		);
 	}
+}
+
+function nextGeneration() {
+	var population_all = POPULATION.concat(CHILD_POPULATION);
+	population_all.sort(sortComparator);
 	
+	POPULATION = population_all.slice(0, POPULATION_SIZE);
+	CHILD_POPULATION = [];
 }
 
 
@@ -74,11 +81,47 @@ function sortPopulationByFitness() {
 function sortComparator(a, b) {
 	return parseFloat(a.fitness) - parseFloat(b.fitness);
 }
+/* Main functions */
 
 
-/* Main workflow */
-createPopulation();
-//sortPopulationByFitness();
+initializeUI();
+function start() {
+	/* Main workflow */
+	createPopulation();
+
+	for(var i = 0; i < GENERATIONS; i++) {
+		log(POPULATION);
+
+		mutate();
+
+		log(CHILD_POPULATION);
+
+		nextGeneration();
+	}
+	/* Main workflow */
+}
+
+
+/* Aux functions */
+function initializeUI() {
+
+	document.getElementById("btn-start").addEventListener("click", start);
+
+	document.getElementById("generations").value 	 = GENERATIONS;
+	document.getElementById("populationSize").value  = POPULATION_SIZE;
+	document.getElementById("mutateVariation").value = GAUSS_VARIATION;
+
+	FUNCTION_CHOOSED = document.querySelector('input[name="func"]:checked').value;
+}
+
+function getRandom(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function log(msg, input) {
+	console.log(msg);
+}
+/* Aux functions */
 
 
 
@@ -107,13 +150,3 @@ function goldesteinPrice(x, y) {
 	return part1 * part2;
 }
 
-console.log(beale(3, 0.5));
-
-
-function getRandom(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-function log(msg, input) {
-	console.log(msg);
-}

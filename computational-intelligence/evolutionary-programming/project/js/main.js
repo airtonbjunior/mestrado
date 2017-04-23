@@ -9,33 +9,76 @@ UFG master's program
 */
 
 /* Main variables */
-POPULATION_VALUES  = [];
-POPULATION_FITNESS = [];
+POPULATION         = [];
 POPULATION_SIZE    = 10;
-LOWER_LIMIT        = 1;
-UPPER_LIMIT        = 5;
+LOWER_LIMIT        = -4.5;
+UPPER_LIMIT        = 4.5;
+FUNCTION_CHOOSED   = "beale";
+GAUSS_VARIATION    = 2;
+CHILD_POPULATION   = [];
 
-
-createPopulation();
 
 /* Create the population */
 function createPopulation() {
 	log("==== Creating population ====");
+	var x, y = 0;
 
 	for (var i = 0; i < POPULATION_SIZE; i++) {		
-		POPULATION_VALUES[i]  = [getRandom(LOWER_LIMIT, UPPER_LIMIT), getRandom(LOWER_LIMIT, UPPER_LIMIT )];
-		POPULATION_FITNESS[i] = 0;
+		
+		x = getRandom(LOWER_LIMIT, UPPER_LIMIT);
+		y = getRandom(LOWER_LIMIT, UPPER_LIMIT);
+		
+		POPULATION.push(
+			{
+				x_value: x,
+				y_value: y,
+				fitness: evaluate([x, y])
+			}
+		);
 	}
 
-	log(POPULATION_VALUES);
+	log(POPULATION);
+}
+
+/* Evaluate using the function choosed */
+function evaluate(values, func) {
+	return parseFloat(beale(values[0], values[1]));
 }
 
 
+function mutate() {
+	log("==== Mutation ====");
+	var x, y = 0;
 
+	for(var i = 0; i < POPULATION_SIZE; i++) {
+
+		x = POPULATION[0].x_value + getRandom(LOWER_LIMIT, UPPER_LIMIT);
+		y = POPULATION[0].y_value + getRandom(LOWER_LIMIT, UPPER_LIMIT);
+		
+		CHILD_POPULATION.push(
+			{
+				x_value: x,
+				y_value: y,
+				fitness: evaluate([x, y])
+			}
+		);
+	}
+	
+}
+
+
+/* Sort the population by Fitness value (ASC) */
 function sortPopulationByFitness() {
-
+	POPULATION.sort(sortComparator);
+}
+function sortComparator(a, b) {
+	return parseFloat(a.fitness) - parseFloat(b.fitness);
 }
 
+
+/* Main workflow */
+createPopulation();
+//sortPopulationByFitness();
 
 
 

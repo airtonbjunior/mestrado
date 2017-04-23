@@ -73,10 +73,10 @@ function mutate() {
 		y = POPULATION[i].y_value + (GAUSS_VARIATION * getRandom(-1, 1));
 
 		/* Separated for didact reasons :D */
-		if(x > FUNC_UPPER_LIMIT) { x = FUNC_UPPER_LIMIT; }
-		if(x < FUNC_LOWER_LIMIT) { x = FUNC_LOWER_LIMIT; }
-		if(y > FUNC_UPPER_LIMIT) { y = FUNC_UPPER_LIMIT; }
-		if(y < FUNC_LOWER_LIMIT) { y = FUNC_LOWER_LIMIT; }
+		if(x > FUNC_UPPER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+		if(x < FUNC_LOWER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+		if(y > FUNC_UPPER_LIMIT) { y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+		if(y < FUNC_LOWER_LIMIT) { y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
 		
 		CHILD_POPULATION.push(
 			{
@@ -89,6 +89,8 @@ function mutate() {
 }
 
 function nextGeneration() {
+	log("==== Processing next generation ====");
+
 	var population_all = POPULATION.concat(CHILD_POPULATION);
 	population_all.sort(sortComparator);
 	
@@ -109,9 +111,13 @@ function sortComparator(a, b) {
 /* Main functions */
 
 
+/* Initialize de UI */
 initializeUI();
 
 
+/* Pre-start 
+ * Loading icon, change the button label, set timeout and call start()
+ */
 function startPreparation() {
 
 	document.getElementById("loading-icon").classList.remove("hide-load");
@@ -122,6 +128,7 @@ function startPreparation() {
 }
 
 
+/* Start the Evolotionary Programming */
 function start() {
 	/* Main workflow */
 	getVariables();
@@ -137,7 +144,7 @@ function start() {
 		nextGeneration();
 	}
 	
-	document.getElementById("result").innerHTML = "The best value is " + POPULATION[0].fitness + " with x = " + POPULATION[0].x_value + " and y = " +POPULATION[0].y_value;
+	document.getElementById("result").innerHTML = "The best value is " + POPULATION[0].fitness.toPrecision(3) + " with x = " + POPULATION[0].x_value.toPrecision(3) + " and y = " +POPULATION[0].y_value.toPrecision(3);
 	
 	chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [BEST_EACH_GEN]}, options);
 
@@ -153,6 +160,11 @@ function start() {
 
 /* Aux functions */
 function initializeUI() {
+
+	new Opentip("#beale-function", { target: true, tipJoint: "left" }).setContent("1 + 2 + 3");
+	new Opentip("#matya-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
+	new Opentip("#other-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
+
 
 	document.getElementById("btn-start").addEventListener("click", startPreparation);
 

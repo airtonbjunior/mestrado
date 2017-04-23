@@ -20,9 +20,16 @@
 				<input id="mutateVariation" type="number"/> 
 			</div>
 			<div id="radio-funcs" class="input-radiobox">
-			  <input type="radio" name="func" onclick="changeFunction(this);" value="0" checked> Beale<br>
-			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"> Matya<br>
-			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"> Other2
+			  
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="0" checked><span> Beale</span>
+			  <i id="beale-function" class="fa fa-question-circle-o" aria-hidden="true"></i><br>
+			  
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"><span> Matya</span>
+			  <i id="matya-function" class="fa fa-question-circle-o" aria-hidden="true"></i><br>
+			  
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="1"><span> Other2</span>
+			  <i id="other-function" class="fa fa-question-circle-o" aria-hidden="true"></i>
+
 			</div>
 			<span id="min-func"></span><span id="max-func"></span>
 			<button id="btn-start" class="btn-start">Start</button>
@@ -51,10 +58,17 @@
 		</div>
 	</div>
 	-->
+    
+	<!-- Third part libs (only visual libs) -->
     <link rel="stylesheet" href="css/lib-graph/chartist.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<script src="js/lib-tooltip/opentip-native-excanvas.min.js"></script>
+	<link href="css/lib-tooltip/opentip.css" rel="stylesheet" type="text/css" />
 
 	<script src="js/lib-graph/chartist.min.js"></script>
+	
+	<!-- My files  -->
 	<script src="js/main.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="css/main.css">	
 </body>

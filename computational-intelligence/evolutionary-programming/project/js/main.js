@@ -146,7 +146,7 @@ function start() {
 		nextGeneration();
 	}
 	
-	document.getElementById("result").innerHTML = "The best value is " + POPULATION[0].fitness.toPrecision(3) + " with x = " + POPULATION[0].x_value.toPrecision(3) + " and y = " +POPULATION[0].y_value.toPrecision(3);
+	document.getElementById("result").innerHTML = "The minimum of " + FUNCTIONS[FUNCTION_CHOOSED].name + " is " + POPULATION[0].fitness.toPrecision(3) + " with x = " + POPULATION[0].x_value.toPrecision(3) + " and y = " +POPULATION[0].y_value.toPrecision(3);
 	
 	chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [BEST_EACH_GEN]}, options);
 
@@ -238,7 +238,7 @@ function beale(x, y) {
  * References: https://www.sfu.ca/~ssurjano/matya.html 
  */
 function matya(x, y) {
-	return 0.26 * (Math.pow(x, 2) + Math.pow(x, 2)) - 0.48*x*y;
+	return (0.26) * (Math.pow(x, 2) + Math.pow(y, 2)) - 0.48*x*y;
 }
 
 

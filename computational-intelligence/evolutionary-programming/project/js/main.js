@@ -112,6 +112,16 @@ function sortComparator(a, b) {
 initializeUI();
 
 
+function startPreparation() {
+
+	document.getElementById("loading-icon").classList.remove("hide-load");
+	document.getElementById("btn-start").innerHTML = "Processing...";
+	document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
+	
+	setTimeout(start, 50);
+}
+
+
 function start() {
 	/* Main workflow */
 	getVariables();
@@ -134,13 +144,17 @@ function start() {
 	POPULATION    = []; // Reset, because the user can click start again
 	BEST_EACH_GEN = []; // Reset, because the user can click start again
 	/* Main workflow */
+
+	/* Restart the default screen */
+	document.getElementById("loading-icon").className += " hide-load";
+	document.getElementById("btn-start").innerHTML = "Start";
 }
 
 
 /* Aux functions */
 function initializeUI() {
 
-	document.getElementById("btn-start").addEventListener("click", start);
+	document.getElementById("btn-start").addEventListener("click", startPreparation);
 
 	document.getElementById("generations").value = GENERATIONS;
 	document.getElementById("populationSize").value = POPULATION_SIZE;

@@ -19,12 +19,15 @@ FUNC_UPPER_LIMIT   = 4.5;
 GAUSS_VARIATION    = 2;
 CHILD_POPULATION   = [];
 
+SELECTION_TYPE     = "elitism";
+
 BEST_EACH_GEN      = [];
 
 FUNCTIONS = [];
 FUNCTIONS.push({name: 'beale', min: -4.5, max: 4.5});
 FUNCTIONS.push({name: 'matya', min: -10, max: 10});
 FUNCTIONS.push({name: 'booth', min: -10, max: 10});
+FUNCTIONS.push({name: 'schafferF6', min: -100, max: 100});
 
 /* Main functions */
 /* Create the population */
@@ -58,6 +61,9 @@ function evaluate(values, func) {
 	        break;
 	    case "2":
 	        return parseFloat(booth(values[0], values[1]));
+	        break;
+	    case "3":
+	        return parseFloat(schafferF6(values[0], values[1]));
 	        break;
 	    default:
 	        //alert("Choose one function");
@@ -96,11 +102,30 @@ function nextGeneration() {
 
 	var population_all = POPULATION.concat(CHILD_POPULATION);
 	population_all.sort(sortComparator);
-	
-	POPULATION = population_all.slice(0, POPULATION_SIZE);
-	CHILD_POPULATION = [];
 
+	console.log(population_all);
+
+	if(SELECTION_TYPE == "elitism") 
+	{
+		POPULATION = population_all.slice(0, POPULATION_SIZE); // Get the best ones
+	}
+	else if(SELECTION_TYPE == "tournament") 
+	{
+		var choosed1, choosed2;
+		var chooseds = [];
+
+		for(var i = 0; i < POPULATION_SIZE; i++) {
+			choosed1 = population_all[Math.floor(getRandom(0, population_all.length))];
+			choosed2 = population_all[Math.floor(getRandom(0, population_all.length))];
+
+			if(choosed1.fitness <= choosed2.fitness) { chooseds.push(choosed1); } else { chooseds.push(choosed2); }
+		}
+		POPULATION = chooseds;
+		POPULATION.sort(sortComparator);
+	}
+	
 	BEST_EACH_GEN.push(POPULATION[0].fitness);
+	CHILD_POPULATION = [];
 }
 
 
@@ -116,6 +141,7 @@ function sortComparator(a, b) {
 
 /* Initialize de UI */
 initializeUI();
+console.log(schafferF6(0, 0));
 
 /* Pre-start 
  * Loading icon, change the button label, set timeout and call start()
@@ -165,7 +191,8 @@ function initializeUI() {
 
 	new Opentip("#beale-function", { target: true, tipJoint: "left" }).setContent("1 + 2 + 3");
 	new Opentip("#matya-function", { target: true, tipJoint: "left" }).setContent("4 + 5 + 6");
-	new Opentip("#other-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
+	new Opentip("#booth-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
+	new Opentip("#schaffer-function", { target: true, tipJoint: "left" }).setContent("<img src='img/schaffer.gif'></img>");
 
 	document.getElementById("btn-start").addEventListener("click", startPreparation);
 
@@ -186,6 +213,10 @@ function getVariables() {
 
 	FUNC_LOWER_LIMIT = parseFloat(FUNCTIONS[FUNCTION_CHOOSED].min);
 	FUNC_UPPER_LIMIT = parseFloat(FUNCTIONS[FUNCTION_CHOOSED].max);
+
+
+	var e = document.getElementById("selection-type");
+	SELECTION_TYPE = e.options[e.selectedIndex].value;
 }
 
 /* When the user changes the function on radio buttons */
@@ -244,6 +275,12 @@ function matya(x, y) {
 
 function booth(x, y) {
 	return Math.pow((x + 2*y - 7), 2) + Math.pow((2*x + y -5), 2);
+}
+
+function schafferF6(x, y) {
+	var part1 = Math.pow((Math.sin(Math.sqrt((x**2) + (y**2)))), 2);
+	var part2 = Math.pow((1.0 + 0.001 * (x**2 + y**2)), 2);
+	return 0.5 + ((part1 - 0.5) / part2);
 }
 
 

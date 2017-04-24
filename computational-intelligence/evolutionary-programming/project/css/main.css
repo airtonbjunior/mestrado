@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Cinzel|Quicksand|Crimson+Text|Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Quicksand');
 /* Simple CSS Reset */
 * {
 	margin: 0;
@@ -126,8 +126,9 @@ p, span {
 }
 
 #radio-funcs {
-	margin-top: 10px;
+	margin-top: 5px;
 	margin-bottom: 20px;
+	margin-left: 5px;
 }
 
 #loading-icon {
@@ -144,6 +145,14 @@ p, span {
 	font-weight: bold;
 	margin-right: 30px;
 	margin-left: 30px;
+}
+
+#selection-type {
+	padding: 10px;
+	margin: 5px;
+	width: 96%;
+	margin-bottom: 5px;
+	font-family: 'Quicksand', sans-serif;
 }
 
 .hide-load {

@@ -16,9 +16,14 @@
 				<input id="populationSize" type="number"/> 
 			</div>
 			<div class="input-value">
-				<p>Mutation Variation </p>			
+				<p>Mutation Variation </p>
 				<input id="mutateVariation" type="number"/> 
 			</div>
+			<p>Selection </p>
+			<select id="selection-type" class="input-value">
+  				<option value="elitism">Best (elitism)</option>
+  				<option value="tournament">Tournament</option>
+			</select>
 			<p>Functions </p>
 			<div id="radio-funcs" class="input-radiobox">
 			  
@@ -29,7 +34,10 @@
 			  <i id="matya-function" class="fa fa-question-circle-o" aria-hidden="true"></i><br>
 			  
 			  <input type="radio" name="func" onclick="changeFunction(this);" value="2"><span> Booth</span>
-			  <i id="other-function" class="fa fa-question-circle-o" aria-hidden="true"></i>
+			  <i id="booth-function" class="fa fa-question-circle-o" aria-hidden="true"></i><br>
+
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="3"><span> schaffer F6</span>
+			  <i id="schaffer-function" class="fa fa-question-circle-o" aria-hidden="true"></i>
 
 			</div>
 			<div class="min-max-func-label">

@@ -154,8 +154,9 @@ initializeUI();
  * Loading icon, change the button label, set timeout and call start()
  */
 function startPreparation() {
-
-	if(document.getElementById("mutateVariation").value <= 0) {
+	
+	getVariables();
+	if(document.getElementById("mutateVariation").value <= 0 && MUTATION_TYPE == "nonAdaptative") {
 		alert("Mutate Variation must be greater than zero");
 		return;
 	}
@@ -171,7 +172,6 @@ function startPreparation() {
 /* Start the Evolotionary Programming */
 function start() {
 	/* Main workflow */
-	getVariables();
 	createPopulation();
 
 	for(var i = 0; i < GENERATIONS; i++) {
@@ -237,6 +237,12 @@ function getVariables() {
 function changeFunction(param) {
 	FUNCTION_CHOOSED = param.value;
 	document.getElementById("min-func").innerHTML = "Interval [" + FUNCTIONS[FUNCTION_CHOOSED].min + ", " + FUNCTIONS[FUNCTION_CHOOSED].max + "]";
+}
+
+/* When the user changes the mutation type on radio buttons */
+function changeMutation(param) {
+	MUTATION_TYPE = document.querySelector('input[name="mutation-type"]:checked').value;
+	/* TO-DO: disable the input when the type is different of nonAdaptative */
 }
 
 /* Get a random value between min and max*/

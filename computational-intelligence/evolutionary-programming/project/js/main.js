@@ -17,6 +17,7 @@ FUNC_LOWER_LIMIT   = -4.5;
 FUNC_UPPER_LIMIT   = 4.5;
 
 FITNESS_MEAN       = [];
+VARIANCE           = [];
 
 GAUSS_VARIATION    = 2;
 CHILD_POPULATION   = [];
@@ -110,6 +111,11 @@ function mutate() {
 					fitness: fitnessSum
 				}
 			);
+		} else if(MUTATION_TYPE == "dynamic") {
+			/* Gaussian Normal Distribution */
+			var ePower = parseFloat((Math.pow((POPULATION[i].fitness - FITNESS_MEAN[FITNESS_MEAN.length-1]), 2))) / parseFloat((2 * Math.pow(VARIANCE[VARIANCE.length-1], 2)));
+			var normalDistribution = parseFloat((1/Math.sqrt((2 * Math.PI * Math.pow(VARIANCE[VARIANCE.length-1], 2))))) * parseFloat(Math.pow(Math.E, ePower));
+			console.log(normalDistribution);
 		}
 	}
 }
@@ -143,8 +149,23 @@ function nextGeneration() {
 	BEST_EACH_GEN.push(POPULATION[0].fitness);
 	getFitnessMean();
 	calcDeviation();
+	calcVariance();
+
+	/* fill the CHILD_POPULATION array */
 	CHILD_POPULATION = [];
 }
+
+
+/* Calc the variance */
+function calcVariance() {
+	var squareSum = parseFloat(0);
+
+	for (var i = 0; i < POPULATION_SIZE; i++) {
+		squareSum = parseFloat(Math.pow(POPULATION[i].deviation, 2)) + parseFloat(squareSum);
+	}
+	VARIANCE.push(parseFloat(squareSum) / POPULATION_SIZE);
+}
+
 
 /* Calc the deviation of each individual (fitness - mean) */
 function calcDeviation() {
@@ -221,6 +242,7 @@ function start() {
 	chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [BEST_EACH_GEN]}, options);
 
 	log(FITNESS_MEAN);
+	log(VARIANCE);
 
 	/* Restart the default screen */
 	document.getElementById("loading-icon").className += " hide-load";

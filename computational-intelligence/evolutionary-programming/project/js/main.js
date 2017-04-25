@@ -19,7 +19,10 @@ FUNC_UPPER_LIMIT   = 4.5;
 FITNESS_MEAN       = [];
 VARIANCE           = [];
 
-GAUSS_VARIATION    = 2;
+X_MEAN 			   = [];
+Y_MEAN 			   = [];
+
+MUTATE_VARIATION   = 2;
 CHILD_POPULATION   = [];
 
 SELECTION_TYPE     = "elitism";
@@ -39,8 +42,9 @@ FUNCTIONS.push({name: 'schafferF6', min: -100, max: 100});
 /* Create the population */
 function createPopulation() {
 	log("==== Creating population ====");
-	var x, y, individualFitness, mean = 0;
+	var x, y, individualFitness, mean, xmean, ymean = 0;
 	var fitnessSum = parseFloat(0);
+	var xsum = parseFloat(0); var ysum = parseFloat(0);
 
 	for (var i = 0; i < POPULATION_SIZE; i++) {		
 		
@@ -56,11 +60,21 @@ function createPopulation() {
 			}
 		);
 		fitnessSum = parseFloat(individualFitness) + parseFloat(fitnessSum);
+		xsum = parseFloat(x) + parseFloat(xsum);
+		ysum = parseFloat(y) + parseFloat(ysum);
 	}
 	mean = parseFloat(fitnessSum / POPULATION_SIZE);
+	xmean = parseFloat(xsum / POPULATION_SIZE);
+	ymean = parseFloat(ysum / POPULATION_SIZE);
+
+	//console.log(xmean);
+	//console.log(ymean);
+
+	X_MEAN.push(xmean);
+	Y_MEAN.push(ymean);
+	FITNESS_MEAN.push(mean);
 
 	calcDeviation();
-	FITNESS_MEAN.push(mean);
 }
 
 /* Evaluate using the function choosed */
@@ -94,8 +108,8 @@ function mutate() {
 		/* Change here when I code the other mutation types */
 		if(MUTATION_TYPE == "nonAdaptative" || true) {
 			/* Here, apply some mutate strategy */
-			x = POPULATION[i].x_value + (GAUSS_VARIATION * getRandom(-1, 1));
-			y = POPULATION[i].y_value + (GAUSS_VARIATION * getRandom(-1, 1));
+			x = POPULATION[i].x_value + (MUTATE_VARIATION * getRandom(-1, 1));
+			y = POPULATION[i].y_value + (MUTATE_VARIATION * getRandom(-1, 1));
 			fitnessSum = evaluate([x, y], FUNCTION_CHOOSED);
 
 			/* Separated for didact reasons :D */
@@ -112,7 +126,8 @@ function mutate() {
 				}
 			);
 		} else if(MUTATION_TYPE == "dynamic") {
-			/* Gaussian Normal Distribution */
+			/* Normal Distribution (Gaussian) */
+			/* For x and y values */
 			var ePower = parseFloat((Math.pow((POPULATION[i].fitness - FITNESS_MEAN[FITNESS_MEAN.length-1]), 2))) / parseFloat((2 * Math.pow(VARIANCE[VARIANCE.length-1], 2)));
 			var normalDistribution = parseFloat((1/Math.sqrt((2 * Math.PI * Math.pow(VARIANCE[VARIANCE.length-1], 2))))) * parseFloat(Math.pow(Math.E, ePower));
 			console.log(normalDistribution);
@@ -129,7 +144,7 @@ function nextGeneration() {
 
 	if(SELECTION_TYPE == "elitism") 
 	{
-		POPULATION = population_all.slice(0, POPULATION_SIZE); // Get the best ones
+		POPULATION = population_all.slice(0, POPULATION_SIZE); // Get the best individuals
 	}
 	else if(SELECTION_TYPE == "tournament") 
 	{
@@ -148,6 +163,7 @@ function nextGeneration() {
 	
 	BEST_EACH_GEN.push(POPULATION[0].fitness);
 	getFitnessMean();
+	getXYMean();
 	calcDeviation();
 	calcVariance();
 
@@ -170,8 +186,22 @@ function calcVariance() {
 /* Calc the deviation of each individual (fitness - mean) */
 function calcDeviation() {
 	for(var i = 0; i < POPULATION_SIZE; i++) {
-		POPULATION[i].deviation = parseFloat(POPULATION[i].fitness) - parseFloat(FITNESS_MEAN[FITNESS_MEAN.length-1]);	
+		POPULATION[i].deviation = parseFloat(POPULATION[i].fitness) - parseFloat(FITNESS_MEAN[FITNESS_MEAN.length-1]);
+		POPULATION[i].x_deviation = parseFloat(POPULATION[i].x_value) - parseFloat(X_MEAN[X_MEAN.length-1]);
+		POPULATION[i].y_deviation = parseFloat(POPULATION[i].y_value) - parseFloat(Y_MEAN[Y_MEAN.length-1]);	
 	}
+}
+
+/* Calc the X and Y means */
+function getXYMean() {
+	var xsum = parseFloat(0);
+	var ysum = parseFloat(0);
+	for (var i = 0; i < POPULATION_SIZE; i++) {
+		xsum = parseFloat(POPULATION[i].x_value) + parseFloat(xsum);
+		ysum = parseFloat(POPULATION[i].x_value) + parseFloat(ysum);
+	}
+	X_MEAN.push(parseFloat(xsum / POPULATION_SIZE));
+	Y_MEAN.push(parseFloat(ysum / POPULATION_SIZE));	
 }
 
 
@@ -181,7 +211,7 @@ function getFitnessMean() {
 	for (var i = 0; i < POPULATION_SIZE; i++) {
 		fitnessSum = parseFloat(POPULATION[i].fitness) + parseFloat(fitnessSum);
 	}
-	FITNESS_MEAN.push(fitnessSum);
+	FITNESS_MEAN.push(fitnessSum / POPULATION_SIZE);
 }
 
 
@@ -212,6 +242,9 @@ function startPreparation() {
 	POPULATION    = []; // Reset, because the user can click start again
 	BEST_EACH_GEN = []; // Reset, because the user can click start again
 	FITNESS_MEAN  = []; // Reset, because the user can click start again
+	VARIANCE      = []; // Reset, because the user can click start again
+	X_MEAN        = []; // Reset, because the user can click start again
+	Y_MEAN        = []; // Reset, because the user can click start again
 
 	document.getElementById("loading-icon").classList.remove("hide-load");
 	document.getElementById("btn-start").innerHTML = "Processing...";
@@ -262,7 +295,7 @@ function initializeUI() {
 
 	document.getElementById("generations").value = GENERATIONS;
 	document.getElementById("populationSize").value = POPULATION_SIZE;
-	document.getElementById("mutateVariation").value = GAUSS_VARIATION;
+	document.getElementById("mutateVariation").value = MUTATE_VARIATION;
 
 	FUNCTION_CHOOSED = document.querySelector('input[name="func"]:checked').value;
 
@@ -273,7 +306,7 @@ function initializeUI() {
 function getVariables() {
 	GENERATIONS = document.getElementById("generations").value;
 	POPULATION_SIZE = document.getElementById("populationSize").value;
-	GAUSS_VARIATION = document.getElementById("mutateVariation").value;
+	MUTATE_VARIATION = document.getElementById("mutateVariation").value;
 
 	FUNC_LOWER_LIMIT = parseFloat(FUNCTIONS[FUNCTION_CHOOSED].min);
 	FUNC_UPPER_LIMIT = parseFloat(FUNCTIONS[FUNCTION_CHOOSED].max);

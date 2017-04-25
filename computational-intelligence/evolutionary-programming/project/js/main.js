@@ -16,6 +16,8 @@ FUNCTION_CHOOSED   = 0;
 FUNC_LOWER_LIMIT   = -4.5;
 FUNC_UPPER_LIMIT   = 4.5;
 
+FITNESS_MEAN       = [];
+
 GAUSS_VARIATION    = 2;
 CHILD_POPULATION   = [];
 
@@ -36,21 +38,28 @@ FUNCTIONS.push({name: 'schafferF6', min: -100, max: 100});
 /* Create the population */
 function createPopulation() {
 	log("==== Creating population ====");
-	var x, y = 0;
+	var x, y, individualFitness, mean = 0;
+	var fitnessSum = parseFloat(0);
 
 	for (var i = 0; i < POPULATION_SIZE; i++) {		
 		
 		x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT);
 		y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT);
+		individualFitness = evaluate([x, y], FUNCTION_CHOOSED);
 
 		POPULATION.push(
 			{
 				x_value: x,
 				y_value: y,
-				fitness: evaluate([x, y], FUNCTION_CHOOSED)
+				fitness: individualFitness
 			}
 		);
+		fitnessSum = parseFloat(individualFitness) + parseFloat(fitnessSum);
 	}
+	mean = parseFloat(fitnessSum / POPULATION_SIZE);
+
+	calcDeviation();
+	FITNESS_MEAN.push(mean);
 }
 
 /* Evaluate using the function choosed */
@@ -77,7 +86,7 @@ function evaluate(values, func) {
 /* Mutate the population - In EP, is the only source of variation */
 function mutate() {
 	log("==== Mutation ====");
-	var x, y = 0;
+	var x, y, fitnessSum = 0;
 
 	for(var i = 0; i < POPULATION_SIZE; i++) {
 
@@ -86,6 +95,7 @@ function mutate() {
 			/* Here, apply some mutate strategy */
 			x = POPULATION[i].x_value + (GAUSS_VARIATION * getRandom(-1, 1));
 			y = POPULATION[i].y_value + (GAUSS_VARIATION * getRandom(-1, 1));
+			fitnessSum = evaluate([x, y], FUNCTION_CHOOSED);
 
 			/* Separated for didact reasons :D */
 			if(x > FUNC_UPPER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
@@ -97,7 +107,7 @@ function mutate() {
 				{
 					x_value: x,
 					y_value: y,
-					fitness: evaluate([x, y], FUNCTION_CHOOSED)
+					fitness: fitnessSum
 				}
 			);
 		}
@@ -110,8 +120,6 @@ function nextGeneration() {
 
 	var population_all = POPULATION.concat(CHILD_POPULATION);
 	population_all.sort(sortComparator);
-
-	console.log(population_all);
 
 	if(SELECTION_TYPE == "elitism") 
 	{
@@ -133,7 +141,26 @@ function nextGeneration() {
 	}
 	
 	BEST_EACH_GEN.push(POPULATION[0].fitness);
+	getFitnessMean();
+	calcDeviation();
 	CHILD_POPULATION = [];
+}
+
+/* Calc the deviation of each individual (fitness - mean) */
+function calcDeviation() {
+	for(var i = 0; i < POPULATION_SIZE; i++) {
+		POPULATION[i].deviation = parseFloat(POPULATION[i].fitness) - parseFloat(FITNESS_MEAN[FITNESS_MEAN.length-1]);	
+	}
+}
+
+
+/* Calc the Fintess Mean of a generation */
+function getFitnessMean() {
+	fitnessSum = parseFloat(0);
+	for (var i = 0; i < POPULATION_SIZE; i++) {
+		fitnessSum = parseFloat(POPULATION[i].fitness) + parseFloat(fitnessSum);
+	}
+	FITNESS_MEAN.push(fitnessSum);
 }
 
 
@@ -161,6 +188,10 @@ function startPreparation() {
 		return;
 	}
 
+	POPULATION    = []; // Reset, because the user can click start again
+	BEST_EACH_GEN = []; // Reset, because the user can click start again
+	FITNESS_MEAN  = []; // Reset, because the user can click start again
+
 	document.getElementById("loading-icon").classList.remove("hide-load");
 	document.getElementById("btn-start").innerHTML = "Processing...";
 	document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
@@ -175,22 +206,21 @@ function start() {
 	createPopulation();
 
 	for(var i = 0; i < GENERATIONS; i++) {
+		
+		log("Population of generation " + i);
 		log(POPULATION);
-
 		mutate();
-
+		log("Child Population")
 		log(CHILD_POPULATION);
-
 		nextGeneration();
+
 	}
-	
+	/* Main workflow */
+
 	document.getElementById("result").innerHTML = "The minimum of " + FUNCTIONS[FUNCTION_CHOOSED].name + " is " + POPULATION[0].fitness.toPrecision(3) + " with x = " + POPULATION[0].x_value.toPrecision(3) + " and y = " +POPULATION[0].y_value.toPrecision(3);
-	
 	chart = new Chartist.Line('.ct-chart', {labels: ['Generations'], series: [BEST_EACH_GEN]}, options);
 
-	POPULATION    = []; // Reset, because the user can click start again
-	BEST_EACH_GEN = []; // Reset, because the user can click start again
-	/* Main workflow */
+	log(FITNESS_MEAN);
 
 	/* Restart the default screen */
 	document.getElementById("loading-icon").className += " hide-load";
@@ -291,27 +321,19 @@ function matya(x, y) {
 	return (0.26) * (Math.pow(x, 2) + Math.pow(y, 2)) - 0.48*x*y;
 }
 
-
+/* 
+ * References: https://www.sfu.ca/~ssurjano/booth.html 
+ */
 function booth(x, y) {
 	return Math.pow((x + 2*y - 7), 2) + Math.pow((2*x + y -5), 2);
 }
 
+/* 
+ * References: http://www.cs.unm.edu/~neal.holts/dga/benchmarkFunction/schafferf6.html 
+ */
 function schafferF6(x, y) {
-	var part1 = Math.pow((Math.sin(Math.sqrt((x**2) + (y**2)))), 2);
-	var part2 = Math.pow((1.0 + 0.001 * (x**2 + y**2)), 2);
+	var part1 = Math.pow((Math.sin(Math.sqrt((Math.pow(x, 2)) + (Math.pow(y, 2))))), 2);
+	var part2 = Math.pow((1.0 + 0.001 * (Math.pow(x, 2) + Math.pow(y, 2))), 2);
 	return 0.5 + ((part1 - 0.5) / part2);
-}
-
-
-function goldesteinPrice(x, y) {
-	part1a = Math.pow((x + y + 1),2);
-	part1b = 19 - (14*x) + Math.pow((3*x),2) - (14*y) + (6*x*y) + Math.pow((3*y),2);
-	part1 = 1 + part1a * part1b;
-
-	part2a = Math.pow((2*x - 3*y),2);
-	part2b = 18 - (32*x) + (Math.pow((12*x),2)) + (48*y) - (36*x*y) + Math.pow((27*y),2);
-	part2 = 30 + part2a * part2b;
-
-	return part1 * part2;
 }
 

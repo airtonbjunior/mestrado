@@ -15,9 +15,18 @@
 				<p>Population Size</p>
 				<input id="populationSize" type="number"/> 
 			</div>
-			<div class="input-value">
-				<p>Mutation Variation </p>
-				<input id="mutateVariation" type="number"/> 
+			<div class="radio-value">
+				<p>Mutation</p>
+				<input id="mutate-radio" type="radio" name="mutation-type" onclick="changeMutation(this);" value="nonAdaptative" checked><span> Non-Adaptative</span>
+				<input id="mutateVariation" type="number" pattern="[1-100]"/> 
+
+				<br>
+
+				<input id="mutate-radio" type="radio" name="mutation-type" onclick="changeMutation(this);" value="dynamic"><span> Dynamic</span>
+
+				<br>
+
+				<input id="mutate-radio" type="radio" name="mutation-type" onclick="changeMutation(this);" value="selfAdaptative"><span> Self Adaptative</span>
 			</div>
 			<p>Selection </p>
 			<select id="selection-type" class="input-value">
@@ -36,7 +45,7 @@
 			  <input type="radio" name="func" onclick="changeFunction(this);" value="2"><span> Booth</span>
 			  <i id="booth-function" class="fa fa-question-circle-o" aria-hidden="true"></i><br>
 
-			  <input type="radio" name="func" onclick="changeFunction(this);" value="3"><span> schaffer F6</span>
+			  <input type="radio" name="func" onclick="changeFunction(this);" value="3"><span> Schaffer F6</span>
 			  <i id="schaffer-function" class="fa fa-question-circle-o" aria-hidden="true"></i>
 
 			</div>

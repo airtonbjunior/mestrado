@@ -20,14 +20,17 @@ GAUSS_VARIATION    = 2;
 CHILD_POPULATION   = [];
 
 SELECTION_TYPE     = "elitism";
+MUTATION_TYPE      = "nonAdaptative";
 
 BEST_EACH_GEN      = [];
 
+/* Math functions for optimization - https://en.wikipedia.org/wiki/Test_functions_for_optimization */
 FUNCTIONS = [];
 FUNCTIONS.push({name: 'beale', min: -4.5, max: 4.5});
 FUNCTIONS.push({name: 'matya', min: -10, max: 10});
 FUNCTIONS.push({name: 'booth', min: -10, max: 10});
 FUNCTIONS.push({name: 'schafferF6', min: -100, max: 100});
+
 
 /* Main functions */
 /* Create the population */
@@ -71,32 +74,37 @@ function evaluate(values, func) {
 	}
 }
 
-
+/* Mutate the population - In EP, is the only source of variation */
 function mutate() {
 	log("==== Mutation ====");
 	var x, y = 0;
 
 	for(var i = 0; i < POPULATION_SIZE; i++) {
 
-		x = POPULATION[i].x_value + (GAUSS_VARIATION * getRandom(-1, 1));
-		y = POPULATION[i].y_value + (GAUSS_VARIATION * getRandom(-1, 1));
+		/* Change here when I code the other mutation types */
+		if(MUTATION_TYPE == "nonAdaptative" || true) {
+			/* Here, apply some mutate strategy */
+			x = POPULATION[i].x_value + (GAUSS_VARIATION * getRandom(-1, 1));
+			y = POPULATION[i].y_value + (GAUSS_VARIATION * getRandom(-1, 1));
 
-		/* Separated for didact reasons :D */
-		if(x > FUNC_UPPER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
-		if(x < FUNC_LOWER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
-		if(y > FUNC_UPPER_LIMIT) { y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
-		if(y < FUNC_LOWER_LIMIT) { y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
-		
-		CHILD_POPULATION.push(
-			{
-				x_value: x,
-				y_value: y,
-				fitness: evaluate([x, y], FUNCTION_CHOOSED)
-			}
-		);
+			/* Separated for didact reasons :D */
+			if(x > FUNC_UPPER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+			if(x < FUNC_LOWER_LIMIT) { x = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+			if(y > FUNC_UPPER_LIMIT) { y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+			if(y < FUNC_LOWER_LIMIT) { y = getRandom(FUNC_LOWER_LIMIT, FUNC_UPPER_LIMIT); }
+			
+			CHILD_POPULATION.push(
+				{
+					x_value: x,
+					y_value: y,
+					fitness: evaluate([x, y], FUNCTION_CHOOSED)
+				}
+			);
+		}
 	}
 }
 
+/* Prepare the next generation, based on the selecion type (elitism/tournament) */
 function nextGeneration() {
 	log("==== Processing next generation ====");
 
@@ -139,14 +147,18 @@ function sortComparator(a, b) {
 /* Main functions */
 
 
-/* Initialize de UI */
+/* Initialize  UI */
 initializeUI();
-console.log(schafferF6(0, 0));
 
 /* Pre-start 
  * Loading icon, change the button label, set timeout and call start()
  */
 function startPreparation() {
+
+	if(document.getElementById("mutateVariation").value <= 0) {
+		alert("Mutate Variation must be greater than zero");
+		return;
+	}
 
 	document.getElementById("loading-icon").classList.remove("hide-load");
 	document.getElementById("btn-start").innerHTML = "Processing...";
@@ -189,10 +201,10 @@ function start() {
 /* Aux functions */
 function initializeUI() {
 
-	new Opentip("#beale-function", { target: true, tipJoint: "left" }).setContent("1 + 2 + 3");
-	new Opentip("#matya-function", { target: true, tipJoint: "left" }).setContent("4 + 5 + 6");
-	new Opentip("#booth-function", { target: true, tipJoint: "left" }).setContent("Hey there!");
-	new Opentip("#schaffer-function", { target: true, tipJoint: "left" }).setContent("<img src='img/schaffer.gif'></img>");
+	new Opentip("#beale-function", { target: true, tipJoint: "left", background: "#ffffff"}).setContent("<img src='img/beale.png'></img>");
+	new Opentip("#matya-function", { target: true, tipJoint: "left", background: "#ffffff" }).setContent("<img src='img/matya.png'></img>");
+	new Opentip("#booth-function", { target: true, tipJoint: "left", background: "#ffffff" }).setContent("<img src='img/booth.png'></img>");
+	new Opentip("#schaffer-function", { target: true, tipJoint: "left", background: "#ffffff"}).setContent("<img src='img/schaffer.gif'></img>");
 
 	document.getElementById("btn-start").addEventListener("click", startPreparation);
 
@@ -217,6 +229,8 @@ function getVariables() {
 
 	var e = document.getElementById("selection-type");
 	SELECTION_TYPE = e.options[e.selectedIndex].value;
+
+	MUTATION_TYPE = document.querySelector('input[name="mutation-type"]:checked').value;
 }
 
 /* When the user changes the function on radio buttons */
@@ -227,7 +241,7 @@ function changeFunction(param) {
 
 /* Get a random value between min and max*/
 function getRandom(min, max) {
-  return Math.random() * (max - min) + min;
+	return Math.random() * (max - min) + min;
 }
 
 /* Log the message */
@@ -262,7 +276,6 @@ function beale(x, y) {
 
 	return part1 + part2 + part3;
 }
-
 
 
 /* 

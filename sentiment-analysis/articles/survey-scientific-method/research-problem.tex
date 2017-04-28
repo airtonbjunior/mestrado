@@ -1,0 +1,75 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{pdfpages}
+\usepackage{lastpage}
+\usepackage{framed}
+\usepackage{tgbonum}
+\usepackage{enumitem}
+
+%Manipulação de cabeçalho e rodapé
+\usepackage{fancyhdr}
+%DistÃ¢ncia do cabeçalho em relação ao topo do página
+\setlength{\headheight}{45.0pt}
+%Largura das linhas de cabeçalho e rodapé
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headwidth}{\textwidth}
+%Inclui o logo da UEL no lado esquerdo do cabeçalho
+\fancyhead[L]{
+ \includegraphics[height=0.53in]{p-modelo1.jpg}
+}
+%Inclui o logo do DC no lado direito do cabeçalho
+\fancyhead[R]{
+   \includegraphics[height=0.53in]{logo_ufg.png}
+}
+\pagestyle{fancy}
+\cfoot{}
+\rfoot{\textbf{\footnotesize Página \thepage\ de \pageref{LastPage}}}
+\lfoot{\textbf{IPC/MET - 2017/1 - Problema de pesquisa}}
+%opening
+
+\begin{document}
+\fontfamily{cmss}\selectfont
+
+% \maketitle
+
+% \begin{abstract}
+
+% \end{abstract}
+\begin{framed}
+\begin{center}
+\textbf{\Large{Problema de pesquisa}}
+
+\textbf{Aluno: INCLUIR O SEU NOME COMPLETO}
+\end{center}
+
+\textbf{Subárea do conhecimento do CNPq:} Colocar a subárea.
+
+\textbf{Subsubárea do conhecimento:} 
+
+\textbf{Linha de pesquisa:} \emph{Alunos da UFG / Imperatriz / Tocantins devem colocar a linha específica do Instituto. O pessoal da UEL, deve verificar a linha específica relacionada ao docente.}
+
+\end{framed}
+
+\section{Contextualização}
+Aqui, o aluno deverá fazer um detalhamento de \textbf{pelo menos} 10 (dez) artigos científicos que apresentem resultados significativos para a área em que está propondo o problema. Os artigos deverão estar devidamente citados no texto. Deve-se ter uma atenção especial na escrita do texto, de modo que este \emph{flua}. Na prática, significa que os parágrafos devem ter conexões entre si. 
+
+Um outro ponto a ser lembrado, diz respeito ao processo de busca dos artigos na internet. Em um primeiro momento, e a partir da proposta a ser descrita, devem ser definidas as palavras chave de busca. Estas tem como função apontar para os sites de pesquisa (que também devem ser definidos), quais artigos estão sendo procurados.  
+
+A próxima etapa é a leitura dos abstracts. Estes devem apontar para o leitor uma apresentação completa do artigo, sem entrar em detalhes. A partir desta leitura é que devem ser feitos os downloads e posteriormente a leitura dos artigos. Na sequência, deve então ser escrita a contextualização do problema. Caso o aluno não tenha experiência, sugere-se a leitura do artigo: \cite{kitchenham2009systematic}. O mesmo é um guia sobre como fazer uma revisão sistemática (a próxima fase da disciplina).
+
+A contextualização deverá ocupar \emph{a primeira página deste documento}. Espera-se que a mesma tenha de 4 a 5 parágrafos com 4 a 5 linhas cada um destes. Os excessos serão avaliados de forma negativa.
+
+\section{Problema}
+Aqui deverá ser apresentado o problema da dissertação / tese a ser resolvido. Espera-se uma descrição detalhada do problema, que deverá ser uma extensão da contextualização. Também deve ser apontada qual será a contribuição do mesmo para a ciência. 
+
+\bibliographystyle{apalike}
+\bibliography{problema}
+
+\end{document}

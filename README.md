@@ -13,3 +13,6 @@ Repository of the projects developed for the - [UFG master's program](http://www
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/computational-intelligence/evolutionary-programming/project) [[Demo]](https://airtonbjunior.github.io/mestrado/computational-intelligence/evolutionary-programming/project/)
  
   * Data structure and algorithm analysis
+  
+  * Scientific Method
+    * Survey 1 - [Research Problem](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/survey-scientific-method/problema.pdf)

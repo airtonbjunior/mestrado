@@ -1,0 +1,92 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{pdfpages}
+\usepackage{lastpage}
+\usepackage{framed}
+\usepackage{tgbonum}
+\usepackage{enumitem}
+
+%Manipulação de cabeçalho e rodapé
+\usepackage{fancyhdr}
+%DistÃ¢ncia do cabeçalho em relação ao topo do página
+\setlength{\headheight}{45.0pt}
+%Largura das linhas de cabeçalho e rodapé
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headwidth}{\textwidth}
+%Inclui o logo da UEL no lado esquerdo do cabeçalho
+\fancyhead[L]{
+ \includegraphics[height=0.53in]{p-modelo1.jpg}
+}
+%Inclui o logo do DC no lado direito do cabeçalho
+\fancyhead[R]{
+   \includegraphics[height=0.53in]{logo_ufg.png}
+}
+\pagestyle{fancy}
+\cfoot{}
+\rfoot{\textbf{\footnotesize Página \thepage\ de \pageref{LastPage}}}
+\lfoot{\textbf{IPC/MET - 2017/1 - Problema de pesquisa}}
+%opening
+
+\begin{document}
+\fontfamily{cmss}\selectfont
+
+% \maketitle
+
+% \begin{abstract}
+
+% \end{abstract}
+\begin{framed}
+\begin{center}
+\textbf{\Large{Criação automatizada de dicionário léxico para mineração de opiniões}}
+
+\textbf{Aluno: Airton Bordin Junior}
+\end{center}
+
+\textbf{Subárea do conhecimento do CNPq:} Metodologia e Técnicas de Computação.
+
+\textbf{Subsubárea do conhecimento:} Banco de Dados
+
+\textbf{Linha de pesquisa:} Inteligência Computacional
+
+\end{framed}
+
+\section{Contextualização}
+\cite{liu2010multifaceted} apresenta uma visão multifacetada sobre a mineração de opiniões. Neste trabalho, o autor conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte de outros trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistas tembém em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}.
+
+\cite{taboada2011lexicon} aborda a análise e mineração de opiniões baseada em dicionários léxicos. Apresenta o SO-CAL (Semantic Orientation Calculator), que usa dicionários já consolidados para a geração de dicionários com novas palavras e suas polaridades de forma não supervisionada. Durante a descrição do trabalho, apresenta conceitos de intensificação e negação, amplamente utilizadas nas técnicas de geração de novos léxicos. Apesar de ser feita de forma automática, o autor utilizou uma etapa de verificação humana para a validação da consistência das palavras geradas pela técnica, fazendo uso de um serviço de Mechanical Turk da Amazon. 
+
+Na mesma linha, \cite{eisenstein2016unsupervised} e \cite{bandhakavi2016lexicon} apresentam técnicas de análise de opiniões fazendo uso de dicionários léxicos. O primeiro apresenta uma abordagem fazendo uso da técnica de Naive Bayes para a classificação dos aspectos e cita problemas de estimativas de palavras e avaliação dos léxicos criados. O segundo faz uma comparação de algumas técnicas de avaliação em 4 conjuntos de dados diferentes, apresentando uma análise quantitativa do mesmo. Abordagens e comparações semelhantes, com algumas modificações no domínio e idioma do problema abordado podem ser vistos em \cite{khoo2017lexicon}, \cite{asghar2014review} e \cite{ding2008holistic}.
+
+A criação automatizada de dicionário léxico, tema central do presente trabalho, é tratada em sua forma geral em \cite{widdows2002graph} e \cite{duwairi2015detecting}. O primeiro usa a estratégia de criação e análise de uma estrutura de grafos, usando uma base padronizada de palavras semente, que contém diversas palavras, suas polaridades e seus sinônimos. Apesar de fazer uma abordagem focando em substantivos, que representam os vértices do grafo, a ideia principal pode ser utilizada nas estratégias gerais de geração léxica automatizada. \cite{duwairi2015detecting} dá uma visão geral da criação de um dicionário de palavras, usando como base tweets em árabe. Importante destaque deste último foi a inclusão de emoticons na análise, característica amplamente utilizada, principalmente em escritas informais na Internet.
+
+A maior parte das estratégias de criação de dicionários léxicos utiliza como base de palavras semente a base de dados WordNet - disponível em https://wordnet.princeton.edu/ - que fornece uma lista de palavras, sua polaridade e seus sinônimos. Importante destacar, também, que as bases utilizadas nos trabalhos supracitados contém palavras em inglês. Mesmo os trabalhos que utilizam estratégias em outros idiomas fizeram uso de bases em inglês por meio de um processo de tradução automatizada.
+
+\section{Problema}
+Como podemos observar, a análise de dados não estruturados, como o processamento de linguagem natural (PLN), é uma linha de pesquisa abrangente, e que vem sendo tema de diversos trabalhos nos últimos anos, principalmente devido ao aumento no número de usuários de Internet e o consequente aumento da produção de conteúdo na rede, como opiniões, avaliações, entre outros. 
+
+Nesse sentido, a mineração de opiniões, muitas vezes chamada de análise de sentimeno, apresenta-se como uma das principais linhas de pesquisa no contexto de PLN. Essa subárea tem como principal desafio a análisa de opiniões descritas em linguagem natural para a identificação da polaridade implícita ou explícita no texto. Essa polaridade é, na maior parte das vezes, identificada como uma escala de pontuação de sua característica positiva, negativa ou neutra.
+
+Como visto no capítulo anterior, uma das principais técnicas da análise de opiniões é a realizada por meio de dicionários de dados. Esses dicionários contém palavras previamente avaliadas por especialistas humanos, principalmente quanto à sua polaridade. Algumas bases, como a WordNet, utilizada na maior parte dos trabalhos, descreve, também, os sinônimos de cada palavra.
+
+Porém, fica evidente a limitação inerente na utilização da estratégia dicionário léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de mineração de opiniões é a criação do dicionário léxico de forma não supervisionada, tema central do presente trabalho. A maior parte desses dicionários é feita de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios. 
+
+Sabendo desse problema de pesquisa, a ideia principal da presente trabalho é a criação de um processo automatizado de avaliação de dados inéditos (nesse contexto, palavras que não estão contidas no dicionário) e suas polaridades (negativa, positiva ou neutra) que consequentemente comporão um novo dicionário léxico. Todo esse processo será feito partindo de um conjunto mínimo de palavras contidas em algum dicionário disponibilizado publicamente, como o amplamente citado e utilizado WordNet, por exemplo.
+
+Devida a característica intrínseca do próprio problema, serão utilizadas na pesquisa bases de textos escritos em inglês. Ao mesmo tempo, muitas das técnicas utilizadas durante o trabalho também poderão ser feitas para o contexto do português, com as devidas alterações. 
+
+Espera-se que esses padrões possam ser utilizados como entrada de processos de avaliação em diversas áreas de PNL e mineração de opiniões como, por exemplo, análise de sentimentos em redes sociais. Algumas dessas pesquisas são realizadas na própria instituição, apoiando, assim, o trabalho de outros pesquisadores. Além disso, devido ao caráter automatizado dessa solução proposta, o mesmo processo poderá ser utilizado, avaliado e melhorado para outras situações, contextos e idiomas.
+
+Por fim, mas não menos importante, a pesquisa e utilização de diversas técnicas de PNL e criação não supervisionada de padrões poderá servir como um benchmark dos principais métodos, auxiliando na escolha de ferramentas e métodos para trabalhos futuros em determinados contextos.
+
+
+\bibliographystyle{apalike}
+\bibliography{problema}
+
+\end{document}

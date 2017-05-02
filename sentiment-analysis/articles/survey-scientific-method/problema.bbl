@@ -1,0 +1,66 @@
+\begin{thebibliography}{}
+
+\bibitem[Asghar et~al., 2014]{asghar2014review}
+Asghar, M.~Z., Khan, A., Ahmad, S., and Kundi, F.~M. (2014).
+\newblock A review of feature extraction in sentiment analysis.
+\newblock {\em Journal of Basic and Applied Scientific Research},
+  4(3):181--186.
+
+\bibitem[Bandhakavi et~al., 2016]{bandhakavi2016lexicon}
+Bandhakavi, A., Wiratunga, N., Padmanabhan, D., and Massie, S. (2016).
+\newblock Lexicon based feature extraction for emotion text classification.
+\newblock {\em Pattern Recognition Letters}, pages~--.
+
+\bibitem[Ding et~al., 2008]{ding2008holistic}
+Ding, X., Liu, B., and Yu, P.~S. (2008).
+\newblock A holistic lexicon-based approach to opinion mining.
+\newblock In {\em Proceedings of the 2008 international conference on web
+  search and data mining}, pages 231--240. ACM.
+
+\bibitem[Duwairi et~al., 2015]{duwairi2015detecting}
+Duwairi, R.~M., Ahmed, N.~A., and Al-Rifai, S.~Y. (2015).
+\newblock Detecting sentiment embedded in arabic social media - a lexicon-based
+  approach.
+\newblock {\em Journal of Intelligent and Fuzzy Systems}, 29(1):107--117.
+
+\bibitem[Eisenstein, 2016]{eisenstein2016unsupervised}
+Eisenstein, J. (2016).
+\newblock Unsupervised learning for lexicon-based classification.
+\newblock {\em CoRR}, abs/1611.06933.
+
+\bibitem[Ghaleb and Vijendran, 2016]{ghaleb2016survey}
+Ghaleb, O. A.~M. and Vijendran, A.~S. (2016).
+\newblock Survey and analysis of recent sentiment analysis schemes relating to
+  social media.
+\newblock {\em Indian Journal of Science and Technology}, 9(41).
+
+\bibitem[Khoo and Johnkhan, 2017]{khoo2017lexicon}
+Khoo, C.~S. and Johnkhan, S.~B. (2017).
+\newblock Lexicon-based sentiment analysis: Comparative evaluation of six
+  sentiment lexicons.
+\newblock {\em Journal of Information Science}, 0(0):0165551517703514.
+
+\bibitem[Liu, 2010]{liu2010multifaceted}
+Liu, B. (2010).
+\newblock Sentiment analysis: A multifaceted problem.
+\newblock {\em IEEE Intelligent Systems}, 25(3):76--80.
+
+\bibitem[Mohammad, 2016]{mohammad2016challenges}
+Mohammad, S.~M. (2016).
+\newblock Challenges in sentiment analysis.
+\newblock {\em A Practical Guide to Sentiment Analysis, D. Das, E. Cambria, and
+  S. Bandyopadhyay, Eds. Springer}.
+
+\bibitem[Taboada et~al., 2011]{taboada2011lexicon}
+Taboada, M., Brooke, J., Tofiloski, M., Voll, K., and Stede, M. (2011).
+\newblock Lexicon-based methods for sentiment analysis.
+\newblock {\em Comput. Linguist.}, 37(2):267--307.
+
+\bibitem[Widdows and Dorow, 2002]{widdows2002graph}
+Widdows, D. and Dorow, B. (2002).
+\newblock A graph model for unsupervised lexical acquisition.
+\newblock In {\em Proceedings of the 19th international conference on
+  Computational linguistics-Volume 1}, pages 1--7. Association for
+  Computational Linguistics.
+
+\end{thebibliography}

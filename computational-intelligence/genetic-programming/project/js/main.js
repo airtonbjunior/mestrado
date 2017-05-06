@@ -1,0 +1,1 @@
+OPERATORS = {'+', '-', '*', '/' /*consider sqrt, log, etc*/ }

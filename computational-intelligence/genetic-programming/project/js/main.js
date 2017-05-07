@@ -15,7 +15,7 @@ TERMINALS = ["x"];
 
 HEIGHT_TREE = 3; /* 2^h terminals and 2^h-1 operators */
 
-GENERATIONS = 10;
+GENERATIONS = 50;
 POP_SIZE    = 30;
 POPULATION  = [];
 
@@ -105,6 +105,7 @@ function generatePopulation() {
 
 /*	Evaluate the expression 
 	Use the Mean Square Error
+	http://sciencing.com/calculate-mse-8464173.html
 
 	Sum([square of differences between estimator and estimated])/n
 */
@@ -137,6 +138,7 @@ function nextGeneration() {
 		//doCrossover(POPULATION[getRandom(0, POP_SIZE - 1)], POPULATION[getRandom(0, POP_SIZE - 1)]);
 
 		doMutation(POPULATION[getRandom(0, POP_SIZE - 1)]);
+		doPermutation(POPULATION[getRandom(0, POP_SIZE - 1)]);
 	}
 }
 
@@ -151,9 +153,11 @@ function doCrossover(node1, node2) {
 	log(node1.expression.charAt(crosspoint) + " at position " + crosspoint);
 }
 
+
 /* Do the mutation in a node */
 function doMutation(node) {
-	log("=========================================")
+	log("=========================================");
+	log("###### Mutation ######");
 	log("Mutate the expression " + node.expression);
 
 	do {
@@ -188,6 +192,57 @@ function doMutation(node) {
 	log("The result is " + node.expression);
 }
 
+
+/* Do the permutation */
+function doPermutation(node) {
+	log("=========================================");
+	log("###### Permutation ######");
+	log(node.expression);
+
+	do {
+		permutationPoint = getRandom(0, node.expression.length - 1);
+	} while(node.expression.charAt(permutationPoint) === "(" 
+			|| node.expression.charAt(permutationPoint) === ")"
+			|| OPERATORS.indexOf(node.expression.charAt(permutationPoint)) == -1); // Permutation point needs to be a operator
+
+	/* Verify if it's a internal expression like (5+x) */
+	if(node.expression.charAt(permutationPoint+1) !== "(") {
+		var operator = node.expression.charAt(permutationPoint);
+		var term1    = node.expression.charAt(permutationPoint - 1);
+		var term2    = node.expression.charAt(permutationPoint + 1);
+
+		node.expression = node.expression.substring(0, permutationPoint - 1) + term2 + operator + term1 + node.expression.substring(permutationPoint+2);
+
+		log("Permutate internal expression -> (" + term1 + operator + term2 + ") -> " + node.expression);
+	}
+	else {
+		/* Verify if it's the tree root */
+		if(permutationPoint == Math.floor(node.expression.length/2)) {
+			log("it's the tree root");
+			var operator = node.expression.charAt(permutationPoint);
+			var part1 	 = node.expression.substring(0, permutationPoint);
+			var part2 	 = node.expression.substring(permutationPoint + 1);
+
+			node.expression = part2 + operator + part1;
+
+			log("Permutate root operator -> " + part1 + operator + part2 + " -> " + node.expression);
+		}
+		/* Not an internal expression AND not the root */
+		else {
+			log("not the root and not an internal operator");
+			var operator = node.expression.charAt(permutationPoint);
+			var part1 = node.expression.substring(permutationPoint - 5, permutationPoint);  // change this, it's hardcoded by now
+			var part2 = node.expression.substring(permutationPoint + 1, permutationPoint + 6) // change this, it's hardcoded by now
+
+			node.expression = node.expression.substring(0, permutationPoint - 5) 
+							+ part2 + operator + part1
+							+ node.expression.substring(permutationPoint + 6);
+
+			log("Permutate other operator -> " + part1 + operator + part2 + " -> " + node.expression);
+		}
+	}
+
+}
 
 /* Sort the population by fitness */
 function sortComparator(a, b) {

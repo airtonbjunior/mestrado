@@ -82,6 +82,34 @@ function generatePopulation() {
 	POPULATION.push(node);
 }
 
+
+
+function evaluate(node) {
+	var expression = node.expression;
+	var exp;
+
+	/* Tests for a certain function x^2+1*/
+	var test_values = ["1", "2", "3", "4", "5"]
+	var result_test = ["2", "5", "10", "17", "26"]
+	var differences = [];
+
+	/* Test cases */
+	for (var i = 0; i < test_values.length; i++) {
+		exp = expression.replace(/x/g, test_values[i]);	
+		console.log(parseFloat(eval(exp)) + " - " + parseFloat(result_test[i]) + " = " + parseFloat(eval(exp) - parseFloat(result_test[i])));
+		differences.push(parseFloat(eval(exp) - parseFloat(result_test[i])));
+	}
+
+	var squareError = 0;
+	for (var i = 0; i < differences.length; i++) {
+		squareError += Math.pow(parseFloat(differences[i]), 2);
+	}
+	return (squareError/test_values.length); // return the mean square error
+}
+
+
+
+
 function mountExpression() {
 	var exp = "";
 	var node = POPULATION[0];
@@ -105,7 +133,7 @@ for (var i = 0; i < GENERATIONS; i++) {
 	generatePopulation();
 }
 
-mountExpression();
+evaluate(POPULATION[0]);
 console.log(POPULATION);
 
 

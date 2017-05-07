@@ -131,7 +131,7 @@ function evaluate(expression) {
 }
 
 
-
+/* Process the next generation */
 function nextGeneration() {
 	if(getRandom(0, 100) <= CROSSOVER_PROBABILITY) {
 		//doCrossover(POPULATION[getRandom(0, POP_SIZE - 1)], POPULATION[getRandom(0, POP_SIZE - 1)]);
@@ -141,6 +141,7 @@ function nextGeneration() {
 }
 
 
+/* Do the crossover between two nodes (expression trees) */
 function doCrossover(node1, node2) {
 	log("Crossover between " + node1.expression + " and " + node2.expression);
 	do {
@@ -150,30 +151,40 @@ function doCrossover(node1, node2) {
 	log(node1.expression.charAt(crosspoint) + " at position " + crosspoint);
 }
 
-
+/* Do the mutation in a node */
 function doMutation(node) {
+	log("=========================================")
 	log("Mutate the expression " + node.expression);
 
 	do {
 		mutatePoint = getRandom(0, node.expression.length - 1);
 	} while(node.expression.charAt(mutatePoint) === "(" || node.expression.charAt(mutatePoint) === ")");
 
-
 	/* Verify if it's a operator */
 	if(OPERATORS.indexOf(node.expression.charAt(mutatePoint)) != -1) {
 
-		log("I'll change the operator " + node.expression.charAt(mutatePoint) + " at position " + mutatePoint);
+		log("I'll change the OPERATOR " + node.expression.charAt(mutatePoint) + " at position " + mutatePoint);
 		do {
 			newOperator = OPERATORS[getRandom(0, OPERATORS.length - 1)];
 		} while (newOperator === node.expression.charAt(mutatePoint));
 	
 		node.expression = node.expression.substring(0, mutatePoint) + newOperator + node.expression.substring(mutatePoint+1);
 	}
+	/* It's a terminal */
 	else {
+		log("I'll change the TERMINAL " + node.expression.charAt(mutatePoint) + " at position " + mutatePoint);
 
+		/* Verify if it's a number or variable */
+		if(isNaN(node.expression.charAt(mutatePoint))) {
+			node.expression = node.expression.substring(0, mutatePoint) + getRandom(0, 9) + node.expression.substring(mutatePoint+1);	
+		}
+		else {
+			if(getRandom(0, 1) == 0) 
+				node.expression = node.expression.substring(0, mutatePoint) + TERMINALS[getRandom(0, TERMINALS.length -1)] + node.expression.substring(mutatePoint+1);
+			else
+				node.expression = node.expression.substring(0, mutatePoint) + getRandom(0, 9) + node.expression.substring(mutatePoint+1);	
+		}			
 	}
-
-
 	log("The result is " + node.expression);
 }
 

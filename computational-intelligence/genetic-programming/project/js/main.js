@@ -19,6 +19,8 @@ GENERATIONS = 50;
 POP_SIZE    = 30;
 POPULATION  = [];
 
+CHILDRENS = [];
+
 REPRODUTION_PROBABILITY = 0;
 CROSSOVER_PROBABILITY = 75;
 MUTATE_PROBABILITY = 5;
@@ -135,20 +137,81 @@ function evaluate(expression) {
 /* Process the next generation */
 function nextGeneration() {
 	if(getRandom(0, 100) <= CROSSOVER_PROBABILITY) {
-		//doCrossover(POPULATION[getRandom(0, POP_SIZE - 1)], POPULATION[getRandom(0, POP_SIZE - 1)]);
 
+		/* Test Area */
+		doCrossover(POPULATION[getRandom(0, POP_SIZE - 1)], POPULATION[getRandom(0, POP_SIZE - 1)]);
 		doMutation(POPULATION[getRandom(0, POP_SIZE - 1)]);
 		doPermutation(POPULATION[getRandom(0, POP_SIZE - 1)]);
+
+		/* Test Area */
 	}
 }
 
 
-/* Do the crossover between two nodes (expression trees) */
+/* 	Do the crossover between two nodes (expression trees) 
+	
+	I'm using the same crosspoint to the same tree. 
+	Consider, here, that I'm using only perfect trees.
+	The height of the tree is a hard constraint in my project
+	There's others solutions to handle this
+*/
 function doCrossover(node1, node2) {
+	log("=========================================");
+	log("###### Crossover ######");
 	log("Crossover between " + node1.expression + " and " + node2.expression);
+
+	var childNode1 = {};
+	var childNode2 = {};
+	childNode1.expression = "";
+	childNode2.expression = "";
+
 	do {
 		crosspoint = getRandom(0, node1.expression.length - 1);
 	} while(node1.expression.charAt(crosspoint) === "(" || node1.expression.charAt(crosspoint) === ")");
+
+	/* Internal trivial expression? (5+x) for example */
+	if(node1.expression.charAt(crosspoint + 1) !== "(") {
+		
+		/* It's the operator inside the expression */
+		if(OPERATORS.indexOf(node1.expression.charAt(crosspoint)) != -1) {
+			var partNode1 = node1.expression.substring(crosspoint - 1, crosspoint + 2);	
+			var partNode2 = node2.expression.substring(crosspoint - 1, crosspoint + 2);	
+
+			/* Node 1 with part of Node 2 */
+			childNode1.expression = node1.expression.substring(0, crosspoint - 1) 
+							 	+ partNode2
+							 	+ node1.expression.substring(crosspoint + 2);
+
+			/* Node 2 with part of Node 1 */
+			childNode2.expression = node2.expression.substring(0, crosspoint - 1) 
+							 	+ partNode1
+							 	+ node2.expression.substring(crosspoint + 2);		
+		}
+		/* It's a terminal inside the expression */
+		else {
+			/* Exchange the terminals of the tree */
+			var partNode1 = node1.expression.charAt(crosspoint);	
+			var partNode2 = node2.expression.charAt(crosspoint);
+
+			childNode1.expression = node1.expression.substring(0, crosspoint)
+								  + partNode2
+								  + node1.expression.substring(crosspoint + 1);
+
+			childNode2.expression = node2.expression.substring(0, crosspoint)
+								  + partNode1
+								  + node2.expression.substring(crosspoint + 1);								  
+		}							 
+	}
+
+	log("Child 1 -> " + childNode1.expression);
+	log("Child 2 -> " + childNode2.expression);
+
+	childNode1.fitness = evaluate(childNode1.expression);
+	childNode2.fitness = evaluate(childNode2.expression);
+	CHILDRENS.push(childNode1);
+	CHILDRENS.push(childNode2);
+
+	CHILDRENS.sort(sortComparator);
 
 	log(node1.expression.charAt(crosspoint) + " at position " + crosspoint);
 }
@@ -206,7 +269,7 @@ function doPermutation(node) {
 			|| OPERATORS.indexOf(node.expression.charAt(permutationPoint)) == -1); // Permutation point needs to be a operator
 
 	/* Verify if it's a internal expression like (5+x) */
-	if(node.expression.charAt(permutationPoint+1) !== "(") {
+	if(node.expression.charAt(permutationPoint + 1) !== "(") {
 		var operator = node.expression.charAt(permutationPoint);
 		var term1    = node.expression.charAt(permutationPoint - 1);
 		var term2    = node.expression.charAt(permutationPoint + 1);
@@ -260,7 +323,7 @@ for (var i = 0; i < GENERATIONS; i++) {
 }
 
 console.log(POPULATION);
-
+console.log(CHILDRENS);
 
 
 

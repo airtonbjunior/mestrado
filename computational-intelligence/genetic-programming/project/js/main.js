@@ -103,7 +103,7 @@ function evaluate(expression) {
 
 	for (var i = 0; i < test_values.length; i++) {
 		exp = expression.replace(/x/g, test_values[i]);	
-		console.log(parseFloat(eval(exp)) + " - " + parseFloat(result_test[i]) + " = " + parseFloat(eval(exp) - parseFloat(result_test[i])));
+		//console.log(parseFloat(eval(exp)) + " - " + parseFloat(result_test[i]) + " = " + parseFloat(eval(exp) - parseFloat(result_test[i])));
 		differences.push(parseFloat(eval(exp) - parseFloat(result_test[i])));
 	}
 
@@ -114,16 +114,16 @@ function evaluate(expression) {
 	return parseFloat(squareError/test_values.length); // return the mean square error
 }
 
-
-function evaluateAll() {
-	for (var i = 0; i < POP_SIZE; i++) {
-
-	}
+/* Sort the population by fitness */
+function sortComparator(a, b) {
+	return parseFloat(a.fitness) - parseFloat(b.fitness);
 }
+/* Main functions */
 
 
 /* Main flow of Genetic Programming */
 generatePopulation();
+POPULATION.sort(sortComparator);
 
 for (var i = 0; i < GENERATIONS; i++) {
 	

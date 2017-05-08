@@ -4,14 +4,51 @@
 	<title>Genetic Programming</title>
 </head>
 <body>
+	<h1>Genetic Programming</h1>
+	<div class="container">
+		<div class="params-inputs">
+			<div class="input-value">
+				<p>Generations</p>
+				<input id="generations" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Population Size</p>
+				<input id="populationSize" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Crossover Probability</p>
+				<input id="crossoverProbability" type="number" pattern="[1-100]"/> 
+			</div>			
+			<div class="input-value">
+				<p>Mutation Probability</p>
+				<input id="mutateProbability" type="number" pattern="[1-100]"/> 
+			</div>
+			<p>Selection </p>
+			<select id="selection-type" class="input-value">
+  				<option value="elitism">Best (elitism)</option>
+  				<option value="tournament">Tournament</option>
+			</select>
+			<div class="min-max-func-label">
+				<span id="min-func"></span>
+				<span id="max-func"></span>
+			</div>
+			<button id="btn-start" class="btn-start">Start</button>
+		</div>
 
+		<div id="ct-chart" class="ct-chart ct-perfect-fourth">
+			<div id="loading-icon">
+				<i class=""></i>
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
 
 <!-- 
 	Idea: https://softwareengineering.stackexchange.com/questions/69668/genetic-programming/107150#107150
 
 	Get some Arithmetic/Geometric Progression or another calc to discover the pattern
 -->
-
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

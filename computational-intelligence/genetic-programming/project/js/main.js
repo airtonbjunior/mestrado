@@ -338,16 +338,43 @@ function sortComparator(a, b) {
 /* Main functions */
 
 
-/* Main flow of Genetic Programming */
-generatePopulation();
-POPULATION.sort(sortComparator);
 
-for (var i = 0; i < GENERATIONS; i++) {
-	nextGeneration();
+intializeUI();
+
+function start() {
+	/* Main flow of Genetic Programming */
+	generatePopulation();
+	POPULATION.sort(sortComparator);
+
+	for (var i = 0; i < GENERATIONS; i++) {
+		nextGeneration();
+	}
+
+	console.log(POPULATION);
+	console.log(CHILDRENS);
 }
 
-console.log(POPULATION);
-console.log(CHILDRENS);
+
+/* Start the flow */
+function startPreparation() {
+	GENERATIONS = document.getElementById("generations").value;
+	POP_SIZE = document.getElementById("populationSize").value;
+	CROSSOVER_PROBABILITY = document.getElementById("crossoverProbability").value;
+	MUTATE_PROBABILITY = document.getElementById("mutateProbability").value;
+
+	start();
+}
+
+/* Initialize the GUI */
+function intializeUI() {
+	document.getElementById("btn-start").addEventListener("click", startPreparation);
+
+	document.getElementById("generations").value = GENERATIONS;
+	document.getElementById("populationSize").value = POP_SIZE;
+	document.getElementById("crossoverProbability").value = CROSSOVER_PROBABILITY;
+	document.getElementById("mutateProbability").value = MUTATE_PROBABILITY;	
+}
+
 
 
 
@@ -363,22 +390,3 @@ function log(msg, input) {
 	console.log(msg)
 }
 
-/*
-function mountExpression() {
-	var exp = "";
-	var node = POPULATION[0];
-
-	var operatorsIndex = node.operators.length - 1;
-
-	for (var i = node.terminals.length - 1; i >= 0; i--) {
-		
-		exp += node.terminals[i];
-		if(operatorsIndex >= 0) {
-			exp += node.operators[operatorsIndex];
-			operatorsIndex--;			
-		}
-	}
-
-	console.log(exp);
-}
-*/

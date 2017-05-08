@@ -13,7 +13,7 @@ UFG master's program
 OPERATORS = ['+', '-', '*', '/'];
 TERMINALS = ["x"];
 
-HEIGHT_TREE = 2; /* 2^h terminals and 2^h-1 operators */
+HEIGHT_TREE = 3; /* 2^h terminals and 2^h-1 operators */
 
 GENERATIONS = 70;
 POP_SIZE    = 40;
@@ -28,6 +28,9 @@ PERMUTATION_PROBABILITY = 5;
 
 ELITISM = true;
 DESTRUCTION_TREE = false;
+
+TEST_VALUES  = ["1", "2", "3", "4", "5"];
+RESULT_TESTS = ["2", "5", "10", "17", "26"];
 /* PROBLEM PARAMETERS */
 
 
@@ -96,8 +99,8 @@ function evaluate(expression) {
 
 	/* Tests for a certain function x^2+1 (toy problem for now) */
 	/* Get this parameters in GUI */
-	var test_values = ["1", "2", "3", "4", "5"]
-	var result_test = ["2", "5", "10", "17", "26"]
+	var test_values = TEST_VALUES;
+	var result_test = RESULT_TESTS;
 	var differences = [];
 	/* Tests for the function x^2+1 */
 
@@ -347,24 +350,8 @@ function sortComparator(a, b) {
 
 
 
-intializeUI();
 
-function start() {
-	/* Main flow of Genetic Programming */
-	generatePopulation();
-	POPULATION.sort(sortComparator);
-
-	for (var i = 0; i < GENERATIONS; i++) {
-		nextGeneration();
-	}
-
-	console.log(POPULATION);
-	console.log(CHILDRENS);
-	console.log("The result is " + POPULATION[0].expression + " with square error " + POPULATION[0].fitness);
-}
-
-
-/* Start the flow */
+/* Start the preparation to the main flow */
 function startPreparation() {
 	GENERATIONS = document.getElementById("generations").value;
 	POP_SIZE = document.getElementById("populationSize").value;
@@ -375,8 +362,36 @@ function startPreparation() {
 	POPULATION = [];
 	CHILDRENS  = [];
 
-	start();
+	document.getElementById("loading-icon").classList.remove("hide-load");
+	document.getElementById("btn-start").innerHTML = "Processing...";
+	document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
+	
+	/* Timeout for the UI changes */
+	setTimeout(start, 50);
 }
+
+intializeUI();
+
+
+/* Start the main flow*/
+function start() {
+	/* Main flow of Genetic Programming */
+	generatePopulation();
+	POPULATION.sort(sortComparator);
+
+	for (var i = 0; i < GENERATIONS; i++) {
+		nextGeneration();
+	}
+
+	/* Restart the default screen */
+	document.getElementById("loading-icon").className += " hide-load";
+	document.getElementById("btn-start").innerHTML = "Start";
+
+
+	console.log(POPULATION);
+	console.log("The result is " + POPULATION[0].expression + " with square error " + POPULATION[0].fitness);
+}
+
 
 /* Initialize the GUI */
 function intializeUI() {

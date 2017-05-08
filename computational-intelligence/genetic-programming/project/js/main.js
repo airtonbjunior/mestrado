@@ -15,8 +15,8 @@ TERMINALS = ["x"];
 
 HEIGHT_TREE = 2; /* 2^h terminals and 2^h-1 operators */
 
-GENERATIONS = 150;
-POP_SIZE    = 150;
+GENERATIONS = 350;
+POP_SIZE    = 250;
 POPULATION  = [];
 
 CHILDRENS = [];

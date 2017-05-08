@@ -24,7 +24,7 @@ CHILDRENS = [];
 REPRODUTION_PROBABILITY = 0;
 CROSSOVER_PROBABILITY = 75;
 MUTATE_PROBABILITY = 5;
-PERMUTATION_PROBABILITY = 0;
+PERMUTATION_PROBABILITY = 5;
 
 ELITISM = true;
 DESTRUCTION_TREE = false;
@@ -45,12 +45,9 @@ DESTRUCTION_TREE = false;
 */
 function generatePopulation() {
 	log("###### Generate the population ######");
+	
 	var node = {};
-	//var operators = [];
-	//var terminals = [];
-
 	var expression;
-
 	var n_operators = parseInt(Math.pow(2, HEIGHT_TREE) - 1);
 	var n_terminals = parseInt(Math.pow(2, HEIGHT_TREE));
 
@@ -85,23 +82,6 @@ function generatePopulation() {
 
 		POPULATION.push(node);
 	}
-	/*
-	for (var i = 0; i < n_operators; i++) {
-		operators.push(OPERATORS[getRandom(0, OPERATORS.length -1)]);
-	}
-
-	for (var i = 0; i < n_terminals; i++) {
-		// choose between variables and constants (50%) 
-		if(getRandom(0, 1) == 0) 
-			terminals.push(TERMINALS[getRandom(0, TERMINALS.length - 1)]);
-		else
-			terminals.push(getRandom(0, 9));		
-	}
-	*/
-
-	//node.operators = operators;
-	//node.terminals = terminals;
-
 }
 
 
@@ -137,15 +117,25 @@ function evaluate(expression) {
 
 /* Process the next generation */
 function nextGeneration() {
+	var nextPopulation = [];
+
 	if(getRandom(0, 100) <= CROSSOVER_PROBABILITY) {
-
-		/* Test Area */
 		doCrossover(POPULATION[getRandom(0, POP_SIZE - 1)], POPULATION[getRandom(0, POP_SIZE - 1)]);
-		doMutation(POPULATION[getRandom(0, POP_SIZE - 1)]);
-		doPermutation(POPULATION[getRandom(0, POP_SIZE - 1)]);
-
-		/* Test Area */
 	}
+	/* if don't cross, copy 2 random elements to childrens */
+	else {
+		CHILDRENS.push(POPULATION[getRandom(0, POP_SIZE - 1)]);
+		CHILDRENS.push(POPULATION[getRandom(0, POP_SIZE - 1)]);
+	}
+
+	if(ELITISM) {
+		/* Concat the two arrays (POPULATION and CHILDRENS), sort and get the best to next generation */
+		nextPopulation = POPULATION.concat(CHILDRENS);
+		nextPopulation.sort(sortComparator);
+		POPULATION = nextPopulation.slice(0, POP_SIZE);
+	}
+
+	CHILDRENS = [];
 }
 
 
@@ -229,6 +219,24 @@ function doCrossover(node1, node2) {
 
 	log("Child 1 -> " + childNode1.expression);
 	log("Child 2 -> " + childNode2.expression);
+
+	/* Mutation or Permutation (2 times to be more didact) */
+	if(getRandom(0, 100) < MUTATE_PROBABILITY) {
+		doMutation(childNode1);
+	} else {
+		if(getRandom(0, 100) < PERMUTATION_PROBABILITY) {
+			doPermutation(childNode1);
+		}
+	}
+	
+	/* Mutation or Permutation */
+	if(getRandom(0, 100) < MUTATE_PROBABILITY) {
+		doMutation(childNode2);
+	} else {
+		if(getRandom(0, 100) < PERMUTATION_PROBABILITY) {
+			doPermutation(childNode2);
+		}
+	}
 
 	childNode1.fitness = evaluate(childNode1.expression);
 	childNode2.fitness = evaluate(childNode2.expression);
@@ -352,6 +360,7 @@ function start() {
 
 	console.log(POPULATION);
 	console.log(CHILDRENS);
+	console.log("The result is " + POPULATION[0].expression + " with square error " + POPULATION[0].fitness);
 }
 
 
@@ -361,6 +370,10 @@ function startPreparation() {
 	POP_SIZE = document.getElementById("populationSize").value;
 	CROSSOVER_PROBABILITY = document.getElementById("crossoverProbability").value;
 	MUTATE_PROBABILITY = document.getElementById("mutateProbability").value;
+	PERMUTATION_PROBABILITY = document.getElementById("permutationProbability").value;
+
+	POPULATION = [];
+	CHILDRENS  = [];
 
 	start();
 }
@@ -372,7 +385,8 @@ function intializeUI() {
 	document.getElementById("generations").value = GENERATIONS;
 	document.getElementById("populationSize").value = POP_SIZE;
 	document.getElementById("crossoverProbability").value = CROSSOVER_PROBABILITY;
-	document.getElementById("mutateProbability").value = MUTATE_PROBABILITY;	
+	document.getElementById("mutateProbability").value = MUTATE_PROBABILITY;
+	document.getElementById("permutationProbability").value = PERMUTATION_PROBABILITY;
 }
 
 

@@ -13,7 +13,7 @@ UFG master's program
 OPERATORS = ['+', '-', '*', '/'];
 TERMINALS = ["x"];
 
-HEIGHT_TREE = 3; /* 2^h terminals and 2^h-1 operators */
+HEIGHT_TREE = 2; /* 2^h terminals and 2^h-1 operators */
 
 GENERATIONS = 70;
 POP_SIZE    = 40;
@@ -29,8 +29,8 @@ PERMUTATION_PROBABILITY = 5;
 ELITISM = true;
 DESTRUCTION_TREE = false;
 
-TEST_VALUES  = ["1", "2", "3", "4", "5"];
-RESULT_TESTS = ["2", "5", "10", "17", "26"];
+TEST_VALUES  = ["1", "2", "3", "4", "5", "6"];
+RESULT_TESTS = ["2", "5", "10", "17", "26", "37"];
 /* PROBLEM PARAMETERS */
 
 
@@ -358,9 +358,17 @@ function startPreparation() {
 	CROSSOVER_PROBABILITY = document.getElementById("crossoverProbability").value;
 	MUTATE_PROBABILITY = document.getElementById("mutateProbability").value;
 	PERMUTATION_PROBABILITY = document.getElementById("permutationProbability").value;
+	HEIGHT_TREE = document.getElementById("treeHeight").value;
+
+	for(var i = 0; i < TEST_VALUES.length; i++) {
+		TEST_VALUES[i] = document.getElementById("param"+i).value;
+		RESULT_TESTS[i] = document.getElementById("result"+i).value;
+	}
 
 	POPULATION = [];
 	CHILDRENS  = [];
+
+	document.getElementById("result").innerHTML = "&nbsp";
 
 	document.getElementById("loading-icon").classList.remove("hide-load");
 	document.getElementById("btn-start").innerHTML = "Processing...";
@@ -375,20 +383,34 @@ intializeUI();
 
 /* Start the main flow*/
 function start() {
+	var generation_encountered = 0;
+	
 	/* Main flow of Genetic Programming */
 	generatePopulation();
 	POPULATION.sort(sortComparator);
 
 	for (var i = 0; i < GENERATIONS; i++) {
+		/* Check if the solution was found */
+		if(POPULATION[0].fitness === 0) {
+			generation_encountered = i;
+			break;
+		}
 		nextGeneration();
+		generation_encountered++;
 	}
+
+	document.getElementById("result").innerHTML = POPULATION[0].expression 
+												+ "<br> with square error "
+												+ POPULATION[0].fitness;
 
 	/* Restart the default screen */
 	document.getElementById("loading-icon").className += " hide-load";
 	document.getElementById("btn-start").innerHTML = "Start";
+	/* Restart the default screen */
 
-
+	/* Some results log */
 	console.log(POPULATION);
+	console.log("Total of generations -> " + generation_encountered);
 	console.log("The result is " + POPULATION[0].expression + " with square error " + POPULATION[0].fitness);
 }
 
@@ -402,6 +424,13 @@ function intializeUI() {
 	document.getElementById("crossoverProbability").value = CROSSOVER_PROBABILITY;
 	document.getElementById("mutateProbability").value = MUTATE_PROBABILITY;
 	document.getElementById("permutationProbability").value = PERMUTATION_PROBABILITY;
+	document.getElementById("treeHeight").value = HEIGHT_TREE;
+
+	/* TO-DO: when the user can grow the parameters list, do this dynamically */
+	for(var i = 0; i < TEST_VALUES.length; i++) {
+		document.getElementById("param"+i).value = TEST_VALUES[i];	
+		document.getElementById("result"+i).value = RESULT_TESTS[i];
+	}
 }
 
 

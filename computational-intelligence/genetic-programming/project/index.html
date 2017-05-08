@@ -28,6 +28,10 @@
 				<p>Permutation Probability</p>
 				<input id="permutationProbability" type="number" pattern="[1-100]"/> 
 			</div>	
+			<div class="input-value">
+				<p>Tree Height</p>
+				<input id="treeHeight" type="number" pattern="[1-100]"/> 
+			</div>				
 			<p>Selection </p>
 			<select id="selection-type" class="input-value">
   				<option value="elitism">Best (elitism)</option>
@@ -43,54 +47,64 @@
 			<h2>Function Parameters</h2>
 			<div class="input-value-function-row">
 				<div class="input-value-function">
-					<p>x</p>
-					<input id="generations" type="number"/> 
+					<p>X value</p>
+					<input id="param0" type="number"/> 
 				</div>
 				<div class="input-value-function">
 					<p>Result</p>
-					<input id="generations" type="number"/> 
+					<input id="result0" type="number"/> 
 				</div>
 			</div>
 			<div class="input-value-function-row">
 				<div class="input-value-function">
-					<p>x</p>
-					<input id="generations" type="number"/> 
+					<p>X value</p>
+					<input id="param1" type="number"/> 
 				</div>
 				<div class="input-value-function">
 					<p>Result</p>
-					<input id="generations" type="number"/> 
+					<input id="result1" type="number"/> 
 				</div>
 			</div>
 			<div class="input-value-function-row">
 				<div class="input-value-function">
-					<p>x</p>
-					<input id="generations" type="number"/> 
+					<p>X value</p>
+					<input id="param2" type="number"/> 
 				</div>
 				<div class="input-value-function">
 					<p>Result</p>
-					<input id="generations" type="number"/> 
+					<input id="result2" type="number"/> 
 				</div>
 			</div>	
 			<div class="input-value-function-row">
 				<div class="input-value-function">
-					<p>x</p>
-					<input id="generations" type="number"/> 
+					<p>X value</p>
+					<input id="param3" type="number"/> 
 				</div>
 				<div class="input-value-function">
 					<p>Result</p>
-					<input id="generations" type="number"/> 
+					<input id="result3" type="number"/> 
 				</div>
 			</div>
 			<div class="input-value-function-row">
 				<div class="input-value-function">
-					<p>x</p>
-					<input id="generations" type="number"/> 
+					<p>X value</p>
+					<input id="param4" type="number"/> 
 				</div>
 				<div class="input-value-function">
 					<p>Result</p>
-					<input id="generations" type="number"/> 
+					<input id="result4" type="number"/> 
 				</div>
 			</div>	
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param5" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result5" type="number"/> 
+				</div>
+			</div>				
 			<button id="btn-start" class="btn-start">Start</button>
 		</div>
 		
@@ -98,6 +112,9 @@
 			<div id="loading-icon">
 				<i class=""></i>
 				<span class="sr-only">Loading...</span>
+			</div>
+			<div id="result">
+				&nbsp
 			</div>
 		</div>
 		

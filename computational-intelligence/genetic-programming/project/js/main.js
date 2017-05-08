@@ -13,10 +13,10 @@ UFG master's program
 OPERATORS = ['+', '-', '*', '/'];
 TERMINALS = ["x"];
 
-HEIGHT_TREE = 3; /* 2^h terminals and 2^h-1 operators */
+HEIGHT_TREE = 2; /* 2^h terminals and 2^h-1 operators */
 
-GENERATIONS = 50;
-POP_SIZE    = 30;
+GENERATIONS = 70;
+POP_SIZE    = 40;
 POPULATION  = [];
 
 CHILDRENS = [];
@@ -115,10 +115,11 @@ function evaluate(expression) {
 	var exp;
 
 	/* Tests for a certain function x^2+1 (toy problem for now) */
+	/* Get this parameters in GUI */
 	var test_values = ["1", "2", "3", "4", "5"]
 	var result_test = ["2", "5", "10", "17", "26"]
 	var differences = [];
-	/* Tests for a certain function x^2+1*/
+	/* Tests for the function x^2+1 */
 
 	for (var i = 0; i < test_values.length; i++) {
 		exp = expression.replace(/x/g, test_values[i]);	
@@ -201,6 +202,29 @@ function doCrossover(node1, node2) {
 								  + partNode1
 								  + node2.expression.substring(crosspoint + 1);								  
 		}							 
+	}
+	/* Not an internal expression */
+	else {
+
+		/* It's the root */
+		if(crosspoint == Math.floor(node1.expression.length/2)) {
+			log("it's the tree root");
+			var partNode1 = node1.expression.substring(0, crosspoint + 1);
+			var partNode2 = node2.expression.substring(0, crosspoint + 1);
+
+			childNode1.expression = partNode2 + node1.expression.substring(crosspoint + 1);
+			childNode2.expression = partNode1 + node2.expression.substring(crosspoint + 1);
+		}
+		/* Not an internal expression AND not the root */
+		else {
+			log("not the root and not an internal operator");
+
+			var partNode1 = node1.expression.substring(crosspoint -5, crosspoint + 6);
+			var partNode2 = node2.expression.substring(crosspoint -5, crosspoint + 6);
+
+			childNode1.expression = node1.expression.substring(0, crosspoint - 5) + partNode2 + node1.expression.substring(crosspoint + 6);
+			childNode2.expression = node2.expression.substring(0, crosspoint - 5) + partNode1 + node2.expression.substring(crosspoint + 6);
+		}
 	}
 
 	log("Child 1 -> " + childNode1.expression);

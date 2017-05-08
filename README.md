@@ -13,7 +13,7 @@ Repository of the projects developed for the - [UFG master's program](http://www
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/computational-intelligence/evolutionary-programming/project) [[Demo]](https://airtonbjunior.github.io/mestrado/computational-intelligence/evolutionary-programming/project/)
     * Genetic Programming
       * Presentation [[Scribd]](https://www.scribd.com/document/345661995/Programacao-Evolutiva) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-programming/presentation/IC_4.pdf)
-      * Code - [Repository] [Demo]
+      * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/computational-intelligence/genetic-programming/project) [[Demo]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-programming/project/)
  
   * Data Structure and Algorithm Analysis
   

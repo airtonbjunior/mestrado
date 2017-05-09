@@ -15,8 +15,8 @@ TERMINALS = ["x"];
 
 HEIGHT_TREE = 2; /* 2^h terminals and 2^h-1 operators */
 
-GENERATIONS = 350;
-POP_SIZE    = 250;
+GENERATIONS = 1000;
+POP_SIZE    = 750;
 POPULATION  = [];
 
 CHILDRENS = [];
@@ -26,7 +26,7 @@ CROSSOVER_PROBABILITY = 75;
 MUTATE_PROBABILITY = 5;
 PERMUTATION_PROBABILITY = 5;
 
-ELITISM = true;
+SELECTION_TYPE = "elitism";
 DESTRUCTION_TREE = false;
 
 TEST_VALUES  = ["1", "2", "3", "4", "5", "6"];
@@ -131,11 +131,27 @@ function nextGeneration() {
 		CHILDRENS.push(POPULATION[getRandom(0, POP_SIZE - 1)]);
 	}
 
-	if(ELITISM) {
+	if(SELECTION_TYPE == "elitism") {
 		/* Concat the two arrays (POPULATION and CHILDRENS), sort and get the best to next generation */
 		nextPopulation = POPULATION.concat(CHILDRENS);
 		nextPopulation.sort(sortComparator);
 		POPULATION = nextPopulation.slice(0, POP_SIZE);
+	}
+	/* Tournament */
+	else {
+		nextPopulation = POPULATION.concat(CHILDRENS);
+		var choosed = [];
+
+		for (var i = 0; i < POP_SIZE; i++) {
+			var pos1 = getRandom(0, nextPopulation.length - 1);
+			var pos2 = getRandom(0, nextPopulation.length - 1);
+			if(nextPopulation[pos1].fitness < nextPopulation[pos2].fitness) 
+				choosed.push(nextPopulation[pos1]);
+			else
+				choosed.push(nextPopulation[pos2]);
+		}
+
+		POPULATION = choosed;
 	}
 
 	CHILDRENS = [];
@@ -359,6 +375,9 @@ function startPreparation() {
 	MUTATE_PROBABILITY = document.getElementById("mutateProbability").value;
 	PERMUTATION_PROBABILITY = document.getElementById("permutationProbability").value;
 	HEIGHT_TREE = document.getElementById("treeHeight").value;
+
+	var e = document.getElementById("selection-type");
+	SELECTION_TYPE = e.options[e.selectedIndex].value;
 
 	for(var i = 0; i < TEST_VALUES.length; i++) {
 		TEST_VALUES[i] = document.getElementById("param"+i).value;

@@ -1,4 +1,6 @@
 import praw
+from praw.models import MoreComments
+
 
 # User/Pass optional if access only public content 
 reddit = praw.Reddit(user_agent='Comment Extraction (by /u/sentiment_analysis)',

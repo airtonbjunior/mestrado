@@ -8,7 +8,8 @@ reddit = praw.Reddit(user_agent='Comment Extraction (by /u/sentiment_analysis)',
                      client_secret="HUNj14gPjK7Ua5rzDBqUIV5-CVo") 
 
 #testing some post of r/cancer/ subreddit
-submission = reddit.submission(url='https://www.reddit.com/r/cancer/comments/5bjnpi/best_chemo_buddy/')
+submission = reddit.submission(id='5bjnpi')
+
 
 submission.comments.replace_more(limit=0)
 for comment in submission.comments.list():

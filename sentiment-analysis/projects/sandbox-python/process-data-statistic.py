@@ -4,6 +4,7 @@ import sys
 import time
 import string
 import re
+import math
 import nltk
 from nltk.tokenize import TweetTokenizer
 #nltk.download()
@@ -14,10 +15,43 @@ from nltk.corpus import stopwords
 # Start count the process time
 start = time.time()
 
+
+# [A]
+frequency = 1
+
+def do_bigrams(words):
+	bigrams = nltk.collocations.BigramCollocationFinder.from_words(words)
+	#bigrams.apply_freq_filter(frequency)
+	return {bigram: freq for bigram, freq in bigrams.ngram_fd.items()}
+
+
+
+def do_unigrams(words):
+	unigrams = nltk.FreqDist(words)
+	return {unigram: freq for unigram, freq in unigrams.items()}
+
+
+def calc_pmi(word1, word2, unigram_freq, bigram_freq):
+	prob_word1 = unigram_freq[word1] / sum(unigram_freq.values())
+	prob_word2 = unigram_freq[word2] / sum(unigram_freq.values())
+	try:
+		prob_word1_word2 = bigram_freq[(word1, word2)] / sum(bigram_freq.values())
+	except KeyError:
+		#print ("Error")
+		return 0
+	a = prob_word1_word2 / prob_word1 * prob_word2
+	return round(math.log(a, 2), 2);
+
+
+
 # filesystem
 myFile = io.open("D:/redditdata-cancer.txt", "r", encoding='utf-8').read()
 saveFile = io.open("D:/redditdata-cancer-pmi.txt", "w", encoding='utf-8')
-tokenizeTextFile = io.open("D:/redditdata-cancer-tokenize.txt", "w", encoding='utf-8')
+myDataTestTokens = io.open("D:/redditdata-test-tokens.txt", "w", encoding='utf-8')
+myDataTestUnigrams = io.open("D:/redditdata-test-unigrams.txt", "w", encoding='utf-8')
+myDataTestBigrams = io.open("D:/redditdata-test-bigrams.txt", "w", encoding='utf-8')
+myDataTestPMIPositive = io.open("D:/redditdata-test-pmi-positive-smile.txt", "w", encoding='utf-8')
+myDataTestPMINegative = io.open("D:/redditdata-test-pmi-negative-smile.txt", "w", encoding='utf-8')
 
 
 punctuations = list(string.punctuation)
@@ -44,7 +78,8 @@ my_stop_words = ['i', 'you', 'he', 'she', 'it', 'they', 'am', 'are', 'is', 'was'
 				"this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", 
 				"two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", 
 				"where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", 
-				"whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the"]
+				"whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the", 
+				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "it's", "..."]
 
 
 
@@ -56,11 +91,11 @@ my_stop_words = ['i', 'you', 'he', 'she', 'it', 'they', 'am', 'are', 'is', 'was'
 tknzr = TweetTokenizer(strip_handles=True, reduce_len=True)
 result_words = tknzr.tokenize(myFile.encode("utf8"))
 
-
 # Remove the punctuactions
 result_words = [i for i in result_words if i not in punctuations]
 # Remove stopwords
 result_words = [i for i in result_words if i.lower() not in my_stop_words]
+
 # Remove the urls 
 #result_words = re.sub(r"http\S+", "", str(result_words))
 #result_words = re.sub(r"www\S+", "", str(result_words))
@@ -71,43 +106,37 @@ result_words = [i for i in result_words if i.lower() not in my_stop_words]
 
 
 # Save the tokenize text
-tokenizeTextFile.write(str(result_words))
+#tokenizeTextFile.write(str(result_words))
 
 
-bigram_measures = nltk.collocations.BigramAssocMeasures()
-finder = BigramCollocationFinder.from_words(word_tokenize(str(result_words)))
+#bigram_measures = nltk.collocations.BigramAssocMeasures()
+#finder = BigramCollocationFinder.from_words(word_tokenize(str(result_words)))
 
+#myDataTestTokens.write(str(result_words))
 
-saveFile.write("## USING BIGRAM ##\n\n") 
+unigrams = do_unigrams(result_words)
+#myDataTestUnigrams.write(str(unigrams))
 
+bigrams = do_bigrams(result_words)
+#myDataTestBigrams.write(str(bigrams))
 
-for i in finder.score_ngrams(bigram_measures.pmi):
-    #print (i)
-    saveFile.write(str(i) + "\n") 
+pmi_values = []
 
-print("\n------------------------------------\n")
+for i in result_words:
+	#print(calc_pmi("couple", "days", unigrams, bigrams))
+	#pmi_values.append(i + " and good: " + str(calc_pmi("good", str(i), unigrams, bigrams)))
 
-# [a]
-trigram_measures = nltk.collocations.TrigramAssocMeasures()
-#finder = TrigramCollocationFinder.from_words(word_tokenize(myFile))
-finder = TrigramCollocationFinder.from_words(word_tokenize(str(result_words)))
+	pmiPositive = calc_pmi(":)", str(i), unigrams, bigrams)
+	myDataTestPMIPositive.write(i + " and smile :) -> " + str(pmiPositive) + "\n")
+	
+	pmiNegative = calc_pmi(":(", str(i), unigrams, bigrams)
+	myDataTestPMINegative.write(i + " and smile :( -> " + str(pmiNegative) + "\n")
 
-saveFile.write("## USING TRIGRAM ##\n\n") 
-
-
-for i in finder.score_ngrams(trigram_measures.pmi):
-    #print (i)
-    saveFile.write(str(i) + "\n") 
-
+#myDataTestPMI.write(str(pmi_values))
 
 end = time.time()
 
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")
 
 # Coments/References
-# [a] http://stackoverflow.com/questions/21128689/how-to-get-pmi-scores-for-trigrams-with-nltk-collocations-python
-# [b] https://bonomo.wordpress.com/2010/02/23/list-of-english-stop-words-hard-coded-in-the-php-array/
-
-
-# Problems to solve
-# [ ] Keep emoticons (the emoticions are removed on ponctuaction tokenizer)
+# [A] https://www.slideshare.net/FrancescoBruni1/basic-nlp-with-python-and-nltk

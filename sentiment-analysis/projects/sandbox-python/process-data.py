@@ -44,8 +44,8 @@ my_stop_words = ['i', 'you', 'he', 'she', 'it', 'they', 'am', 'are', 'is', 'was'
 				"this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", 
 				"two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", 
 				"where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", 
-				"whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the"]
-
+				"whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the", 
+				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "it's", "...", "don't", "just", "#", "@"]
 
 
 #print(stopwords.words('english'))
@@ -62,12 +62,17 @@ result_words = [i for i in result_words if i not in punctuations]
 # Remove stopwords
 result_words = [i for i in result_words if i.lower() not in my_stop_words]
 # Remove the urls 
-#result_words = re.sub(r"http\S+", "", str(result_words))
-#result_words = re.sub(r"www\S+", "", str(result_words))
-# Remove mentions @
-#result_words = re.sub(r"@\S+", "", str(result_words))
+result_words = re.sub(r"http\S+", "", str(result_words))
+result_words = re.sub(r"www\S+", "", str(result_words))
+# Remove mentions @ and #
+result_words = re.sub(r"@\S+", "", str(result_words))
+result_words = re.sub(r"#\S+", "", str(result_words))
 # Remove --
-#result_words = re.sub(r"--\S+", "", str(result_words))
+result_words = re.sub(r"--\S+", "", str(result_words))
+
+#result_words = result_words.split()
+
+print(type(result_words))
 
 
 # Save the tokenize text

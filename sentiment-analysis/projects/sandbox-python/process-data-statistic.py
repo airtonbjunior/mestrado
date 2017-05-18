@@ -52,6 +52,8 @@ myDataTestUnigrams = io.open("D:/redditdata-test-unigrams.txt", "w", encoding='u
 myDataTestBigrams = io.open("D:/redditdata-test-bigrams.txt", "w", encoding='utf-8')
 myDataTestPMIPositive = io.open("D:/redditdata-test-pmi-positive-smile.txt", "w", encoding='utf-8')
 myDataTestPMINegative = io.open("D:/redditdata-test-pmi-negative-smile.txt", "w", encoding='utf-8')
+myDataTestPMIPositiveWords = io.open("D:/redditdata-test-pmi-positive-words.txt", "w", encoding='utf-8')
+myDataTestPMINegativeWords = io.open("D:/redditdata-test-pmi-negative-words.txt", "w", encoding='utf-8')
 
 
 punctuations = list(string.punctuation)
@@ -79,7 +81,7 @@ my_stop_words = ['i', 'you', 'he', 'she', 'it', 'they', 'am', 'are', 'is', 'was'
 				"two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", 
 				"where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", 
 				"whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the", 
-				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "it's", "..."]
+				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "it's", "...", "don't", "just"]
 
 
 
@@ -126,11 +128,19 @@ for i in result_words:
 	#print(calc_pmi("couple", "days", unigrams, bigrams))
 	#pmi_values.append(i + " and good: " + str(calc_pmi("good", str(i), unigrams, bigrams)))
 
-	pmiPositive = calc_pmi(":)", str(i), unigrams, bigrams)
-	myDataTestPMIPositive.write(i + " and smile :) -> " + str(pmiPositive) + "\n")
+	#pmiPositive = calc_pmi(":)", str(i), unigrams, bigrams)
+	#myDataTestPMIPositive.write(i + " and smile :) -> " + str(pmiPositive) + "\n")
 	
-	pmiNegative = calc_pmi(":(", str(i), unigrams, bigrams)
-	myDataTestPMINegative.write(i + " and smile :( -> " + str(pmiNegative) + "\n")
+	#pmiNegative = calc_pmi(":(", str(i), unigrams, bigrams)
+	#myDataTestPMINegative.write(i + " and smile :( -> " + str(pmiNegative) + "\n")
+
+	pmiPositiveWords = calc_pmi("fantastic", str(i), unigrams, bigrams)
+	if(pmiPositiveWords != 0):
+		myDataTestPMIPositiveWords.write(i + " and word 'fantastic' -> " + str(pmiPositiveWords) + "\n")
+	
+	pmiNegativeWords = calc_pmi("fantastic", str(i), unigrams, bigrams)
+	if(pmiNegativeWords != 0):
+		myDataTestPMINegativeWords.write(i + " and word 'awful' -> " + str(pmiNegativeWords) + "\n")
 
 #myDataTestPMI.write(str(pmi_values))
 

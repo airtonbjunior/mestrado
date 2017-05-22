@@ -15,7 +15,7 @@ Repository of the projects developed for the - [UFG master's program](http://www
       * Presentation [[Scribd]](https://pt.scribd.com/document/346717611/Programacao-Genetica) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-programming/presentation/IC_4.pdf)
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/computational-intelligence/genetic-programming/project) [[Demo]](https://airtonbjunior.github.io/mestrado/computational-intelligence/genetic-programming/project/)
     * Artificial Neural Network
-      * Presentation [Scribd] [Browser]
+      * Presentation [[Scribd]](https://pt.scribd.com/document/349050954/Redes-Neurais-Artificiais) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/neural-networks/presentation/IC_5.pdf)
       * Code - [Repository] [Demo]      
  
   * Data Structure and Algorithm Analysis

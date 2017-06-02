@@ -110,7 +110,7 @@ Possui, também, graduação em Gestão Pública, pelo Instituto Federal de Sant
 
 Após a graduação, cursou especialização em Redes de Computadores pela Universidade Federal Tecnológica do Paraná, campus de Cornélio Procópio e MBA em Gerenciamento de Projetos pelo Centro Universitário Dinâmica das Cataratas, em Foz do Iguaçu.
 
-Atua na área da computação desde 2010. Já trabalhou como desenvolvedor de software, testador e, por fim, como Analista de Sistemas no Parque Tecnológico Itaipu, responsável pela área de TI do projeto de Segurança de Barragens
+Atua profissionalmente na área da computação desde 2010. Trabalhou como desenvolvedor de software, testador e, por fim, como Analista de Sistemas no Parque Tecnológico Itaipu, responsável pela área de TI do projeto de Segurança de Barragens
 
 Lecionou 2 semestres no curso Técnico em Informática Para Internet do Pronatec, atuando nas disciplinas de Sistemas Operacionais e Segurança de Sistemas, e 1 semestre no curso de Ciência da Computação em uma faculdade local, lecionando as disciplinas de Processamento de Imagens e Sistemas Inteligentes.
 
@@ -132,7 +132,25 @@ Deve ter aproximadamente 300 palavras. Alem disto, deve ter uma descricao breve 
 \item{Qual a importancia destes? (Conclusoes / recomendacoes)}
 \end{itemize}
 
-\section{Introducao}
+\section{Introdução}
+
+A Mineração de Opiniões, também chamada de Análise de Opiniões ou Análise de Sentimentos, é uma linha de pesquisa abrangente e que vem sendo tema de diversos trabalhos nos últimos anos, principalmente devido ao aumento no número de usuários de Internet e o consequente crescimento da produção de conteúdo independente na rede, como opiniões, avaliações, entre outros. 
+
+Essa área de estudo tem como principal desafio a Análise de Opiniões, descritas em linguagem natural, para a identificação da polaridade implícita ou explícita no texto. Essa polaridade é, na maior parte das vezes, identificada como uma escala de pontuação de sua característica positiva, negativa ou neutra.
+
+Uma das principais técnicas utilizadas para a Análise de Sentimentos é a realizada por meio de dicionários de dados. Esses dicionários contêm palavras previamente avaliadas por especialistas humanos, principalmente quanto à sua polaridade. Neste contexto, esse conjunto de palavras, juntamente com suas polaridades, é chamado de Dicionário Léxico. Algumas bases, como a \emph{WordNet} - utilizada na maior parte dos trabalhos - apresenta, também, os sinônimos para cada palavra.
+
+Porém, é evidente a limitação inerente à estratégia de utilização do Dicionário Léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de Mineração de Opiniões é a criação e ampliação do DicionárioLléxico de forma automatizada, tema central do presente trabalho. Grande parte desses dicionários são construídos de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios. 
+
+Consciente desse problema de pesquisa, a ideia principal do presente trabalho é a criação de um processo automatizado de avaliação de dados inéditos (nesse contexto, palavras que não estão contidas no dicionário) e suas polaridades (negativa, positiva ou neutra) que consequentemente comporão um novo dicionário léxico. Todo esse processo será feito a partir de um conjunto mínimo de palavras contidas em algum dicionário disponibilizado publicamente, como o amplamente citado e utilizado WordNet, por exemplo.
+
+Devido à característica intrínseca do próprio problema, serão utilizadas na pesquisa bases de textos em inglês. Ao mesmo tempo, muitas técnicas utilizadas durante o trabalho também poderão ser utilizadas para resolver problemas em português, com as devidas alterações. 
+
+Espera-se que esses padrões possam ser utilizados como entrada de processos de avaliação em diversas áreas de PNL e mineração de opiniões como, por exemplo, análise de sentimentos em redes sociais. Algumas dessas pesquisas são realizadas na própria instituição, apoiando, assim, o trabalho de outros pesquisadores. Além disso, devido ao caráter automatizado dessa solução proposta, o mesmo processo poderá ser utilizado, avaliado e melhorado para outras situações, contextos e idiomas.
+
+Por fim, a pesquisa e a utilização de diversas técnicas de PNL e criação não supervisionada de padrões poderão servir como um \emph{benchmark} dos principais métodos, auxiliando na escolha de ferramentas e abordagens para trabalhos futuros em contextos específicos.
+
+
 \begin{itemize}
 \item{Fornece informacoes contextuais para o problema, identificando a \textbf{lacuna de investigacao} nesta area.}
 \item{Apresenta os objetivos.}
@@ -274,7 +292,7 @@ Podemos citar, também, uma possível melhoria em algumas técnicas de Análise 
 Os resultados parciais e finais do trabalho serão descritos em artigos científicos que serão submetidos à eventos na área, de forma a compartilhar o conhecimento e avanços alcançados pela técnica proposta.
 
 \subsection{Algoritmos} % sugestao 
-Será implementado um algoritmo que criará e/ou ampliará, de forma automatizada, um léxico para um domínio específico que será utilizado como entrada para um sistema classificador de Análise de Sentimentos.
+Será desenvolvido um algoritmo que criará e/ou ampliará, de forma automatizada, um léxico para um domínio específico que será utilizado como entrada para um sistema classificador de Análise de Sentimentos.
 Esse software fará uso de técnicas de algoritmos bioinspirados, mais precisamente Programação Evolucionária, para a atribuição de valores sentimentais para cada palavra, de forma a maximizar a taxa de acerto ao ser processado por um classificador existente.
 Ao passo que o algoritmo é independente de domínio, pode ser utilizado, desde que haja dados de testes suficientes, para qualquer contexto desejado.
 

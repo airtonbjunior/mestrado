@@ -72,7 +72,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries Expansão automatizada de Léxicos para a Análise de Sentimentos por meio de algoritmos evolucionários}\\[0.4cm] % Title of your document
+{ \huge \bfseries Expansão automatizada de Léxicos para a Análise de Sentimentos por meio de programação evolucionária}\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
 
 %----------------------------------------------------------------------------------------
@@ -106,10 +106,9 @@
 \section{Apresentação}
 Airton Bordin Junior, bacharel em Ciência da Computação. Cursou os primeiros 3 anos do curso na Universidade Estadual do Oeste do Paraná (UNIOESTE) campus Foz do Iguaçu, e finalizou a graduação na faculdade Anglo Americano, na mesma cidade, no ano de 2011.
 Possui, também, graduação em Gestão Pública, pelo Instituto Federal de Santa Catarina, cursado por meio da UaB, no campus de Foz do Iguaçu.
-Atua na área da computação desde a formação. Já trabalhou como desenvolvedor de software, testador e, por fim, como Analista de Sistemas no Parque Tecnológico Itaipu, responsável pela área de TI do projeto de Segurança de Barragens.
+Atua na área da computação desde 2010. Já trabalhou como desenvolvedor de software, testador e, por fim, como Analista de Sistemas no Parque Tecnológico Itaipu, responsável pela área de TI do projeto de Segurança de Barragens.
 Lecionou 2 semestres no curso Técnico em Informática Para Internet do Pronatec, atuando nas disciplinas de Sistemas Operacionais e Segurança de Sistemas, e 1 semestre no curso de Ciência da Computação em uma faculdade local, lecionando as disciplinas de Processamento de Imagens e Sistemas Inteligentes.
 Sempre quis continuar estudando, e o mestrado era um objetivo a ser atingido. Por conta da falta de oportunidades na cidade onde morava (Foz do Iguaçu), acabei adiando um pouco essa meta. Hoje tenho a oportunidade e a honra de estar participando como aluno regular do programa de mestrado pela Universidade Federal de Goiás.
-A disciplina de Metodologia Científica será, sem dúvidas, essencial para o sucesso no curso. Seria impossível caminhar em busca de um título de mestre sem os conceitos que veremos durante a matéria. A base científica, o treinamento em leitura técnica, as dicas sobre artigos, bases de dados, entre outras, serão essenciais para que estejamos preparados para os futuros trabalhos. Num contexto mais amplo, creio que o curso de mestrado dará as ferramentas necessárias para que possamos caminhar para a fronteira do conhecimento, permitindo nos aprofundar em nossa área de interesse.
 No programa da UFG, estou incluído na linha de pesquisa de Inteligência Computacional. Prentendo aprofundar meu trabalho na área de Descoberta de Conhecimento em Bases de Dados (Knowledge Discovery in Databases), mais precisamente com dados da área médica, alinhado com trabalhos de alguns professores da Universidade.
 Após minha graduação,cursei especialização em Redes de Computadores pela Universidade Federal Tecnológica do Paraná, campus de Cornélio Procópio e MBA em Gerenciamento de Projetos pelo Centro Universitário Dinâmica das Cataratas, em Foz do Iguaçu.
 
@@ -208,14 +207,14 @@ A metodologia descreve a forma como serao desenvolvidas cada uma das etapas do p
 
 O objetivo do cronograma de trabalho e de identificar de forma clara e concisa as suas atividades no periodo em que estara no mestrado. No grafico abaixo, ja foi delimitado o periodo de trabalho que vai de abril/2016 ate fevereiro/2018 (data limite para a entrega e apresentacao da dissertacao). Caso o seu prazo for diferente do apresentado, solicito a gentileza de adequar para as suas particularidades.
 
-\begin{ganttchart}{1}{23}
-\gantttitle{2017}{9}\gantttitle{2018}{12}\gantttitle{2019}{2} \\
-\gantttitlelist{4,...,12}{1}\gantttitlelist{1,...,12}{1}\gantttitlelist{1,...,2}{1} \\
+\begin{ganttchart}{1}{24}
+\gantttitle{2017}{10}\gantttitle{2018}{12}\gantttitle{2019}{2} \\
+\gantttitlelist{3,...,12}{1}\gantttitlelist{1,...,12}{1}\gantttitlelist{1,...,2}{1} \\
 \ganttgroup{Disciplinas}{1}{9} \\
 \ganttmilestone{Fim do $1^o$ semestre}{5} \ganttnewline
 \ganttmilestone{Fim do $2^o$ semestre}{10} \ganttnewline
 \ganttgroup{Dissertacao}{1}{23} \\
-\ganttbar{$D_1$}{1}{2} \\
+\ganttbar{$D_1$}{1}{4} \\
 \ganttbar{$D_2$}{3}{4} \\
 %\ganttlink{elem5}{elem6}
 \ganttmilestone{Relatorio 1}{4} \ganttnewline
@@ -231,8 +230,8 @@ O objetivo do cronograma de trabalho e de identificar de forma clara e concisa a
 
 \begin{enumerate}[D1.]
 \item{Revisao bibliografica.}
-\item{Estudo dos principais algoritmos para identificacao de padroes.}
-\item{$\cdots$}
+\item{Estudo dos principais classificadores de sentimentos.}
+\item{Análise dos principais léxicos disponíveis.}
 \end{enumerate}
 
 \section{Resultados Esperados}
@@ -240,9 +239,6 @@ Espera-se, com o presente trabalho, a criação de um processo automatizado de e
 Pela característica genérica da solução, a criação de diversos léxicos para vários domínios diferentes é limitada tão somente à escolha dos contextos específicos e à disponibilidade de dados anotados para teste da solução.
 Podemos citar, também, uma possível melhoria em algumas técnicas de Análise de Sentimentos que fazem uso de léxicos padrão, contribuindo assim para a evolução de outros sistemas de Mineração de Opiniões que usam a estratégia de dicionário.
 Os resultados parciais e finais do trabalho serão descritos em artigos científicos que serão submetidos à eventos na área, de forma a compartilhar o conhecimento e avanços alcançados pela técnica proposta.
-
--------------
-(Devem ser descritos todos os resultados que o candidato espera obter com a dissertacao. Sugere-se que o mesmo apresente o que sera desenvolvido e tambem as possiveis producoes cientificas que ele considera que sera possivel de apresentar para a comunidade ao final do mesmo. )
 
 \subsection{Algoritmos} % sugestao 
 Será implementado um algoritmo que criará e/ou ampliará, de forma automatizada, um léxico para um domínio específico que será utilizado como entrada para um sistema classificador de Análise de Sentimentos.

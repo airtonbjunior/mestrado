@@ -173,8 +173,11 @@ Aqui, descreve-se os objetivos gerais -- resultados mais abrangentes -- e especi
 Nesta secao, que deve ocupar \textbf{no maximo} 3 paginas, devera ser apresentada a revisao bibliografica. O numero minimo de artigos e de 20 vinte (internacionais) e 10 (dez) nacionais.
 
 \section{Impacto Cientifico}
-
-Descricao das principais contribuicoes cientificas, tecnologicas ou de inovacao que podem ser frutos da realizacao do trabalho.
+A técnica de Análise de Sentimento fazendo uso de um léxico é uma das mais utilizadas na literatura. Mostra-se, portanto, essencial a obtenção de um conjunto de palavras consolidado, juntamente com as orientações semânticas respectivas. 
+Uma palavra pode ter um significado e, consequentemente, uma polaridade diferente, dependendo do contexto ao qual está inserido. 
+Um conjunto léxico inadequado leva a análises inconsistentes, prejudicando o resultado final do sistema.
+A solução proposta neste trabalho criará, de forma automatizada, léxicos para diferentes domínios, que poderão servir como entrada para diversos classificadores e sistemsas de análise de sentimentos. Além disso, a técnica pode ser utilizada em outros idiomas, de forma a suprir uma carência de dicionários consistentes em linguagens pouco conhecidas.
+O conjunto de palavras gerado pela solução proposta poderá ser utilizado como \emph{benchmark} para outros trabalhos na área, bem como ser expandido com outras técnicas adequadas.
 
 \section{Metodologia}
 
@@ -193,19 +196,29 @@ A metodologia descreve a forma como serao desenvolvidas cada uma das etapas do p
 \begin{enumerate}[D1.]
 \item{\textbf{Revisao bibliografica:} Nesta etapa do trabalho sera feita uma revisao bibliografica com vistas a identificar o estado da arte do problema que esta sendo proposto. Importante registrar que esta revisao bibliografica seguira os moldes propostos por \cite{Kitchenham2004}}. Serao consultadas as bases de dados do \emph{Portal da Capes}, \emph{IEEEXplore} e \emph{ACM Digital Library}.
 
-\item{\textbf{Estudo dos principais algoritmos para identificacao de padroes.}}
-\item{$\cdots$}
+\item{\textbf{Estudo dos principais classificadores de sentimentos:}}
+Nesta etapa será feita uma pesquisa sobre os principais classificadores disponíveis, preferencialmente livres e \emph{open source}, utilizados para a análise de sentimentos, e que permitem a manipulação de seu dicionário. O objetivo principal desse passo é selecionar ferramentas que proporcionarão dados comparativos para teste da solução proposta.
+
+\item{\textbf{Análise dos principais léxicos disponíveis:}}
+Busca pelos principais conjuntos de palavras, e suas respectivas polaridades, disponíveis para utilização. Esses léxicos servirão como base e material de testes para a solução.
+
+\item{\textbf{Recuperação das principais bases de opiniões anotadas disponíveis:}}
+Busca e recuperação de bases de opiniões anotadas e consistentes, representando resultados confiáveis e corretos. Essas bases, já revisadas por especialistas humanos, servirão como parâmetro de corretude da solução proposta, bem como serão utilizadas para o cálculo de erro dos resultados obtidos.
+
+\item{\textbf{Recuperação das principais bases de opiniões anotadas disponíveis:}}
+Busca e recuperação de bases de opiniões anotadas e consistentes, representando resultados confiáveis e corretos. Essas bases, já revisadas por especialistas humanos, servirão como parâmetro de corretude da solução proposta, bem como serão utilizadas para o cálculo de erro dos resultados obtidos.
 \end{enumerate}
 
 \subsection{Marcos fisicos}
 \begin{enumerate}[D1.]
 \item{Documento com a revisao bibliografica.}
+\item{Lista dos principais classificadores.}
+\item{Lista dos principais léxicos.}
+\item{Bases de opiniões recuperadas.}
 \end{enumerate}
 
 \section{Cronograma de trabalho}
 \label{sec:crono}
-
-O objetivo do cronograma de trabalho e de identificar de forma clara e concisa as suas atividades no periodo em que estara no mestrado. No grafico abaixo, ja foi delimitado o periodo de trabalho que vai de abril/2016 ate fevereiro/2018 (data limite para a entrega e apresentacao da dissertacao). Caso o seu prazo for diferente do apresentado, solicito a gentileza de adequar para as suas particularidades.
 
 \begin{ganttchart}{1}{24}
 \gantttitle{2017}{10}\gantttitle{2018}{12}\gantttitle{2019}{2} \\
@@ -216,12 +229,18 @@ O objetivo do cronograma de trabalho e de identificar de forma clara e concisa a
 \ganttgroup{Dissertacao}{1}{23} \\
 \ganttbar{$D_1$}{1}{4} \\
 \ganttbar{$D_2$}{3}{4} \\
+\ganttbar{$D_3$}{4}{6} \\
+\ganttbar{$D_4$}{5}{7} \\
+\ganttbar{$D_5$}{6}{14} \\
+\ganttbar{$D_6$}{12}{16} \\
+\ganttbar{$D_7$}{17}{20} \\
 %\ganttlink{elem5}{elem6}
 \ganttmilestone{Relatorio 1}{4} \ganttnewline
-\ganttlink{elem5}{elem6}
-\ganttlink{elem4}{elem6}
-\ganttmilestone{Qualificacao}{18}\ganttnewline
-\ganttmilestone{Defesa}{23}
+\ganttmilestone{Relatorio 2}{9} \ganttnewline
+\ganttmilestone{Relatorio 3}{14} \ganttnewline
+\ganttlink{elem9}{elem10}
+\ganttmilestone{Qualificacao}{17}\ganttnewline
+\ganttmilestone{Defesa}{19}
 \end{ganttchart}
 
 \begin{center}
@@ -232,6 +251,10 @@ O objetivo do cronograma de trabalho e de identificar de forma clara e concisa a
 \item{Revisao bibliografica.}
 \item{Estudo dos principais classificadores de sentimentos.}
 \item{Análise dos principais léxicos disponíveis.}
+\item{Recuperação das principais bases de opiniões anotadas disponíveis.}
+\item{Implementação da solução.}
+\item{Teste da solução com os classificadores selecionados.}
+\item{Levantamento dos dados de testes e relatórios.}
 \end{enumerate}
 
 \section{Resultados Esperados}

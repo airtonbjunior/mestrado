@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  2 JUN 2017 07:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  2 JUN 2017 08:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -958,47 +958,47 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 
 ] [2
 
-]
-LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 166.
- [3
+] [3
 
 ]
-[4] [5
+[4
+
+]
+LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 161.
+ [5
 
 ] [6
 
 ] [7
 
-] [8
-
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 214.
+(Font)              <9> on input line 196.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 214.
- [9
+(Font)              <5> on input line 196.
+ [8
 
-] [10] [11
+] [9] [10
+
+] [11
 
 ] [12
-
-] [13
 
 ] (./projeto.bbl)
 
 AED: lastpage setting LastPage
-[14
+[13
 
 ] (./projeto.aux) ) 
 Here is how much of TeX's memory you used:
- 15781 strings out of 493013
- 317484 string characters out of 6136993
- 377189 words of memory out of 5000000
- 18990 multiletter control sequences out of 15000+600000
+ 15786 strings out of 493013
+ 317536 string characters out of 6136993
+ 377231 words of memory out of 5000000
+ 18995 multiletter control sequences out of 15000+600000
  32085 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,66p,616b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,66p,1215b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-
@@ -1007,10 +1007,10 @@ dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts
 ic/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/
 uplb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/
 texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on projeto.pdf (15 pages, 171567 bytes).
+Output written on projeto.pdf (14 pages, 171340 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 89 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

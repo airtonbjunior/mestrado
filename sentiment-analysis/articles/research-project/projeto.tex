@@ -140,44 +140,24 @@ Essa área de estudo tem como principal desafio a Análise de Opiniões, descrit
 
 Uma das principais técnicas utilizadas para a Análise de Sentimentos é a realizada por meio de dicionários de dados. Esses dicionários contêm palavras previamente avaliadas por especialistas humanos, principalmente quanto à sua polaridade. Neste contexto, esse conjunto de palavras, juntamente com suas polaridades, é chamado de Dicionário Léxico. Algumas bases, como a \emph{WordNet} - utilizada na maior parte dos trabalhos - apresenta, também, os sinônimos para cada palavra.
 
-Porém, é evidente a limitação inerente à estratégia de utilização do Dicionário Léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de Mineração de Opiniões é a criação e ampliação do DicionárioLléxico de forma automatizada, tema central do presente trabalho. Grande parte desses dicionários são construídos de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios. 
+Porém, é evidente a limitação inerente à estratégia de utilização do Dicionário Léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de Mineração de Opiniões é a criação e ampliação do Dicionário Léxico de forma automatizada, tema central do presente trabalho. Grande parte desses dicionários são construídos de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios. 
 
-Consciente desse problema de pesquisa, a ideia principal do presente trabalho é a criação de um processo automatizado de avaliação de dados inéditos (nesse contexto, palavras que não estão contidas no dicionário) e suas polaridades (negativa, positiva ou neutra) que consequentemente comporão um novo dicionário léxico. Todo esse processo será feito a partir de um conjunto mínimo de palavras contidas em algum dicionário disponibilizado publicamente, como o amplamente citado e utilizado WordNet, por exemplo.
+Consciente dessa limitação, a ideia principal do presente trabalho é a criação de um processo automatizado de expansão de Dicionário Léxico, sensível a domínios específicos, fazendo uso de técnicas de algoritmos bioinspirados, mais precisamente Programação Evolucionária. Resumidamente, o processo fará a adequação das polaridades das palavras contidas no dicionário de forma a maximizar a corretude das avaliações. Para avaliar a taxa de erro de cada solução parcial gerada, serão utilizados conjuntos conhecidos de documentos previamente avaliados por especialistas humanos, de forma a compará-los com a solução gerada pelo sistema. Para a avaliação, sistemas de classificação de sentimentos disponíveis serão utilizados.
 
 Devido à característica intrínseca do próprio problema, serão utilizadas na pesquisa bases de textos em inglês. Ao mesmo tempo, muitas técnicas utilizadas durante o trabalho também poderão ser utilizadas para resolver problemas em português, com as devidas alterações. 
 
-Espera-se que esses padrões possam ser utilizados como entrada de processos de avaliação em diversas áreas de PNL e mineração de opiniões como, por exemplo, análise de sentimentos em redes sociais. Algumas dessas pesquisas são realizadas na própria instituição, apoiando, assim, o trabalho de outros pesquisadores. Além disso, devido ao caráter automatizado dessa solução proposta, o mesmo processo poderá ser utilizado, avaliado e melhorado para outras situações, contextos e idiomas.
+Espera-se que esse processo, bem como os Dicionários Léxicos por ele gerado, possam ser utilizados como entrada de processos de avaliação em diversas áreas de Mineração de Opiniões como, por exemplo, Análise de Sentimentos em redes sociais. Algumas dessas pesquisas são realizadas na própria instituição, apoiando, assim, o trabalho de outros pesquisadores. Além disso, devido ao caráter automatizado dessa solução proposta, o mesmo processo poderá ser utilizado, avaliado e melhorado para outras situações, contextos e idiomas.
 
-Por fim, a pesquisa e a utilização de diversas técnicas de PNL e criação não supervisionada de padrões poderão servir como um \emph{benchmark} dos principais métodos, auxiliando na escolha de ferramentas e abordagens para trabalhos futuros em contextos específicos.
+Por fim, a pesquisa e a utilização de diversas técnicas de PNL e expansão automatizada de Dicionário Léxico poderão servir como um \emph{benchmark} dos principais métodos e classificadores, auxiliando na escolha de ferramentas e abordagens para trabalhos futuros em contextos específicos.
+
+Para apoiar a clareza e desenvolvimento da proposta de trabalho, o presente documento está estruturado da seguinte forma: o próximo capítulo tratará da descrição do problema, apresentando as principais limitações e dificuldades no contexto de Análise de Sentimentos e Dicionários Léxicos. O capítulo \ref{sec:obj} tratará dos objetivos gerais e específicos. A revisão bibliográfica, apresentada no capítulo \ref{sec:bibl}, tem por objetivo o embasamento teórico para apoiar nas soluções propostas, apresentando o estado da arte sobre o assunto, bem como definindo conceitos fundamentais para entender e trabalhar com a Análise de Sentimentos. O capítulo \ref{sec:impact} apresenta o impacto científico da solução e suas possíveis contribuções para a área. A metodologia, descrita no capítulo \ref{sec:met}, descreve a forma como serão desenvolvidas cada uma das etapas do processo, seguida do capítulo com uma previsão de cronograma do trabalho. Resultados esperados são descritos no capítulo \ref{sec:result}, seguidos da identificação dos colaboradores e participantes do projeto e, por fim, as referências bibliográficas utilizadas na proposta.
 
 
-\begin{itemize}
-\item{Fornece informacoes contextuais para o problema, identificando a \textbf{lacuna de investigacao} nesta area.}
-\item{Apresenta os objetivos.}
-\item{Identifica as questoes de pesquisa especificas.}
-\item{Opcionais (de acordo  com a area de pesquisa):}
-\begin{itemize}
-\item{Apresentar a metodologia de forma suscinta.}
-\item{Apresentar os principais resultados e conclusoes que se espera do projeto.}
-\end{itemize}
-\item{Indicar a estrutura do resto do relatorio.}
-\end{itemize}
-
-\subsection{Formato sugerido para uma introducao}
-\begin{itemize}
-\item{Introduza a area de pesquisa.}
-\item{Revise publicacoes chave.}
-\item{Identifique qualquer gap no conhecimento ou questoes que voce quer responder.}
-\item{Suas hipoteses.}
-\item{Seus objetivos, incluindo uma breve descricao da metodologia.}
-\item{Como e para quem a sua pesquisa sera benefica.}
-\end{itemize}
-
-\section{Descricao do Problema}
+\section{Descrição do Problema}
 Nesta secao, o proponente tem a oportunidade de discorrer livremente sobre o problema a ser estudado, de forma a descrever e justificar o problema aos possiveis leitores.  A revisao bibliografica, identificacao de projetos semelhantes e possiveis "brechas" em trabalhos ja realizados tambem sao identificados aqui, de forma a justificar, atraves de periodos e outros aceitos pela comunidade cientifica, a existencia do problema.
 
 \section{Objetivos}
-
+\label{sec:obj}
 \subsection{Objetivo geral}
 O presente trabalho tem por objetivo a criação de um sistema para a expansão de um dicionário léxico, contendo palavras e suas respectivas orientações semânticas (positiva, negativa, neutra) para um determinado contexto. A criação de um léxico abrangente e específico para um determinado contexto é um desafio para a área de Análise de Sentimentos, e fundamental para o correto funcionamento de todo o processo de análise de dados.
 
@@ -191,10 +171,12 @@ O presente trabalho tem por objetivo a criação de um sistema para a expansão 
 
 \end{enumerate}
 
-\section{Revisao bibliografica}
+\section{Revisão bibliográfica}
+\label{sec:bibl}
 Nesta secao, que deve ocupar \textbf{no maximo} 3 paginas, devera ser apresentada a revisao bibliografica. O numero minimo de artigos e de 20 vinte (internacionais) e 10 (dez) nacionais.
 
-\section{Impacto Cientifico}
+\section{Impacto Científico}
+\label{sec:impact}
 A técnica de Análise de Sentimento por meio de um dicionário léxico é uma das mais utilizadas na literatura. Mostra-se, portanto, essencial a obtenção de um conjunto de palavras consolidado, juntamente com as orientações semânticas respectivas. 
 Uma palavra pode ter um significado e, consequentemente, uma polaridade diferente, dependendo do contexto ao qual está inserido. 
 Um conjunto léxico inadequado leva a análises inconsistentes, prejudicando o resultado final do sistema.
@@ -202,7 +184,7 @@ A solução proposta neste trabalho criará, de forma automatizada, léxicos par
 O conjunto de palavras gerado pela solução proposta poderá ser utilizado como \emph{benchmark} para outros trabalhos na área, bem como ser expandido com outras técnicas adequadas.
 
 \section{Metodologia}
-
+\label{sec:met}
 A metodologia descreve a forma como serao desenvolvidas cada uma das etapas do processo. Estas devem ser as mesmas que foram apresentadas no cronograma de trabalho, descrito na secao \ref{sec:crono}.
 
 \subsection{Informacoes importantes}
@@ -286,6 +268,7 @@ Levantamento dos dados da utilização da solução, fazendo uso dos classificad
 \end{enumerate}
 
 \section{Resultados Esperados}
+\label{sec:result}
 Espera-se, com o presente trabalho, a criação de um processo automatizado de expansão de léxico dependente de domínio, fazendo uso de técnicas de algoritmos evolucionários. Nesse sentido, expansão significa tanto a criação e definição da orientação semântica de novas palavas, bem como a alteração das polaridades das palavras já existentes para um valor mais adequado ao domínio que trata o processo.
 Pela característica genérica da solução, a criação de diversos léxicos para vários domínios diferentes é limitada tão somente à escolha dos contextos específicos e à disponibilidade de dados anotados para teste da solução.
 Podemos citar, também, uma possível melhoria em algumas técnicas de Análise de Sentimentos que fazem uso de léxicos padrão, contribuindo assim para a evolução de outros sistemas de Mineração de Opiniões que usam a estratégia de dicionário.

@@ -21,5 +21,5 @@ Repository of the projects developed for the - [UFG master's program](http://www
   * Data Structure and Algorithm Analysis
   
   * Scientific Method
-    * Work 1 - [Research Problem](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/survey-scientific-method/problema.pdf)
-    * Work 2 - [Research Project](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/research-project/projeto.pdf)
+    * [Research Problem](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/survey-scientific-method/problema.pdf)
+    * [Research Project](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/research-project/projeto.pdf)

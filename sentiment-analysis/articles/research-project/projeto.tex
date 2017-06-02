@@ -1,0 +1,269 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[utf8]{inputenc} % O beamer já carregou
+\usepackage[T1]{fontenc}
+\usepackage[english,brazil]{babel}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\renewcommand*\rmdefault{ppl}
+\usepackage{titlesec}
+\usepackage{pgfgantt}
+\usepackage{framed}
+\newcommand\sectionbreak{\clearpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\setlength{\headheight}{26pt} 
+\fancypagestyle{plain}{%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyhf{}%
+  \fancyfoot[L]{Metodologia científica - UFG}%
+  \fancyfoot[R]{\footnotesize Página \thepage\ de \pageref{LastPage}}%
+}
+
+
+%head and foot note
+\lhead{\textbf{Mestrado em Ciência da Computação} \\\textbf{Projeto de pesquisa}}
+\chead{}
+\rhead{\textbf{Metodologia Científica}\\ \textit{Airton Bordin Junior}}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize Página \thepage\ de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+\makeindex
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\begin{center} % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth,scale=1.3]{logo-uel}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.2]{logo-ufg}
+%    \includegraphics[width=.4\linewidth,scale=0.1]{logo-ufg}
+
+\end{minipage}
+\end{figure}
+
+%\includegraphics[scale=0.5]{logo-ufg}\\[1.0cm] % Include a department/university logo - this will require the graphicx package
+
+%\textsc{\LARGE Universidade Federal de Goi�s}\\[1.5cm] % Name of your university/college
+
+%\textsc{\Large \textbf{Instituto de Computa��o}}\\[0.5cm] % Major heading such as course name
+\textsc{\large \textbf{Mestrado em Ciência da Computação}}\\[0.5cm]
+\textsc{\large \textbf{Disciplina de Metodologia Científica}}\\[1.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Expansão automatizada de Léxicos para a Análise de Sentimentos por meio de algoritmos evolucionários}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{framed}
+\emph{Autor:} Airton Bordin Junior
+\par
+\emph{Orientador:} Nádia Félix Felipe da Silva
+\par
+\emph{Coorientador:} Celso Gonçalves Camilo Junior
+\end{framed}
+
+\vspace*{3cm}
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\ % Date, change the \today to a set date if you want to be precise
+
+\end{center}
+
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\section{Apresentação}
+Airton Bordin Junior, bacharel em Ciência da Computação. Cursou os primeiros 3 anos do curso na Universidade Estadual do Oeste do Paraná (UNIOESTE) campus Foz do Iguaçu, e finalizou a graduação na faculdade Anglo Americano, na mesma cidade, no ano de 2011.
+Possui, também, graduação em Gestão Pública, pelo Instituto Federal de Santa Catarina, cursado por meio da UaB, no campus de Foz do Iguaçu.
+Atua na área da computação desde a formação. Já trabalhou como desenvolvedor de software, testador e, por fim, como Analista de Sistemas no Parque Tecnológico Itaipu, responsável pela área de TI do projeto de Segurança de Barragens.
+Lecionou 2 semestres no curso Técnico em Informática Para Internet do Pronatec, atuando nas disciplinas de Sistemas Operacionais e Segurança de Sistemas, e 1 semestre no curso de Ciência da Computação em uma faculdade local, lecionando as disciplinas de Processamento de Imagens e Sistemas Inteligentes.
+Sempre quis continuar estudando, e o mestrado era um objetivo a ser atingido. Por conta da falta de oportunidades na cidade onde morava (Foz do Iguaçu), acabei adiando um pouco essa meta. Hoje tenho a oportunidade e a honra de estar participando como aluno regular do programa de mestrado pela Universidade Federal de Goiás.
+A disciplina de Metodologia Científica será, sem dúvidas, essencial para o sucesso no curso. Seria impossível caminhar em busca de um título de mestre sem os conceitos que veremos durante a matéria. A base científica, o treinamento em leitura técnica, as dicas sobre artigos, bases de dados, entre outras, serão essenciais para que estejamos preparados para os futuros trabalhos. Num contexto mais amplo, creio que o curso de mestrado dará as ferramentas necessárias para que possamos caminhar para a fronteira do conhecimento, permitindo nos aprofundar em nossa área de interesse.
+No programa da UFG, estou incluído na linha de pesquisa de Inteligência Computacional. Prentendo aprofundar meu trabalho na área de Descoberta de Conhecimento em Bases de Dados (Knowledge Discovery in Databases), mais precisamente com dados da área médica, alinhado com trabalhos de alguns professores da Universidade.
+Após minha graduação,cursei especialização em Redes de Computadores pela Universidade Federal Tecnológica do Paraná, campus de Cornélio Procópio e MBA em Gerenciamento de Projetos pelo Centro Universitário Dinâmica das Cataratas, em Foz do Iguaçu.
+
+\begin{itemize}
+\item{Nome, formacao academica e experiencias passadas.}
+\item{Motivacao para estudos mais avancados.}
+\item{Motivacao para a escolha do tema a ser desenvolvido.}
+\item{Principais razoes que o candidato e um otimo nome para desenvolver o tema escolhido.}
+\end{itemize}
+
+\section{Resumo}
+Deve ter aproximadamente 300 palavras. Alem disto, deve ter uma descricao breve de todo o projeto, atendendo a estas quatro areas:
+
+\begin{itemize}
+\item{O que voce vai fazer? (o problema)}
+\item{Como sera feito (metodologia)}
+\item{Resultados esperados? (apenas os mais relevantes)}
+\item{Qual a importancia destes? (Conclusoes / recomendacoes)}
+\end{itemize}
+
+\section{Introducao}
+\begin{itemize}
+\item{Fornece informacoes contextuais para o problema, identificando a \textbf{lacuna de investigacao} nesta area.}
+\item{Apresenta os objetivos.}
+\item{Identifica as questoes de pesquisa especificas.}
+\item{Opcionais (de acordo  com a area de pesquisa):}
+\begin{itemize}
+\item{Apresentar a metodologia de forma suscinta.}
+\item{Apresentar os principais resultados e conclusoes que se espera do projeto.}
+\end{itemize}
+\item{Indicar a estrutura do resto do relatorio.}
+\end{itemize}
+
+\subsection{Formato sugerido para uma introducao}
+\begin{itemize}
+\item{Introduza a area de pesquisa.}
+\item{Revise publicacoes chave.}
+\item{Identifique qualquer gap no conhecimento ou questoes que voce quer responder.}
+\item{Suas hipoteses.}
+\item{Seus objetivos, incluindo uma breve descricao da metodologia.}
+\item{Como e para quem a sua pesquisa sera benefica.}
+\end{itemize}
+
+\section{Descricao do Problema}
+Nesta secao, o proponente tem a oportunidade de discorrer livremente sobre o problema a ser estudado, de forma a descrever e justificar o problema aos possiveis leitores.  A revisao bibliografica, identificacao de projetos semelhantes e possiveis "brechas" em trabalhos ja realizados tambem sao identificados aqui, de forma a justificar, atraves de periodos e outros aceitos pela comunidade cientifica, a existencia do problema.
+
+\section{Objetivos}
+
+\subsection{Objetivo geral}
+Aqui, descreve-se os objetivos gerais -- resultados mais abrangentes -- e especificos -- especificacao concisa de tudo que se espera atingir com a execucao do trabalho, bem comos possiveis produtos que possam ser gerados como resultados -- do projeto proposto. 
+
+\subsection{Objetivos especificos}
+
+\begin{enumerate}
+\item 
+\item 
+ \item $\cdots$
+
+\end{enumerate}
+
+\section{Revisao bibliografica}
+Nesta secao, que deve ocupar \textbf{no maximo} 3 paginas, devera ser apresentada a revisao bibliografica. O numero minimo de artigos e de 20 vinte (internacionais) e 10 (dez) nacionais.
+
+\section{Impacto Cientifico}
+
+Descricao das principais contribuicoes cientificas, tecnologicas ou de inovacao que podem ser frutos da realizacao do trabalho.
+
+\section{Metodologia}
+
+A metodologia descreve a forma como serao desenvolvidas cada uma das etapas do processo. Estas devem ser as mesmas que foram apresentadas no cronograma de trabalho, descrito na secao \ref{sec:crono}.
+
+\subsection{Informacoes importantes}
+\begin{itemize}
+\item{Pergunta a ser respondida: Como voce atingira os objetivos da pesquisa?}
+\item{Divida o seu projeto de pesquisa em diversas etapas.}
+\item{Cada etapa devera ter uma breve descricao informando ao leitor \textbf{como} a mesma sera executada.}
+\item{Faca uma previsao de tempo de cada uma das etapas.}
+\item{Ao final de cada etapa, apresente um \textbf{marco fisico}\footnote{Relatorio, artigo, projeto de sistema, etc.}}
+\end{itemize}
+
+\subsection{Sugestao}
+\begin{enumerate}[D1.]
+\item{\textbf{Revisao bibliografica:} Nesta etapa do trabalho sera feita uma revisao bibliografica com vistas a identificar o estado da arte do problema que esta sendo proposto. Importante registrar que esta revisao bibliografica seguira os moldes propostos por \cite{Kitchenham2004}}. Serao consultadas as bases de dados do \emph{Portal da Capes}, \emph{IEEEXplore} e \emph{ACM Digital Library}.
+
+\item{\textbf{Estudo dos principais algoritmos para identificacao de padroes.}}
+\item{$\cdots$}
+\end{enumerate}
+
+\subsection{Marcos fisicos}
+\begin{enumerate}[D1.]
+\item{Documento com a revisao bibliografica.}
+\end{enumerate}
+
+\section{Cronograma de trabalho}
+\label{sec:crono}
+
+O objetivo do cronograma de trabalho e de identificar de forma clara e concisa as suas atividades no periodo em que estara no mestrado. No grafico abaixo, ja foi delimitado o periodo de trabalho que vai de abril/2016 ate fevereiro/2018 (data limite para a entrega e apresentacao da dissertacao). Caso o seu prazo for diferente do apresentado, solicito a gentileza de adequar para as suas particularidades.
+
+\begin{ganttchart}{1}{23}
+\gantttitle{2017}{9}\gantttitle{2018}{12}\gantttitle{2019}{2} \\
+\gantttitlelist{4,...,12}{1}\gantttitlelist{1,...,12}{1}\gantttitlelist{1,...,2}{1} \\
+\ganttgroup{Disciplinas}{1}{9} \\
+\ganttmilestone{Fim do $1^o$ semestre}{5} \ganttnewline
+\ganttmilestone{Fim do $2^o$ semestre}{10} \ganttnewline
+\ganttgroup{Dissertacao}{1}{23} \\
+\ganttbar{$D_1$}{1}{2} \\
+\ganttbar{$D_2$}{3}{4} \\
+%\ganttlink{elem5}{elem6}
+\ganttmilestone{Relatorio 1}{4} \ganttnewline
+\ganttlink{elem5}{elem6}
+\ganttlink{elem4}{elem6}
+\ganttmilestone{Qualificacao}{18}\ganttnewline
+\ganttmilestone{Defesa}{23}
+\end{ganttchart}
+
+\begin{center}
+\large \textbf{Legenda}
+\end{center}
+
+\begin{enumerate}[D1.]
+\item{Revisao bibliografica.}
+\item{Estudo dos principais algoritmos para identificacao de padroes.}
+\item{$\cdots$}
+\end{enumerate}
+
+\section{Resultados Esperados}
+Espera-se, com o presente trabalho, a criação de um processo automatizado de expansão de léxico dependente de domínio, fazendo uso de técnicas de algoritmos evolucionários. Nesse sentido, expansão significa tanto a criação e definição da orientação semântica de novas palavas, bem como a alteração das polaridades das palavras já existentes para um valor mais adequado ao domínio que trata o processo.
+Pela característica genérica da solução, a criação de diversos léxicos para vários domínios diferentes é limitada tão somente à escolha dos contextos específicos e à disponibilidade de dados anotados para teste da solução.
+Podemos citar, também, uma possível melhoria em algumas técnicas de Análise de Sentimentos que fazem uso de léxicos padrão, contribuindo assim para a evolução de outros sistemas de Mineração de Opiniões que usam a estratégia de dicionário.
+Os resultados parciais e finais do trabalho serão descritos em artigos científicos que serão submetidos à eventos na área, de forma a compartilhar o conhecimento e avanços alcançados pela técnica proposta.
+
+-------------
+(Devem ser descritos todos os resultados que o candidato espera obter com a dissertacao. Sugere-se que o mesmo apresente o que sera desenvolvido e tambem as possiveis producoes cientificas que ele considera que sera possivel de apresentar para a comunidade ao final do mesmo. )
+
+\subsection{Algoritmos} % sugestao 
+Será implementado um algoritmo que criará e/ou ampliará, de forma automatizada, um léxico para um domínio específico que será utilizado como entrada para um sistema classificador de Análise de Sentimentos.
+Esse software fará uso de técnicas de algoritmos bioinspirados, mais precisamente Programação Evolucionária, para a atribuição de valores sentimentais para cada palavra, de forma a maximizar a taxa de acerto ao ser processado por um classificador existente.
+Ao passo que o algoritmo é independente de domínio, pode ser utilizado, desde que haja dados de testes suficientes, para qualquer contexto desejado.
+
+\subsection{Artigos cientificos}
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Quantidade} & \textbf{Qualis} & \textbf{Tipo} & \textbf{Nome} \\
+\hline
+1 & B1 & Conferencia & FIE - Frontiers in Education \\
+\hline
+1 & A1 & Periodico & Computers in Education \\
+\hline
+\end{tabular}
+
+\section{Identificacao dos Participantes e Colaboradores}
+Aqui o candidato devera descrever se o projeto que esta sendo proposto faz parte de um projeto de pesquisa maior ou nao. Alem disto, deve descrever as possiveis colaboracoes (alunos de iniciacao cientifica, mestrado ou doutorado) que possam contribuir para o seu trabalho. 
+
+\section{Referencias bibliograficas}
+\bibliographystyle{apalike}
+\bibliography{projeto}
+\end{document}

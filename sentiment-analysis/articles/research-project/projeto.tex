@@ -118,10 +118,6 @@ Sempre quis continuar estudando, e o mestrado era um objetivo a ser atingido. Po
 
 Prentende aprofundar o trabalho na área de Mineração de Opiniões, também chamada de Análise de Sentimentos, mais precisamente na criação e expansão automatizada de dicionários léxicos, alinhado com trabalhos em andamento de alguns professores da Universidade. O interesse em pesquisar esse assunto vem crescendo nos últimos anos, principalmente com o aumento da produção de conteúdo na WEB, e apresenta-se como um desafio interessante e atual e que pode trazer benefícios para diversas outras áreas de conhecimento como, por exemplo, o setor de saúde.
 
-\begin{itemize}
-\item{Principais razoes que o candidato e um otimo nome para desenvolver o tema escolhido.}
-\end{itemize}
-
 \section{Resumo}
 Deve ter aproximadamente 300 palavras. Alem disto, deve ter uma descricao breve de todo o projeto, atendendo a estas quatro areas:
 
@@ -138,11 +134,11 @@ A Mineração de Opiniões, também chamada de Análise de Opiniões ou Análise
 
 Essa área de estudo tem como principal desafio a Análise de Opiniões, descritas em linguagem natural, para a identificação da polaridade implícita ou explícita no texto. Essa polaridade é, na maior parte das vezes, identificada como uma escala de pontuação de sua característica positiva, negativa ou neutra.
 
-Uma das principais técnicas utilizadas para a Análise de Sentimentos é a realizada por meio de Dicionários de Dados. Esses dicionários contêm palavras previamente avaliadas por especialistas humanos, principalmente quanto à sua polaridade. Neste contexto, esse conjunto de palavras, juntamente com suas polaridades, é chamado de Dicionário Léxico. Algumas bases, como a \emph{WordNet} - utilizada na maior parte dos trabalhos - apresenta, também, os sinônimos para cada palavra.
+Uma das principais técnicas utilizadas para a Análise de Sentimentos é a utilização de Dicionários de Dados. Esses dicionários contêm palavras previamente avaliadas por especialistas humanos, principalmente quanto à sua polaridade. Neste contexto, esse conjunto de palavras, juntamente com suas polaridades, é chamado de Dicionário Léxico. 
 
 Porém, é evidente a limitação inerente à estratégia de utilização do Dicionário Léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de Mineração de Opiniões é a criação e ampliação do Dicionário Léxico de forma automatizada, tema central do presente trabalho. Grande parte desses dicionários são construídos de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios, como observado em \cite{duwairi2015detecting}. 
 
-Consciente dessa limitação, a ideia principal do presente trabalho é a criação de um processo automatizado de expansão de Dicionário Léxico, sensível a domínios específicos, fazendo uso de técnicas de algoritmos bioinspirados, mais precisamente Programação Evolucionária. Resumidamente, o processo fará a adequação das polaridades das palavras contidas no dicionário de forma a maximizar a corretude das avaliações. Para avaliar a taxa de erro de cada solução parcial gerada, serão utilizados conjuntos conhecidos de documentos previamente avaliados por especialistas humanos, de forma a compará-los com a solução gerada pelo sistema. Para a avaliação, sistemas de classificação de sentimentos disponíveis serão utilizados.
+Consciente dessa limitação, a ideia principal do presente trabalho é a criação de um processo automatizado de expansão de Dicionário Léxico, sensível a domínios específicos, fazendo uso de técnicas de algoritmos bioinspirados da classe de Algoritmos Evolucionários, mais precisamente Programação Evolucionária. Resumidamente, o processo fará a adequação das polaridades das palavras contidas no dicionário de forma a maximizar a corretude das avaliações. Para avaliar a taxa de erro de cada solução parcial gerada, serão utilizados conjuntos conhecidos de documentos previamente avaliados por especialistas humanos, de forma a compará-los com a solução gerada pelo sistema. Para a avaliação, sistemas de classificação de sentimentos disponíveis serão utilizados.
 
 Devido à característica intrínseca do próprio problema, serão utilizadas na pesquisa bases de textos em inglês. Ao mesmo tempo, muitas técnicas utilizadas durante o trabalho também poderão ser utilizadas para resolver problemas em português, com as devidas alterações. 
 
@@ -160,12 +156,16 @@ Construir Dicionários Léxicos para domínios específicos é mais complexo que
 
 Buscando resolver esses problemas - falta de palavras no Dicionário Léxico e criação de Dicionários para contextos específicos - muitas técnicas foram desenvolvidas nos últimos anos. A maior parte delas utiliza a estrutura sintática dos textos como forma de tentar encontrar a polaridade mais adequada a um conjunto de palavras. Dentre as principais técnicas podemos citar o Pointwise Mutual Information, apresentado por \cite{Turney2002}, coerência do contexto, discutido em \cite{Kanayama2006}, entre outros.
 
-Uma limitação às soluções anteriores vem do fato da dificuldade inerente em trabalhar com dados não estruturados, neste contexto, linguagem natural. Esse fato é agravado quando estamos trabalhando com textos em redes sociais, pois possuem um caráter informal, possuindo abreviações, gírias, trocadílhos, etc. Portanto, não é trivial expandir um Dicionário Léxico, principalmente para domínios específicos, fazendo uso das estruturas sintáticas e semânticas dos textos.
+Uma limitação às soluções anteriores vem do fato da dificuldade inerente em trabalhar com dados não estruturados, neste contexto, linguagem natural. Esse fato é agravado quando estamos trabalhando com textos em redes sociais, por possuírem um caráter informal, contendo abreviações, gírias, trocadílhos, etc. Portanto, não é trivial expandir um Dicionário Léxico, principalmente para domínios específicos, fazendo uso das estruturas sintáticas e semânticas dos textos.
+
+Determinar a polaridade correta da palavra, para cada contexto, portanto, apresenta-se como um desafio para as pesquisas na área. Mesmo as principais técnicas utilizadas demandam uma validação manual considerável, e em alguns contextos, como política, não atingem resultados satisfatórios.
+
+Testar todas as possibilidades para a criação de um Dicionário Léxico perfeito, ou com o menor erro possível, também torna-se inviável, pois demandaria a resolução de um problema combinatório com muitas variáveis, o que demandaria um tempo exponencial de processamento, caracterizando-se como um problema NP-completo, ou seja, não solucionável em tempo polinomial.
 
 \section{Objetivos}
 \label{sec:obj}
 \subsection{Objetivo geral}
-O presente trabalho tem por objetivo a criação de um sistema para a expansão de um Dicionário Léxico, contendo palavras e suas respectivas orientações semânticas (positiva, negativa, neutra) para um determinado contexto. A criação de um Léxico abrangente e específico para um determinado contexto é um desafio para a área de Análise de Sentimentos, e fundamental para o correto funcionamento de todo o processo de análise dos dados.
+O presente trabalho tem por objetivo a criação de um sistema para a expansão de um Dicionário Léxico, contendo palavras e suas respectivas orientações semânticas (positiva, negativa, neutra) para um determinado contexto, fazendo uso de técnicas de algoritmos bioinspirados, mais precisamente Programação Evolutiva. A criação de um Léxico abrangente e específico para um determinado contexto é um desafio para a área de Análise de Sentimentos, e fundamental para o correto funcionamento de todo o processo de análise dos dados.
 
 \subsection{Objetivos especificos}
 
@@ -179,26 +179,39 @@ O presente trabalho tem por objetivo a criação de um sistema para a expansão 
 
 \section{Revisão bibliográfica}
 \label{sec:bibl}
-Nesta secao, que deve ocupar \textbf{no maximo} 3 paginas, devera ser apresentada a revisao bibliografica. O numero minimo de artigos e de 20 vinte (internacionais) e 10 (dez) nacionais.
+\cite{liu2010multifaceted} apresenta uma visão multifacetada sobre a mineração de opiniões. Neste trabalho, o autor conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}.
+
+\cite{taboada2011lexicon} aborda a análise e mineração de opiniões baseada em dicionários léxicos. Apresenta o SO-CAL (Semantic Orientation Calculator), que usa lista de palavras já consolidadas para a geração de dicionários com novas entradas e suas polaridades de forma não supervisionada. Durante a descrição do trabalho, apresenta conceitos de intensificação e negação, amplamente utilizadas nas técnicas de geração de novos léxicos. Apesar de ser feita de forma automática, o autor utilizou uma etapa de verificação humana para a validação da consistência das palavras geradas pela técnica, fazendo uso de um serviço de\emph{ Mechanical Turk} da Amazon. 
+
+Na mesma linha, \cite{eisenstein2016unsupervised} e \cite{bandhakavi2016lexicon} apresentam técnicas de análise de opiniões fazendo uso de dicionários léxicos. O primeiro apresenta uma abordagem usando a técnica de \emph{Naive Bayes} para a classificação dos aspectos e cita problemas de estimativas de palavras e avaliação dos léxicos criados. O segundo faz uma comparação de algumas técnicas de avaliação em 4 conjuntos de dados diferentes, apresentando uma análise quantitativa do mesmo. Abordagens e comparações semelhantes, com algumas modificações no domínio e no idioma do problema abordado, podem ser vistos em \cite{khoo2017lexicon}, \cite{asghar2014review} e \cite{ding2008holistic}.
+
+A criação automatizada de dicionários léxicos, tema central do presente trabalho, é tratada em sua forma geral em \cite{widdows2002graph} e \cite{duwairi2015detecting}. O primeiro utiliza uma estratégia de criação e análise de uma estrutura de grafos, por meio uma base padronizada de palavras semente, que contém diversas entradas previamente avaliadas em suas polaridades e, também, a descrição de seus sinônimos. Apesar de fazer uma abordagem focada em substantivos, que representam os vértices do grafo, a ideia principal pode ser utilizada em outras estratégias de geração léxica automatizada que incorporem verbos, adjetivos, entre outros. \cite{duwairi2015detecting} dá uma visão geral da criação de um dicionário de palavras, usando como base \emph{tweets} em árabe. Importante destaque desse último foi a inclusão de \emph{emoticons} na análise, característica amplamente utilizada, principalmente, em escritas informais na Internet.
+
+A maior parte das estratégias de criação de dicionários léxicos utiliza como base de palavras semente o banco de dados \emph{WordNet} - disponível em https://wordnet.princeton.edu/ - que fornece uma lista de palavras, sua polaridade e seus sinônimos. Importante destacar, também, que as bases utilizadas nos trabalhos supracitados consideram palavras no idioma inglês. Mesmo os trabalhos que utilizam estratégias em idiomas diferentes fizeram uso dessas bases por meio de um processo de tradução automatizada.
 
 \section{Impacto Científico}
 \label{sec:impact}
-A técnica de Análise de Sentimento por meio de um dicionário léxico é uma das mais utilizadas na literatura. Mostra-se, portanto, essencial a obtenção de um conjunto de palavras consolidado, juntamente com as orientações semânticas respectivas. 
+A técnica de Análise de Sentimento por meio de um Dicionário Léxico é uma das mais utilizadas na literatura. Mostra-se, portanto, essencial a obtenção de um conjunto de palavras consolidado, juntamente com as orientações semânticas respectivas. 
 Uma palavra pode ter um significado e, consequentemente, uma polaridade diferente, dependendo do contexto ao qual está inserido. 
-Um conjunto léxico inadequado leva a análises inconsistentes, prejudicando o resultado final do sistema.
-A solução proposta neste trabalho criará, de forma automatizada, léxicos para diferentes domínios, que poderão servir como entrada para diversos classificadores e sistemsas de análise de sentimentos. Além disso, a técnica pode ser utilizada em outros idiomas, de forma a suprir uma carência de dicionários consistentes em linguagens pouco conhecidas.
+
+Um conjunto de palavras e polaridades inadequadas leva a análises inconsistentes, prejudicando o resultado final do sistema.
+
+A solução proposta neste trabalho criará, de forma automatizada, Léxicos para diferentes domínios, que poderão servir como entrada para diversos classificadores e sistemsas de análise de sentimentos. Além disso, a técnica pode ser utilizada em outros idiomas, de forma a suprir uma carência de dicionários consistentes em linguagens pouco conhecidas.
 O conjunto de palavras gerado pela solução proposta poderá ser utilizado como \emph{benchmark} para outros trabalhos na área, bem como ser expandido com outras técnicas adequadas.
+
+Técnicas de algoritmos bioinspirados, da classe de algoritmos evolucionários, serão utilizadas para a resolução do problema. A intersecção dessas áreas de conhecimento foi pouco explorada até o momento na literatura e em trabalhos realizados, caracterizando, portanto, uma nova abordagem para vistas às possíveis soluções. A utilização da abordagem proposta pode incentivar a utilização de outros métodos bioinspirados, apoiando, portanto, uma alternativa às soluções mais utilizadas, baseadas em análise sintática e semântica.
 
 \section{Metodologia}
 \label{sec:met}
-A metodologia descreve a forma como serao desenvolvidas cada uma das etapas do processo. Estas devem ser as mesmas que foram apresentadas no cronograma de trabalho, descrito na secao \ref{sec:crono}.
+Para atingir os objetivos da pesquisa, buscas na literatura serão realizadas de forma a entender o estado da arte sobre o assunto, principais soluções e abordagens utilizados. Esses dados serão utilizados como embasamento teórico para o desenvolvimento do trabalho. 
 
-\subsection{Informacoes importantes}
-\begin{itemize}
-\item{Pergunta a ser respondida: Como voce atingira os objetivos da pesquisa?}
-\end{itemize}
+Além disso, será feita uma pesquisa das principais ferramentas, preferencialmente livres e \emph{open source} para a utilização nos testes da solução. Descrições mais detalhadas de cada etapa podem ser encontradas nos próximos subcapítulos.
 
-\subsection{Sugestao}
+Um sistema de expansão de Dicionário Léxico será implementado e testado com algumas entradas avaliadas previamente por especialistas humanos.
+
+Após as fases de análise, projeto, desenvolvimento e teste da solução, dados serão coletados para a criação de indicadores sobre o sistema, bem como comparações com soluções disponíveis na literatura.
+
+\subsection{Etapas}
 \begin{enumerate}[D1.]
 \item{\textbf{Revisao bibliografica:} Nesta etapa do trabalho sera feita uma revisao bibliografica com vistas a identificar o estado da arte do problema que esta sendo proposto. Importante registrar que esta revisao bibliografica seguira os moldes propostos por \cite{Kitchenham2004}}. Serao consultadas as bases de dados do [COLOCAR BASES AQUI] \emph{Portal da Capes}, \emph{IEEEXplore} e \emph{ACM Digital Library}.
 

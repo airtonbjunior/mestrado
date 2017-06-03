@@ -3,46 +3,48 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: projeto.aux
 The style file: apalike.bst
 Database file #1: projeto.bib
+Warning--empty year in back
+Warning--empty journal in silveirageraccao
 Warning--can't use both author and editor fields in Zhou2014
-You've used 24 entries,
+You've used 26 entries,
             1935 wiz_defined-function locations,
-            638 strings with 9052 characters,
-and the built_in function-call counts, 11005 in all, are:
-= -- 1136
-> -- 361
-< -- 26
-+ -- 124
-- -- 118
-* -- 875
-:= -- 1775
-add.period$ -- 80
-call.type$ -- 24
-change.case$ -- 178
-chr.to.int$ -- 24
-cite$ -- 25
-duplicate$ -- 472
-empty$ -- 819
-format.name$ -- 156
-if$ -- 2297
+            646 strings with 9550 characters,
+and the built_in function-call counts, 11873 in all, are:
+= -- 1219
+> -- 402
+< -- 27
++ -- 138
+- -- 132
+* -- 942
+:= -- 1920
+add.period$ -- 85
+call.type$ -- 26
+change.case$ -- 195
+chr.to.int$ -- 26
+cite$ -- 29
+duplicate$ -- 510
+empty$ -- 878
+format.name$ -- 172
+if$ -- 2472
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 25
-newline$ -- 123
-num.names$ -- 72
-pop$ -- 162
+missing$ -- 27
+newline$ -- 132
+num.names$ -- 78
+pop$ -- 187
 preamble$ -- 1
-purify$ -- 179
+purify$ -- 196
 quote$ -- 0
-skip$ -- 379
+skip$ -- 405
 stack$ -- 0
-substring$ -- 863
-swap$ -- 124
-text.length$ -- 13
+substring$ -- 911
+swap$ -- 132
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 142
-warning$ -- 1
-while$ -- 96
+type$ -- 154
+warning$ -- 3
+while$ -- 103
 width$ -- 0
-write$ -- 334
-(There was 1 warning)
+write$ -- 356
+(There were 3 warnings)

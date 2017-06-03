@@ -24,6 +24,13 @@ Becker, L., Erhart, G., Skiba, D., and Matula, V. (2013).
 \newblock In {\em Second Joint Conference on Lexical and Computational
   Semantics (* SEM)}, volume~2, pages 333--340.
 
+\bibitem[Bäck et~al., ]{back}
+Bäck, T., Rudolph, G., and paul Schwefel, H.
+\newblock Evolutionary programming and evolution strategies: Similarities and
+  differences.
+\newblock In {\em In Proceedings of the Second Annual Conference on
+  Evolutionary Programming}, pages 11--22.
+
 \bibitem[Ding et~al., 2008]{ding2008holistic}
 Ding, X., Liu, B., and Yu, P.~S. (2008).
 \newblock A holistic lexicon-based approach to opinion mining.
@@ -129,6 +136,13 @@ Rodrigues, R.~G., das Dores, R.~M., Camilo-Junior, C.~G., and Rosa, T.~C.
 \newblock Sentihealth-cancer: A sentiment analysis tool to help detecting mood
   of patients in online social networks.
 \newblock {\em International Journal of Medical Informatics}, 85(1):80 -- 95.
+
+\bibitem[Silveira et~al., 2014]{silveirageraccao}
+Silveira, B.~B., Leit{\~a}o-J{\'u}nior, P.~S., Ramada, M.~S., and Martins,
+  B.~P. (2014).
+\newblock Gera{\c{c}}{\~a}o de base de dados para o teste de
+  aplica{\c{c}}{\~o}es de banco de dados pelo emprego da computa{\c{c}}{\~a}o
+  evolucion{\'a}ria.
 
 \bibitem[Taboada et~al., 2011]{taboada2011lexicon}
 Taboada, M., Brooke, J., Tofiloski, M., Voll, K., and Stede, M. (2011).

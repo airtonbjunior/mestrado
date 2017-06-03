@@ -4,45 +4,45 @@ The top-level auxiliary file: projeto.aux
 The style file: apalike.bst
 Database file #1: projeto.bib
 Warning--can't use both author and editor fields in Zhou2014
-You've used 22 entries,
+You've used 24 entries,
             1935 wiz_defined-function locations,
-            621 strings with 8723 characters,
-and the built_in function-call counts, 10168 in all, are:
-= -- 1050
-> -- 336
-< -- 25
-+ -- 116
-- -- 110
-* -- 798
-:= -- 1634
-add.period$ -- 74
-call.type$ -- 22
-change.case$ -- 164
-chr.to.int$ -- 22
-cite$ -- 23
-duplicate$ -- 444
-empty$ -- 754
-format.name$ -- 146
-if$ -- 2134
+            638 strings with 9052 characters,
+and the built_in function-call counts, 11005 in all, are:
+= -- 1136
+> -- 361
+< -- 26
++ -- 124
+- -- 118
+* -- 875
+:= -- 1775
+add.period$ -- 80
+call.type$ -- 24
+change.case$ -- 178
+chr.to.int$ -- 24
+cite$ -- 25
+duplicate$ -- 472
+empty$ -- 819
+format.name$ -- 156
+if$ -- 2297
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 23
-newline$ -- 113
-num.names$ -- 66
-pop$ -- 153
+missing$ -- 25
+newline$ -- 123
+num.names$ -- 72
+pop$ -- 162
 preamble$ -- 1
-purify$ -- 165
+purify$ -- 179
 quote$ -- 0
-skip$ -- 358
+skip$ -- 379
 stack$ -- 0
-substring$ -- 774
-swap$ -- 122
+substring$ -- 863
+swap$ -- 124
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 130
+type$ -- 142
 warning$ -- 1
-while$ -- 88
+while$ -- 96
 width$ -- 0
-write$ -- 308
+write$ -- 334
 (There was 1 warning)

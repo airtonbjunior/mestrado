@@ -1,5 +1,11 @@
 \begin{thebibliography}{}
 
+\bibitem[Abbasi et~al., 2008]{Abbasi}
+Abbasi, A., Chen, H., and Salem, A. (2008).
+\newblock Sentiment analysis in multiple languages: Feature selection for
+  opinion classification in web forums.
+\newblock {\em ACM Trans. Inf. Syst.}, 26(3):12:1--12:34.
+
 \bibitem[Asghar et~al., 2014]{asghar2014review}
 Asghar, M.~Z., Khan, A., Ahmad, S., and Kundi, F.~M. (2014).
 \newblock A review of feature extraction in sentiment analysis.
@@ -34,6 +40,11 @@ Duwairi, R.~M., Ahmed, N.~A., and Al-Rifai, S.~Y. (2015).
 Eisenstein, J. (2016).
 \newblock Unsupervised learning for lexicon-based classification.
 \newblock {\em CoRR}, abs/1611.06933.
+
+\bibitem[Fogel, 2000]{Fogel2000}
+Fogel, D.~B. (2000).
+\newblock What is evolutionary computation?
+\newblock {\em IEEE Spectr.}, 37(2):26, 28--32.
 
 \bibitem[Ghaleb and Vijendran, 2016]{ghaleb2016survey}
 Ghaleb, O. A.~M. and Vijendran, A.~S. (2016).

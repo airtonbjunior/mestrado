@@ -72,7 +72,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries Expansão automatizada de Léxicos para a Análise de Sentimentos por meio de programação evolucionária}\\[0.4cm] % Title of your document
+{ \huge \bfseries Expansão automatizada de Léxicos para a Análise de Sentimentos por meio de Programação Evolucionária}\\[0.4cm] % Title of your document
 \HRule \\[1.5cm]
 
 %----------------------------------------------------------------------------------------
@@ -207,16 +207,16 @@ A maior parte dos trabalhos citados trata de todo o processo de Análise de Sent
 
 Ainda tratando especificamente de Léxicos, \cite{kaji} aborda uma estratégia de criação e expansão de dicionários analisando uma coleção de páginas HTML. Apesar de trabalhar com o idioma japonês, a técnica pode ser adequada para outros idiomas.
 
-Apesar de fornecer resultados consistentes, a abordagem de Análise de Sentimentos baseada em Dicionário tem algumas limitações. Uma delas ocorre do fato de que é virtualmente impossível trabalhar com todas as palavras possíveis. Esse fato se agrava quando estamos trabalhando com opiniões expressadas em redes sociais, com uma grande quantidade de gírias, abreviações, siglas, entre outros. Além disso, quanto maior o dicionário, maiores as chances da Orientação Semântica das palavras estarem inconsistentes. Outro problema nessa abordagem é a mudança de domínio de análise. Muitas vezes, uma palavra que possui uma polaridade em um contexto específico pode ser neutra em outro e, em alguns casos, pode até inverter completamente o sentido sentimental. Para ilustrar, a palavra "câncer" em um contexto técnico pode não ter uma Orientação Semântica negativa, diferentemente de outros domínios. \cite{kdir16} cita algumas diferenças e inconsistências que podem ocorrer na mudança de domínio.
+Apesar de fornecer resultados consistentes, a abordagem de Análise de Sentimentos baseada em Dicionário tem algumas limitações. Uma delas ocorre do fato de que é virtualmente impossível trabalhar com todas as palavras possíveis. Esse fato se agrava quando estamos trabalhando com opiniões expressadas em redes sociais, com uma grande quantidade de gírias, abreviações, siglas, entre outros. Além disso, quanto maior o dicionário, maiores as chances da Orientação Semântica das palavras estarem inconsistentes. Outro problema nessa abordagem é a mudança de domínio de análise. Muitas vezes, uma palavra que possui uma polaridade em um contexto específico pode ser neutra em outro e, em alguns casos, pode até inverter completamente o sentido sentimental. Para ilustrar, a palavra "câncer" em um contexto técnico pode não ter uma Orientação Semântica negativa, diferentemente de outros domínios. \cite{kdir16} e \cite{Abbasi} citam inconsistências que podem ocorrer na mudança de domínio.
 
 Determinar a polaridade correta da palavra, para cada contexto, portanto, apresenta-se como um desafio para as pesquisas na área. Mesmo as principais técnicas utilizadas, como pode ser visto em \cite{taboada2011lexicon}, demandam uma validação manual considerável, e em alguns contextos específicos, como política, não atingem resultados satisfatórios.
 
-Testar todas as possibilidades para a criação de um Dicionário Léxico perfeito, ou com o menor erro possível, também torna-se inviável, pois demandaria a resolução de um problema combinatório com muitas variáveis, o que demandaria um tempo exponencial de processamento, caracterizando-se como um problema NP-completo, ou seja, não solucionável em tempo polinomial.
+A tentativa de criação de um dicionário por meio de um processo determinístico, testando todas as diferentes possibilidades de polaridades para cada palavras torna-se inviável, pois demandaria a resolução de um problema combinatório com muitas variáveis, o que exigiria um tempo exponencial de processamento, caracterizando-se como um problema NP-completo, ou seja, não solucionável em tempo polinomial.
 
+Uma forma eficiente de resolver essa classe de problemas é a utilização de algoritmos bioinspirados. Por sua característica inerentemente paralela, esse tipo de abordagem consegue encontrar soluções ótimas para problemas complexos com grandes espaços de busca. Apesar de, geralmente, iniciar a busca da solução de forma aleatória, processos de modificação e adequação do algoritmo (nesse contexto chamado de operadores genéticos) permitem que as melhores soluções sejam selecionadas e evoluídas, de forma a maximizar o resultado final do processo. \cite{Abbasi} discorre sobre alguns pontos do tema.
 
-CONTINUAR DAQUI PARA BAIXO
+Programação Evolutiva, da classe das soluções bioinspiradas, pode ser utilizada para resolver o problema da criação de um Dicionário Léxico. A técnica, como apresentada em \cite{Fogel2000}
 
-Uma forma eficiente de resolver essa classe de problemas é a utilização de algoritmos bioinspirados. Por sua característica inerentemente paralela, esse tipo de abordagem consegue encontrar soluções ótimas para problemas complexos com grandes espaços de busca. Apesar de, geralmente, iniciar a busca da solução de forma aleatória, processos de modificação e adequação do algoritmo (nesse contexto chamado de operadores genéticos) permitem que as melhores soluções sejam selecionadas e evoluídas, de forma a maximizar o resultado final do processo.
 
 Para testar a acurácia dos resultados desse processo, é necessário realizar testes em classificadores de sentimentos disponíveis, bem como a utilização de conjuntos de opiniões previamente avaliados por especialistas humanos, para comparar com os resultados da solução proposta.
 

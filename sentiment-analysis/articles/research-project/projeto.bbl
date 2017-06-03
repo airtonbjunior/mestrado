@@ -11,6 +11,13 @@ Bandhakavi, A., Wiratunga, N., Padmanabhan, D., and Massie, S. (2016).
 \newblock Lexicon based feature extraction for emotion text classification.
 \newblock {\em Pattern Recognition Letters}, pages~--.
 
+\bibitem[Becker et~al., 2013]{becker2013}
+Becker, L., Erhart, G., Skiba, D., and Matula, V. (2013).
+\newblock Avaya: Sentiment analysis on twitter with self-training and polarity
+  lexicon expansion.
+\newblock In {\em Second Joint Conference on Lexical and Computational
+  Semantics (* SEM)}, volume~2, pages 333--340.
+
 \bibitem[Ding et~al., 2008]{ding2008holistic}
 Ding, X., Liu, B., and Yu, P.~S. (2008).
 \newblock A holistic lexicon-based approach to opinion mining.
@@ -33,6 +40,31 @@ Ghaleb, O. A.~M. and Vijendran, A.~S. (2016).
 \newblock Survey and analysis of recent sentiment analysis schemes relating to
   social media.
 \newblock {\em Indian Journal of Science and Technology}, 9(41).
+
+\bibitem[Guimaraes et~al., 2016]{kdir16}
+Guimaraes, N., Torgo, L., and Figueira, A. (2016).
+\newblock Lexicon expansion system for domain and time oriented sentiment
+  analysis.
+\newblock In {\em Proceedings of the 8th International Joint Conference on
+  Knowledge Discovery, Knowledge Engineering and Knowledge Management (IC3K
+  2016)}, pages 463--471.
+
+\bibitem[Hatzivassiloglou and McKeown, 1997]{Hatzivassiloglou}
+Hatzivassiloglou, V. and McKeown, K.~R. (1997).
+\newblock Predicting the semantic orientation of adjectives.
+\newblock In {\em Proceedings of the 35th Annual Meeting of the Association for
+  Computational Linguistics and Eighth Conference of the European Chapter of
+  the Association for Computational Linguistics}, ACL '98, pages 174--181,
+  Stroudsburg, PA, USA. Association for Computational Linguistics.
+
+\bibitem[Kaji and Kitsuregawa, 2007]{kaji}
+Kaji, N. and Kitsuregawa, M. (2007).
+\newblock Building lexicon for sentiment analysis from massive collection of
+  html documents.
+\newblock In {\em Proceedings of the 2007 Joint Conference on Empirical Methods
+  in Natural Language Processing and Computational Natural Language Learning
+  (EMNLP-CoNLL)}, pages 1075--1083, Prague, Czech Republic. Association for
+  Computational Linguistics.
 
 \bibitem[Kanayama and Nasukawa, 2006]{Kanayama2006}
 Kanayama, H. and Nasukawa, T. (2006).
@@ -64,6 +96,29 @@ Mohammad, S.~M. (2016).
 \newblock {\em A Practical Guide to Sentiment Analysis, D. Das, E. Cambria, and
   S. Bandyopadhyay, Eds. Springer}.
 
+\bibitem[Pantel and Pennacchiotti, 2006]{Pantel2006}
+Pantel, P. and Pennacchiotti, M. (2006).
+\newblock Espresso: Leveraging generic patterns for automatically harvesting
+  semantic relations.
+\newblock In {\em Proceedings of the 21st International Conference on
+  Computational Linguistics and the 44th Annual Meeting of the Association for
+  Computational Linguistics}, ACL-44, pages 113--120, Stroudsburg, PA, USA.
+  Association for Computational Linguistics.
+
+\bibitem[Pinto et~al., 2007]{Pinto2007}
+Pinto, D., Rosso, P., and Jim{\'e}nez-Salazar, H. (2007).
+\newblock Upv-si: Word sense induction using self term expansion.
+\newblock In {\em Proceedings of the 4th International Workshop on Semantic
+  Evaluations}, SemEval '07, pages 430--433, Stroudsburg, PA, USA. Association
+  for Computational Linguistics.
+
+\bibitem[Rodrigues et~al., 2016]{Rodrigues2016}
+Rodrigues, R.~G., das Dores, R.~M., Camilo-Junior, C.~G., and Rosa, T.~C.
+  (2016).
+\newblock Sentihealth-cancer: A sentiment analysis tool to help detecting mood
+  of patients in online social networks.
+\newblock {\em International Journal of Medical Informatics}, 85(1):80 -- 95.
+
 \bibitem[Taboada et~al., 2011]{taboada2011lexicon}
 Taboada, M., Brooke, J., Tofiloski, M., Voll, K., and Stede, M. (2011).
 \newblock Lexicon-based methods for sentiment analysis.
@@ -83,5 +138,11 @@ Widdows, D. and Dorow, B. (2002).
 \newblock In {\em Proceedings of the 19th international conference on
   Computational linguistics-Volume 1}, pages 1--7. Association for
   Computational Linguistics.
+
+\bibitem[Zhou et~al., 2014]{Zhou2014}
+Zhou, Z., Zhang, X., and Sanderson, M. (2014).
+\newblock {\em Sentiment Analysis on Twitter through Topic-Based Lexicon
+  Expansion}, pages 98--109.
+\newblock Springer International Publishing, Cham.
 
 \end{thebibliography}

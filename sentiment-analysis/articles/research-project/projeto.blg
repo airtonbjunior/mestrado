@@ -3,49 +3,53 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: projeto.aux
 The style file: apalike.bst
 Database file #1: projeto.bib
+Repeated entry---line 479 of file projeto.bib
+ : @inproceedings{Kanayama2006
+ :                            ,
+I'm skipping whatever remains of this entry
 Warning--empty year in back
 Warning--empty journal in silva2010automatic
 Warning--empty journal in silveirageraccao
 Warning--can't use both author and editor fields in Zhou2014
-You've used 32 entries,
+You've used 33 entries,
             1935 wiz_defined-function locations,
-            681 strings with 10784 characters,
-and the built_in function-call counts, 14753 in all, are:
-= -- 1512
-> -- 520
+            689 strings with 11012 characters,
+and the built_in function-call counts, 15180 in all, are:
+= -- 1554
+> -- 538
 < -- 31
-+ -- 180
-- -- 172
-* -- 1178
-:= -- 2389
-add.period$ -- 105
-call.type$ -- 32
-change.case$ -- 245
-chr.to.int$ -- 32
-cite$ -- 36
-duplicate$ -- 630
-empty$ -- 1079
-format.name$ -- 220
-if$ -- 3066
++ -- 188
+- -- 178
+* -- 1215
+:= -- 2464
+add.period$ -- 109
+call.type$ -- 33
+change.case$ -- 253
+chr.to.int$ -- 33
+cite$ -- 37
+duplicate$ -- 644
+empty$ -- 1108
+format.name$ -- 227
+if$ -- 3149
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 33
-newline$ -- 162
-num.names$ -- 96
-pop$ -- 237
+missing$ -- 34
+newline$ -- 168
+num.names$ -- 99
+pop$ -- 242
 preamble$ -- 1
-purify$ -- 246
+purify$ -- 254
 quote$ -- 0
-skip$ -- 498
+skip$ -- 508
 stack$ -- 0
-substring$ -- 1113
-swap$ -- 162
+substring$ -- 1148
+swap$ -- 163
 text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 190
+type$ -- 196
 warning$ -- 4
-while$ -- 127
+while$ -- 130
 width$ -- 0
-write$ -- 439
-(There were 4 warnings)
+write$ -- 454
+(There was 1 error message)

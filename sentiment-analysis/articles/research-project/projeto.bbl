@@ -80,6 +80,13 @@ Guimaraes, N., Torgo, L., and Figueira, A. (2016).
   Knowledge Discovery, Knowledge Engineering and Knowledge Management (IC3K
   2016)}, pages 463--471.
 
+\bibitem[Haddi et~al., 2013]{HADDI2013}
+Haddi, E., Liu, X., and Shi, Y. (2013).
+\newblock The role of text pre-processing in sentiment analysis.
+\newblock {\em Procedia Computer Science}, 17:26 -- 32.
+\newblock First International Conference on Information Technology and
+  Quantitative Management.
+
 \bibitem[Hatzivassiloglou and McKeown, 1997]{Hatzivassiloglou}
 Hatzivassiloglou, V. and McKeown, K.~R. (1997).
 \newblock Predicting the semantic orientation of adjectives.

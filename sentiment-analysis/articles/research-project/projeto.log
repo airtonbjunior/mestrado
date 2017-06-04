@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  3 JUN 2017 21:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  4 JUN 2017 04:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -970,14 +970,14 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
  [5
 
 ]
-Overfull \hbox (5.72392pt too wide) in paragraph at lines 189--190
-[]\T1/ppl/m/n/10.95 A Aná-lise de sen-ti-men-tos é uma área de pes-quisa mul-ti
--dis-ci-pli-nar, como bem apre-senta [[]].
+Overfull \hbox (7.70201pt too wide) in paragraph at lines 189--190
+\T1/ppl/m/n/10.95 [[]], [[]], [[]], [[]],
  []
 
 
-Overfull \hbox (7.70201pt too wide) in paragraph at lines 189--190
-\T1/ppl/m/n/10.95 [[]], [[]], [[]], [[]],
+Overfull \hbox (11.1122pt too wide) in paragraph at lines 201--202
+[]\T1/ppl/m/n/10.95 Entre os prin-ci-pais tra-ba-lhos da área de Aná-lise de Se
+n-ti-men-tos po-de-mos ci-tar [[]],
  []
 
 [6
@@ -999,10 +999,10 @@ Overfull \hbox (7.70201pt too wide) in paragraph at lines 189--190
 AED: lastpage setting LastPage
 [16] (./projeto.aux) ) 
 Here is how much of TeX's memory you used:
- 15812 strings out of 493013
- 317988 string characters out of 6136993
- 377957 words of memory out of 5000000
- 19026 multiletter control sequences out of 15000+600000
+ 15814 strings out of 493013
+ 318015 string characters out of 6136993
+ 377977 words of memory out of 5000000
+ 19028 multiletter control sequences out of 15000+600000
  27961 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,11n,66p,1120b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1014,7 +1014,7 @@ nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palati
 no/uplb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><
 c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on projeto.pdf (17 pages, 194122 bytes).
+Output written on projeto.pdf (17 pages, 196051 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

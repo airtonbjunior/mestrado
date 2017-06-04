@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  4 JUN 2017 04:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  4 JUN 2017 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -949,33 +949,24 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 121.
  [1
 
-]
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 125.
-
- (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omsppl.fd
-File: omsppl.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 125.
- [2
+] [2
 
 ] [3
 
-]
-[4
+] [4
 
 ]
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 172.
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 175.
  [5
 
 ]
-Overfull \hbox (7.70201pt too wide) in paragraph at lines 189--190
+Overfull \hbox (7.70201pt too wide) in paragraph at lines 192--193
 \T1/ppl/m/n/10.95 [[]], [[]], [[]], [[]],
  []
 
 
-Overfull \hbox (11.1122pt too wide) in paragraph at lines 201--202
+Overfull \hbox (11.1122pt too wide) in paragraph at lines 204--205
 []\T1/ppl/m/n/10.95 Entre os prin-ci-pais tra-ba-lhos da área de Aná-lise de Se
 n-ti-men-tos po-de-mos ci-tar [[]],
  []
@@ -999,10 +990,10 @@ n-ti-men-tos po-de-mos ci-tar [[]],
 AED: lastpage setting LastPage
 [16] (./projeto.aux) ) 
 Here is how much of TeX's memory you used:
- 15814 strings out of 493013
- 318015 string characters out of 6136993
- 377977 words of memory out of 5000000
- 19028 multiletter control sequences out of 15000+600000
+ 15797 strings out of 493013
+ 317727 string characters out of 6136993
+ 377978 words of memory out of 5000000
+ 19014 multiletter control sequences out of 15000+600000
  27961 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,11n,66p,1120b,698s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1010,14 +1001,13 @@ Here is how much of TeX's memory you used:
 c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texliv
 e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palati
-no/uplb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><
-c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on projeto.pdf (17 pages, 196051 bytes).
+nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/u
+rw/palatino/uplb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/upl
+r8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on projeto.pdf (17 pages, 190349 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

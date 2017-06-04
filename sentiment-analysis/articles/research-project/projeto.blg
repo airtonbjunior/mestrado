@@ -4,47 +4,48 @@ The top-level auxiliary file: projeto.aux
 The style file: apalike.bst
 Database file #1: projeto.bib
 Warning--empty year in back
+Warning--empty journal in silva2010automatic
 Warning--empty journal in silveirageraccao
 Warning--can't use both author and editor fields in Zhou2014
-You've used 26 entries,
+You've used 32 entries,
             1935 wiz_defined-function locations,
-            646 strings with 9550 characters,
-and the built_in function-call counts, 11873 in all, are:
-= -- 1219
-> -- 402
-< -- 27
-+ -- 138
-- -- 132
-* -- 942
-:= -- 1920
-add.period$ -- 85
-call.type$ -- 26
-change.case$ -- 195
-chr.to.int$ -- 26
-cite$ -- 29
-duplicate$ -- 510
-empty$ -- 878
-format.name$ -- 172
-if$ -- 2472
+            681 strings with 10784 characters,
+and the built_in function-call counts, 14753 in all, are:
+= -- 1512
+> -- 520
+< -- 31
++ -- 180
+- -- 172
+* -- 1178
+:= -- 2389
+add.period$ -- 105
+call.type$ -- 32
+change.case$ -- 245
+chr.to.int$ -- 32
+cite$ -- 36
+duplicate$ -- 630
+empty$ -- 1079
+format.name$ -- 220
+if$ -- 3066
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 27
-newline$ -- 132
-num.names$ -- 78
-pop$ -- 187
+missing$ -- 33
+newline$ -- 162
+num.names$ -- 96
+pop$ -- 237
 preamble$ -- 1
-purify$ -- 196
+purify$ -- 246
 quote$ -- 0
-skip$ -- 405
+skip$ -- 498
 stack$ -- 0
-substring$ -- 911
-swap$ -- 132
-text.length$ -- 14
+substring$ -- 1113
+swap$ -- 162
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 154
-warning$ -- 3
-while$ -- 103
+type$ -- 190
+warning$ -- 4
+while$ -- 127
 width$ -- 0
-write$ -- 356
-(There were 3 warnings)
+write$ -- 439
+(There were 4 warnings)

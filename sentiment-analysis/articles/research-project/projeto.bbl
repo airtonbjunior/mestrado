@@ -31,6 +31,13 @@ Bäck, T., Rudolph, G., and paul Schwefel, H.
 \newblock In {\em In Proceedings of the Second Annual Conference on
   Evolutionary Programming}, pages 11--22.
 
+\bibitem[D'Andrea et~al., 2015]{Alessia}
+D'Andrea, A., Ferri, F., Grifoni, P., and Guzzo, T. (2015).
+\newblock Article: Approaches, tools and applications for sentiment analysis
+  implementation.
+\newblock {\em International Journal of Computer Applications}, 125(3):26--33.
+\newblock Published by Foundation of Computer Science (FCS), NY, USA.
+
 \bibitem[Ding et~al., 2008]{ding2008holistic}
 Ding, X., Liu, B., and Yu, P.~S. (2008).
 \newblock A holistic lexicon-based approach to opinion mining.
@@ -47,6 +54,12 @@ Duwairi, R.~M., Ahmed, N.~A., and Al-Rifai, S.~Y. (2015).
 Eisenstein, J. (2016).
 \newblock Unsupervised learning for lexicon-based classification.
 \newblock {\em CoRR}, abs/1611.06933.
+
+\bibitem[Ferreira et~al., 2015]{ferreira2015using}
+Ferreira, L., Dosciatti, M., Nievola, J.~C., and Paraiso, E.~C. (2015).
+\newblock Using a genetic algorithm approach to study the impact of imbalanced
+  corpora in sentiment analysis.
+\newblock In {\em FLAIRS Conference}, pages 163--168.
 
 \bibitem[Fogel, 2000]{Fogel2000}
 Fogel, D.~B. (2000).
@@ -74,6 +87,12 @@ Hatzivassiloglou, V. and McKeown, K.~R. (1997).
   Computational Linguistics and Eighth Conference of the European Chapter of
   the Association for Computational Linguistics}, ACL '98, pages 174--181,
   Stroudsburg, PA, USA. Association for Computational Linguistics.
+
+\bibitem[Iqbal et~al., 2015]{Iqbal}
+Iqbal, M., Karim, A., and Kamiran, F. (2015).
+\newblock Bias-aware lexicon-based sentiment analysis.
+\newblock In {\em Proceedings of the 30th Annual ACM Symposium on Applied
+  Computing}, SAC '15, pages 845--850, New York, NY, USA. ACM.
 
 \bibitem[Kaji and Kitsuregawa, 2007]{kaji}
 Kaji, N. and Kitsuregawa, M. (2007).
@@ -114,6 +133,14 @@ Mohammad, S.~M. (2016).
 \newblock {\em A Practical Guide to Sentiment Analysis, D. Das, E. Cambria, and
   S. Bandyopadhyay, Eds. Springer}.
 
+\bibitem[Pang et~al., 2002]{Pang2002}
+Pang, B., Lee, L., and Vaithyanathan, S. (2002).
+\newblock Thumbs up?: Sentiment classification using machine learning
+  techniques.
+\newblock In {\em Proceedings of the ACL-02 Conference on Empirical Methods in
+  Natural Language Processing - Volume 10}, EMNLP '02, pages 79--86,
+  Stroudsburg, PA, USA. Association for Computational Linguistics.
+
 \bibitem[Pantel and Pennacchiotti, 2006]{Pantel2006}
 Pantel, P. and Pennacchiotti, M. (2006).
 \newblock Espresso: Leveraging generic patterns for automatically harvesting
@@ -137,6 +164,11 @@ Rodrigues, R.~G., das Dores, R.~M., Camilo-Junior, C.~G., and Rosa, T.~C.
   of patients in online social networks.
 \newblock {\em International Journal of Medical Informatics}, 85(1):80 -- 95.
 
+\bibitem[Silva et~al., 2010]{silva2010automatic}
+Silva, M.~J., Carvalho, P., Costa, C., and Sarmento, L. (2010).
+\newblock Automatic expansion of a social judgment lexicon for sentiment
+  analysis.
+
 \bibitem[Silveira et~al., 2014]{silveirageraccao}
 Silveira, B.~B., Leit{\~a}o-J{\'u}nior, P.~S., Ramada, M.~S., and Martins,
   B.~P. (2014).
@@ -156,6 +188,11 @@ Turney, P.~D. (2002).
 \newblock In {\em Proceedings of the 40th Annual Meeting on Association for
   Computational Linguistics}, ACL '02, pages 417--424, Stroudsburg, PA, USA.
   Association for Computational Linguistics.
+
+\bibitem[Vohra and Teraiya, 2013]{vohra2013comparative}
+Vohra, S. and Teraiya, J. (2013).
+\newblock A comparative study of sentiment analysis techniques.
+\newblock {\em Journal JIKRCE}, 2(2):313--317.
 
 \bibitem[Widdows and Dorow, 2002]{widdows2002graph}
 Widdows, D. and Dorow, B. (2002).

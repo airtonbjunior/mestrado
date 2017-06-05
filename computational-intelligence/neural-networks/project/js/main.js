@@ -9,7 +9,7 @@ UFG master's program
 */
 
 LEARN_RATE = 0;
-ITERATIONS = 1000;
+ITERATIONS = 5000;
 HIDDEN_LAYERS = 1;
 HIDDEN_LAYER = []; // if necessary have more than one layer, the HIDDEN_LAYER is an array
 OUTPUT_LAYER = [];
@@ -65,10 +65,10 @@ console.log(OUTPUT_LAYER);
 /* Train the network with the dataset of test */
 function training_network () {
 	
-	for(var iii = 0; iii < ITERATIONS; iii++) {
-		for(var ii = 0; ii < INPUT_TEST.length; ii++) {
+	for(var iii = 0; iii < INPUT_TEST.length; iii++) {
+		for(var ii = 0; ii < ITERATIONS; ii++) {
 
-			//ACTUAL_INPUT = ii;
+			ACTUAL_INPUT = iii;
 			console.log("					===== Testing with the input " + INPUT_TEST[ACTUAL_INPUT].input + " =====");
 
 			/* hardcoded because I'm always using 1 hidden layer. Change this to do this dinamically (loop through HIDDEN_LAYER) */

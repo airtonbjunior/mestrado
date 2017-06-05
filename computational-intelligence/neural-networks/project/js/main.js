@@ -16,7 +16,7 @@ OUTPUT_LAYER = [];
 INPUTS = 2;
 OUTPUTS = 1;
 ACTIVATION_FUNCTION = "default";
-DECIMAL_PLACES = 2;
+DECIMAL_PLACES = 9;
 
 /* Reference structure of a perceptron */
 PERCEPTRON = {
@@ -52,7 +52,11 @@ INPUT_TEST = [
 create_layer(3, INPUTS, "hidden");
 create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
 
+console.log(HIDDEN_LAYER);
+console.log(OUTPUT_LAYER);
+
 training_network();
+
 console.log(HIDDEN_LAYER);
 console.log(OUTPUT_LAYER);
 
@@ -75,22 +79,40 @@ function training_network () {
 		OUTPUT_LAYER[i].activation_function_value = activation_function(OUTPUT_LAYER[i], ACTIVATION_FUNCTION);
 	}
 
-	
-	//test_perceptron = {
-	//	transfer_function_value: 1.235
-	//}
-	//console.log((calc_sigmoid(test_perceptron) * (1 - calc_sigmoid(test_perceptron))) * -0.77);
-
 
 	// hardcoded on [0]
 	var output_error = INPUT_TEST[0].output - get_output(OUTPUT_LAYER).activation_function_value;
-	var delta_output_sum = (calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) * (output_error));
+	var delta_output_sum = (calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) * (output_error)); 
 
-	console.log(INPUT_TEST[0].output + " - " + get_output(OUTPUT_LAYER).activation_function_value);
-	console.log("output_error " + output_error);
-	console.log(calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) + " * " + output_error);
-	console.log("delta_output_sum " + delta_output_sum);
+	update_weights(delta_output_sum, "output");
+	update_weights(delta_output_sum, "hidden");
 
+
+	//console.log(INPUT_TEST[0].output + " - " + get_output(OUTPUT_LAYER).activation_function_value);
+	//console.log("output_error " + output_error);
+	//console.log(calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) + " * " + output_error);
+	//console.log("delta_output_sum " + delta_output_sum);
+
+}
+
+
+/* Update the weights */
+function update_weights(delta_output_sum, layer_type) {
+	var delta_weight = 0;
+	if(layer_type === "output") {
+		for (var i = 0; i < HIDDEN_LAYER[0].length; i++) {
+			delta_weight = parseFloat(HIDDEN_LAYER[0][i].activation_function_value * delta_output_sum);
+			
+			console.log("delta weight " + delta_weight);
+			console.log("previous value " + OUTPUT_LAYER[0].weights[i]);
+			console.log("new value (delta + previous) " + parseFloat(OUTPUT_LAYER[0].weights[i] + delta_weight));
+			
+			OUTPUT_LAYER[0].weights[i] = OUTPUT_LAYER[0].weights[i] + delta_weight; // update the weights (harcoded)
+		}
+	}	
+	else if (layer_type === "hidden") {
+		
+	}
 }
 
 
@@ -124,7 +146,7 @@ function create_layer(num_perceptrons, num_weights, type_layer) {
 /* Initialize the weights randomly [0,1] */
 function initialize_weights(perceptron, quantity) {
 	for(var i = 0; i < quantity; i++) {
-		perceptron.weights[i] = Math.random().toFixed(DECIMAL_PLACES); // Fixed 2 decimal places
+		perceptron.weights[i] = parseFloat(Math.random().toFixed(2)); // Fixed 2 decimal places
 	}
 }
 

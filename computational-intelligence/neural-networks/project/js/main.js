@@ -12,16 +12,21 @@ LEARN_RATE = 0;
 ITERATIONS = 0;
 HIDDEN_LAYERS = 1;
 HIDDEN_LAYER = []; // if necessary have more than one layer, the HIDDEN_LAYER is an array
+OUTPUT_LAYER = [];
 INPUTS = 2;
 OUTPUTS = 1;
+ACTIVATION_FUNCTION = "default";
+DECIMAL_PLACES = 2;
 
+/* Reference structure of a perceptron */
 PERCEPTRON = {
 	inputs: [],
 	weights: [],
-	transfer_function_value: 0
+	transfer_function_value: 0, 
+	activation_function_value: 0
 }
 
-
+/* dataset of test */
 INPUT_TEST = [
 	{
 		input: [1, 1], 
@@ -41,27 +46,39 @@ INPUT_TEST = [
 	}	
 ]
 
-ACTIVATION_FUNCTION = "default";
 
+// Create a hidden layer (hardcoded 3 yet)
+create_layer(3, INPUTS, "hidden");
+// Quantity of perceptrons of the last layer is the number of inputs of the last layer
+create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
 
-create_hidden_layer(3, INPUTS);
 training_network();
 console.log(HIDDEN_LAYER);
+console.log(OUTPUT_LAYER);
 
 
+/* Train the network with the dataset of test */
 function training_network () {
 	/* hardcoded because I'm always using 1 hidden layer. Change this to do this dinamically (loop through HIDDEN_LAYER) */
 	for (var i = 0; i < HIDDEN_LAYER[0].length; i++) {
-		set_inputs(HIDDEN_LAYER[0][i], INPUT_TEST[0].input);
+		set_inputs(HIDDEN_LAYER[0][i], INPUT_TEST[0].input, "hidden");		
 
-		/* Calc the transfer function */
-		HIDDEN_LAYER[0][i].transfer_function_value = transfer_function(HIDDEN_LAYER[0][i]);
+		/* Calc the transfer and activation function */
+		HIDDEN_LAYER[0][i].transfer_function_value 	 = transfer_function(HIDDEN_LAYER[0][i]);
+		HIDDEN_LAYER[0][i].activation_function_value = activation_function(HIDDEN_LAYER[0][i], ACTIVATION_FUNCTION);
 	}	
+
+	/* The outputs of the last hidden layer is the input of the output layer */
+	for (var i = 0; i < OUTPUT_LAYER.length; i++) {
+		set_inputs(OUTPUT_LAYER[i], null, "output");
+		OUTPUT_LAYER[i].transfer_function_value = transfer_function(OUTPUT_LAYER[i]);
+		OUTPUT_LAYER[i].activation_function_value = activation_function(OUTPUT_LAYER[i], ACTIVATION_FUNCTION);
+	}
 }
 
 
-/* Create a hidden layer */
-function create_hidden_layer(num_perceptrons, num_weights) {
+/* Create a layer */
+function create_layer(num_perceptrons, num_weights, type_layer) {
 	var layer = [];
 	var perceptron;
 
@@ -70,7 +87,8 @@ function create_hidden_layer(num_perceptrons, num_weights) {
 		perceptron = {
 			inputs: [], 
 			weights: [], 
-			transfer_function_value: 0
+			transfer_function_value: 0, 
+			activation_function_value: 0
 		}
 
 		initialize_weights(perceptron, num_weights);
@@ -78,21 +96,32 @@ function create_hidden_layer(num_perceptrons, num_weights) {
 
 		perceptron = {};
 	}
-	HIDDEN_LAYER.push(layer);	
+
+	if(type_layer === "hidden")
+		HIDDEN_LAYER.push(layer);	
+	else if(type_layer === "output")
+		OUTPUT_LAYER = layer;	
 }
 
 
 /* Initialize the weights randomly [0,1] */
 function initialize_weights(perceptron, quantity) {
 	for(var i = 0; i < quantity; i++) {
-		perceptron.weights[i] = getRandom(0, 1);
+		perceptron.weights[i] = Math.random().toFixed(DECIMAL_PLACES); // Fixed 2 decimal places
 	}
 }
 
 
 /* Set the input values to the perceptron */
-function set_inputs(perceptron, inputs) {
-	perceptron.inputs = inputs;
+function set_inputs(perceptron, inputs, type_layer) {
+	if(type_layer === "hidden")
+		perceptron.inputs = inputs;
+	else if(type_layer === "output") {
+		var last_hidden_layer = HIDDEN_LAYER[HIDDEN_LAYER.length-1];
+		for (var i = 0; i < last_hidden_layer.length; i++) {
+			perceptron.inputs[i] = last_hidden_layer[i].activation_function_value;
+		}
+	}
 }
 
 
@@ -103,8 +132,23 @@ function transfer_function(perceptron) {
 		sum += perceptron.inputs[i] * perceptron.weights[i];
 	}
 
-	return sum;
+	return sum.toFixed(DECIMAL_PLACES);
 }
+
+
+/* Calc the activation function */
+function activation_function(perceptron, type_function) {
+	if(type_function === "default") {
+		return calc_sigmoid(perceptron).toFixed(DECIMAL_PLACES);
+	}
+}
+
+
+/* Calc the sigmoid function */
+function calc_sigmoid(perceptron) {
+	return 1/(1+Math.pow(Math.E, -perceptron.transfer_function_value));
+}
+
 
 
 /* Process before call the main start */

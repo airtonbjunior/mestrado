@@ -4,6 +4,125 @@
 	<title>Neural Network</title>
 </head>
 <body>
+	<h1>Artificial Neural Network</h1>
+	<div class="container">
+		<div class="params-inputs">
+			<h2>Algorithm Parameters</h2>
+			<div class="input-value">
+				<p>Interactions</p>
+				<input id="iterations" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Hidden Layers</p>
+				<input id="hiddenLayers" type="number" readonly="readonly"/> 
+			</div>
+			<div class="input-value">
+				<p>Perceptrons</p>
+				<input id="perceptrons" type="number" pattern="[1-100]"/> 
+			</div>			
+			<div class="input-value">
+				<p>Inputs</p>
+				<input id="inputs" type="number" pattern="[1-100]"/> 
+			</div>
+			<div class="input-value">
+				<p>Outputs</p>
+				<input id="outputs" type="number" pattern="[1-100]"/> 
+			</div>	
+			<div class="input-value">
+				<p>Learn Rate</p>
+				<input id="learnRate" type="number" pattern="[1-100]"/> 
+			</div>				
+			<p>Activation Function </p>
+			<select id="selection-type" class="input-value">
+  				<option value="elitism">Sigmoid</option>
+  				<!-- <option value="tournament">Tournament</option> -->
+			</select>
+			<div class="min-max-func-label">
+				<span id="min-func"></span>
+				<span id="max-func"></span>
+			</div>
+		</div>
+
+		<div class="function-definition">
+			<h2>Function Parameters</h2>
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param0" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result0" type="number"/> 
+				</div>
+			</div>
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param1" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result1" type="number"/> 
+				</div>
+			</div>
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param2" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result2" type="number"/> 
+				</div>
+			</div>	
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param3" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result3" type="number"/> 
+				</div>
+			</div>
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param4" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result4" type="number"/> 
+				</div>
+			</div>	
+			<div class="input-value-function-row">
+				<div class="input-value-function">
+					<p>X value</p>
+					<input id="param5" type="number"/> 
+				</div>
+				<div class="input-value-function">
+					<p>Result</p>
+					<input id="result5" type="number"/> 
+				</div>
+			</div>				
+			<button id="btn-start" class="btn-start">Start</button>
+		</div>
+		
+		<div id="ct-chart" class="ct-chart ct-perfect-fourth">
+			<div id="loading-icon">
+				<i class=""></i>
+				<span class="sr-only">Loading...</span>
+			</div>
+			<div id="result">
+				&nbsp
+			</div>
+		</div>
+	</div>
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

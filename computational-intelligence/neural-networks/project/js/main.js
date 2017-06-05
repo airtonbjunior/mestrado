@@ -9,7 +9,8 @@ UFG master's program
 */
 
 LEARN_RATE = 0;
-ITERATIONS = 5000;
+ITERATIONS = 100;
+PERCEPTRONS = 3;
 HIDDEN_LAYERS = 1;
 HIDDEN_LAYER = []; // if necessary have more than one layer, the HIDDEN_LAYER is an array
 OUTPUT_LAYER = [];
@@ -48,28 +49,15 @@ INPUT_TEST = [
 ]
 
 
-// First line: Create a hidden layer (hardcoded 3 yet)
-// Second line: Quantity of perceptrons of the last layer is the number of inputs of the last layer
-create_layer(3, INPUTS, "hidden");
-create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
-
-console.log(HIDDEN_LAYER);
-console.log(OUTPUT_LAYER);
-
-training_network();
-
-console.log(HIDDEN_LAYER);
-console.log(OUTPUT_LAYER);
-
-
 /* Train the network with the dataset of test */
 function training_network () {
 	
 	for(var iii = 0; iii < INPUT_TEST.length; iii++) {
+		ACTUAL_INPUT = iii;
+		console.log("					===== Testing with the input " + INPUT_TEST[ACTUAL_INPUT].input + " =====");
+		
 		for(var ii = 0; ii < ITERATIONS; ii++) {
-
-			ACTUAL_INPUT = iii;
-			console.log("					===== Testing with the input " + INPUT_TEST[ACTUAL_INPUT].input + " =====");
+			console.log("Iteration number [" + ii + "] with input " + INPUT_TEST[ACTUAL_INPUT].input);
 
 			/* hardcoded because I'm always using 1 hidden layer. Change this to do this dinamically (loop through HIDDEN_LAYER) */
 			for (var i = 0; i < HIDDEN_LAYER[0].length; i++) {
@@ -91,8 +79,8 @@ function training_network () {
 			var output_error = INPUT_TEST[ACTUAL_INPUT].output - get_output(OUTPUT_LAYER).activation_function_value;
 			var delta_output_sum = (calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) * (output_error)); 
 
-			console.log("network response -> " + get_output(OUTPUT_LAYER).activation_function_value);
-			console.log("network correct output -> " + INPUT_TEST[ACTUAL_INPUT].output);
+			console.log("network output -> " + get_output(OUTPUT_LAYER).activation_function_value);
+			console.log("network expected output -> " + INPUT_TEST[ACTUAL_INPUT].output);
 			console.log("output error -> " + output_error);
 			console.log("delta output sum -> " + delta_output_sum);
 
@@ -229,6 +217,7 @@ function get_output(output_layer) {
 	return output_layer[0]; // hardcoded now
 }
 
+
 /* Sum of inputs * weights */
 function transfer_function(perceptron) {
 	var sum = 0;
@@ -260,7 +249,6 @@ function calc_sigmoid_derivative(perceptron) {
 }
 
 
-
 /* Process before call the main start */
 function startPreparation() {
 
@@ -271,6 +259,20 @@ function start() {
 	
 }
 
+
+intializeUI();
+// First line: Create a hidden layer (hardcoded 3 yet)
+// Second line: Quantity of perceptrons of the last layer is the number of inputs of the last layer
+create_layer(3, INPUTS, "hidden");
+create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
+
+console.log(HIDDEN_LAYER);
+console.log(OUTPUT_LAYER);
+
+training_network();
+
+console.log(HIDDEN_LAYER);
+console.log(OUTPUT_LAYER);
 
 
 /* Aux functions */
@@ -285,6 +287,24 @@ function log(msg, input) {
 	console.log(msg)
 }
 
+
+/* Initialize the GUI */
+function intializeUI() {
+	document.getElementById("btn-start").addEventListener("click", startPreparation);
+
+	document.getElementById("iterations").value = ITERATIONS;
+	document.getElementById("hiddenLayers").value = HIDDEN_LAYERS;
+	document.getElementById("perceptrons").value = PERCEPTRONS;
+	document.getElementById("inputs").value = INPUTS;
+	document.getElementById("outputs").value = OUTPUTS;
+	document.getElementById("learnRate").value = LEARN_RATE;
+
+	/* TO-DO: when the user can grow the parameters list, do this dynamically */
+	for(var i = 0; i < TEST_VALUES.length; i++) {
+		document.getElementById("param"+i).value = TEST_VALUES[i];	
+		document.getElementById("result"+i).value = RESULT_TESTS[i];
+	}
+}
 
 /* References */
 /*

@@ -47,9 +47,9 @@ INPUT_TEST = [
 ]
 
 
-// Create a hidden layer (hardcoded 3 yet)
+// First line: Create a hidden layer (hardcoded 3 yet)
+// Second line: Quantity of perceptrons of the last layer is the number of inputs of the last layer
 create_layer(3, INPUTS, "hidden");
-// Quantity of perceptrons of the last layer is the number of inputs of the last layer
 create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
 
 training_network();
@@ -74,6 +74,23 @@ function training_network () {
 		OUTPUT_LAYER[i].transfer_function_value = transfer_function(OUTPUT_LAYER[i]);
 		OUTPUT_LAYER[i].activation_function_value = activation_function(OUTPUT_LAYER[i], ACTIVATION_FUNCTION);
 	}
+
+	
+	//test_perceptron = {
+	//	transfer_function_value: 1.235
+	//}
+	//console.log((calc_sigmoid(test_perceptron) * (1 - calc_sigmoid(test_perceptron))) * -0.77);
+
+
+	// hardcoded on [0]
+	var output_error = INPUT_TEST[0].output - get_output(OUTPUT_LAYER).activation_function_value;
+	var delta_output_sum = (calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) * (output_error));
+
+	console.log(INPUT_TEST[0].output + " - " + get_output(OUTPUT_LAYER).activation_function_value);
+	console.log("output_error " + output_error);
+	console.log(calc_sigmoid_derivative(get_output(OUTPUT_LAYER)) + " * " + output_error);
+	console.log("delta_output_sum " + delta_output_sum);
+
 }
 
 
@@ -125,6 +142,11 @@ function set_inputs(perceptron, inputs, type_layer) {
 }
 
 
+/* Function that return the output of the network */
+function get_output(output_layer) {
+	return output_layer[0]; // hardcoded now
+}
+
 /* Sum of inputs * weights */
 function transfer_function(perceptron) {
 	var sum = 0;
@@ -146,7 +168,13 @@ function activation_function(perceptron, type_function) {
 
 /* Calc the sigmoid function */
 function calc_sigmoid(perceptron) {
-	return 1/(1+Math.pow(Math.E, -perceptron.transfer_function_value));
+	return 1/(1+Math.pow(Math.E, -perceptron.transfer_function_value)); //verify
+}
+
+
+/* Calc the sigmoid derivative */
+function calc_sigmoid_derivative(perceptron) {
+	return calc_sigmoid(perceptron) * (1 - calc_sigmoid(perceptron)); // verify
 }
 
 
@@ -174,3 +202,10 @@ function getRandom(min, max) {
 function log(msg, input) {
 	console.log(msg)
 }
+
+
+/* References */
+/*
+	https://stevenmiller888.github.io/mind-how-to-build-a-neural-network/
+
+*/

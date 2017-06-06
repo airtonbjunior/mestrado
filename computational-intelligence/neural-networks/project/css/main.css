@@ -52,7 +52,7 @@ p, span {
 
 .input-value-function {
 	display: inline-block;
-	width: 45%;
+	width: 30%;
 }
 
 .input-value-function-row {
@@ -116,7 +116,7 @@ p, span {
 	
 	margin-right: 30px;
 
-	width: 300px;
+	width: 400px;
 	padding: 20px;
 	/*flex-grow: 1;*/
 }

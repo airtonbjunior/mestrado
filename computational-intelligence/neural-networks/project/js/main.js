@@ -8,7 +8,7 @@ Computational Intelligence - Federal University of Goias (UFG)
 UFG master's program 
 */
 
-LEARN_RATE = 0;
+LEARN_RATE = 50;
 ITERATIONS = 100;
 PERCEPTRONS = 3;
 HIDDEN_LAYERS = 1;
@@ -54,6 +54,7 @@ function training_network () {
 	
 	for(var iii = 0; iii < INPUT_TEST.length; iii++) {
 		ACTUAL_INPUT = iii;
+		
 		console.log("					===== Testing with the input " + INPUT_TEST[ACTUAL_INPUT].input + " =====");
 		
 		for(var ii = 0; ii < ITERATIONS; ii++) {
@@ -253,14 +254,18 @@ intializeUI();
 
 /* Process before call the main start */
 function startPreparation() {
-	/*
-	ITERATIONS = document.getElementById("iterations").value;
-	HIDDEN_LAYERS = document.getElementById("hiddenLayers").value;
-	PERCEPTRONS = document.getElementById("perceptrons").value;
-	INPUTS = document.getElementById("inputs").value;
-	OUTPUTS = document.getElementById("outputs").value;
-	LEARN_RATE = document.getElementById("learnRate").value;
-	*/
+	
+	HIDDEN_LAYER = []; 
+	OUTPUT_LAYER = [];
+
+
+	ITERATIONS = parseInt(document.getElementById("iterations").value);
+	HIDDEN_LAYERS = parseInt(document.getElementById("hiddenLayers").value);
+	PERCEPTRONS = parseInt(document.getElementById("perceptrons").value);
+	INPUTS = parseInt(document.getElementById("inputs").value);
+	OUTPUTS = parseInt(document.getElementById("outputs").value);
+	LEARN_RATE = parseFloat(document.getElementById("learnRate").value);
+
 	
 	/*
 	var e = document.getElementById("selection-type");
@@ -271,12 +276,13 @@ function startPreparation() {
 		RESULT_TESTS[i] = document.getElementById("result"+i).value;
 	}
 
+	*/
+
 	document.getElementById("result").innerHTML = "&nbsp";
 
 	document.getElementById("loading-icon").classList.remove("hide-load");
 	document.getElementById("btn-start").innerHTML = "Processing...";
 	document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
-	*/
 
 	/* Timeout for the UI changes */
 	setTimeout(start, 50);
@@ -297,6 +303,32 @@ function start() {
 
 	console.log(HIDDEN_LAYER);
 	console.log(OUTPUT_LAYER);	
+
+	var result_print = "Weights: <br /><br />";
+	var wn = 0;
+	for(var i = 0; i < HIDDEN_LAYER[0].length; i++) {		
+		for (var j = 0; j < INPUTS; j++) {
+			wn++;
+
+			result_print += "W" + wn + ": " + HIDDEN_LAYER[0][i].weights[j] + "<br />";
+		}
+		
+	}
+
+	// the number of perceptrons on the last hidden layer is the number of inputs of each perceptron in output layer
+	for(var i = 0; i < HIDDEN_LAYER[HIDDEN_LAYER.length-1].length; i++) {
+		for(var j = 0; j < OUTPUTS; j++) {
+			wn++;
+			result_print += "W" + wn + ": " + OUTPUT_LAYER[j].weights[i] + "<br />";
+		}
+	}
+	
+	document.getElementById("result").innerHTML = result_print;
+
+	/* Restart the default screen */
+	document.getElementById("loading-icon").className += " hide-load";
+	document.getElementById("btn-start").innerHTML = "Start";
+	/* Restart the default screen */
 }
 
 
@@ -325,12 +357,17 @@ function intializeUI() {
 	document.getElementById("learnRate").value = LEARN_RATE;
 
 	/* TO-DO: when the user can grow the parameters list, do this dynamically */
-	/*
-	for(var i = 0; i < TEST_VALUES.length; i++) {
-		document.getElementById("param"+i).value = TEST_VALUES[i];	
-		document.getElementById("result"+i).value = RESULT_TESTS[i];
+	
+	for(var i = 0; i < INPUT_TEST.length; i++) {
+		for(var j = 0; j < INPUTS; j++) {
+			document.getElementById("param"+i+j).value = INPUT_TEST[i].input[j];
+		}
+
+		for(var j = 0; j < OUTPUTS; j++) {
+			document.getElementById("result"+j+i).value = INPUT_TEST[i].output;	
+		}
 	}
-	*/
+	
 }
 
 /* References */

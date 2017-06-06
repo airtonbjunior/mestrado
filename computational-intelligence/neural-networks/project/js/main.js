@@ -249,30 +249,55 @@ function calc_sigmoid_derivative(perceptron) {
 }
 
 
+intializeUI();
+
 /* Process before call the main start */
 function startPreparation() {
-
-}
-
-
-function start() {
+	/*
+	ITERATIONS = document.getElementById("iterations").value;
+	HIDDEN_LAYERS = document.getElementById("hiddenLayers").value;
+	PERCEPTRONS = document.getElementById("perceptrons").value;
+	INPUTS = document.getElementById("inputs").value;
+	OUTPUTS = document.getElementById("outputs").value;
+	LEARN_RATE = document.getElementById("learnRate").value;
+	*/
 	
+	/*
+	var e = document.getElementById("selection-type");
+	SELECTION_TYPE = e.options[e.selectedIndex].value;
+
+	for(var i = 0; i < TEST_VALUES.length; i++) {
+		TEST_VALUES[i] = document.getElementById("param"+i).value;
+		RESULT_TESTS[i] = document.getElementById("result"+i).value;
+	}
+
+	document.getElementById("result").innerHTML = "&nbsp";
+
+	document.getElementById("loading-icon").classList.remove("hide-load");
+	document.getElementById("btn-start").innerHTML = "Processing...";
+	document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
+	*/
+
+	/* Timeout for the UI changes */
+	setTimeout(start, 50);
 }
 
 
-intializeUI();
-// First line: Create a hidden layer (hardcoded 3 yet)
-// Second line: Quantity of perceptrons of the last layer is the number of inputs of the last layer
-create_layer(3, INPUTS, "hidden");
-create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
+/* Function start */
+function start() {
+	// First line: Create a hidden layer (hardcoded 3 yet)
+	// Second line: Quantity of perceptrons of the last layer is the number of inputs of the last layer
+	create_layer(3, INPUTS, "hidden");
+	create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
 
-console.log(HIDDEN_LAYER);
-console.log(OUTPUT_LAYER);
+	console.log(HIDDEN_LAYER);
+	console.log(OUTPUT_LAYER);
 
-training_network();
+	training_network();
 
-console.log(HIDDEN_LAYER);
-console.log(OUTPUT_LAYER);
+	console.log(HIDDEN_LAYER);
+	console.log(OUTPUT_LAYER);	
+}
 
 
 /* Aux functions */
@@ -300,10 +325,12 @@ function intializeUI() {
 	document.getElementById("learnRate").value = LEARN_RATE;
 
 	/* TO-DO: when the user can grow the parameters list, do this dynamically */
+	/*
 	for(var i = 0; i < TEST_VALUES.length; i++) {
 		document.getElementById("param"+i).value = TEST_VALUES[i];	
 		document.getElementById("result"+i).value = RESULT_TESTS[i];
 	}
+	*/
 }
 
 /* References */

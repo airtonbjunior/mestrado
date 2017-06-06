@@ -293,7 +293,7 @@ function startPreparation() {
 function start() {
 	// First line: Create a hidden layer (hardcoded 3 yet)
 	// Second line: Quantity of perceptrons of the last layer is the number of inputs of the last layer
-	create_layer(3, INPUTS, "hidden");
+	create_layer(PERCEPTRONS, INPUTS, "hidden");
 	create_layer(OUTPUTS, HIDDEN_LAYER[HIDDEN_LAYER.length-1].length, "output"); 
 
 	console.log(HIDDEN_LAYER);

@@ -203,6 +203,10 @@ p, span {
 	display: none;
 }
 
+.hide-test {
+	display: none;
+}
+
 .title-iten-bag {
 	text-align: center;
 	font-weight: bold;

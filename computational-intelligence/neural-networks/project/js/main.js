@@ -329,6 +329,33 @@ function start() {
 	document.getElementById("loading-icon").className += " hide-load";
 	document.getElementById("btn-start").innerHTML = "Start";
 	/* Restart the default screen */
+	//document.getElementById("hide-test").classList.remove("hide-test");
+}
+
+
+function test_network() {
+	var value1 = parseInt(document.getElementById("inputTest1").value);
+	var value2 = parseInt(document.getElementById("inputTest2").value);
+
+	var input = [value1, value2];
+
+	/* hardcoded because I'm always using 1 hidden layer. Change this to do this dinamically (loop through HIDDEN_LAYER) */
+	for (var i = 0; i < HIDDEN_LAYER[0].length; i++) {
+		set_inputs(HIDDEN_LAYER[0][i], input, "hidden");		
+
+		/* Calc the transfer and activation function */
+		HIDDEN_LAYER[0][i].transfer_function_value 	 = transfer_function(HIDDEN_LAYER[0][i]);
+		HIDDEN_LAYER[0][i].activation_function_value = activation_function(HIDDEN_LAYER[0][i], ACTIVATION_FUNCTION);
+	}	
+
+	/* The outputs of the last hidden layer is the input of the output layer */
+	for (var i = 0; i < OUTPUT_LAYER.length; i++) {
+		set_inputs(OUTPUT_LAYER[i], null, "output");
+		OUTPUT_LAYER[i].transfer_function_value = transfer_function(OUTPUT_LAYER[i]);
+		OUTPUT_LAYER[i].activation_function_value = activation_function(OUTPUT_LAYER[i], ACTIVATION_FUNCTION);
+	}
+
+	document.getElementById("test-result").innerHTML = OUTPUT_LAYER[OUTPUT_LAYER.length-1].activation_function_value;
 }
 
 
@@ -348,6 +375,7 @@ function log(msg, input) {
 /* Initialize the GUI */
 function intializeUI() {
 	document.getElementById("btn-start").addEventListener("click", startPreparation);
+	//document.getElementById("btn-test").addEventListener("click", test_network);
 
 	document.getElementById("iterations").value = ITERATIONS;
 	document.getElementById("hiddenLayers").value = HIDDEN_LAYERS;

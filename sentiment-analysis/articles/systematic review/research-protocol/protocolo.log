@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  11 JUN 2017 13:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  11 JUN 2017 13:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -691,19 +691,19 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 61.
 
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 68.
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 65.
 
-LaTeX Font Info:    No file OMScmss.fd. on input line 68.
+LaTeX Font Info:    No file OMScmss.fd. on input line 65.
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 68.
+(Font)              for symbol `textbullet' on input line 65.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 76.
+LaTeX Font Info:    Try loading font information for U+msa on input line 81.
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 76.
+LaTeX Font Info:    Try loading font information for U+msb on input line 81.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -711,7 +711,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <logo-ufg.png, id=1, 327.2225pt x 503.8825pt>
 File: logo-ufg.png Graphic file (type png)
  <use logo-ufg.png>
-Package pdftex.def Info: logo-ufg.png used on input line 91.
+Package pdftex.def Info: logo-ufg.png used on input line 90.
 (pdftex.def)             Requested size: 24.87016pt x 38.30301pt.
  [1{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -720,7 +720,7 @@ Package pdftex.def Info: logo-ufg.png used on input line 91.
 AED: lastpage setting LastPage
 File: logo-ufg.png Graphic file (type png)
 <use logo-ufg.png>
-Package pdftex.def Info: logo-ufg.png used on input line 105.
+Package pdftex.def Info: logo-ufg.png used on input line 112.
 (pdftex.def)             Requested size: 24.87016pt x 38.30301pt.
  [2] (./protocolo.aux)
 
@@ -734,7 +734,7 @@ Here is how much of TeX's memory you used:
  8284 multiletter control sequences out of 15000+600000
  35852 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,15n,43p,381b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,15n,43p,381b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}<c:/texlive/201
 6/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/t
@@ -742,7 +742,7 @@ ype1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmssi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkb.
 pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkr.pfb>
-Output written on protocolo.pdf (2 pages, 124083 bytes).
+Output written on protocolo.pdf (2 pages, 124441 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

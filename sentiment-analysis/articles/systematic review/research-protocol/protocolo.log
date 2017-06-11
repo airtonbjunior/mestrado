@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  10 JUN 2017 23:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  11 JUN 2017 13:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -689,58 +689,63 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 57.
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 61.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 65.
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 68.
+
+LaTeX Font Info:    No file OMScmss.fd. on input line 68.
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 68.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 76.
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 65.
+LaTeX Font Info:    Try loading font information for U+msb on input line 76.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Citation `kitchenham2007guidelines' on page 1 undefined on input
- line 65.
-
-No file protocolo.bbl.
-
-AED: lastpage setting LastPage
-<p-modelo1.jpg, id=1, 371.3875pt x 115.43124pt>
-File: p-modelo1.jpg Graphic file (type jpg)
- <use p-modelo1.jpg>
-Package pdftex.def Info: p-modelo1.jpg used on input line 90.
-(pdftex.def)             Requested size: 123.2326pt x 38.30301pt.
+<logo-ufg.png, id=1, 327.2225pt x 503.8825pt>
+File: logo-ufg.png Graphic file (type png)
+ <use logo-ufg.png>
+Package pdftex.def Info: logo-ufg.png used on input line 91.
+(pdftex.def)             Requested size: 24.87016pt x 38.30301pt.
  [1{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./p-modelo1.jpg>]
-(./protocolo.aux)
+ <./logo-ufg.png>]
+(./protocolo.bbl) 
+AED: lastpage setting LastPage
+File: logo-ufg.png Graphic file (type png)
+<use logo-ufg.png>
+Package pdftex.def Info: logo-ufg.png used on input line 105.
+(pdftex.def)             Requested size: 24.87016pt x 38.30301pt.
+ [2] (./protocolo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 4857 strings out of 493013
- 66973 string characters out of 6136993
- 152936 words of memory out of 5000000
- 8275 multiletter control sequences out of 15000+600000
+ 4870 strings out of 493013
+ 67122 string characters out of 6136993
+ 154966 words of memory out of 5000000
+ 8284 multiletter control sequences out of 15000+600000
  35852 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,15n,43p,277b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,15n,43p,381b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}<c:/texlive/201
 6/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmssi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-g
-yre/qbkb.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkr.pfb>
-Output written on protocolo.pdf (1 page, 105416 bytes).
+ic/amsfonts/cm/cmssi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkb.
+pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkr.pfb>
+Output written on protocolo.pdf (2 pages, 124083 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

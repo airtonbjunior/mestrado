@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  11 JUN 2017 13:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  12 JUN 2017 00:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -720,7 +720,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 AED: lastpage setting LastPage
 File: logo-ufg.png Graphic file (type png)
 <use logo-ufg.png>
-Package pdftex.def Info: logo-ufg.png used on input line 112.
+Package pdftex.def Info: logo-ufg.png used on input line 126.
 (pdftex.def)             Requested size: 24.87016pt x 38.30301pt.
  [2] (./protocolo.aux)
 
@@ -728,13 +728,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 4852 strings out of 493013
- 66941 string characters out of 6136993
+ 4853 strings out of 493013
+ 66949 string characters out of 6136993
  154966 words of memory out of 5000000
- 8272 multiletter control sequences out of 15000+600000
+ 8273 multiletter control sequences out of 15000+600000
  24290 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,16n,43p,381b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,16n,43p,446b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}<c:/texlive/201
 6/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/t
@@ -742,7 +742,7 @@ ype1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmssi10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkb.
 pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkr.pfb>
-Output written on protocolo.pdf (2 pages, 121064 bytes).
+Output written on protocolo.pdf (2 pages, 123466 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

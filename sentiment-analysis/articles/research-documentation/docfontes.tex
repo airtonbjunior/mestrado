@@ -1,0 +1,115 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{pdfpages}
+\usepackage{lastpage}
+\usepackage{framed}
+\usepackage{tgbonum}
+\usepackage{enumitem}
+\usepackage{multirow}
+
+%Manipulação de cabeçalho e rodapé
+
+\usepackage{fancyhdr}
+
+%DistÃ¢ncia do cabeçalho em relação ao topo do página
+\setlength{\headheight}{45.0pt}
+%Largura das linhas de cabeçalho e rodapé
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headwidth}{\textwidth}
+%Inclui o logo da UEL no lado esquerdo do cabeçalho
+\fancyhead[L]{
+ \includegraphics[height=0.53in]{p-modelo1.jpg}
+}
+\fancyhead[C]{}
+\fancyhead[R]{IPC/MET $1^o$ semestre/2017 \\ Prazo: 19/06/2017}
+
+\pagestyle{fancy}
+\cfoot{}
+\rfoot{\textbf{\footnotesize Página \thepage\ de \pageref{LastPage}}}
+\lfoot{\textbf{IPC/MET - 2017/1 - Documentação das fontes de pesquisa}}
+%opening
+
+\begin{document}
+%\fontfamily{cmss}\selectfont
+
+\begin{framed}
+\begin{center}
+\textbf{Aluno: Airton Bordin Junior}
+\end{center}
+\end{framed}
+
+Este documento foi baseado em \cite{kitchenham2007guidelines}. A documentação deverá ser entregue de acordo com as orientações que estão neste documento. Conforme pode ser observado, existem diferentes tabelas que deverão conter as informações do processo de busca, a saber: A tabela \ref{tab:tab_bases}, deverá apresentar a descrição das bases de dados que foram consultadas, os seus respectivos endereços da internet, a data em que a busca foi efetuada e por fim, os anos que foram cobertos pela busca. 
+
+\section{Bases de dados}
+\begin{table}[ht]
+\centering
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Base de dados} &  \textbf{Data da busca} & \textbf{Anos cobertos na busca} & \textbf{Idioma} \\
+\hline
+B1 & dd/mm/aaaa & 9999 até 9999 & \multirow{2}{*}{} Português \\
+\cline{4-4}
+& & & Inglês \\
+\hline
+
+\end{tabular}
+\caption{Relação de bases de dados consultadas com respectivas datas de busca}
+\label{tab:tab_bases}
+\end{table}
+
+Um ponto importante a ser observado na tabela \ref{tab:tab_bases}, diz respeito ao formato em que as informações devem ser apresentadas. A data da consulta deverá ter o formato dd/mm/aaaa. Caso tenham sido feitas consultas em diferentes dias, estes deverão estar indicados. O período coberto pela busca diz respeito ao ano inicial / final em que os trabalhos foram publicados na respectiva base de dados. Exemplo: 1995 até 2017. Também deve estar presente qual foi o idioma utilizado na busca em cada uma das bases de dados. Caso tenham sido consultadas em português e inglês a informação deverá estar presente.
+
+\section{Palavras chave de busca}
+\begin{table}[ht]
+\centering
+\begin{tabular}{| l | l |}
+\hline
+\textbf{Palavra-chave} & \textbf{Idioma} \\
+\hline
+\end{tabular}
+\caption{Detalhamento das palavras chave da busca e respectivo idioma}
+\label{tab:tab_palchaves}
+\end{table}
+
+Na tabela \ref{tab:tab_palchaves} devem ser informadas as palavras de busca com o respectivo idioma. 
+ 
+\section{Detalhamento da estratégia de busca}
+ Aqui o aluno deverá descrever os procedimentos de busca nas diferentes bases de dados apresentadas na tabela \ref{tab:tab_bases}. Estas informações referem-se  ao tipo de busca efetuado e a aplicação dos critérios de inclusão / exclusão. Caso a busca tenha sido feita em periódicos específicos ou anais de conferências, estas informações deverão estar detalhadas conforme as tabelas \ref{tab:tab_periodico} e  \ref{tab:tab_conf}. Caso a busca tenha sido feita apenas em bases de dados, as informações abaixo deverão ser suprimidas do documento a ser entregue.
+ 
+\begin{table}[ht]
+\begin{tabular}{|c | c | c |}
+\hline
+\textbf{Nome} & \textbf{Intervalo de busca} & \textbf{Informações extras} \\
+\hline
+Journal of XXXX & 2000 até 2017 & Foram localizados 43 artigos na busca. \\
+\hline
+\end{tabular}
+\caption{Relação de periódicos consultados}
+\label{tab:tab_periodico}
+\end{table}
+
+Na coluna de \emph{Informações extras} da tabela \ref{tab:tab_periodico}, devem ser registradas as informações à respeito dos resultados da busca. 
+
+\begin{table}[ht]
+\begin{tabular}{|c | c | c |}
+\hline
+\textbf{Nome} & \textbf{Ano do evento} & \textbf{Informações extras} \\
+\hline
+CBIE & 2016 & Foram localizados 12 artigos na busca. \\
+\hline
+\end{tabular}
+\caption{Relação de anais de conferências consultados}
+\label{tab:tab_conf}
+\end{table}
+
+\bibliographystyle{apalike}
+\bibliography{docfontes}
+
+\end{document}

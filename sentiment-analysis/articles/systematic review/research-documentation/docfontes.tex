@@ -12,6 +12,8 @@
 \usepackage{tgbonum}
 \usepackage{enumitem}
 \usepackage{multirow}
+\usepackage{makecell}
+
 
 %Manipulação de cabeçalho e rodapé
 
@@ -45,8 +47,6 @@
 \end{center}
 \end{framed}
 
-Este documento foi baseado em \cite{kitchenham2007guidelines}. A documentação deverá ser entregue de acordo com as orientações que estão neste documento. Conforme pode ser observado, existem diferentes tabelas que deverão conter as informações do processo de busca, a saber: A tabela \ref{tab:tab_bases}, deverá apresentar a descrição das bases de dados que foram consultadas, os seus respectivos endereços da internet, a data em que a busca foi efetuada e por fim, os anos que foram cobertos pela busca. 
-
 \section{Bases de dados}
 \begin{table}[ht]
 \centering
@@ -54,9 +54,15 @@ Este documento foi baseado em \cite{kitchenham2007guidelines}. A documentação 
 \hline
 \textbf{Base de dados} &  \textbf{Data da busca} & \textbf{Anos cobertos na busca} & \textbf{Idioma} \\
 \hline
-B1 & dd/mm/aaaa & 9999 até 9999 & \multirow{2}{*}{} Português \\
-\cline{4-4}
-& & & Inglês \\
+\makecell{\emph{Science Direct} \\ http://www.sciencedirect.com/} & 22/05/2017 & 2000 até 2017 & Inglês \\
+\hline
+\makecell{\emph{IEEEXplore} \\ http://ieeexplore.ieee.org/} & 24/05/2017 & 2000 até 2017 & Inglês \\
+\hline
+\makecell{\emph{ACM Digital Library} \\http://dl.acm.org/} & 24/05/2017 & 2000 até 2017 & Inglês \\
+\hline
+\makecell{\emph{Research Gate} \\ https://www.researchgate.net/} & 29/05/2017 & 2000 até 2017 & Inglês \\
+\hline
+\makecell{\emph{Semantic Scholar} \\ https://www.semanticscholar.org/} & 01/06/2017 & 2000 até 2017 & Inglês \\
 \hline
 
 \end{tabular}
@@ -67,18 +73,25 @@ B1 & dd/mm/aaaa & 9999 até 9999 & \multirow{2}{*}{} Português \\
 Um ponto importante a ser observado na tabela \ref{tab:tab_bases}, diz respeito ao formato em que as informações devem ser apresentadas. A data da consulta deverá ter o formato dd/mm/aaaa. Caso tenham sido feitas consultas em diferentes dias, estes deverão estar indicados. O período coberto pela busca diz respeito ao ano inicial / final em que os trabalhos foram publicados na respectiva base de dados. Exemplo: 1995 até 2017. Também deve estar presente qual foi o idioma utilizado na busca em cada uma das bases de dados. Caso tenham sido consultadas em português e inglês a informação deverá estar presente.
 
 \section{Palavras chave de busca}
-\begin{table}[ht]
+\begin{table}[h]
 \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{| c | c |}
 \hline
 \textbf{Palavra-chave} & \textbf{Idioma} \\
+\hline
+\makecell{pub-date \textgreater 1999 and (Sentiment Analysis OR Opinion Mining) AND \\ (Lexicon Expansion) AND (Genetic Programming OR Genetic Algorithm) \\ AND (Semantic Orientation)[All Sources(Computer Science)]} & Inglês \\
+\hline
+\makecell{pub-date \textgreater 1999 and (Sentiment Analysis OR Opinion Mining) AND \\ (Lexicon Expansion OR Lexicon) \\ AND (Semantic Orientation)[All Sources(Computer Science)]} & Inglês \\
+\hline
+\makecell{((Sentiment Analysis OR Opinion Mining) AND (Lexicon Expansion OR Lexicon) \\ AND (Semantic Orientation))  and refined by Year: 2000-2017} & Inglês \\
+\hline
+\makecell{"query": { (+Sentiment +Analysis Lexicon Expansion Genetic Algorithm) } \\ "filter": {"publicationYear":{ "gte":2000 }},
+{owners.owner=HOSTED}} & Inglês \\
 \hline
 \end{tabular}
 \caption{Detalhamento das palavras chave da busca e respectivo idioma}
 \label{tab:tab_palchaves}
 \end{table}
-
-Na tabela \ref{tab:tab_palchaves} devem ser informadas as palavras de busca com o respectivo idioma. 
  
 \section{Detalhamento da estratégia de busca}
  Aqui o aluno deverá descrever os procedimentos de busca nas diferentes bases de dados apresentadas na tabela \ref{tab:tab_bases}. Estas informações referem-se  ao tipo de busca efetuado e a aplicação dos critérios de inclusão / exclusão. Caso a busca tenha sido feita em periódicos específicos ou anais de conferências, estas informações deverão estar detalhadas conforme as tabelas \ref{tab:tab_periodico} e  \ref{tab:tab_conf}. Caso a busca tenha sido feita apenas em bases de dados, as informações abaixo deverão ser suprimidas do documento a ser entregue.

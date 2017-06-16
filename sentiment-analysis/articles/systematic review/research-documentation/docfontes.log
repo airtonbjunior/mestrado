@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  15 JUN 2017 23:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  16 JUN 2017 14:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,33 +570,48 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@dima=\skip52
 \bigstrutjot=\dimen132
 )
+(c:/texlive/2016/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+
+(c:/texlive/2016/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen133
+\extrarowheight=\dimen134
+\NC@list=\toks26
+\extratabsurround=\skip53
+\backup@length=\skip54
+)
+\rotheadsize=\dimen135
+\c@nlinenum=\count110
+\TeXr@lab=\toks27
+)
 (c:/texlive/2016/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip53
-\f@ncyO@elh=\skip54
-\f@ncyO@erh=\skip55
-\f@ncyO@olh=\skip56
-\f@ncyO@orh=\skip57
-\f@ncyO@elf=\skip58
-\f@ncyO@erf=\skip59
-\f@ncyO@olf=\skip60
-\f@ncyO@orf=\skip61
+\fancy@headwidth=\skip55
+\f@ncyO@elh=\skip56
+\f@ncyO@erh=\skip57
+\f@ncyO@olh=\skip58
+\f@ncyO@orh=\skip59
+\f@ncyO@elf=\skip60
+\f@ncyO@erf=\skip61
+\f@ncyO@olf=\skip62
+\f@ncyO@orf=\skip63
 ) (./docfontes.aux)
 \openout1 = `docfontes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Try loading font information for OT1+qbk on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Try loading font information for OT1+qbk on input line 41.
 
 (c:/texlive/2016/texmf-dist/tex/latex/tex-gyre/ot1qbk.fd
 File: ot1qbk.fd 2009/09/25 v1.2 font definition file for OT1/qbk
@@ -637,17 +652,17 @@ File: ot1qbk.fd 2009/09/25 v1.2 font definition file for OT1/qbk
 
 (c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count110
-\scratchdimen=\dimen133
+\scratchcounter=\count111
+\scratchdimen=\dimen136
 \scratchbox=\box31
-\nofMPsegments=\count111
-\nofMParguments=\count112
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count113
-\MPscratchDim=\dimen134
-\MPnumerator=\count114
-\makeMPintoPDFobject=\count115
-\everyMPtoPDFconversion=\toks27
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen137
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks29
 ) (c:/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -688,7 +703,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 39.
+(lastpage)             ! on input line 41.
 LaTeX Font Info:    Try loading font information for U+msa on input line 53.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -698,40 +713,60 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 53.
 
 (c:/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./docfontes.bbl
+)
+Overfull \hbox (6.47034pt too wide) in paragraph at lines 53--69
+ [][] 
+ []
+
+LaTeX Font Info:    Try loading font information for OML+qbk on input line 82.
+LaTeX Font Info:    No file OMLqbk.fd. on input line 82.
+
+LaTeX Font Warning: Font shape `OML/qbk/m/n' undefined
+(Font)              using `OML/cmm/m/it' instead
+(Font)              for symbol `textgreater' on input line 82.
+
+
+Overfull \hbox (4.36975pt too wide) in paragraph at lines 78--92
+ [][] 
+ []
+
 <p-modelo1.jpg, id=1, 371.3875pt x 115.43124pt>
 File: p-modelo1.jpg Graphic file (type jpg)
  <use p-modelo1.jpg>
-Package pdftex.def Info: p-modelo1.jpg used on input line 9.
+Package pdftex.def Info: p-modelo1.jpg used on input line 98.
 (pdftex.def)             Requested size: 123.2326pt x 38.30301pt.
  [1{c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
- <./p-modelo1.jpg>])
-
+ <./p-modelo1.jpg>]
+(./docfontes.bbl) 
 AED: lastpage setting LastPage
 File: p-modelo1.jpg Graphic file (type jpg)
 <use p-modelo1.jpg>
-Package pdftex.def Info: p-modelo1.jpg used on input line 115.
+Package pdftex.def Info: p-modelo1.jpg used on input line 128.
 (pdftex.def)             Requested size: 123.2326pt x 38.30301pt.
- [2] (./docfontes.aux) ) 
+ [2] (./docfontes.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4888 strings out of 493013
- 67542 string characters out of 6136993
- 159507 words of memory out of 5000000
- 8307 multiletter control sequences out of 15000+600000
+ 5096 strings out of 493013
+ 69808 string characters out of 6136993
+ 161996 words of memory out of 5000000
+ 8507 multiletter control sequences out of 15000+600000
  26841 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,15n,43p,657b,442s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-
-rm.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:
-/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2
-016/texmf-dist/fonts/type1/public/tex-gyre/qbkb.pfb><c:/texlive/2016/texmf-dist
-/fonts/type1/public/tex-gyre/qbkr.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
-ublic/tex-gyre/qbkri.pfb>
-Output written on docfontes.pdf (2 pages, 114281 bytes).
+ 37i,15n,43p,657b,332s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-rm.enc}<c:/texlive/201
+6/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2016/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/publ
+ic/tex-gyre/qbkb.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qb
+kr.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qbkri.pfb>
+Output written on docfontes.pdf (2 pages, 125758 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 37 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

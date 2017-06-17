@@ -115,11 +115,11 @@ def getReviews():
                     #print(line)
             
             if len(review) > 0:
-                reviews.append(review)
+                reviews.append(review.strip())
                 review = ""
             
             if len(score) > 0:
-                reviews_scores.append(score)
+                reviews_scores.append(score.strip())
                 score = ""
 
 

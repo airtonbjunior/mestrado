@@ -102,25 +102,39 @@ def getReviews():
 
     review = ""
     score = ""
+    start_of_next_review = ""
+    end_of_review = False
 
     with open('reviews.txt', 'r') as inF:
         for line in inF:
+            if line.startswith("*"): # comments of the review file
+                continue
+
             if not re.findall(r"\[t\]", line):  # titles start with [t]. I'll not use the titles (check)
                 if line.startswith("##"):
-                    review += line[line.index('#') + 2: ] # remove the ##
+                    review += line[line.index('#') + 2: ].strip() # remove the ##
                     #print(review)
                 else:
-                    score += line[line.index('[') + 1 : line.index(']')]
-                    review += line[line.index('#') + 2 : ]  # remove the ##
+                    score += line[line.index('[') + 1 : line.index(']')].strip()
+                    start_of_next_review += line[line.index('#') + 2 : ].strip()  # remove the ##
+                    end_of_review = True
                     #print(line)
             
-            if len(review) > 0:
-                reviews.append(review.strip())
-                review = ""
-            
-            if len(score) > 0:
-                reviews_scores.append(score.strip())
-                score = ""
+
+            if end_of_review:
+                if len(review) > 0:
+                    reviews.append(review.strip())
+                
+                if len(score) > 0:
+                    reviews_scores.append(score.strip())
+                    score = ""
+
+                review = start_of_next_review
+                start_of_next_review = ""
+                
+                end_of_review = False    
+
+        reviews.append(review.strip()) # last review
 
 
 # TO-DO: uppercasepositive uppercasenegative 
@@ -194,18 +208,28 @@ def main():
 
     getReviews()
 
-    print(reviews)
-    print("\n\n")
-    print(reviews_scores)
+    
+    #logs
+    print("\n")
+    for i in reviews:
+        print(i)
+        print("\n")
+
+
+    #print("\n\n")
+    #print(reviews)
+    #print(len(reviews))
+    #print("\n\n")
+    #print(reviews_scores)
+    #print(len(reviews_scores))
+    #logs
 
     #logs
-    
     #print("\n")
     #for i in pop:
     #    print(i)
     #print("\n")
-    #print(hof[0])
-    
+    #print(hof[0]) 
     #logs 
 
 

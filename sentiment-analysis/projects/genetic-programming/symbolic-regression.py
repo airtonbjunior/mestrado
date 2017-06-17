@@ -9,7 +9,6 @@
 import operator
 import math
 import random
-import re
 
 import numpy
 
@@ -42,39 +41,21 @@ def PolaritySum(phrase):
     for word in words:
         with open('positive-words.txt', 'r') as inF:
             for line in inF:
-                if word in line:
-                    print('positive word ' + word)
+                if word in line and len(line.strip()) == len(word.strip()):
+                    print("positive word " + word)
                     total_sum += 1 
                     break
 
 
         with open('negative-words.txt', 'r') as inF2:
             for line2 in inF2:
-                if word in line2:
+                if word in line2 and len(line2.strip()) == len(word.strip()):
                     print('negative word ' + word)
                     total_sum -= 1   
-                    break                  
+                    break                   
 
-
-
-    
-        #for wp in positive_words:
-        #    print("[POSITIVE] comparing " + wp + " with " + word)
-
-        #    if wp == word:
-        #        print('positive word ' + word)
-        #        total_sum += 1     
-
-        #for wn in negative_words:
-        #    print("[NEGATIVE] comparing " + wp + " with " + word)
-        #    if wn in word:    
-        #        print('negative word ' + word)
-        #        total_sum -= 1 
-        
-
-    print(words)
     print(total_sum)
-    return 0
+    return total_sum
 
 pset = gp.PrimitiveSet("MAIN", 1)
 pset.addPrimitive(operator.add, 2)

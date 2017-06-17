@@ -9,6 +9,7 @@
 import operator
 import math
 import random
+import re
 
 import numpy
 
@@ -28,15 +29,10 @@ def protectedDiv(left, right):
 
 # Return the sum of the word polarities (positive[+1], negative[-1])
 # Liu's dicionary of positive and negative words
-def PolaritySum(phrase):
+def polaritySum(phrase):
     words = phrase.split()
 
     total_sum = 0
-
-    positive_words = open('positive-words.txt', 'r')
-    negative_words = open('negative-words.txt', 'r')
-
-    
 
     for word in words:
         with open('positive-words.txt', 'r') as inF:
@@ -54,8 +50,52 @@ def PolaritySum(phrase):
                     total_sum -= 1   
                     break                   
 
-    print(total_sum)
+    print(total_sum) # log
     return total_sum
+
+
+
+def positiveHashtags(phrase):
+    total = 0
+    if "#" in phrase:
+        print("has hashtag")
+        hashtags = re.findall(r"#(\w+)", phrase)
+
+        for hashtag in hashtags:
+            with open('positive-words.txt', 'r') as inF:
+                for line in inF:
+                    if hashtag in line and len(line.strip()) == len(hashtag.strip()):
+                        print("positive hashtag " + hashtag)
+                        total += 1 
+                        break
+
+    return total
+
+
+
+def negativeHashtags(phrase):
+    total = 0
+    if "#" in phrase:
+        print("has hashtag")
+        hashtags = re.findall(r"#(\w+)", phrase)
+
+        for hashtag in hashtags:
+            with open('negative-words.txt', 'r') as inF:
+                for line in inF:
+                    if hashtag in line and len(line.strip()) == len(hashtag.strip()):
+                        print("negative hashtag " + hashtag)
+                        total += 1 
+                        break
+
+    return total
+
+
+# TO-DO: uppercasepositive uppercasenegative 
+# repeated vowel
+# see n-gram dictionary
+
+
+
 
 pset = gp.PrimitiveSet("MAIN", 1)
 pset.addPrimitive(operator.add, 2)
@@ -108,12 +148,16 @@ def main():
     mstats.register("min", numpy.min)
     mstats.register("max", numpy.max)
 
-    pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
-                                   halloffame=hof, verbose=True)
+
+    # UNCOMENT
+    #pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
+    #                               halloffame=hof, verbose=True)
+    # UNCOMENT
 
 
-
-    PolaritySum("instantly I good nice bad love this camera so much hate")
+    polaritySum("instantly I good nice bad love this camera so much hate")
+    positiveHashtags("instantly I #good nice #bad love this camera so much #hate so")
+    negativeHashtags("instantly I #good nice #bad love this camera so much #hate so")
 
     #logs
     
@@ -125,7 +169,10 @@ def main():
     
     #logs 
 
-    return pop, log, hof
+
+    # UNCOMENT
+    # return pop, log, hof
+    # UNCOMENT
 
 if __name__ == "__main__":
     main()

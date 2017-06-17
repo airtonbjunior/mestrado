@@ -210,18 +210,18 @@ def main():
 
     
     #logs
-    print("\n")
-    for i in reviews:
-        print(i)
-        print("\n")
+    #print("\n")
+    #for i in reviews:
+        #print(i)
+        #print("\n")
 
 
-    #print("\n\n")
-    #print(reviews)
-    #print(len(reviews))
-    #print("\n\n")
-    #print(reviews_scores)
-    #print(len(reviews_scores))
+    print("\n\n")
+    print(reviews)
+    print(len(reviews))
+    print("\n\n")
+    print(reviews_scores)
+    print(len(reviews_scores))
     #logs
 
     #logs

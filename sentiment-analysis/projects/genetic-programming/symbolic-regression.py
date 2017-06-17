@@ -19,7 +19,12 @@ from deap import creator
 from deap import tools
 from deap import gp
 
+
+reviews = []
+reviews_scores = []
+
 # Define new functions
+# Protected Div (check division by zero)
 def protectedDiv(left, right):
     try:
         return left / right
@@ -54,7 +59,7 @@ def polaritySum(phrase):
     return total_sum
 
 
-
+# Positive Hashtags
 def positiveHashtags(phrase):
     total = 0
     if "#" in phrase:
@@ -72,7 +77,7 @@ def positiveHashtags(phrase):
     return total
 
 
-
+# Negative Hashtags
 def negativeHashtags(phrase):
     total = 0
     if "#" in phrase:
@@ -88,6 +93,34 @@ def negativeHashtags(phrase):
                         break
 
     return total
+
+
+
+def getReviews():
+    global reviews
+    global reviews_scores
+
+    review = ""
+    score = ""
+
+    with open('reviews.txt', 'r') as inF:
+        for line in inF:
+            if not re.findall(r"\[t\]", line):  # titles start with [t]. I'll not use the titles (check)
+                if line.startswith("##"):
+                    review += line[line.index('#') + 2: ] # remove the ##
+                    #print(review)
+                else:
+                    score += line[line.index('[') + 1 : line.index(']')]
+                    review += line[line.index('#') + 2 : ]  # remove the ##
+                    #print(line)
+            
+            if len(review) > 0:
+                reviews.append(review)
+                review = ""
+            
+            if len(score) > 0:
+                reviews_scores.append(score)
+                score = ""
 
 
 # TO-DO: uppercasepositive uppercasenegative 
@@ -158,6 +191,12 @@ def main():
     polaritySum("instantly I good nice bad love this camera so much hate")
     positiveHashtags("instantly I #good nice #bad love this camera so much #hate so")
     negativeHashtags("instantly I #good nice #bad love this camera so much #hate so")
+
+    getReviews()
+
+    print(reviews)
+    print("\n\n")
+    print(reviews_scores)
 
     #logs
     

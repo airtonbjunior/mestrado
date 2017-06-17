@@ -9,6 +9,7 @@
 import operator
 import math
 import random
+import re
 
 import numpy
 
@@ -24,6 +25,56 @@ def protectedDiv(left, right):
         return left / right
     except ZeroDivisionError:
         return 1
+
+
+# Return the sum of the word polarities (positive[+1], negative[-1])
+# Liu's dicionary of positive and negative words
+def PolaritySum(phrase):
+    words = phrase.split()
+
+    total_sum = 0
+
+    positive_words = open('positive-words.txt', 'r')
+    negative_words = open('negative-words.txt', 'r')
+
+    
+
+    for word in words:
+        with open('positive-words.txt', 'r') as inF:
+            for line in inF:
+                if word in line:
+                    print('positive word ' + word)
+                    total_sum += 1 
+                    break
+
+
+        with open('negative-words.txt', 'r') as inF2:
+            for line2 in inF2:
+                if word in line2:
+                    print('negative word ' + word)
+                    total_sum -= 1   
+                    break                  
+
+
+
+    
+        #for wp in positive_words:
+        #    print("[POSITIVE] comparing " + wp + " with " + word)
+
+        #    if wp == word:
+        #        print('positive word ' + word)
+        #        total_sum += 1     
+
+        #for wn in negative_words:
+        #    print("[NEGATIVE] comparing " + wp + " with " + word)
+        #    if wn in word:    
+        #        print('negative word ' + word)
+        #        total_sum -= 1 
+        
+
+    print(words)
+    print(total_sum)
+    return 0
 
 pset = gp.PrimitiveSet("MAIN", 1)
 pset.addPrimitive(operator.add, 2)
@@ -79,12 +130,18 @@ def main():
     pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
                                    halloffame=hof, verbose=True)
 
+
+
+    PolaritySum("instantly I good nice bad love this camera so much hate")
+
     #logs
-    print("\n")
-    for i in pop:
-        print(i)
-    print("\n")
-    print(hof[0])
+    
+    #print("\n")
+    #for i in pop:
+    #    print(i)
+    #print("\n")
+    #print(hof[0])
+    
     #logs 
 
     return pop, log, hof

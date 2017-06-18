@@ -19,7 +19,7 @@ from deap import creator
 from deap import tools
 from deap import gp
 
-
+# The reviews and the scores are global
 reviews = []
 reviews_scores = []
 
@@ -164,13 +164,23 @@ toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.ex
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
 
+
+# evaluation function 
 def evalSymbReg(individual, points):
+    getReviews()
+    global reviews
+
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
+
+    #reviews_samp = random.sample(reviews, 1)
+    #print(reviews_samp)
+
     # Evaluate the mean squared error between the expression
     # and the real function : x**4 + x**3 + x**2 + x
     sqerrors = ((func(x) - x**4 - x**3 - x**2 - x)**2 for x in points)
     return math.fsum(sqerrors) / len(points),
+
 
 toolbox.register("evaluate", evalSymbReg, points=[x/10. for x in range(-10,10)])
 toolbox.register("select", tools.selTournament, tournsize=3)
@@ -197,16 +207,16 @@ def main():
 
 
     # UNCOMENT
-    #pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
-    #                               halloffame=hof, verbose=True)
+    pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
+                                   halloffame=hof, verbose=True)
     # UNCOMENT
 
 
-    polaritySum("instantly I good nice bad love this camera so much hate")
-    positiveHashtags("instantly I #good nice #bad love this camera so much #hate so")
-    negativeHashtags("instantly I #good nice #bad love this camera so much #hate so")
+    #polaritySum("instantly I good nice bad love this camera so much hate")
+    #positiveHashtags("instantly I #good nice #bad love this camera so much #hate so")
+    #negativeHashtags("instantly I #good nice #bad love this camera so much #hate so")
 
-    getReviews()
+    #getReviews()
 
     
     #logs
@@ -234,7 +244,7 @@ def main():
 
 
     # UNCOMENT
-    # return pop, log, hof
+    return pop, log, hof
     # UNCOMENT
 
 if __name__ == "__main__":

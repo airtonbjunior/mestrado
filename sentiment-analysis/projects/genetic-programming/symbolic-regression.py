@@ -33,6 +33,13 @@ def protectedDiv(left, right):
         return 1
 
 
+def protectedLog(value):
+    try:
+        return math.log10(value)
+    except:
+        return 0    
+
+
 # Return the sum of the word polarities (positive[+1], negative[-1])
 # Liu's dicionary of positive and negative words
 def polaritySum(phrase):
@@ -97,12 +104,15 @@ def negativeHashtags(phrase):
 
 
 def onlyTestFuncion(string1, string2):
-    return 0
+    return 1
 
 
 def onlyTestFuncion2(float1, float2):
-    return "abc"
+    return ""
 
+
+def invertSignal(val):
+    return -val
 
 def getReviews():
     global reviews
@@ -154,8 +164,10 @@ pset.addPrimitive(operator.sub, [float,float], float)
 pset.addPrimitive(operator.mul, [float,float], float)
 pset.addPrimitive(protectedDiv, [float,float], float)
 
-pset.addPrimitive(math.cos, [float], float)
-pset.addPrimitive(math.sin, [float], float)
+#pset.addPrimitive(math.cos, [float], float)
+#pset.addPrimitive(math.sin, [float], float)
+pset.addPrimitive(protectedLog, [float], float)
+pset.addPrimitive(invertSignal, [float], float)
 
 pset.addPrimitive(positiveHashtags, [str], float)
 pset.addPrimitive(negativeHashtags, [str], float)
@@ -165,16 +177,7 @@ pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
 
-pset.addEphemeralConstant("rand1to5", lambda: float(random.randint(1,3)), float)
-#pset.addTerminal(1.0, float)
-#pset.addTerminal(2.0, float)
-#pset.addTerminal(3.0, float)
-#pset.addTerminal(4.0, float)
-#pset.addTerminal(5.0, float)
-#pset.addTerminal(6.0, float)
-#pset.addTerminal(7.0, float)
-#pset.addTerminal(8.0, float)
-
+pset.addEphemeralConstant("rand1to5", lambda: float(random.randint(0,1)), float)
 
 
 pset.renameArguments(ARG0='x')
@@ -183,14 +186,14 @@ creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
-toolbox.register("expr", gp.genFull, pset=pset, min_=1, max_=5)
+toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=5)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
 
 
 # evaluation function 
-def evalSymbReg(individual): #, points):    
+def evalSymbReg(individual):
     global reviews
     global reviews_scores
     fitnessReturn = 0
@@ -204,8 +207,7 @@ def evalSymbReg(individual): #, points):
     
     for index, item in enumerate(reviews):        
 
-        #sqerrors = (func(reviews[index]) - float(reviews_scores[index]) for review in reviews)
-        if func(reviews[index]) == float(reviews_scores[index]):
+        if (func(reviews[index]) > 0 and float(reviews_scores[index]) > 0) or (func(reviews[index]) < 0 and float(reviews_scores[index]) < 0):
             fitnessReturn += 1 
 
         #logs
@@ -216,6 +218,7 @@ def evalSymbReg(individual): #, points):
         #logs
     
     #logs    
+    print("[function]: " + str(individual))
     print("[fitness]: " + str(fitnessReturn))
     print("\n\n")   
     #logs
@@ -247,9 +250,9 @@ toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_v
 toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
 
 def main():
-    #random.seed(318)
+    random.seed(10)
 
-    pop = toolbox.population(n=20)
+    pop = toolbox.population(n=5)
     hof = tools.HallOfFame(1)
     
     stats_fit = tools.Statistics(lambda ind: ind.fitness.values)
@@ -270,7 +273,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
+    pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 80, stats=mstats,
                                    halloffame=hof, verbose=False)#True)
 
 

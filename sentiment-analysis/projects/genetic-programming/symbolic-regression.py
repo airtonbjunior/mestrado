@@ -10,7 +10,6 @@ import operator
 import math
 import random
 import re
-
 import numpy
 
 from deap import algorithms
@@ -19,9 +18,11 @@ from deap import creator
 from deap import tools
 from deap import gp
 
+
 # The reviews and the scores are global
 reviews = []
 reviews_scores = []
+
 
 # Define new functions
 # Protected Div (check division by zero)
@@ -43,7 +44,7 @@ def polaritySum(phrase):
         with open('positive-words.txt', 'r') as inF:
             for line in inF:
                 if word in line and len(line.strip()) == len(word.strip()):
-                    print("positive word " + word)
+                    #print("positive word " + word)
                     total_sum += 1 
                     break
 
@@ -51,11 +52,11 @@ def polaritySum(phrase):
         with open('negative-words.txt', 'r') as inF2:
             for line2 in inF2:
                 if word in line2 and len(line2.strip()) == len(word.strip()):
-                    print('negative word ' + word)
+                    #print('negative word ' + word)
                     total_sum -= 1   
                     break                   
 
-    print(total_sum) # log
+    #print(total_sum) # log
     return total_sum
 
 
@@ -63,14 +64,14 @@ def polaritySum(phrase):
 def positiveHashtags(phrase):
     total = 0
     if "#" in phrase:
-        print("has hashtag")
+        #print("has hashtag")
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
             with open('positive-words.txt', 'r') as inF:
                 for line in inF:
                     if hashtag in line and len(line.strip()) == len(hashtag.strip()):
-                        print("positive hashtag " + hashtag)
+                        #print("positive hashtag " + hashtag)
                         total += 1 
                         break
 
@@ -81,19 +82,26 @@ def positiveHashtags(phrase):
 def negativeHashtags(phrase):
     total = 0
     if "#" in phrase:
-        print("has hashtag")
+        #print("has hashtag")
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
             with open('negative-words.txt', 'r') as inF:
                 for line in inF:
                     if hashtag in line and len(line.strip()) == len(hashtag.strip()):
-                        print("negative hashtag " + hashtag)
+                        #print("negative hashtag " + hashtag)
                         total += 1 
                         break
 
     return total
 
+
+def onlyTestFuncion(string1, string2):
+    return 0
+
+
+def onlyTestFuncion2(float1, float2):
+    return "abc"
 
 
 def getReviews():
@@ -137,52 +145,99 @@ def getReviews():
         reviews.append(review.strip()) # last review
 
 
-# TO-DO: uppercasepositive uppercasenegative 
-# repeated vowel
-# see n-gram dictionary
+# Parse the review file
+getReviews()
+
+pset = gp.PrimitiveSetTyped("MAIN", [str], float)
+pset.addPrimitive(operator.add, [float,float], float)
+pset.addPrimitive(operator.sub, [float,float], float)
+pset.addPrimitive(operator.mul, [float,float], float)
+pset.addPrimitive(protectedDiv, [float,float], float)
+
+pset.addPrimitive(math.cos, [float], float)
+pset.addPrimitive(math.sin, [float], float)
+
+pset.addPrimitive(positiveHashtags, [str], float)
+pset.addPrimitive(negativeHashtags, [str], float)
+pset.addPrimitive(polaritySum, [str], float)
+
+pset.addPrimitive(onlyTestFuncion, [str, str], float)
+pset.addPrimitive(onlyTestFuncion2, [float, float], str)
+
+
+pset.addEphemeralConstant("rand1to5", lambda: float(random.randint(1,3)), float)
+#pset.addTerminal(1.0, float)
+#pset.addTerminal(2.0, float)
+#pset.addTerminal(3.0, float)
+#pset.addTerminal(4.0, float)
+#pset.addTerminal(5.0, float)
+#pset.addTerminal(6.0, float)
+#pset.addTerminal(7.0, float)
+#pset.addTerminal(8.0, float)
 
 
 
-
-pset = gp.PrimitiveSet("MAIN", 1)
-pset.addPrimitive(operator.add, 2)
-pset.addPrimitive(operator.sub, 2)
-pset.addPrimitive(operator.mul, 2)
-pset.addPrimitive(protectedDiv, 2)
-pset.addPrimitive(operator.neg, 1)
-pset.addPrimitive(math.cos, 1)
-pset.addPrimitive(math.sin, 1)
-pset.addEphemeralConstant("rand101", lambda: random.randint(-1,1))
 pset.renameArguments(ARG0='x')
 
-creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
-creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMin)
+creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
-toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=2)
+toolbox.register("expr", gp.genFull, pset=pset, min_=1, max_=5)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
 
 
 # evaluation function 
-def evalSymbReg(individual, points):
-    getReviews()
+def evalSymbReg(individual): #, points):    
     global reviews
+    global reviews_scores
+    fitnessReturn = 0
 
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
+
+    #logs
+    print(str(len(reviews)) + " phrases to evaluate")
+    #logs
+    
+    for index, item in enumerate(reviews):        
+
+        #sqerrors = (func(reviews[index]) - float(reviews_scores[index]) for review in reviews)
+        if func(reviews[index]) == float(reviews_scores[index]):
+            fitnessReturn += 1 
+
+        #logs
+        #print(index, item)
+        print("[phrase]: " + reviews[index])
+        print("[value]: " + reviews_scores[index])
+        print("[calculated]:" + str(func(reviews[index])))
+        #logs
+    
+    #logs    
+    print("[fitness]: " + str(fitnessReturn))
+    print("\n\n")   
+    #logs
+
+    #return math.fsum(sqerrors) / len(reviews),  
+    return fitnessReturn,
+    
 
     #reviews_samp = random.sample(reviews, 1)
     #print(reviews_samp)
 
     # Evaluate the mean squared error between the expression
     # and the real function : x**4 + x**3 + x**2 + x
-    sqerrors = ((func(x) - x**4 - x**3 - x**2 - x)**2 for x in points)
-    return math.fsum(sqerrors) / len(points),
+    #sqerrors = ((func(x) - x**4 - x**3 - x**2 - x)**2 for x in points)
+    #return math.fsum(sqerrors) / len(points),
 
 
-toolbox.register("evaluate", evalSymbReg, points=[x/10. for x in range(-10,10)])
+
+#toolbox.register("evaluate", evalSymbReg, points=[x/10. for x in range(-10,10)])
+toolbox.register("evaluate", evalSymbReg) # , points=[x for x in reviews])
+
+
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
 toolbox.register("expr_mut", gp.genFull, min_=0, max_=2)
@@ -192,9 +247,9 @@ toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_v
 toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
 
 def main():
-    random.seed(318)
+    #random.seed(318)
 
-    pop = toolbox.population(n=300)
+    pop = toolbox.population(n=20)
     hof = tools.HallOfFame(1)
     
     stats_fit = tools.Statistics(lambda ind: ind.fitness.values)
@@ -206,10 +261,17 @@ def main():
     mstats.register("max", numpy.max)
 
 
-    # UNCOMENT
+    # Parameters
+        # population (list of individuals)
+        # toolbox (that contains the evolution operators)
+        # Mating probability (two individuals)
+        # Mutation probability
+        # Number of generations
+        # Statistics objetc (updated inplace)
+        # HallOfFame object that contain the best individuals
+        # Whether or not to log the statistics
     pop, log = algorithms.eaSimple(pop, toolbox, 0.5, 0.1, 40, stats=mstats,
-                                   halloffame=hof, verbose=True)
-    # UNCOMENT
+                                   halloffame=hof, verbose=False)#True)
 
 
     #polaritySum("instantly I good nice bad love this camera so much hate")
@@ -226,20 +288,20 @@ def main():
         #print("\n")
 
 
-    print("\n\n")
-    print(reviews)
-    print(len(reviews))
-    print("\n\n")
-    print(reviews_scores)
-    print(len(reviews_scores))
+    #print("\n\n")
+    #print(reviews)
+    #print(len(reviews))
+    #print("\n\n")
+    #print(reviews_scores)
+    #print(len(reviews_scores))
     #logs
 
     #logs
     #print("\n")
     #for i in pop:
     #    print(i)
-    #print("\n")
-    #print(hof[0]) 
+    print("\n")
+    print(hof[0]) 
     #logs 
 
 
@@ -249,3 +311,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+# TO-DO: uppercasepositive uppercasenegative 
+# repeated vowel
+# see n-gram dictionary

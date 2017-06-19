@@ -1,4 +1,3 @@
-dial[-1]## main dial is not backlit . 
 viewfinder[-2]##* lens visible in optical viewfinder . 
 ##( well thats only for old-school die-hard optical viewfinder fans ) use lcd instead which is brilliant and you can twist around too . 
 viewfinder[-1]##the lens is visible in the viewfinder when the lens is set to the wide angle , but since i use the lcd most of the time , this is not really much of a bother to me . 
@@ -42,7 +41,6 @@ use[+2]##the camera is very easy to use , in fact on a recent trip this past wee
 ##after i took their picture with their camera , they offered to take a picture of us . 
 ##i just told them , press halfway , wait for the box to turn green and press the rest of the way . 
 picture[+2]##they fired away and the picture turned out quite nicely . ( as all of my pictures have thusfar ) . 
-picture quality[+1]##a few of my work constituants owned the g2 and highly recommended the canon for picture quality . 
 picture quality[+1]##i 'm easily enlarging pictures to 8 1/2 x 11 with no visable loss in picture quality and not even using the best possible setting as yet ( super fine ) . 
 ##ensure you get a larger flash , 128 or 256 , some are selling with the larger flash , 32mb will do in a pinch but you 'll quickly want a larger flash card as with any of the 4mp cameras . 
 camera[+2], use[+2], feature[+1]##bottom line , well made camera , easy to use , very flexible and powerful features to include the ability to use external flash and lense / filters choices . 

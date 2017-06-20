@@ -28,6 +28,8 @@ reviews = []
 reviews_scores = []
 best_fitness = 0
 
+uses_dummy_function = False
+
 # Define new functions
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
@@ -41,7 +43,14 @@ def protectedLog(value):
     try:
         return math.log10(value)
     except:
-        return 0    
+        return 1    
+
+
+def protectedSqrt(value):
+    try:
+        return math.sqrt(value)
+    except:
+        return 1  
 
 
 # Return the sum of the word polarities (positive[+1], negative[-1])
@@ -115,6 +124,8 @@ def if_then_else(input, output1, output2):
 
 
 def onlyTestFuncion(string1, string2):
+    global uses_dummy_function
+    uses_dummy_function = True
     return 1
 
 
@@ -175,8 +186,12 @@ pset.addPrimitive(operator.sub, [float,float], float)
 pset.addPrimitive(operator.mul, [float,float], float)
 pset.addPrimitive(protectedDiv, [float,float], float)
 
+#pset.addPrimitive(math.pow, [float, float], float)
+
+pset.addPrimitive(math.exp, [float], float)
 pset.addPrimitive(math.cos, [float], float)
 pset.addPrimitive(math.sin, [float], float)
+pset.addPrimitive(protectedSqrt, [float], float)
 
 pset.addPrimitive(protectedLog, [float], float)
 pset.addPrimitive(invertSignal, [float], float)
@@ -189,7 +204,7 @@ pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
 
-pset.addEphemeralConstant("rand", lambda: float(random.randint(-1,1)), float)
+pset.addEphemeralConstant("rand", lambda: float(random.randint(-2,2)), float)
 
 
 pset.renameArguments(ARG0='x')
@@ -211,6 +226,7 @@ def evalSymbReg(individual):
     global reviews
     global reviews_scores
     global best_fitness
+    global uses_dummy_function
     fitnessReturn = 0
 
     # Transform the tree expression in a callable function
@@ -232,6 +248,10 @@ def evalSymbReg(individual):
         print("[calculated]:" + str(func(reviews[index])))
         #logs
     
+    if uses_dummy_function:
+        fitnessReturn = 0
+        uses_dummy_function = False
+
     if best_fitness < fitnessReturn:
         best_fitness = fitnessReturn
 
@@ -250,7 +270,7 @@ toolbox.register("evaluate", evalSymbReg) # , points=[x for x in reviews])
 
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
-toolbox.register("expr_mut", gp.genGrow, min_=0, max_=2)
+toolbox.register("expr_mut", gp.genGrow, min_=0, max_=4)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
 toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
@@ -260,9 +280,9 @@ def main():
 
     global best_fitness
 
-    random.seed(10)
+    random.seed()
 
-    pop = toolbox.population(n=7)
+    pop = toolbox.population(n=10)
     hof = tools.HallOfFame(1)
     
     
@@ -284,7 +304,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 0.9, 0.5, 10, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 1.0, 0.7, 15, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
     #logs

@@ -1,5 +1,3 @@
-viewfinder[-2]##* lens visible in optical viewfinder . 
-##( well thats only for old-school die-hard optical viewfinder fans ) use lcd instead which is brilliant and you can twist around too . 
 viewfinder[-1]##the lens is visible in the viewfinder when the lens is set to the wide angle , but since i use the lcd most of the time , this is not really much of a bother to me . 
 ##still i am a little suprised that canon did not correct this design flaw before releasing the camera . 
 size[-2][u],weight[-2][u]##1 ) quite bulky ( it 's about the same size as my minolta vectis s-1 aps slr ) and uses a heavy battery , although not very solid as it is contructed mostly of plastic ( unlike canon 's elph line ) 
@@ -75,6 +73,3 @@ feature[+2]##the g3 is loaded with many useful features , and unlike many smalle
 [t]excellent for the semi-serious amateur 
 ##positives 
 exposure control[+2],auto setting[+2]##1 ) slr like programming and exposure control gives you latitude to be creative , yet its progam and auto exposure settings provide excellent photos if you do n't want to bother with the settings . 
-metering option[+2]##excellent range of metering options as well . 
-my test[+2]##i #love sooooo much this camera, it's so good! Thank you
-my test2[-2]## i really #hate this camera! not worth it!

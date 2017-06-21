@@ -201,7 +201,7 @@ lag time[-2],flash[-2]##the two limitations i knew i would have to deal with are
 depth[+1]##what makes the focus-lock lag time something i can live with is the extreme depth of field obtainable with these point and shoot digicams at f8 . 
 ##once i get focus lock , i can then wait until my restless subject ( a pet or a child ) strikes an amusing pose and then fire the shutter with some reasonable probability of getting my subject still in focus . 
 ##now what about the flash problem ? 
-flash[-2]##relative to what i can easily achieve with external flash on my nikon slr , the internal flash on the g3 produces harsh , flat images with ugly hot spots . 
+flash[-2]##relative to what i can easily achieve with external flash on my nikon slr , the internal flash on the g3 produces harsh , flat images with #ugly hot spots . 
 external flash hot shoe[+1]##fortunately , the g3 has a hot shoe that can take an external flash , and fortunately for me , i already owned a one of the highest quality external flashes that money can buy : the metz 60 ct-4 . 
 ##i cant use my nikon external flash on a canon camera , but i can use my metz , with the proper metz module and extension cord connected between the g3 and the 60 ct-4 . 
 ##for those who have this metz flash ( or the 45cl-3 ) and would like to get the absolute ultimate quality out of this g3 , the metz module you need is the sca 3102 and the connector cord is the sca 3000c . 
@@ -231,7 +231,7 @@ image[+3]##but at least youre starting with the most photorealistic images ive e
 raw image[+3]##i am stunned and amazed at the quality of the raw images i am getting from this g3 ( in conjunction with my professional flash system ) , and can easily put up with the cameras limitations , because ive never seen anything better within its resolution limits . 
 [t]knock your socks off great 
 camera[+2][p]##i 've had this for 3 months now , and i am pleased with my decision . 
-camera[+3]##this is the perfect camera for a photo hobbiest who wants to have easy point and shoot ability as well . 
+camera[+3]##this is the #perfect camera for a photo hobbiest who wants to have easy point and shoot ability as well . 
 ##my girlfriend loved using this camera so much as a point and shoot that i had to pry it out of her hands most of the time . 
 battery life[+1]##battery life , the drawback to most digital cameras , to quote k. reeves . 
 ##whoa . 
@@ -632,8 +632,8 @@ optic[+2]##canon 's optics are better and i believe their processing algorithms 
 digital camera[+3]##simply , the canon g3 is the best digital camera out there today at this price point . 
 ##the canon allows you to change lenses , and it accepts the ibm microdrive ( type ii compact flash ) , so you can have up to 1 gigabyte of storage . 
 ##for me on the fine resolution setting ( not maximum but very close ) this adds up to over 1000 images with the 1 gig card . 
-battery life[+2]##the battery life of this camera is twice that of the nikon 5000 and is better than anything else i 've seen . 
-look[-2]##the only minor nits i have with the camera are it is fairly boxy looking , it needs a wrist strap instead of a neck strap , and it is a bit slow between shots . 
+battery life[+2]##the battery life of this camera is twice that of the nikon 5000 and is #better than anything else i 've seen . 
+look[-2]##the only minor nits i have with the camera are it is fairly boxy looking , it needs a wrist strap instead of a neck strap , and it is a bit #slow between shots . 
 camera[+3]##even with these shortcomings , i still think it is the best digital camera available under $ 1200 . 
 [t]great camera but g2 will do the same for less 
 camera[+3]##definetely a great camera . 

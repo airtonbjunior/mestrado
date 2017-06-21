@@ -53,6 +53,38 @@ def protectedSqrt(value):
         return 1  
 
 
+def negativeWordsQuantity(phrase):
+    negative_words = 0
+    words = phrase.split()
+    
+    for word in words:
+        with open('negative-words.txt', 'r') as inF2:
+            for line2 in inF2:
+                if word in line2 and len(line2.strip()) == len(word.strip()):
+                    #print('negative word ' + word)
+                    negative_words += 1   
+                    break  
+
+
+    return negative_words
+
+
+def positiveWordsQuantity(phrase):
+    positive_words = 0
+    words = phrase.split()
+    
+    for word in words:
+        with open('positive-words.txt', 'r') as inF2:
+            for line2 in inF2:
+                if word in line2 and len(line2.strip()) == len(word.strip()):
+                    #print('negative word ' + word)
+                    positive_words += 1   
+                    break  
+
+
+    return positive_words    
+
+
 # Return the sum of the word polarities (positive[+1], negative[-1])
 # Liu's dicionary of positive and negative words
 def polaritySum(phrase):
@@ -136,6 +168,7 @@ def onlyTestFuncion2(float1, float2):
 def invertSignal(val):
     return -val
 
+
 def getReviews():
     global reviews
     global reviews_scores
@@ -200,6 +233,9 @@ pset.addPrimitive(positiveHashtags, [str], float)
 pset.addPrimitive(negativeHashtags, [str], float)
 pset.addPrimitive(polaritySum, [str], float)
 
+pset.addPrimitive(positiveWordsQuantity, [str], float)
+pset.addPrimitive(negativeWordsQuantity, [str], float)
+
 pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
@@ -215,7 +251,7 @@ creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 toolbox = base.Toolbox()
 #toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=5)
 
-toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=2)
+toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=6)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
@@ -270,7 +306,7 @@ toolbox.register("evaluate", evalSymbReg) # , points=[x for x in reviews])
 
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
-toolbox.register("expr_mut", gp.genGrow, min_=0, max_=4)
+toolbox.register("expr_mut", gp.genGrow, min_=1, max_=7)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
 toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
@@ -282,7 +318,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=10)
+    pop = toolbox.population(n=6)
     hof = tools.HallOfFame(1)
     
     
@@ -304,7 +340,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 1.0, 0.7, 15, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 6, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
     #logs

@@ -13,6 +13,7 @@ import random
 import re
 import numpy
 import time
+import csv
 
 from deap import algorithms
 from deap import base
@@ -26,9 +27,78 @@ start = time.time()
 # The reviews and the scores are global
 reviews = []
 reviews_scores = []
-best_fitness = 0
 
+# The tweets and the scores are global
+tweets = []
+tweets_score = []
+
+best_fitness = 0
 uses_dummy_function = False
+
+
+
+def getTweets():
+    global tweets
+    global tweets_score
+
+    f = open("tweets.txt", 'rt')
+    try:
+        reader = csv.reader(f)
+        for row in reader:
+            if int(row[1]) > 0:
+                tweets_score.append(row[1])
+            else:
+                tweets_score.append(-1)
+
+            tweets.append(row[3].strip())
+    finally:
+        f.close()
+
+
+
+def getReviews():
+    global reviews
+    global reviews_scores
+
+    review = ""
+    score = ""
+    start_of_next_review = ""
+    end_of_review = False
+
+    with open('reviews.txt', 'r') as inF:
+        for line in inF:
+            if line.startswith("*"): # comments of the review file
+                continue
+
+            if not re.findall(r"\[t\]", line):  # titles start with [t]. I'll not use the titles (check)
+                if line.startswith("##"):
+                    review += line[line.index('#') + 2: ].strip() # remove the ##
+                    #print(review)
+                else:
+                    score += line[line.index('[') + 1 : line.index(']')].strip()
+                    start_of_next_review += line[line.index('#') + 2 : ].strip()  # remove the ##
+                    end_of_review = True
+                    #print(line)
+            
+
+            if end_of_review:
+                if len(review) > 0:
+                    reviews.append(review.strip())
+                
+                if len(score) > 0:
+                    reviews_scores.append(score.strip())
+                    score = ""
+
+                review = start_of_next_review
+                start_of_next_review = ""
+                
+                end_of_review = False    
+
+        reviews.append(review.strip()) # last review
+
+
+
+
 
 # Define new functions
 # Protected Div (check division by zero)
@@ -112,6 +182,38 @@ def polaritySum(phrase):
     return total_sum
 
 
+def positiveEmoticons(phrase):
+    words = phrase.split()
+
+    total_sum = 0
+
+    for word in words:
+        with open('positive-emoticons.txt', 'r') as inF:
+            for line in inF:
+                if word in line and len(line.strip()) == len(word.strip()):
+                    #print("positive word " + word)
+                    total_sum += 1 
+                    break                 
+
+    return total_sum
+
+
+def negativeEmoticons(phrase):
+    words = phrase.split()
+
+    total_sum = 0
+
+    for word in words:
+        with open('negative-emoticons.txt', 'r') as inF:
+            for line in inF:
+                if word in line and len(line.strip()) == len(word.strip()):
+                    #print("positive word " + word)
+                    total_sum += 1 
+                    break                 
+
+    return total_sum
+
+
 # Positive Hashtags
 def positiveHashtags(phrase):
     total = 0
@@ -162,6 +264,8 @@ def onlyTestFuncion(string1, string2):
 
 
 def onlyTestFuncion2(float1, float2):
+    global uses_dummy_function
+    uses_dummy_function = True
     return ""
 
 
@@ -169,49 +273,12 @@ def invertSignal(val):
     return -val
 
 
-def getReviews():
-    global reviews
-    global reviews_scores
-
-    review = ""
-    score = ""
-    start_of_next_review = ""
-    end_of_review = False
-
-    with open('reviews.txt', 'r') as inF:
-        for line in inF:
-            if line.startswith("*"): # comments of the review file
-                continue
-
-            if not re.findall(r"\[t\]", line):  # titles start with [t]. I'll not use the titles (check)
-                if line.startswith("##"):
-                    review += line[line.index('#') + 2: ].strip() # remove the ##
-                    #print(review)
-                else:
-                    score += line[line.index('[') + 1 : line.index(']')].strip()
-                    start_of_next_review += line[line.index('#') + 2 : ].strip()  # remove the ##
-                    end_of_review = True
-                    #print(line)
-            
-
-            if end_of_review:
-                if len(review) > 0:
-                    reviews.append(review.strip())
-                
-                if len(score) > 0:
-                    reviews_scores.append(score.strip())
-                    score = ""
-
-                review = start_of_next_review
-                start_of_next_review = ""
-                
-                end_of_review = False    
-
-        reviews.append(review.strip()) # last review
 
 
 # Parse the review file
-getReviews()
+#getReviews()
+getTweets()
+
 
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
 pset.addPrimitive(operator.add, [float,float], float)
@@ -231,6 +298,8 @@ pset.addPrimitive(invertSignal, [float], float)
 
 pset.addPrimitive(positiveHashtags, [str], float)
 pset.addPrimitive(negativeHashtags, [str], float)
+pset.addPrimitive(positiveEmoticons, [str], float)
+pset.addPrimitive(negativeEmoticons, [str], float)
 pset.addPrimitive(polaritySum, [str], float)
 
 pset.addPrimitive(positiveWordsQuantity, [str], float)
@@ -240,7 +309,7 @@ pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
 
-pset.addEphemeralConstant("rand", lambda: float(random.randint(-2,2)), float)
+pset.addEphemeralConstant("rand", lambda: random.uniform(-2, 2), float)
 
 
 pset.renameArguments(ARG0='x')
@@ -301,7 +370,51 @@ def evalSymbReg(individual):
     return fitnessReturn,
 
 
-toolbox.register("evaluate", evalSymbReg) # , points=[x for x in reviews])
+# evaluation function 
+def evalSymbRegTweets(individual):
+    global tweets
+    global tweets_score
+
+    global best_fitness
+    global uses_dummy_function
+    fitnessReturn = 0
+
+    # Transform the tree expression in a callable function
+    func = toolbox.compile(expr=individual)
+
+    #logs
+    print(str(len(tweets)) + " phrases to evaluate")
+    #logs
+    
+    for index, item in enumerate(tweets):        
+
+        if (func(tweets[index]) > 0 and float(tweets_score[index]) > 0) or (func(tweets[index]) < 0 and float(tweets_score[index]) < 0):
+            fitnessReturn += 1 
+
+        #logs
+        #print(index, item)
+        print("[phrase]: " + tweets[index])
+        print("[value]: " + str(tweets_score[index]))
+        print("[calculated]:" + str(func(tweets[index])))
+        #logs
+    
+    if uses_dummy_function:
+        fitnessReturn = 0
+        uses_dummy_function = False
+
+    if best_fitness < fitnessReturn:
+        best_fitness = fitnessReturn
+
+
+    #logs    
+    print("[function]: " + str(individual))
+    print("[fitness]: " + str(fitnessReturn))
+    print("\n\n")   
+    #logs
+
+    return fitnessReturn,
+
+toolbox.register("evaluate", evalSymbRegTweets) # , points=[x for x in reviews])
 
 
 toolbox.register("select", tools.selTournament, tournsize=3)
@@ -357,7 +470,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 end = time.time()
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")

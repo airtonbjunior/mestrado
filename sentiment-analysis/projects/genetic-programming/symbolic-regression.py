@@ -320,7 +320,7 @@ creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 toolbox = base.Toolbox()
 #toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=5)
 
-toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=6)
+toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=7)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
@@ -416,14 +416,13 @@ def evalSymbRegTweets(individual):
 
 toolbox.register("evaluate", evalSymbRegTweets) # , points=[x for x in reviews])
 
-
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
-toolbox.register("expr_mut", gp.genGrow, min_=1, max_=7)
+toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=5)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
-toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
-toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
+toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
+toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
 
 def main():
 
@@ -431,17 +430,17 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=6)
+    pop = toolbox.population(n=10)
     hof = tools.HallOfFame(1)
     
     
-    #stats_fit = tools.Statistics(lambda ind: ind.fitness.values)
-    #stats_size = tools.Statistics(len)
-    #mstats = tools.MultiStatistics(fitness=stats_fit, size=stats_size)
-    #mstats.register("avg", numpy.mean)
-    #mstats.register("std", numpy.std)
-    #mstats.register("min", numpy.min)
-    #mstats.register("max", numpy.max)
+    stats_fit = tools.Statistics(lambda ind: ind.fitness.values)
+    stats_size = tools.Statistics(len)
+    mstats = tools.MultiStatistics(fitness=stats_fit, size=stats_size)
+    mstats.register("avg", numpy.mean)
+    mstats.register("std", numpy.std)
+    mstats.register("min", numpy.min)
+    mstats.register("max", numpy.max)
 
 
     # Parameters
@@ -453,8 +452,9 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 6, stats=False,
-                                   halloffame=hof, verbose=False)#True)
+    pop, log = algorithms.eaSimple(pop, toolbox, 1.5, 0.5, 5, stats=mstats,
+                                   halloffame=hof, verbose=True)#True)
+
 
     #logs
     #print("\n")

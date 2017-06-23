@@ -21,22 +21,66 @@ from deap import creator
 from deap import tools
 from deap import gp
 
+from twython import Twython
 
+# log time
 start = time.time()
 
-# The reviews and the scores are global
+
 reviews = []
 reviews_scores = []
 
-# The tweets and the scores are global
 tweets = []
 tweets_score = []
+
+tweets_semeval = []
+tweets_semeval_score = []
+
+positive_tweets = 0
+negative_tweets = 0
 
 best_fitness = 0
 uses_dummy_function = False
 
 
+# get tweets from id (SEMEVAL database)
+def getTweetsFromIds():
+    global tweets_semeval
+    global tweets_semeval_score
 
+    global positive_tweets
+    global negative_tweets
+
+    tweet_parsed = []
+
+    APP_KEY = 'fBoxg0SJUlIKRN84wOJGGCmgz'
+    APP_SECRET = 'yhf4LSdSlfmj25WUzvT8YzWmFXf30SFv2w5Qqa3M6wViWZNpYA'
+    twitter = Twython(APP_KEY, APP_SECRET, oauth_version=2)
+    ACCESS_TOKEN = twitter.obtain_access_token()
+
+    twitter = Twython(APP_KEY, access_token=ACCESS_TOKEN)
+
+    with open('twitter-2016train-A-part.txt', 'r') as inF:
+        for line in inF:
+            tweet_parsed = line.split()
+            try:
+                # i'm ignoring the neutral tweets
+                if(tweet_parsed[1] != "neutral"):
+                    tweet = twitter.show_status(id=str(tweet_parsed[0]))
+                    tweets_semeval.append(tweet['text'])
+                    if(tweet_parsed[1] == "positive"):
+                        positive_tweets += 1
+                        tweets_semeval_score.append(1)
+                    else:
+                        negative_tweets += 1
+                        tweets_semeval_score.append(-1)
+            # treat 403 exception mainly
+            except:
+                #print("exception")
+                continue
+
+
+# get tweets of tweets.txt
 def getTweets():
     global tweets
     global tweets_score
@@ -55,7 +99,7 @@ def getTweets():
         f.close()
 
 
-
+# get reviews of reviews.txt
 def getReviews():
     global reviews
     global reviews_scores
@@ -97,9 +141,6 @@ def getReviews():
         reviews.append(review.strip()) # last review
 
 
-
-
-
 # Define new functions
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
@@ -109,6 +150,7 @@ def protectedDiv(left, right):
         return 1
 
 
+# Log
 def protectedLog(value):
     try:
         return math.log10(value)
@@ -116,11 +158,16 @@ def protectedLog(value):
         return 1    
 
 
+# Sqrt
 def protectedSqrt(value):
     try:
         return math.sqrt(value)
     except:
         return 1  
+
+
+def invertSignal(val):
+    return -val
 
 
 def negativeWordsQuantity(phrase):
@@ -269,15 +316,12 @@ def onlyTestFuncion2(float1, float2):
     return ""
 
 
-def invertSignal(val):
-    return -val
-
-
 
 
 # Parse the review file
+getTweetsFromIds()
 #getReviews()
-getTweets()
+#getTweets()
 
 
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
@@ -343,7 +387,7 @@ def evalSymbReg(individual):
     
     for index, item in enumerate(reviews):        
 
-        if (func(reviews[index]) > 0 and float(reviews_scores[index]) > 0) or (func(reviews[index]) < 0 and float(reviews_scores[index]) < 0):
+        if (func(reviews[index]) > 0 and float(reviews_scores[index]) > 0) or (func(reviews[index]) < 0 and float(reviews_scores[index]) < 0) or (func(reviews[index]) == 0 and float(reviews_scores[index]) == 0):
             fitnessReturn += 1 
 
         #logs
@@ -414,7 +458,54 @@ def evalSymbRegTweets(individual):
 
     return fitnessReturn,
 
-toolbox.register("evaluate", evalSymbRegTweets) # , points=[x for x in reviews])
+
+# evaluation function 
+def evalSymbRegTweetsFromSemeval(individual):
+    global tweets_semeval
+    global tweets_semeval_score
+
+    global best_fitness
+    global uses_dummy_function
+    fitnessReturn = 0
+
+    # Transform the tree expression in a callable function
+    func = toolbox.compile(expr=individual)
+
+    #logs
+    print(str(len(tweets_semeval)) + " phrases to evaluate")
+    #logs
+    
+    for index, item in enumerate(tweets_semeval):        
+
+        if (func(tweets_semeval[index]) > 0 and float(tweets_semeval_score[index]) > 0) or (func(tweets_semeval[index]) < 0 and float(tweets_semeval_score[index]) < 0):
+            fitnessReturn += 1 
+
+        #logs
+        #print(index, item)
+        print("[phrase]: " + tweets_semeval[index])
+        print("[value]: " + str(tweets_semeval_score[index]))
+        print("[calculated]:" + str(func(tweets_semeval[index])))
+        #logs
+    
+    if uses_dummy_function:
+        fitnessReturn = 0
+        uses_dummy_function = False
+
+    if best_fitness < fitnessReturn:
+        best_fitness = fitnessReturn
+
+
+    #logs    
+    print("[function]: " + str(individual))
+    print("[fitness]: " + str(fitnessReturn))
+    print("\n\n")   
+    #logs
+
+    return fitnessReturn,
+
+
+
+toolbox.register("evaluate", evalSymbRegTweetsFromSemeval) # , points=[x for x in reviews])
 
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
@@ -427,20 +518,22 @@ toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max
 def main():
 
     global best_fitness
+    global positive_tweets
+    global negative_tweets
 
     random.seed()
 
-    pop = toolbox.population(n=10)
+    pop = toolbox.population(n=50)
     hof = tools.HallOfFame(1)
     
     
-    stats_fit = tools.Statistics(lambda ind: ind.fitness.values)
-    stats_size = tools.Statistics(len)
-    mstats = tools.MultiStatistics(fitness=stats_fit, size=stats_size)
-    mstats.register("avg", numpy.mean)
-    mstats.register("std", numpy.std)
-    mstats.register("min", numpy.min)
-    mstats.register("max", numpy.max)
+    #stats_fit = tools.Statistics(lambda ind: ind.fitness.values)
+    #stats_size = tools.Statistics(len)
+    #mstats = tools.MultiStatistics(fitness=stats_fit, size=stats_size)
+    #mstats.register("avg", numpy.mean)
+    #mstats.register("std", numpy.std)
+    #mstats.register("min", numpy.min)
+    #mstats.register("max", numpy.max)
 
 
     # Parameters
@@ -452,8 +545,8 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 1.5, 0.5, 5, stats=mstats,
-                                   halloffame=hof, verbose=True)#True)
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 50, stats=False,
+                                   halloffame=hof, verbose=False)#True)
 
 
     #logs
@@ -461,6 +554,8 @@ def main():
     #for i in pop:
     #    print(i)
     print("\n")
+    print("[total tweets]: " + str(positive_tweets + negative_tweets))
+    print("[positive tweets]: " + str(positive_tweets) + " | [negative tweets]: " + str(negative_tweets))
     print("[best fitness]: " + str(best_fitness))
     print(hof[0]) 
     #logs 
@@ -470,6 +565,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 end = time.time()
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")

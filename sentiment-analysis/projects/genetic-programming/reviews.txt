@@ -227,6 +227,22 @@ color[+3]##without any tweaking at all , if the exposure is accurate , the color
 g3[+3],software[-2]##the adobe camera raw plug-in shows once again that hardware is miles ahead of software . 
 software[-2]##what the g3 raw image software gives you is a fantasy world designed to please the uncritical . 
 ##what the photoshop plug-in gives you is reality , and then if you want fantasy , you can use photoshop to create it . 
+myReview[0]##Today is sunday
+myReview[0]##Today is saturday
+myReview[0]##Hello
+myReview[0]##Hi
+myReview[0]##I buy this camera
+myReview[0]##I open the box
+myReview[0]##The box is blue
+myReview[0]##The box is red
+myReview[0]##The box is white
+myReview[0]##The camera is white
+myReview[0]##My name is abc
+myReview[0]##This is a test of a neutral review
+myReview[0]##Another neutral review
+myReview[0]##One more neutral review
+myReview[0]##Neutral review again
+myReview[0]##Hey, I'm a neutral review
 image[+3]##but at least youre starting with the most photorealistic images ive ever seen from a camera . 
 raw image[+3]##i am stunned and amazed at the quality of the raw images i am getting from this g3 ( in conjunction with my professional flash system ) , and can easily put up with the cameras limitations , because ive never seen anything better within its resolution limits . 
 [t]knock your socks off great 

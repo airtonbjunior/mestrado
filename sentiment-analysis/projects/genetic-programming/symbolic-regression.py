@@ -36,8 +36,15 @@ tweets_score = []
 tweets_semeval = []
 tweets_semeval_score = []
 
+dic_positive_words = []
+dic_negative_words = []
+
 positive_tweets = 0
 negative_tweets = 0
+
+fitness_positive = 0
+fitness_negative = 0
+fitness_neutral = 0
 
 best_fitness = 0
 uses_dummy_function = False
@@ -45,6 +52,8 @@ uses_dummy_function = False
 
 # get tweets from id (SEMEVAL database)
 def getTweetsFromIds():
+    print("[loading tweets]")
+
     global tweets_semeval
     global tweets_semeval_score
 
@@ -78,6 +87,8 @@ def getTweetsFromIds():
             except:
                 #print("exception")
                 continue
+    
+    print("[tweets loaded]")
 
 
 # get tweets of tweets.txt
@@ -141,6 +152,24 @@ def getReviews():
         reviews.append(review.strip()) # last review
 
 
+
+def getDictionary():
+    print("[loading dictionary]")
+
+    global dic_positive_words
+    global dic_negative_words
+
+
+    with open('positive-words.txt', 'r') as inF:
+        for line in inF:
+            dic_positive_words.append(line.strip())
+
+    with open('negative-words.txt', 'r') as inF2:
+        for line2 in inF2:
+            dic_negative_words.append(line2.strip())
+
+    print("[dictionary loaded]")
+
 # Define new functions
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
@@ -171,33 +200,25 @@ def invertSignal(val):
 
 
 def negativeWordsQuantity(phrase):
+    global dic_negative_words
     negative_words = 0
     words = phrase.split()
     
     for word in words:
-        with open('negative-words.txt', 'r') as inF2:
-            for line2 in inF2:
-                if word in line2 and len(line2.strip()) == len(word.strip()):
-                    #print('negative word ' + word)
-                    negative_words += 1   
-                    break  
-
+        if word in dic_negative_words:
+            negative_words += 1
 
     return negative_words
 
 
 def positiveWordsQuantity(phrase):
+    global dic_positive_words
     positive_words = 0
     words = phrase.split()
     
     for word in words:
-        with open('positive-words.txt', 'r') as inF2:
-            for line2 in inF2:
-                if word in line2 and len(line2.strip()) == len(word.strip()):
-                    #print('negative word ' + word)
-                    positive_words += 1   
-                    break  
-
+        if word in dic_positive_words:
+            positive_words += 1
 
     return positive_words    
 
@@ -205,27 +226,20 @@ def positiveWordsQuantity(phrase):
 # Return the sum of the word polarities (positive[+1], negative[-1])
 # Liu's dicionary of positive and negative words
 def polaritySum(phrase):
+    global dic_positive_words
+    global dic_negative_words
+
     words = phrase.split()
 
     total_sum = 0
 
     for word in words:
-        with open('positive-words.txt', 'r') as inF:
-            for line in inF:
-                if word in line and len(line.strip()) == len(word.strip()):
-                    #print("positive word " + word)
-                    total_sum += 1 
-                    break
+        if word in dic_positive_words:
+            total_sum += 1 
 
+        if word in dic_negative_words:
+            total_sum -= 1
 
-        with open('negative-words.txt', 'r') as inF2:
-            for line2 in inF2:
-                if word in line2 and len(line2.strip()) == len(word.strip()):
-                    #print('negative word ' + word)
-                    total_sum -= 1   
-                    break                   
-
-    #print(total_sum) # log
     return total_sum
 
 
@@ -263,36 +277,30 @@ def negativeEmoticons(phrase):
 
 # Positive Hashtags
 def positiveHashtags(phrase):
+    global dic_positive_words
     total = 0
     if "#" in phrase:
         #print("has hashtag")
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            with open('positive-words.txt', 'r') as inF:
-                for line in inF:
-                    if hashtag in line and len(line.strip()) == len(hashtag.strip()):
-                        #print("positive hashtag " + hashtag)
-                        total += 1 
-                        break
+            if hashtag in dic_positive_words:
+                total += 1 
 
     return total
 
 
 # Negative Hashtags
 def negativeHashtags(phrase):
+    global dic_negative_words
     total = 0
     if "#" in phrase:
         #print("has hashtag")
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            with open('negative-words.txt', 'r') as inF:
-                for line in inF:
-                    if hashtag in line and len(line.strip()) == len(hashtag.strip()):
-                        #print("negative hashtag " + hashtag)
-                        total += 1 
-                        break
+            if hashtag in dic_negative_words:
+                total += 1 
 
     return total
 
@@ -315,13 +323,6 @@ def onlyTestFuncion2(float1, float2):
     uses_dummy_function = True
     return ""
 
-
-
-
-# Parse the review file
-getTweetsFromIds()
-#getReviews()
-#getTweets()
 
 
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
@@ -464,9 +465,18 @@ def evalSymbRegTweetsFromSemeval(individual):
     global tweets_semeval
     global tweets_semeval_score
 
+    global positive_tweets
+    global negative_tweets
+
+    global fitness_positive
+    global fitness_negative
+
     global best_fitness
     global uses_dummy_function
     fitnessReturn = 0
+
+    is_positive = 0
+    is_negative = 0
 
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
@@ -477,8 +487,13 @@ def evalSymbRegTweetsFromSemeval(individual):
     
     for index, item in enumerate(tweets_semeval):        
 
-        if (func(tweets_semeval[index]) > 0 and float(tweets_semeval_score[index]) > 0) or (func(tweets_semeval[index]) < 0 and float(tweets_semeval_score[index]) < 0):
+        if (func(tweets_semeval[index]) > 0 and float(tweets_semeval_score[index]) > 0):
             fitnessReturn += 1 
+            is_positive += 1
+
+        if (func(tweets_semeval[index]) < 0 and float(tweets_semeval_score[index]) < 0):
+            fitnessReturn += 1 
+            is_negative += 1
 
         #logs
         #print(index, item)
@@ -491,8 +506,19 @@ def evalSymbRegTweetsFromSemeval(individual):
         fitnessReturn = 0
         uses_dummy_function = False
 
+
+    # test: i'm forcing don't model only the positive or negative tweets
+    # there are a lot more positive than negative on dataset
+    if (fitnessReturn == positive_tweets) or (fitnessReturn == negative_tweets):
+        fitnessReturn = 0
+
+
     if best_fitness < fitnessReturn:
         best_fitness = fitnessReturn
+        fitness_positive = is_positive
+        fitness_negative = is_negative
+        is_positive = 0
+        is_negative = 0
 
 
     #logs    
@@ -515,15 +541,28 @@ toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
 toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
 
+
+# load the dictionary 
+getDictionary()
+
+# Load the tweets
+getTweetsFromIds()
+#getReviews()
+#getTweets()
+
+
 def main():
 
     global best_fitness
     global positive_tweets
     global negative_tweets
 
+    global fitness_positive
+    global fitness_negative
+
     random.seed()
 
-    pop = toolbox.population(n=50)
+    pop = toolbox.population(n=8)
     hof = tools.HallOfFame(1)
     
     
@@ -545,19 +584,17 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 50, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 10, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 
     #logs
-    #print("\n")
-    #for i in pop:
-    #    print(i)
     print("\n")
-    print("[total tweets]: " + str(positive_tweets + negative_tweets))
-    print("[positive tweets]: " + str(positive_tweets) + " | [negative tweets]: " + str(negative_tweets))
-    print("[best fitness]: " + str(best_fitness))
-    print(hof[0]) 
+    print("## Results ##\n")
+    print("[total tweets]: " + str(positive_tweets + negative_tweets) + " [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]\n")
+    print("[best fitness]: " + str(best_fitness) + " [" + str(fitness_positive) + " positives and " + str(fitness_negative) + " negatives]\n")
+    print("[function]: " + str(hof[0]))
+    print("\n")
     #logs 
 
     return pop, log, hof

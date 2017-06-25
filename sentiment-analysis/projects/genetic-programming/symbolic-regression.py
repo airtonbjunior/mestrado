@@ -562,7 +562,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=8)
+    pop = toolbox.population(n=25)
     hof = tools.HallOfFame(1)
     
     
@@ -584,7 +584,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 10, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 35, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 
@@ -605,7 +605,7 @@ if __name__ == "__main__":
 
 
 end = time.time()
-print("Script ends after " + str(format(end - start, '.3g')) + " seconds")
+#print("Script ends after " + str(format(end - start, '.3g')) + " seconds")
 
 
 # TO-DO: uppercasepositive uppercasenegative 

@@ -151,6 +151,50 @@ De forma a nortear o processo de Revisão Sistemática da Literatura, a análise
 
 Considerando a primeira questão de pesquisa definida, podemos organizar a Classificação de Sentimentos em 3 grupos principais: Baseadas em Dicionário Léxico, \emph{Machine Learning} e estratégia híbrida. Abordagens usando algoritmos de \emph{Machine Learning} fazem uso de um conjunto de dados para o treinamento e um conjuntos de teste para validar os resultados do processo de aprendizado. A abordagem baseada em Dicionários Léxicos não demanda um treinamento anterior para proceder com a classificação, pois faz uso de um conjunto de palavras e suas respectivas polaridades (frequentemente definidas como positivo, negativo ou neutro). A abordagem híbrida combina as duas estratégias anteriores, de forma a potencializar a classificação dos sentimentos.
 
+Estratégias de aprendizado de máquina, como discutido anteriormente, fazem uso de dados para treinamento de um modelo que representa o conhecimento sobre determinado contexto. Dados de testes são aplicados de forma a validar e melhorar as estruturas, potencializando o aprendizado. Abordagens usando técnicas de \emph{Machine Learning} são tratadas em \cite{gilbert2014vader}, \cite{HADDI2013}, \cite{ALGAAL} e \cite{taboada2011lexicon}.
+
+Uma das formas comumente utilizadas para realizar a Análise de Sentimentos, conforme argumenta \cite{kdir16}, faz uso de um Dicionário Léxico (algumas vezes chamado de Dicionário de Sentimentos), um conjunto de palavras e suas orientações semânticas (também chamadas de polaridades), frequentemente representadas como positiva, negativa ou neutra. A obtenção de um Dicionário consistente é essencial para uma correta Mineração de Sentimentos. 
+
+O uso de Dicionário Léxico não demanda treinamento prévio, pois utiliza como referência para a classificação dos sentimentos o próprio conjunto de palavras e suas orientações semânticas. Dicionários de contexto geral estão disponíveis para a utilização em trabalhos na área de Mineração de Opiniões. Dentre os principais, podemos citar o \emph{SentWordNet} e discutido em \cite{Zhou2014}, \cite{Alessia}, \cite{Iqbal}, \cite{ALGAAL}, \cite{SentiFulGA} e \cite{kdir16}, o \emph{General Inquirer}, tratado em \cite{taboada2011lexicon}, \cite{Zhou2014} e \cite{Alessia} e o MPQA (\emph{Multi-perspective Question Answering}), abordado em \cite{wilson2005recognizing}, \cite{becker2013}, \cite{taboada2011lexicon} e \cite{musto2014comparison}. \cite{HuAndLiu2004} também disponibilizam em seu \emph{website} uma lista de palavras positivas e negativas para utilização na classificação de sentimentos. Esses dicionários e respectivos endereços são organizados na tabela \ref{tab:tab_lexicon}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c |}
+\hline
+\textbf{Dicionário Léxico} & \textbf{url} & \textbf{palavras} \\
+\hline
+\makecell{\emph{SentiWordNet}} & \emph{sentiwordnet.isti.cnr.it} & 117000\\
+\hline
+\makecell{\emph{General Inquirer}} & \emph{www.wjh.harvard.edu/~inquirer} & 4206 \\ 
+\hline
+\makecell{MPQA Lexicon} & \emph{mpqa.cs.pitt.edu/} & 8221\\
+\hline
+\makecell{\emph{Hu and Liu's Lexicon}} & \emph{www.cs.uic.edu/~liub/FBS/sentiment-analysis.html} & 6789\\
+\hline
+\end{tabular}
+\caption{Lista de Dicionários Léxicos}
+\label{tab:tab_lexicon}
+\end{table}
+
+Como discutido anteriormente, a utilização dos Dicionários Léxicos disponíveis tem um resultado satisfatório quando aplicados à classificadores de propósito geral. Há, porém, uma limitação quanto à mudança de contexto, pois as palavras podem ter significados diferentes, dependendo do domínio ao qual se refere. Por exemplo, a palavra `câncer` pode não possuir um significado negativo em um contexto técnico.
+
+Por conta da limitação inerente ao domínio, muitos trabalhos criam seus próprios Dicionários Léxicos, ligados do contexto da Análise de Sentimentos em que estão inseridos. A criação e expansão de Léxicos, nossa segunda questão de pesquisa definida neste trabalho, é abordada em diversos trabalhos, com diferentes técnicas, como apresentadas no decorrer dessa seção. Responderemos, também, nossa terceira questão de pesquisa, que busca analisar como a diferença de domínios e contextos vem sendo tratadas no contexto da Análise de Sentimentos.
+
+
+\cite{kdir16} argumenta que podemos classificar a criação e expansão de um Dicionário Léxico de 3 formas: manual -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Frequentemente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada. Criações de Dicionários utilizando somente abordagem manual, por sua característica limitante, são menos utilizadas e não serão abordadas de forma mais aprofundada no decorrer deste trabalho.
+
+No contexto de prognóstico automatizado de Orientação Semântica de palavras, um dos primeiros trabalhos apresentados foi \cite{Hatzivassiloglou}, focando na previsão de polaridade de adjetivos.
+
+Uma forma de prever a polaridade sentimental de palavras desconhecidas é levar em consideração aspectos sintáticos e semânticos do texto. \cite{Turney2002} apresenta uma abordagem de expansão léxica fazendo uso da técnica de Pointwise Mutual Infomation (PMI), com o objetivo de calcular a co-ocorrência de palavras e, com isso, comparar a polaridade de novas palavras com outras já conhecidas. Nesse trabalho, amplamente referenciado por outras pesquisas, o autor compara o conjunto de palavras de Orientação Semântica desconhecida com as palavras \emph{ "excellent"} e \emph{"poor"}, representando Orientações Semânticas positiva e negativa, respectivamente. Essas palavras previamente conhecidas utilizadas como base para a expansão do Dicionário são chamadas de palavras semente (\emph{seed words}, em inglês). Como exemplo de trabalhos que utilizam o PMI para a criação e expansão do Dicionário Léxico podemos citar \cite{becker2013}, \cite{Zhou2014}, \cite{Pinto2007}. \cite{Pantel2006} e \cite{kaji}.
+
+Existem alguns dicionários disponíveis para se trabalhar com criação e expansão de Dicionários Léxicos. A maior parte utiliza como base de palavras-semente o banco de dados \emph{WordNet} - disponível em https://wordnet.princeton.edu/ - que fornece outras facilidades, como sinônimos e antônimos. Importante destacar, também, que as bases utilizadas na maior parte dos trabalhos citados consideram palavras no idioma inglês. Mesmo alguns trabalhos que abordaram idiomas diferentes fizeram uso dessas bases por meio de um processo de tradução automatizada.
+
+Entre os principais trabalhos da área de Análise de Sentimentos podemos citar \cite{taboada2011lexicon}, que apresenta uma abordagem de Mineração de Opiniões baseada em Léxico combinada com uma verificação manual. Esse trabalho apresenta o SO-CAL (Semantic Orientation Calculator), que usa lista de palavras já consolidadas para a geração de dicionários com novas entradas e suas polaridades de forma não supervisionada. Durante a descrição do trabalho, apresenta conceitos de intensificação e negação, amplamente utilizadas nas técnicas de geração de novos Dicionários. Apesar de ser feita de forma automática, o autor utilizou uma etapa de verificação humana para a validação da consistência das palavras geradas pela técnica, fazendo uso de um serviço de\emph{ Mechanical Turk} da Amazon. 
+
+Quanto às métricas utilizadas para a avaliação dos algoritmos de criação e expansão de Dicionários Léxicos, nossa quarta questão de pesquisa...
+
+[Fazer tabelas para melhorar a representação dos dados. Ideias para tabelas: estratégias utilizadas para a expansão do léxico, dicionários para a expansão, etc]
+
 \subsection{Subsections}
 
 \section{Figures and Captions}\label{sec:figs}
@@ -169,14 +213,6 @@ caption.
 \label{fig:exampleFig1}
 \end{figure}
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.3\textwidth]{fig2.jpg}
-\caption{This figure is an example of a figure caption taking more than one
-  line and justified considering margins mentioned in Section~\ref{sec:figs}.}
-\label{fig:exampleFig2}
-\end{figure}
-
 In tables, try to avoid the use of colored or shaded backgrounds, and avoid
 thick, doubled, or unnecessary framing lines. When reporting empirical data,
 do not use more decimal digits than warranted by their precision and
@@ -184,25 +220,7 @@ reproducibility. Table caption must be placed before the table (see Table 1)
 and the font used must also be Helvetica, 10 point, boldface, with 6 points of
 space before and after each caption.
 
-\begin{table}[ht]
-\centering
-\caption{Variables to be considered on the evaluation of interaction
-  techniques}
-\label{tab:exTable1}
-\includegraphics[width=.7\textwidth]{table.jpg}
-\end{table}
-
-\section{References}
-
-Bibliographic references must be unambiguous and uniform.  We recommend giving
-the author names references in brackets, e.g. \cite{knuth:84},
-\cite{boulic:91}, and \cite{smith:99}.
-
-The references must be listed using 12 point font size, with 6 points of space
-before each reference. The first line of each reference should not be
-indented, while the subsequent should be indented by 0.5 cm.
-
 \bibliographystyle{sbc}
-\bibliography{sbc-template}
+\bibliography{main}
 
 \end{document}

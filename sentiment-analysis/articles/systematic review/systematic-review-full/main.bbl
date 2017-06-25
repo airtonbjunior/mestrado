@@ -20,10 +20,32 @@ Duwairi, R.~M., Ahmed, N.~A., and Al-Rifai, S.~Y. (2015).
   approach.
 \newblock {\em Journal of Intelligent and Fuzzy Systems}, 29(1):107--117.
 
+\bibitem[Eisenstein 2016]{eisenstein2016unsupervised}
+Eisenstein, J. (2016).
+\newblock Unsupervised learning for lexicon-based classification.
+\newblock {\em CoRR}, abs/1611.06933.
+
+\bibitem[Ferreira et~al. 2015]{ferreira2015using}
+Ferreira, L., Dosciatti, M., Nievola, J.~C., and Paraiso, E.~C. (2015).
+\newblock Using a genetic algorithm approach to study the impact of imbalanced
+  corpora in sentiment analysis.
+\newblock In {\em FLAIRS Conference}, pages 163--168.
+
 \bibitem[Gilbert 2014]{gilbert2014vader}
 Gilbert, C. H.~E. (2014).
 \newblock Vader: A parsimonious rule-based model for sentiment analysis of
   social media text.
+
+\bibitem[Govindarajan 2013]{govindarajan2013sentiment}
+Govindarajan, M. (2013).
+\newblock Sentiment analysis of movie reviews using hybrid method of naive
+  bayes and genetic algorithm.
+\newblock {\em International Journal of Advanced Computer Research}, 3(4):139.
+
+\bibitem[Graff et~al. 2017]{graff2017semantic}
+Graff, M., Tellez, E.~S., Escalante, H.~J., and Miranda-Jim{\'e}nez, S. (2017).
+\newblock Semantic genetic programming for sentiment analysis.
+\newblock In {\em NEO 2015}, pages 43--65. Springer.
 
 \bibitem[Guimaraes et~al. 2016]{kdir16}
 Guimaraes, N., Torgo, L., and Figueira, A. (2016).
@@ -107,12 +129,21 @@ Pantel, P. and Pennacchiotti, M. (2006).
   Computational Linguistics}, ACL-44, pages 113--120, Stroudsburg, PA, USA.
   Association for Computational Linguistics.
 
+\bibitem[Perez-Rosas et~al. ]{perez2012learning}
+Perez-Rosas, V., Banea, C., and Mihalcea, R.
+\newblock Learning sentiment lexicons in spanish.
+
 \bibitem[Pinto et~al. 2007]{Pinto2007}
 Pinto, D., Rosso, P., and Jim{\'e}nez-Salazar, H. (2007).
 \newblock Upv-si: Word sense induction using self term expansion.
 \newblock In {\em Proceedings of the 4th International Workshop on Semantic
   Evaluations}, SemEval '07, pages 430--433, Stroudsburg, PA, USA. Association
   for Computational Linguistics.
+
+\bibitem[Silva et~al. 2010]{silva2010automatic}
+Silva, M.~J., Carvalho, P., Costa, C., and Sarmento, L. (2010).
+\newblock Automatic expansion of a social judgment lexicon for sentiment
+  analysis.
 
 \bibitem[Taboada et~al. 2011]{taboada2011lexicon}
 Taboada, M., Brooke, J., Tofiloski, M., Voll, K., and Stede, M. (2011).
@@ -126,6 +157,13 @@ Turney, P.~D. (2002).
 \newblock In {\em Proceedings of the 40th Annual Meeting on Association for
   Computational Linguistics}, ACL '02, pages 417--424, Stroudsburg, PA, USA.
   Association for Computational Linguistics.
+
+\bibitem[Widdows and Dorow 2002]{widdows2002graph}
+Widdows, D. and Dorow, B. (2002).
+\newblock A graph model for unsupervised lexical acquisition.
+\newblock In {\em Proceedings of the 19th international conference on
+  Computational linguistics-Volume 1}, pages 1--7. Association for
+  Computational Linguistics.
 
 \bibitem[Wilson et~al. 2005]{wilson2005recognizing}
 Wilson, T., Wiebe, J., and Hoffmann, P. (2005).

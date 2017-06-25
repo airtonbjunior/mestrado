@@ -4,46 +4,49 @@ The top-level auxiliary file: main.aux
 The style file: sbc.bst
 Database file #1: main.bib
 Warning--empty booktitle in gilbert2014vader
+Warning--empty year in perez2012learning
+Warning--empty booktitle in perez2012learning
+Warning--empty journal in silva2010automatic
 Warning--can't use both author and editor fields in Zhou2014
-You've used 21 entries,
+You've used 28 entries,
             1935 wiz_defined-function locations,
-            625 strings with 8648 characters,
-and the built_in function-call counts, 9883 in all, are:
-= -- 1024
-> -- 329
-< -- 22
-+ -- 112
-- -- 108
-* -- 764
-:= -- 1578
-add.period$ -- 72
-call.type$ -- 21
-change.case$ -- 158
-chr.to.int$ -- 21
-cite$ -- 23
-duplicate$ -- 441
-empty$ -- 733
-format.name$ -- 139
-if$ -- 2090
+            657 strings with 9825 characters,
+and the built_in function-call counts, 12776 in all, are:
+= -- 1307
+> -- 443
+< -- 28
++ -- 152
+- -- 146
+* -- 983
+:= -- 2062
+add.period$ -- 93
+call.type$ -- 28
+change.case$ -- 212
+chr.to.int$ -- 28
+cite$ -- 33
+duplicate$ -- 573
+empty$ -- 945
+format.name$ -- 186
+if$ -- 2681
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 22
-newline$ -- 109
-num.names$ -- 63
-pop$ -- 155
+missing$ -- 29
+newline$ -- 142
+num.names$ -- 84
+pop$ -- 222
 preamble$ -- 1
-purify$ -- 159
+purify$ -- 213
 quote$ -- 0
-skip$ -- 352
+skip$ -- 447
 stack$ -- 0
-substring$ -- 738
-swap$ -- 126
-text.length$ -- 13
+substring$ -- 905
+swap$ -- 152
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 124
-warning$ -- 2
-while$ -- 85
+type$ -- 166
+warning$ -- 5
+while$ -- 109
 width$ -- 0
-write$ -- 298
-(There were 2 warnings)
+write$ -- 384
+(There were 5 warnings)

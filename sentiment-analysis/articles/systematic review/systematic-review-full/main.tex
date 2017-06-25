@@ -26,11 +26,19 @@
 \maketitle
 
 \begin{abstract}
-	abstract here
+The increase in the number of Internet users in recent years has resulted in a growing content production by its users. Often, the WEB is used as a platform for debates, opinions, evaluations, etc. This fact, in line with the ease of obtaining the information, made the area of Sentiment Analysis, also called Opinion Mining, a growing interest on the part of reserachers.
+
+One of the most used strategies in the process of Sentiment Analysis is the Lexical Dictionaries - a set of words and their polarities, generally defined as positive, negative or neutral. Although widely used, this approach has some challenges to overcome, such as identifying the domain of the text, for example - a word can have a completely different meaning depending on the context in which it is found.
+
+The present work presents a Systematic Review of the literature to identify the main strategies adopted in the automatic creation and expansion of Lexical Dictionaries.
 \end{abstract}
 
 \begin{resumo} 
- 	resumo aqui
+O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescentre produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato, alinhado a facilidade de obtenção dessas informações, fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
+
+Uma das estratégias mais utilizadas no processo de Análise de Sentimentos é a utilização de Dicionários Léxicos  - conjunto de palavras e suas polaridades, geralmente definidas como positiva, negativa ou neutra. Apesar de amplamente utilizada, essa abordagem possui alguns desafios a serem superados, como a identificação do domínio do texto, por exemplo - uma palavra pode ter um significado completamente diferente, dependendo do contexto em que se encontra.
+
+O presente trabalho apresenta uma Revisão Sistemática da literatura para identificar as principais estratégias adotadas na criação e expansão automatizada de Dicionários Léxicos.
 \end{resumo}
 
 
@@ -43,26 +51,18 @@ Uma das principais técnicas para aumentar a acurácia a Análise de Sentimentos
 
 Porém, é evidente a limitação inerente à estratégia de utilização do Dicionário Léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de Mineração de Opiniões é a criação e ampliação do Dicionário Léxico de forma automatizada, tema central do presente trabalho. Grande parte desses dicionários são construídos de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios, como observado em \cite{duwairi2015detecting}. 
 
-Consciente dessa limitação, a ideia principal do presente trabalho é a criação de um processo automatizado de expansão de Dicionário Léxico, sensível a domínios específicos, fazendo uso de técnicas de algoritmos bioinspirados da classe de Computação Evolucionária, mais precisamente Programação Evolucionária. Resumidamente essa classe de algoritmos busca reproduzir processos naturais de evolução, com conceitos de sobrevivência, mutação, entre outros. Esse processo fará a adequação das polaridades das palavras contidas no dicionário de forma a maximizar a corretude das avaliações. Para avaliar a taxa de erro de cada solução parcial gerada, serão utilizados conjuntos conhecidos de documentos previamente avaliados por especialistas humanos, de forma a compará-los com a solução gerada pelo sistema. Para a avaliação, sistemas de classificação de sentimentos disponíveis serão utilizados.
+Existem, basicamente, 3 formas de criação e expansão de um Dicionário Léxico: manual -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Frequentemente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada. Criações de Dicionários utilizando somente abordagem manual, por sua característica limitante, são menos utilizadas e não serão abordadas de forma mais aprofundada no decorrer deste trabalho.
 
-Devido à característica intrínseca do próprio problema, serão utilizadas na pesquisa bases de textos em inglês. Ao mesmo tempo, muitas técnicas utilizadas durante o trabalho também poderão ser utilizadas para resolver problemas em português, com as devidas alterações. 
+Consciente do problema de criação e expansão de Dicionários Léxicos para a Análise de Sentimentos, a ideia principal do presente trabalho é a realização de uma Revisão Sistemática da Literatura, conforme apresentada em \cite{Kitchenham2004}, de forma a identificar e analisar os principais trabalhos disponíveis sobre o tema. Esses trabalhos apoiarão na resolução das questões de pesquisa, apresentadas em detalhes na próxima seção. A análise dos artigos também auxiliará na identificação dos \emph{gaps} de pesquisa, que poderão ser explorados em trabalhos futuros.
 
-Espera-se que esse processo, bem como os Dicionários Léxicos por ele gerado, possam ser utilizados como entrada de processos de avaliação em diversas áreas de Mineração de Opiniões como, por exemplo, Análise de Sentimentos em redes sociais. Algumas dessas pesquisas são realizadas na própria instituição, apoiando, assim, o trabalho de outros pesquisadores. Além disso, devido ao caráter automatizado dessa solução proposta, o mesmo processo poderá ser utilizado, avaliado e melhorado para outras situações, contextos e idiomas.
-
-Por fim, a pesquisa e a utilização de diversas técnicas de PNL e expansão automatizada de Dicionário Léxico poderão servir como um \emph{benchmark} dos principais métodos e classificadores, auxiliando na escolha de ferramentas e abordagens para trabalhos futuros em contextos específicos.
-
-Para apoiar a clareza e desenvolvimento da proposta, o presente documento está estruturado da seguinte forma: o capítulo \ref{sec:desc} tratará da descrição do problema, principais limitações e dificuldades no contexto de Análise de Sentimentos. O capítulo \ref{sec:obj} tratará dos objetivos gerais e específicos. A revisão bibliográfica, apresentada no capítulo \ref{sec:bibl}, tem por objetivo criar o embasamento teórico para apoiar nas soluções propostas, apresentando o estado da arte sobre o assunto, bem como a definição de conceitos fundamentais. O capítulo \ref{sec:impact} apresenta o impacto científico da solução e suas possíveis contribuções para a área. A metodologia, descrita no capítulo \ref{sec:met}, descreve a forma como serão desenvolvidas cada uma das etapas do processo, seguida do capítulo com uma previsão de cronograma do trabalho. Resultados esperados são descritos no capítulo \ref{sec:result}, seguidos da identificação dos colaboradores e participantes do projeto e, por fim, as referências bibliográficas utilizadas na proposta.
-
-\section{Título da seção} \label{sec:firstpage}
-
-
-\section{Estratégia de Pesquisa}
+\section{Estratégia da Revisão Sistemática}
 A Revisão Sistemática da Literatura fornece uma forma estruturada, objetiva e reprodutível de identificar, avaliar e interpretar trabalhos relevantes em uma determinada área de conhecimento. A análise desses trabalhos apoia a resoluções das questões de pesquisa, que devem ser respondidas pelo projeto \cite{Kitchenham2004}.
 
 A definição das questões da pesquisa é uma parte crítica da Revisão Sistemática. Essas mesmas questões são utilizadas de forma a orientar a estratégia de busca e palavras-chave dos artigos nas bases de dados escolhidas.
 
 As questões norteiam, também, os dados e informações que serão relevantes e extraídos dos trabalhos selecionados. Para este trabalho, as questões de pesquisa são as seguintes:
 
+\label{sec:questoesPesquisa}
 \begin{itemize}
 	\item{Quais as principais técnicas empregadas na criação e expansão de Dicionários Léxicos?}
 	\item{Estratégias Evolutivas estão sendo utilizadas no contexto de criação e expansão de Dicionários Léxicos?}
@@ -131,7 +131,21 @@ Essas palavras-chave representam os principais tópicos da pesquisa, auxiliando 
 \label{tab:tab_palchaves}
 \end{table}
 
-Após a aplicação das buscas nas respectivas bases, foi realizada uma segunda filtragem dos dados, de forma a selecionar trabalhos relevantes às questões de pesquisa. Essa filtragem foi feita por meio da letura dos resumos dos artigos, buscando identificar os trabalhos relevantes ao propósito da Revisão Sistemática. 
+Caso a base de dados permita, será feita uma ordenação por relevância, baseada na quantidade de citações e importância do trabalho. Após a aplicação das buscas nas respectivas bases, foi realizada uma segunda filtragem dos dados, de forma a selecionar trabalhos aderentes às questões de pesquisa.
+
+Como segunda estratégia de filtragem foi feita a leitura dos títulos e, posteriormente, dos resumos de cada trabalho, de forma a aceitar ou rejeitar a pesquisa para a próxima fase da Revisão. Os trabalhos rejeitados não são levados em consideração para o desenvolvimento do projeto.
+
+Para auxiliar nesse processo, foi utilizada a ferramenta StArt  \emph{(State of the Art through Systematic Reviews)}, desenvolvida pela Universidade Federal de São Carlos, que fornece funcionalidades para apoiar o pesquisador em todas as fases da Revisão Sistemática da Literatura.
+
+O principal critério utilizado para assegurar a qualidade dos estudos primários é a quantidade de citações que o mesmo possui. Via de regra, um trabalho com muitas citações na literatura pode ser considerado um trabalho de qualidade, uma vez que é utilizado como referência por vários outros. 
+
+A avaliação da aderência do trabalho, como comentada anteriormente, é feita por meio da leitura do resumo. Caso o mesmo não seja conclusivo o suficiente para a avaliação, é feita a leitura da introdução e conclusão.
+
+Importante salientar que esta análise foi realizada por apenas um pesquisador e pode acarretar em uma baixa segurança em relação à validade das avaliações feitas.
+
+Após a escolha dos estudos primários, os artigos foram analisados quanto ao seu conteúdo. Resultados quantitativos foram recuperados e analisados. Dados de um mesmo domínio em trabalhos diferentes foram agrupados de forma a facilitar o estudo comparativo das pesquisas. 
+
+Os dados foram  tabulados de forma a facilitar a visualização e comparação das abordagens utilizadas nos trabalhos primários consultados. Além disso, as informações mais relevantes, como técnicas utilizadas pela maior parte dos trabalhos, serão apresentadas de forma a demonstrar sua importância, descrevendo detalhes importantes caso mostre-se necessário. Detalhes do resultado da Revisão serão apresentados nas próximas seções.
 
 \section{Sections and Paragraphs}
 
@@ -175,15 +189,6 @@ space before and after each caption.
 \label{tab:exTable1}
 \includegraphics[width=.7\textwidth]{table.jpg}
 \end{table}
-
-\section{Images}
-
-All images and illustrations should be in black-and-white, or gray tones,
-excepting for the papers that will be electronically available (on CD-ROMs,
-internet, etc.). The image resolution on paper should be about 600 dpi for
-black-and-white images, and 150-300 dpi for grayscale images.  Do not include
-images with excessive resolution, as they may take hours to print, without any
-visible difference in the result. 
 
 \section{References}
 

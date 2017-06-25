@@ -562,7 +562,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=25)
+    pop = toolbox.population(n=50)
     hof = tools.HallOfFame(1)
     
     

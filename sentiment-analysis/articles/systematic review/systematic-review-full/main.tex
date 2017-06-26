@@ -147,6 +147,8 @@ Após a escolha dos estudos primários, os artigos foram analisados quanto ao se
 Os dados foram  tabulados de forma a facilitar a visualização e comparação das abordagens utilizadas nos trabalhos primários consultados. Além disso, as informações mais relevantes, como técnicas utilizadas pela maior parte dos trabalhos, serão apresentadas de forma a demonstrar sua importância, descrevendo detalhes importantes caso mostre-se necessário. Detalhes do resultado da Revisão serão apresentados nas próximas seções.
 
 \section{Análise da Revisão Sistemática}
+A Análise de Sentimentos é uma técnica amplamente utilizada em diversos domínios. Como mencionado na seção anterior, a crescente quantidade de conteúdo gerado na WEB faz com que técnicas de Mineração de Opiniões possam ser usadas por empresas, pesquisadores, governos, entre outros, de forma a apoiar na geração de valor e na tomada de decisões. Essa diferença de domínios é ilustrada com os artigos selecionados pela presente Revisão Sistemática. Na tabela \ref{tab:tab_domains}, apresentamos os principais artigos, seus títulos e domínios para os quais foram desenvolvidos. 
+
 De forma a nortear o processo de Revisão Sistemática da Literatura, a análise dos artigos selecionados teve como objetivo principal responder as questões de pesquisa apresentadas na seção anterior. 
 
 Considerando a primeira questão de pesquisa definida, podemos organizar a Classificação de Sentimentos em 3 grupos principais: Baseadas em Dicionário Léxico, \emph{Machine Learning} e estratégia híbrida. Abordagens usando algoritmos de \emph{Machine Learning} fazem uso de um conjunto de dados para o treinamento e um conjuntos de teste para validar os resultados do processo de aprendizado. A abordagem baseada em Dicionários Léxicos não demanda um treinamento anterior para proceder com a classificação, pois faz uso de um conjunto de palavras e suas respectivas polaridades (frequentemente definidas como positivo, negativo ou neutro). A abordagem híbrida combina as duas estratégias anteriores, de forma a potencializar a classificação dos sentimentos.
@@ -175,6 +177,8 @@ O uso de Dicionário Léxico não demanda treinamento prévio, pois utiliza como
 \hline
 \makecell{\emph{Hu and Liu's Lexicon}} & \emph{www.cs.uic.edu/~liub/FBS/sentiment-analysis.html} & 6789\\
 \hline
+\makecell{\emph{LIWC}} & \emph{www.liwc.net} & 2300\\
+\hline
 \end{tabular}
 \caption{Lista de Dicionários Léxicos}
 \label{tab:tab_lexicon}
@@ -184,7 +188,7 @@ Como discutido anteriormente, a utilização dos Dicionários Léxicos disponív
 
 Por conta da limitação inerente ao domínio, muitos trabalhos criam seus próprios Dicionários Léxicos, ligados do contexto da Análise de Sentimentos em que estão inseridos. A criação e expansão de Léxicos, nossa segunda questão de pesquisa definida neste trabalho, é abordada em diversos trabalhos, com diferentes técnicas, como apresentadas no decorrer dessa seção. Responderemos, também, nossa terceira questão de pesquisa, que busca analisar como a diferença de domínios e contextos vem sendo tratadas no contexto da Análise de Sentimentos.
 
-\cite{kdir16} argumenta que podemos classificar a criação e expansão de um Dicionário Léxico de 3 formas: manual -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Frequentemente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada. Criações de Dicionários utilizando somente abordagem manual, por sua característica limitante, são menos utilizadas e não serão abordadas de forma mais aprofundada no decorrer deste trabalho.
+\cite{kdir16} argumenta que podemos classificar a criação e expansão de um Dicionário Léxico de 3 formas: manual -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Geralmente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada.
 
 No contexto de prognóstico automatizado de Orientação Semântica de palavras, um dos primeiros trabalhos apresentados foi \cite{Hatzivassiloglou}, focando na previsão de polaridade de adjetivos.
 
@@ -217,17 +221,55 @@ Quanto às métricas utilizadas para a avaliação dos algoritmos de criação e
 \label{tab:tab_measures}
 \end{table}
 
-
-[Fazer tabelas para melhorar a representação dos dados. Ideias para tabelas: estratégias utilizadas para a expansão do léxico, dicionários para a expansão, etc]
-
-\section{Figures and Captions}\label{sec:figs}
-
-\begin{figure}[ht]
+\begin{table}[ht]
 \centering
-\includegraphics[width=.5\textwidth]{fig1.jpg}
-\caption{A typical figure}
-\label{fig:exampleFig1}
-\end{figure}
+\begin{tabular}{| c | c | c |}
+\hline
+\textbf{Autor/Ano} & \textbf{Título} & \textbf{Domínio} \\
+\hline
+\cite{becker2013} & \makecell{AVAYA: Sentiment Analysis on Twitter with \\ Self-Training and Polarity \\Lexicon Expansion} &  \emph{Twitter} \\
+\hline
+\cite{duwairi2015detecting} & \makecell{Detecting sentiment embedded in Arabic \\ social media – A lexicon-based approach} &  \emph{Twitter} \\
+\hline
+\cite{gilbert2014vader} & \makecell{Vader: A parsimonious rule-based model \\for sentiment analysis of social media text} &  \makecell{\emph{Twitter}} \\
+\hline
+\cite{graff2017semantic} & \makecell{Semantic Genetic Programming for \\Sentiment Analysis} &  \makecell{\emph{Twitter}} \\
+\hline
+\cite{musto2014comparison} & \makecell{A comparison of lexicon-based approaches \\for sentiment analysis of microblog posts} &  \makecell{\emph{Twitter}} \\
+\hline
+[Keshavarz 2017] & \makecell{ALGA: Adaptive lexicon learning using \\genetic algorithm for sentiment analysis \\of microblogs} &  \makecell{\emph{Twitter}} \\
+\hline
+\cite{eisenstein2016unsupervised} & \makecell{Unsupervised Learning for Lexicon-Based \\ Classification} &  \makecell{\emph{Amazon} \\ \emph{IMDB} \\ \emph{CorpusCine} \\ \emph{Cornell}} \\
+\hline
+\cite{govindarajan2013sentiment} & \makecell{Sentiment analysis of movie reviews\\ using hybrid method of naive bayes \\ and genetic algorithm} &  \makecell{Filmes} \\
+\hline
+\cite{HADDI2013} & \makecell{The Role of Text Pre-processing in \\Sentiment Analysis} &  \makecell{Filmes} \\
+\hline
+\cite{kdir16} & \makecell{Lexicon Expansion System for Domain and \\Time Oriented Sentiment Analysis} &  \makecell{Notícias \\ \emph{Twitter}} \\
+\hline
+\cite{ferreira2015using} & \makecell{Using a Genetic Algorithm Approach to\\ Study the Impact of Imbalanced\\  Corpora in Sentiment Analysis} &  \makecell{Notícias} \\
+\hline
+[Hatzivassiloglou 1997] & \makecell{Predicting the Semantic Orientation \\of Adjectives} &  \makecell{Notícias} \\
+\hline
+\cite{HuAndLiu2004} & \makecell{Mining and summarizing customer reviews} &  \makecell{\emph{Amazon} \\ \emph{Cnet}} \\
+\hline
+\cite{Iqbal} & \makecell{Bias-aware Lexicon-based Sentiment Analysis} &  \makecell{\emph{IMDB} \\ \emph{BBC} \\ \emph{Digg} \\ \emph{Runnes World} \\ \emph{Twitter} \\ \emph{Youtube}} \\
+\hline
+[Kaji 2007] & \makecell{Building Lexicon for Sentiment Analysis\\ from Massive Collection of \\ HTML Documents} &  \makecell{HTML} \\
+\hline
+[Pantel 2006] & \makecell{Espresso: Leveraging Generic Patterns\\ for Automatically Harvesting \\ Semantic Relations} &  \makecell{Livro de \\ introdução à \\ química} \\
+\hline
+\cite{perez2012learning} & \makecell{Learning Sentiment Lexicons in Spanish} &  \makecell{\emph{Wikipedia}} \\
+\hline
+\cite{Pinto2007} & \makecell{UPV-SI: Word Sense Induction Using\\ Self Term Expansion} &  \makecell{\emph{Semeval}} \\
+\hline
+
+\end{tabular}
+\caption{Relação de trabalhos e seus domínios}
+\label{tab:tab_domains}
+\end{table}
+
+\section{Conclusão}\label{conclusion}
 
 \bibliographystyle{sbc}
 \bibliography{main}

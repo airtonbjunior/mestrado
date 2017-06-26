@@ -10,7 +10,7 @@ Warning--empty journal in silva2010automatic
 Warning--can't use both author and editor fields in Zhou2014
 You've used 28 entries,
             1935 wiz_defined-function locations,
-            657 strings with 9825 characters,
+            657 strings with 9824 characters,
 and the built_in function-call counts, 12776 in all, are:
 = -- 1307
 > -- 443

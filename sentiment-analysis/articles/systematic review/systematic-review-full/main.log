@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  25 JUN 2017 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  25 JUN 2017 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -671,32 +671,28 @@ Overfull \hbox (17.22041pt too wide) in paragraph at lines 226--268
 
 LaTeX Warning: Float too large for page by 45.81845pt on input line 270.
 
-(./main.bbl
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
-[8] [9]) [10] [11] (./main.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(./main.bbl [8] [9]) [10] [11] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  3166 strings out of 493013
  42012 string characters out of 6136993
- 130572 words of memory out of 5000000
+ 130571 words of memory out of 5000000
  6645 multiletter control sequences out of 15000+600000
  20011 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,18n,28p,1060b,288s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvet
-ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
-texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
-f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
-/urw/times/utmri8a.pfb>
-Output written on main.pdf (11 pages, 125102 bytes).
+{c:/texlive/2016/texmf-dist/fonts/
+enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
+b><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/tex
+live/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2016/texmf
+-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/
+urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.
+pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (11 pages, 126383 bytes).
 PDF statistics:
  73 PDF objects out of 1000 (max. 8388607)
  51 compressed objects within 1 object stream

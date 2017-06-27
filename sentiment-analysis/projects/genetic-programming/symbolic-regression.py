@@ -50,6 +50,65 @@ best_fitness = 0
 uses_dummy_function = False
 
 
+def saveTweetsFromIdInFile():
+    print("[loading tweets to save in a file]")
+
+    file = open("twitter-2016train-A-full-tweets.txt","w") 
+    
+    tweet_parsed = []
+
+    APP_KEY = 'fBoxg0SJUlIKRN84wOJGGCmgz'
+    APP_SECRET = 'yhf4LSdSlfmj25WUzvT8YzWmFXf30SFv2w5Qqa3M6wViWZNpYA'
+    twitter = Twython(APP_KEY, APP_SECRET, oauth_version=2)
+    ACCESS_TOKEN = twitter.obtain_access_token()
+
+    twitter = Twython(APP_KEY, access_token=ACCESS_TOKEN)
+
+    with open('twitter-2016train-A-part.txt', 'r') as inF:
+        for line in inF:
+            tweet_parsed = line.split()
+            try:
+                tweet = twitter.show_status(id=str(tweet_parsed[0]))
+                file.write(tweet_parsed[1].strip() + "#@#" + tweet['text'].strip() + "\n") 
+            except:
+                #print("exception")
+                continue
+    print("[tweets saved on file]")
+
+    file.close() 
+
+
+# get tweets from id (SEMEVAL database)
+def getTweetsFromFileIdLoaded():
+    print("[loading tweets from file]")
+
+    global tweets_semeval
+    global tweets_semeval_score
+
+    global positive_tweets
+    global negative_tweets
+
+    with open('twitter-2016train-A-full-tweets.txt', 'r') as inF:
+        for line in inF:
+            tweet_parsed = line.split("#@#")
+            try:
+                # i'm ignoring the neutral tweets
+                if(tweet_parsed[0] != "neutral"):
+                    tweets_semeval.append(tweet_parsed[1])
+                    if(tweet_parsed[0] == "positive"):
+                        positive_tweets += 1
+                        tweets_semeval_score.append(1)
+                    else:
+                        negative_tweets += 1
+                        tweets_semeval_score.append(-1)
+            # treat 403 exception mainly
+            except:
+                #print("exception")
+                continue
+    
+    print("[tweets loaded]")
+
+
 # get tweets from id (SEMEVAL database)
 def getTweetsFromIds():
     print("[loading tweets]")
@@ -602,10 +661,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+    #saveTweetsFromIdInFile()
+    #getTweetsFromFileIdLoaded();
 
 
 end = time.time()
-#print("Script ends after " + str(format(end - start, '.3g')) + " seconds")
+print("Script ends after " + str(format(end - start, '.3g')) + " seconds")
 
 
 # TO-DO: uppercasepositive uppercasenegative 

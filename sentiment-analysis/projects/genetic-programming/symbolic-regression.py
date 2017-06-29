@@ -96,7 +96,7 @@ def getTweetsFromFileIdLoaded():
 
     with open('twitter-2016train-A-full-tweets.txt', 'r') as inF:
         for line in inF:
-            if tweets_loaded <= MAX_ANALYSIS_TWEETS:
+            if tweets_loaded < MAX_ANALYSIS_TWEETS:
                 tweet_parsed = line.split("#@#")
                 try:
                     # i'm ignoring the neutral tweets

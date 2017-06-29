@@ -46,6 +46,8 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral = 0
 
+MAX_ANALYSIS_TWEETS = 50
+
 best_fitness = 0
 uses_dummy_function = False
 
@@ -82,29 +84,36 @@ def saveTweetsFromIdInFile():
 def getTweetsFromFileIdLoaded():
     print("[loading tweets from file]")
 
+    global MAX_ANALYSIS_TWEETS
+
     global tweets_semeval
     global tweets_semeval_score
 
     global positive_tweets
     global negative_tweets
 
+    tweets_loaded = 0
+
     with open('twitter-2016train-A-full-tweets.txt', 'r') as inF:
         for line in inF:
-            tweet_parsed = line.split("#@#")
-            try:
-                # i'm ignoring the neutral tweets
-                if(tweet_parsed[0] != "neutral"):
-                    tweets_semeval.append(tweet_parsed[1])
-                    if(tweet_parsed[0] == "positive"):
-                        positive_tweets += 1
-                        tweets_semeval_score.append(1)
-                    else:
-                        negative_tweets += 1
-                        tweets_semeval_score.append(-1)
-            # treat 403 exception mainly
-            except:
-                #print("exception")
-                continue
+            if tweets_loaded <= MAX_ANALYSIS_TWEETS:
+                tweet_parsed = line.split("#@#")
+                try:
+                    # i'm ignoring the neutral tweets
+                    if(tweet_parsed[0] != "neutral"):
+                        tweets_semeval.append(tweet_parsed[1])
+                        if(tweet_parsed[0] == "positive"):
+                            positive_tweets += 1
+                            tweets_semeval_score.append(1)
+                        else:
+                            negative_tweets += 1
+                            tweets_semeval_score.append(-1)
+
+                        tweets_loaded += 1
+                # treat 403 exception mainly
+                except:
+                    #print("exception")
+                    continue
     
     print("[tweets loaded]")
 
@@ -442,7 +451,7 @@ def evalSymbReg(individual):
     func = toolbox.compile(expr=individual)
 
     #logs
-    print(str(len(reviews)) + " phrases to evaluate")
+    print("*****\n[New cicle]: " + str(len(reviews)) + " phrases to evaluate\n*****\n")
     #logs
     
     for index, item in enumerate(reviews):        
@@ -605,9 +614,7 @@ toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max
 getDictionary()
 
 # Load the tweets
-getTweetsFromIds()
-#getReviews()
-#getTweets()
+getTweetsFromFileIdLoaded()
 
 
 def main():
@@ -621,7 +628,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=50)
+    pop = toolbox.population(n=55)
     hof = tools.HallOfFame(1)
     
     
@@ -643,7 +650,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 35, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 100, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

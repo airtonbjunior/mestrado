@@ -440,6 +440,8 @@ toolbox.register("compile", gp.compile, pset=pset)
 
 
 # evaluation function 
+# used to Amazon Reviews
+# DEPRECATED!
 def evalSymbReg(individual):
     global reviews
     global reviews_scores
@@ -483,7 +485,8 @@ def evalSymbReg(individual):
     return fitnessReturn,
 
 
-# evaluation function 
+# evaluation function
+# DEPRECATED 
 def evalSymbRegTweets(individual):
     global tweets
     global tweets_score
@@ -550,7 +553,7 @@ def evalSymbRegTweetsFromSemeval(individual):
     func = toolbox.compile(expr=individual)
 
     #logs
-    print(str(len(tweets_semeval)) + " phrases to evaluate")
+    print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate")
     #logs
     
     for index, item in enumerate(tweets_semeval):        
@@ -610,6 +613,7 @@ toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_v
 toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
 
 
+# Work on memory to improve performance
 # load the dictionary 
 getDictionary()
 

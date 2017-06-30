@@ -45,7 +45,7 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral = 0
 
-MAX_ANALYSIS_TWEETS = 70
+MAX_ANALYSIS_TWEETS = 100
 
 best_fitness = 0
 uses_dummy_function = False
@@ -290,6 +290,16 @@ def polaritySum(phrase):
     return total_sum
 
 
+# sum of the hashtag polarities only
+def hashtagPolaritySum(phrase):
+    return positiveHashtags(phrase) - negativeHashtags(phrase)
+
+
+# sum of the emoticons polarities only
+def emoticonsPolaritySum(phrase):
+    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
+
+    
 def polaritySumTerminal():
     global dic_positive_words
     global dic_negative_words
@@ -333,15 +343,6 @@ def negativeEmoticons(phrase):
 
     return total_sum
 
-
-# sum of the hashtag polarities only
-def hashtagPolaritySum(phrase):
-    return positiveHashtags(phrase) - negativeHashtags(phrase)
-
-
-# sum of the emoticons polarities only
-def emoticonsPolaritySum(phrase):
-    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
 
 
 # Positive Hashtags
@@ -573,13 +574,17 @@ def evalSymbRegTweetsFromSemeval(individual):
     
     for index, item in enumerate(tweets_semeval):        
 
-        if (round(func(tweets_semeval[index]), 2) > 0 and float(tweets_semeval_score[index]) > 0):
-            fitnessReturn += 1 
-            is_positive += 1
+        try:
+            if (round(func(tweets_semeval[index]), 2) > 0 and float(tweets_semeval_score[index]) > 0):
+                fitnessReturn += 1 
+                is_positive += 1
 
-        if (round(func(tweets_semeval[index]), 2) < 0 and float(tweets_semeval_score[index]) < 0):
-            fitnessReturn += 1 
-            is_negative += 1
+            if (round(func(tweets_semeval[index]), 2) < 0 and float(tweets_semeval_score[index]) < 0):
+                fitnessReturn += 1 
+                is_negative += 1
+
+        except:
+            continue
 
         #logs
         #print(index, item)
@@ -647,7 +652,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=20)
+    pop = toolbox.population(n=27)
     hof = tools.HallOfFame(1)
     
     
@@ -669,7 +674,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, 30, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, 200, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

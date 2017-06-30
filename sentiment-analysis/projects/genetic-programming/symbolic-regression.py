@@ -98,7 +98,7 @@ def getTweetsFromFileIdLoaded():
 
     tweets_loaded = 0
 
-    with open('twitter-2016train-A-full-tweets.txt', 'r') as inF:
+    with open('datasets/twitter-2016train-A-full-tweets.txt', 'r') as inF:
         for line in inF:
             if tweets_loaded < MAX_ANALYSIS_TWEETS:
                 tweet_parsed = line.split("#@#")

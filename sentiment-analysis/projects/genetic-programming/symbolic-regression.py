@@ -26,18 +26,22 @@ from twython import Twython
 # log time
 start = time.time()
 
+#reviews = []
+#reviews_scores = []
 
-reviews = []
-reviews_scores = []
-
-tweets = []
-tweets_score = []
+#tweets = []
+#tweets_score = []
 
 tweets_semeval = []
 tweets_semeval_score = []
+tweet_semeval_index = 0
 
-dic_positive_words = []
-dic_negative_words = []
+dic_positive_words     = []
+dic_negative_words     = []
+dic_positive_hashtags  = []
+dic_negative_hashtags  = []
+dic_positive_emoticons = []
+dic_negative_emoticons = []
 
 positive_tweets = 0
 negative_tweets = 0
@@ -46,7 +50,7 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral = 0
 
-MAX_ANALYSIS_TWEETS = 50
+MAX_ANALYSIS_TWEETS = 70
 
 best_fitness = 0
 uses_dummy_function = False
@@ -227,16 +231,37 @@ def getDictionary():
     global dic_positive_words
     global dic_negative_words
 
+    global dic_positive_hashtags
+    global dic_negative_hashtags
 
-    with open('positive-words.txt', 'r') as inF:
+    global dic_positive_emoticons
+    global dic_negative_emoticons
+
+    with open('dictionaries/positive-words.txt', 'r') as inF:
         for line in inF:
             dic_positive_words.append(line.strip())
 
-    with open('negative-words.txt', 'r') as inF2:
+    with open('dictionaries/negative-words.txt', 'r') as inF2:
         for line2 in inF2:
             dic_negative_words.append(line2.strip())
 
-    print("[dictionary loaded]")
+    with open('dictionaries/positive-hashtags.txt', 'r') as inF3:
+        for line3 in inF3:
+            dic_positive_hashtags.append(line3.strip())
+
+    with open('dictionaries/negative-hashtags.txt', 'r') as inF4:
+        for line4 in inF4:
+            dic_negative_hashtags.append(line4.strip())            
+
+    with open('dictionaries/positive-emoticons.txt', 'r') as inF5:
+        for line5 in inF5:
+            dic_positive_emoticons.append(line5.strip()) 
+
+    with open('dictionaries/negative-emoticons.txt', 'r') as inF6:
+        for line6 in inF6:
+            dic_negative_emoticons.append(line6.strip())             
+
+    print("[dictionary loaded] [words, hashtags and emoticons]")
 
 # Define new functions
 # Protected Div (check division by zero)
@@ -311,34 +336,46 @@ def polaritySum(phrase):
     return total_sum
 
 
-def positiveEmoticons(phrase):
+def polaritySumTerminal():
+    global dic_positive_words
+    global dic_negative_words
+
     words = phrase.split()
 
     total_sum = 0
 
     for word in words:
-        with open('positive-emoticons.txt', 'r') as inF:
-            for line in inF:
-                if word in line and len(line.strip()) == len(word.strip()):
-                    #print("positive word " + word)
-                    total_sum += 1 
-                    break                 
+        if word in dic_positive_words:
+            total_sum += 1 
+
+        if word in dic_negative_words:
+            total_sum -= 1
+
+    return total_sum
+
+
+def positiveEmoticons(phrase):
+    global dic_positive_emoticons
+    words = phrase.split()
+
+    total_sum = 0
+
+    for word in words:
+        if word in dic_positive_emoticons:
+            total_sum += 1               
 
     return total_sum
 
 
 def negativeEmoticons(phrase):
+    global dic_negative_emoticons
     words = phrase.split()
 
     total_sum = 0
 
     for word in words:
-        with open('negative-emoticons.txt', 'r') as inF:
-            for line in inF:
-                if word in line and len(line.strip()) == len(word.strip()):
-                    #print("positive word " + word)
-                    total_sum += 1 
-                    break                 
+        if word in dic_negative_emoticons:
+            total_sum += 1               
 
     return total_sum
 
@@ -346,14 +383,18 @@ def negativeEmoticons(phrase):
 # Positive Hashtags
 def positiveHashtags(phrase):
     global dic_positive_words
+    global dic_positive_hashtags
     total = 0
     if "#" in phrase:
         #print("has hashtag")
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            if hashtag in dic_positive_words:
+            if hashtag in dic_positive_hashtags:
                 total += 1 
+            else:
+                if hashtag in dic_positive_words:
+                    total += 1 
 
     return total
 
@@ -361,14 +402,18 @@ def positiveHashtags(phrase):
 # Negative Hashtags
 def negativeHashtags(phrase):
     global dic_negative_words
+    global dic_negative_hashtags
     total = 0
     if "#" in phrase:
         #print("has hashtag")
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            if hashtag in dic_negative_words:
+            if hashtag in dic_negative_hashtags:
                 total += 1 
+            else:
+                if hashtag in dic_negative_words:
+                    total += 1 
 
     return total
 
@@ -421,7 +466,7 @@ pset.addPrimitive(negativeWordsQuantity, [str], float)
 pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
-
+#pset.addTerminal(polaritySumTerminal(tweets_semeval[tweet_semeval_index]), float)
 pset.addEphemeralConstant("rand", lambda: random.uniform(-2, 2), float)
 
 
@@ -553,16 +598,16 @@ def evalSymbRegTweetsFromSemeval(individual):
     func = toolbox.compile(expr=individual)
 
     #logs
-    print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate")
+    print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]")
     #logs
     
     for index, item in enumerate(tweets_semeval):        
 
-        if (func(tweets_semeval[index]) > 0 and float(tweets_semeval_score[index]) > 0):
+        if (round(func(tweets_semeval[index]), 2) > 0 and float(tweets_semeval_score[index]) > 0):
             fitnessReturn += 1 
             is_positive += 1
 
-        if (func(tweets_semeval[index]) < 0 and float(tweets_semeval_score[index]) < 0):
+        if (round(func(tweets_semeval[index]), 2) < 0 and float(tweets_semeval_score[index]) < 0):
             fitnessReturn += 1 
             is_negative += 1
 
@@ -632,7 +677,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=55)
+    pop = toolbox.population(n=20)
     hof = tools.HallOfFame(1)
     
     
@@ -654,7 +699,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.5, 100, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, 30, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 
@@ -672,8 +717,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-    #saveTweetsFromIdInFile()
-    #getTweetsFromFileIdLoaded();
 
 
 end = time.time()

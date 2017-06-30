@@ -339,6 +339,11 @@ def hashtagPolaritySum(phrase):
     return positiveHashtags(phrase) - negativeHashtags(phrase)
 
 
+# sum of the emoticons polarities only
+def emoticonsPolaritySum(phrase):
+    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
+
+
 # Positive Hashtags
 def positiveHashtags(phrase):
     global dic_positive_words
@@ -421,6 +426,7 @@ pset.addPrimitive(negativeEmoticons, [str], float)
 
 pset.addPrimitive(polaritySum, [str], float)
 pset.addPrimitive(hashtagPolaritySum, [str], float)
+pset.addPrimitive(emoticonsPolaritySum, [str], float)
 
 pset.addPrimitive(positiveWordsQuantity, [str], float)
 pset.addPrimitive(negativeWordsQuantity, [str], float)
@@ -681,6 +687,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 end = time.time()
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")

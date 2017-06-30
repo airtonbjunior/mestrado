@@ -26,11 +26,6 @@ from twython import Twython
 # log time
 start = time.time()
 
-#reviews = []
-#reviews_scores = []
-
-#tweets = []
-#tweets_score = []
 
 tweets_semeval = []
 tweets_semeval_score = []
@@ -56,6 +51,7 @@ best_fitness = 0
 uses_dummy_function = False
 
 
+# Used only one time
 def saveTweetsFromIdInFile():
     print("[loading tweets to save in a file]")
 
@@ -180,48 +176,6 @@ def getTweets():
             tweets.append(row[3].strip())
     finally:
         f.close()
-
-
-# get reviews of reviews.txt
-def getReviews():
-    global reviews
-    global reviews_scores
-
-    review = ""
-    score = ""
-    start_of_next_review = ""
-    end_of_review = False
-
-    with open('reviews.txt', 'r') as inF:
-        for line in inF:
-            if line.startswith("*"): # comments of the review file
-                continue
-
-            if not re.findall(r"\[t\]", line):  # titles start with [t]. I'll not use the titles (check)
-                if line.startswith("##"):
-                    review += line[line.index('#') + 2: ].strip() # remove the ##
-                    #print(review)
-                else:
-                    score += line[line.index('[') + 1 : line.index(']')].strip()
-                    start_of_next_review += line[line.index('#') + 2 : ].strip()  # remove the ##
-                    end_of_review = True
-                    #print(line)
-            
-
-            if end_of_review:
-                if len(review) > 0:
-                    reviews.append(review.strip())
-                
-                if len(score) > 0:
-                    reviews_scores.append(score.strip())
-                    score = ""
-
-                review = start_of_next_review
-                start_of_next_review = ""
-                
-                end_of_review = False    
-
-        reviews.append(review.strip()) # last review
 
 
 
@@ -380,6 +334,11 @@ def negativeEmoticons(phrase):
     return total_sum
 
 
+# sum of the hashtag polarities only
+def hashtagPolaritySum(phrase):
+    return positiveHashtags(phrase) - negativeHashtags(phrase)
+
+
 # Positive Hashtags
 def positiveHashtags(phrase):
     global dic_positive_words
@@ -452,19 +411,24 @@ pset.addPrimitive(math.sin, [float], float)
 pset.addPrimitive(protectedSqrt, [float], float)
 
 pset.addPrimitive(protectedLog, [float], float)
-pset.addPrimitive(invertSignal, [float], float)
+pset.addPrimitive(invertSignal, [float], float) # invert
 
 pset.addPrimitive(positiveHashtags, [str], float)
 pset.addPrimitive(negativeHashtags, [str], float)
+
 pset.addPrimitive(positiveEmoticons, [str], float)
 pset.addPrimitive(negativeEmoticons, [str], float)
+
 pset.addPrimitive(polaritySum, [str], float)
+pset.addPrimitive(hashtagPolaritySum, [str], float)
 
 pset.addPrimitive(positiveWordsQuantity, [str], float)
 pset.addPrimitive(negativeWordsQuantity, [str], float)
 
+# dummy functions
 pset.addPrimitive(onlyTestFuncion, [str, str], float)
 pset.addPrimitive(onlyTestFuncion2, [float, float], str)
+
 
 #pset.addTerminal(polaritySumTerminal(tweets_semeval[tweet_semeval_index]), float)
 pset.addEphemeralConstant("rand", lambda: random.uniform(-2, 2), float)
@@ -717,7 +681,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 end = time.time()
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")

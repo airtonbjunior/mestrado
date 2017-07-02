@@ -45,7 +45,7 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral = 0
 
-MAX_ANALYSIS_TWEETS = 100
+MAX_ANALYSIS_TWEETS = 50
 
 best_fitness = 0
 uses_dummy_function = False
@@ -55,7 +55,7 @@ uses_dummy_function = False
 def saveTweetsFromIdInFile():
     print("[loading tweets to save in a file]")
 
-    file = open("twitter-2016train-A-full-tweets.txt","w") 
+    file = open("datasets/twitter-2016train-A-full-tweets2.txt","w") 
     
     tweet_parsed = []
 
@@ -66,15 +66,19 @@ def saveTweetsFromIdInFile():
 
     twitter = Twython(APP_KEY, access_token=ACCESS_TOKEN)
 
-    with open('twitter-2016train-A-part.txt', 'r') as inF:
+    exceptions = 0
+
+    with open('datasets/twitter-2016train-A-part.txt', 'r') as inF:
         for line in inF:
             tweet_parsed = line.split()
             try:
                 tweet = twitter.show_status(id=str(tweet_parsed[0]))
                 file.write(tweet_parsed[1].strip() + "#@#" + tweet['text'].strip() + "\n") 
             except:
-                #print("exception")
+                exceptions += 1
                 continue
+
+    print("[" + str(exceptions) + " exceptions]")
     print("[tweets saved on file]")
 
     file.close() 
@@ -383,6 +387,25 @@ def negativeHashtags(phrase):
     return total
 
 
+# Check if has hashtags on phrase
+def hasHashtag(phrase):
+    return True if "#" in phrase else False
+
+
+# Check if has emoticons on phrase
+def hasEmoticons(phrase):
+    global dic_negative_emoticons
+    global dic_positive_emoticons
+    
+    words = phrase.split()
+
+    for word in words:
+        if (word in dic_negative_emoticons) or (word in dic_positive_emoticons):
+            return True
+
+    return False
+
+
 # logic operators
 # Define a new if-then-else function
 def if_then_else(input, output1, output2):
@@ -431,6 +454,11 @@ pset.addPrimitive(emoticonsPolaritySum, [str], float)
 
 pset.addPrimitive(positiveWordsQuantity, [str], float)
 pset.addPrimitive(negativeWordsQuantity, [str], float)
+
+pset.addPrimitive(hasHashtag, [str], bool)
+pset.addPrimitive(hasEmoticons, [str], bool)
+
+pset.addPrimitive(if_then_else, [bool, float, float], float)
 
 # dummy functions
 pset.addPrimitive(onlyTestFuncion, [str, str], float)
@@ -652,7 +680,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=27)
+    pop = toolbox.population(n=50)
     hof = tools.HallOfFame(1)
     
     
@@ -674,7 +702,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, 200, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, 300, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 
@@ -691,8 +719,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
+    #main()
+    saveTweetsFromIdInFile()
 
 end = time.time()
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")

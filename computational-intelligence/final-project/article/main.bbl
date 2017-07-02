@@ -1,5 +1,16 @@
 \begin{thebibliography}{}
 
+\bibitem[Asghar et~al. 2014]{asghar2014review}
+Asghar, M.~Z., Khan, A., Ahmad, S., and Kundi, F.~M. (2014).
+\newblock A review of feature extraction in sentiment analysis.
+\newblock {\em Journal of Basic and Applied Scientific Research},
+  4(3):181--186.
+
+\bibitem[Bandhakavi et~al. 2016]{bandhakavi2016lexicon}
+Bandhakavi, A., Wiratunga, N., Padmanabhan, D., and Massie, S. (2016).
+\newblock Lexicon based feature extraction for emotion text classification.
+\newblock {\em Pattern Recognition Letters}, pages~--.
+
 \bibitem[Becker et~al. 2013]{becker2013}
 Becker, L., Erhart, G., Skiba, D., and Matula, V. (2013).
 \newblock Avaya: Sentiment analysis on twitter with self-training and polarity
@@ -13,6 +24,12 @@ D'Andrea, A., Ferri, F., Grifoni, P., and Guzzo, T. (2015).
   implementation.
 \newblock {\em International Journal of Computer Applications}, 125(3):26--33.
 \newblock Published by Foundation of Computer Science (FCS), NY, USA.
+
+\bibitem[Ding et~al. 2008]{ding2008holistic}
+Ding, X., Liu, B., and Yu, P.~S. (2008).
+\newblock A holistic lexicon-based approach to opinion mining.
+\newblock In {\em Proceedings of the 2008 international conference on web
+  search and data mining}, pages 231--240. ACM.
 
 \bibitem[Duwairi et~al. 2015]{duwairi2015detecting}
 Duwairi, R.~M., Ahmed, N.~A., and Al-Rifai, S.~Y. (2015).
@@ -31,21 +48,17 @@ Ferreira, L., Dosciatti, M., Nievola, J.~C., and Paraiso, E.~C. (2015).
   corpora in sentiment analysis.
 \newblock In {\em FLAIRS Conference}, pages 163--168.
 
-\bibitem[Gilbert 2014]{gilbert2014vader}
-Gilbert, C. H.~E. (2014).
-\newblock Vader: A parsimonious rule-based model for sentiment analysis of
-  social media text.
+\bibitem[Fortin et~al. 2012]{DEAP_JMLR2012}
+Fortin, F.-A., {De Rainville}, F.-M., Gardner, M.-A., Parizeau, M., and
+  Gagn\'e, C. (2012).
+\newblock {DEAP}: Evolutionary algorithms made easy.
+\newblock {\em Journal of Machine Learning Research}, 13:2171--2175.
 
-\bibitem[Govindarajan 2013]{govindarajan2013sentiment}
-Govindarajan, M. (2013).
-\newblock Sentiment analysis of movie reviews using hybrid method of naive
-  bayes and genetic algorithm.
-\newblock {\em International Journal of Advanced Computer Research}, 3(4):139.
-
-\bibitem[Graff et~al. 2017]{graff2017semantic}
-Graff, M., Tellez, E.~S., Escalante, H.~J., and Miranda-Jim{\'e}nez, S. (2017).
-\newblock Semantic genetic programming for sentiment analysis.
-\newblock In {\em NEO 2015}, pages 43--65. Springer.
+\bibitem[Ghaleb and Vijendran 2016]{ghaleb2016survey}
+Ghaleb, O. A.~M. and Vijendran, A.~S. (2016).
+\newblock Survey and analysis of recent sentiment analysis schemes relating to
+  social media.
+\newblock {\em Indian Journal of Science and Technology}, 9(41).
 
 \bibitem[Guimaraes et~al. 2016]{kdir16}
 Guimaraes, N., Torgo, L., and Figueira, A. (2016).
@@ -92,33 +105,40 @@ Kaji, N. and Kitsuregawa, M. (2007).
   (EMNLP-CoNLL)}, pages 1075--1083, Prague, Czech Republic. Association for
   Computational Linguistics.
 
-\bibitem[Keshavarz and Abadeh 2017]{ALGAAL}
-Keshavarz, H. and Abadeh, M.~S. (2017).
-\newblock Alga: Adaptive lexicon learning using genetic algorithm for sentiment
-  analysis of microblogs.
-\newblock {\em Knowl.-Based Syst.}, 122:1--16.
+\bibitem[Khoo and Johnkhan 2017]{khoo2017lexicon}
+Khoo, C.~S. and Johnkhan, S.~B. (2017).
+\newblock Lexicon-based sentiment analysis: Comparative evaluation of six
+  sentiment lexicons.
+\newblock {\em Journal of Information Science}, 0(0):0165551517703514.
 
-\bibitem[Kitchenham 2004]{Kitchenham2004}
-Kitchenham, B. (2004).
-\newblock {Procedures for performing systematic reviews}.
-\newblock {\em Keele, UK, Keele University}, 33(TR/SE-0401):28.
+\bibitem[Koza 1992]{koza1992genetic}
+Koza, J.~R. (1992).
+\newblock {\em Genetic programming: on the programming of computers by means of
+  natural selection}, volume~1.
+\newblock MIT press.
 
 \bibitem[Liu 2010]{liu2010multifaceted}
 Liu, B. (2010).
 \newblock Sentiment analysis: A multifaceted problem.
 \newblock {\em IEEE Intelligent Systems}, 25(3):76--80.
 
-\bibitem[Musto et~al. 2014]{musto2014comparison}
-Musto, C., Semeraro, G., and Polignano, M. (2014).
-\newblock A comparison of lexicon-based approaches for sentiment analysis of
-  microblog posts.
-\newblock {\em Information Filtering and Retrieval}, 59.
+\bibitem[McPhee et~al. 2008]{mcphee2008field}
+McPhee, N.~F., Poli, R., and Langdon, W.~B. (2008).
+\newblock Field guide to genetic programming.
 
-\bibitem[Neviarouskaya et~al. 2009]{SentiFulGA}
-Neviarouskaya, A., Prendinger, H., and Ishizuka, M. (2009).
-\newblock Sentiful: Generating a reliable lexicon for sentiment analysis.
-\newblock {\em 2009 3rd International Conference on Affective Computing and
-  Intelligent Interaction and Workshops}, pages 1--6.
+\bibitem[Mohammad 2016]{mohammad2016challenges}
+Mohammad, S.~M. (2016).
+\newblock Challenges in sentiment analysis.
+\newblock {\em A Practical Guide to Sentiment Analysis, D. Das, E. Cambria, and
+  S. Bandyopadhyay, Eds. Springer}.
+
+\bibitem[Pang et~al. 2002]{Pang2002}
+Pang, B., Lee, L., and Vaithyanathan, S. (2002).
+\newblock Thumbs up?: Sentiment classification using machine learning
+  techniques.
+\newblock In {\em Proceedings of the ACL-02 Conference on Empirical Methods in
+  Natural Language Processing - Volume 10}, EMNLP '02, pages 79--86,
+  Stroudsburg, PA, USA. Association for Computational Linguistics.
 
 \bibitem[Pantel and Pennacchiotti 2006]{Pantel2006}
 Pantel, P. and Pennacchiotti, M. (2006).
@@ -129,9 +149,9 @@ Pantel, P. and Pennacchiotti, M. (2006).
   Computational Linguistics}, ACL-44, pages 113--120, Stroudsburg, PA, USA.
   Association for Computational Linguistics.
 
-\bibitem[Perez-Rosas et~al. ]{perez2012learning}
-Perez-Rosas, V., Banea, C., and Mihalcea, R.
-\newblock Learning sentiment lexicons in spanish.
+\bibitem[PATELLI 2011]{patelli2011genetic}
+PATELLI, A. (2011).
+\newblock Genetic programming techniques for nonlinear systems identification.
 
 \bibitem[Pinto et~al. 2007]{Pinto2007}
 Pinto, D., Rosso, P., and Jim{\'e}nez-Salazar, H. (2007).
@@ -140,10 +160,30 @@ Pinto, D., Rosso, P., and Jim{\'e}nez-Salazar, H. (2007).
   Evaluations}, SemEval '07, pages 430--433, Stroudsburg, PA, USA. Association
   for Computational Linguistics.
 
+\bibitem[Rodrigues et~al. 2016]{Rodrigues2016}
+Rodrigues, R.~G., das Dores, R.~M., Camilo-Junior, C.~G., and Rosa, T.~C.
+  (2016).
+\newblock Sentihealth-cancer: A sentiment analysis tool to help detecting mood
+  of patients in online social networks.
+\newblock {\em International Journal of Medical Informatics}, 85(1):80 -- 95.
+
+\bibitem[Sannino et~al. 2015]{Sannino2015}
+Sannino, G., De~Falco, I., and De~Pietro, G. (2015).
+\newblock {\em Indirect Blood Pressure Evaluation by Means of Genetic
+  Programming}, pages 75--92.
+\newblock Springer International Publishing, Cham.
+
 \bibitem[Silva et~al. 2010]{silva2010automatic}
 Silva, M.~J., Carvalho, P., Costa, C., and Sarmento, L. (2010).
 \newblock Automatic expansion of a social judgment lexicon for sentiment
   analysis.
+
+\bibitem[Silveira et~al. 2014]{silveirageraccao}
+Silveira, B.~B., Leit{\~a}o-J{\'u}nior, P.~S., Ramada, M.~S., and Martins,
+  B.~P. (2014).
+\newblock Gera{\c{c}}{\~a}o de base de dados para o teste de
+  aplica{\c{c}}{\~o}es de banco de dados pelo emprego da computa{\c{c}}{\~a}o
+  evolucion{\'a}ria.
 
 \bibitem[Taboada et~al. 2011]{taboada2011lexicon}
 Taboada, M., Brooke, J., Tofiloski, M., Voll, K., and Stede, M. (2011).
@@ -158,19 +198,10 @@ Turney, P.~D. (2002).
   Computational Linguistics}, ACL '02, pages 417--424, Stroudsburg, PA, USA.
   Association for Computational Linguistics.
 
-\bibitem[Widdows and Dorow 2002]{widdows2002graph}
-Widdows, D. and Dorow, B. (2002).
-\newblock A graph model for unsupervised lexical acquisition.
-\newblock In {\em Proceedings of the 19th international conference on
-  Computational linguistics-Volume 1}, pages 1--7. Association for
-  Computational Linguistics.
-
-\bibitem[Wilson et~al. 2005]{wilson2005recognizing}
-Wilson, T., Wiebe, J., and Hoffmann, P. (2005).
-\newblock Recognizing contextual polarity in phrase-level sentiment analysis.
-\newblock In {\em Proceedings of the conference on human language technology
-  and empirical methods in natural language processing}, pages 347--354.
-  Association for Computational Linguistics.
+\bibitem[Vohra and Teraiya 2013]{vohra2013comparative}
+Vohra, S. and Teraiya, J. (2013).
+\newblock A comparative study of sentiment analysis techniques.
+\newblock {\em Journal JIKRCE}, 2(2):313--317.
 
 \bibitem[Zhou et~al. 2014]{Zhou2014}
 Zhou, Z., Zhang, X., and Sanderson, M. (2014).

@@ -112,6 +112,14 @@ Conjuntos de dados previamente avaliados são amplamente utilizados para teste d
 
 \section{Análise do problema}
 
+A criação de um classificador de sentimentos para um determinado contexto é um desafio de pesquisa na área de Análise de Sentimentos. Detalhes intrínsecos do domínio do texto, idioma, entre outros, podem ser relevantes para as regras de classificação. 
+
+O modelo de classificação, portanto, pode ser descrito como um programa. Como discutido na seção anterior, podemos abordar essa situação como um problema de otimização, com o objetivo de encontrar um modelo que represente a solução desejada.
+
+A Programação Genética pode auxiliar nesse processo de criação do modelo de classificação. De posse de um conjunto de dados previamente classificados, podemos treinar nossa população de possíveis soluções (indivíduos), avaliando seu \emph{fitness} de acordo com a semelhança com o resultado esperado para determinada entrada.
+
+[continuar?]
+
 \section{Projeto da solução}
 
 \subsection{Bibliotecas}
@@ -137,6 +145,8 @@ A base de treinamento aplicada no trabalho possui 1421 \emph{Tweets}, avaliados 
 [Falar sobre a base de teste agora]
 
 \section{Resultados}
+
+[Fazer tabela com os parâmetros (gerações, população, etc)]
 
 \section{Conclusão}\label{conclusion}
 

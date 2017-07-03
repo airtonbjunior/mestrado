@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  2 JUL 2017 21:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  3 JUL 2017 00:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -585,67 +585,67 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
 <programTree2.png, id=11, 105.39375pt x 222.07968pt>
 File: programTree2.png Graphic file (type png)
  <use programTree2.png>
-Package pdftex.def Info: programTree2.png used on input line 67.
+Package pdftex.def Info: programTree2.png used on input line 69.
 (pdftex.def)             Requested size: 105.39348pt x 222.07913pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 68.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 70.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 68.
-
-Underfull \hbox (badness 1014) in paragraph at lines 72--73
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 70.
+ [2]
+Underfull \hbox (badness 1014) in paragraph at lines 74--75
 []\OT1/ptm/m/n/12 Na Programa[][]ao Gen[]etica, as-sim como em out-ros al-go-ri
 t-mos basea-dos na
  []
 
-[2] <GPFlowChart.jpg, id=15, 432.1746pt x 439.4016pt>
+<GPFlowChart.jpg, id=15, 432.1746pt x 439.4016pt>
 File: GPFlowChart.jpg Graphic file (type jpg)
  <use GPFlowChart.jpg>
-Package pdftex.def Info: GPFlowChart.jpg used on input line 76.
+Package pdftex.def Info: GPFlowChart.jpg used on input line 78.
 (pdftex.def)             Requested size: 432.17355pt x 439.40051pt.
 
-Overfull \hbox (5.3822pt too wide) in paragraph at lines 76--77
+Overfull \hbox (5.3822pt too wide) in paragraph at lines 78--79
  [][] 
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 93--94
+Underfull \hbox (badness 1454) in paragraph at lines 95--96
 \OT1/ptm/m/n/12 con-sid-er-ada uma sub[]area de Pro-ces-sa-mento de Lin-guagem 
 Nat-u-ral (PNL), como
  []
 
-[3 <./programTree2.png>]
-Underfull \hbox (badness 1082) in paragraph at lines 97--98
+
+Underfull \vbox (badness 1231) has occurred while \output is active []
+
+ [3 <./programTree2.png>] [4 <./GPFlowChart.jpg>]
+Underfull \hbox (badness 1082) in paragraph at lines 99--100
 \OT1/ptm/m/n/12 re-senta uma abor-dagem de ex-pans[]ao l[]exica fazendo uso da 
 t[]ecnica de \OT1/ptm/m/it/12 Point-wise
  []
 
 
-Underfull \hbox (badness 1152) in paragraph at lines 97--98
+Underfull \hbox (badness 1152) in paragraph at lines 99--100
 \OT1/ptm/m/it/12 cel-lent" \OT1/ptm/m/n/12 e \OT1/ptm/m/it/12 "poor"\OT1/ptm/m/
 n/12 , rep-re-sen-tando Orienta[][]oes Sem[]anticas pos-i-tiva e neg-a-tiva, re
 -
  []
 
 
-Underfull \hbox (badness 2005) in paragraph at lines 97--98
+Underfull \hbox (badness 2005) in paragraph at lines 99--100
 \OT1/ptm/m/n/12 a ex-pans[]ao do Di-cion[]ario s[]ao chamadas de palavras se-me
 nte (\OT1/ptm/m/it/12 seed words\OT1/ptm/m/n/12 , em
  []
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 97--98
+Underfull \hbox (badness 1132) in paragraph at lines 99--100
 \OT1/ptm/m/n/12 ingl[]es). Como ex-em-plo de tra-bal-hos que uti-lizam o PMI pa
 ra a cria[][]ao e ex-
  []
 
 
-Underfull \vbox (badness 7012) has occurred while \output is active []
-
- [4 <./GPFlowChart.jpg>]
-Underfull \hbox (badness 2158) in paragraph at lines 107--108
+Underfull \hbox (badness 2158) in paragraph at lines 111--112
 []\OT1/ptm/m/n/12 Cada clas-si-fi-cador pos-sui re-gras pr[]oprias para a avali
 a[][]ao da Orienta[][]ao
  []
@@ -654,31 +654,40 @@ a[][]ao da Orienta[][]ao
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 2035) in paragraph at lines 161--162
+[]\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
+n-clu[]^^Pdas fun[][]oes
+ []
+
 [6]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 161.
+(Font)              <7> on input line 167.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 161.
- [7] (./main.bbl [8] [9]) [10] (./main.aux) ) 
+(Font)              <5> on input line 167.
+ [7] (./main.bbl [8] [9] [10]) [11] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3166 strings out of 493013
- 41909 string characters out of 6136993
- 118658 words of memory out of 5000000
- 6643 multiletter control sequences out of 15000+600000
+ 3170 strings out of 493013
+ 41964 string characters out of 6136993
+ 119704 words of memory out of 5000000
+ 6647 multiletter control sequences out of 15000+600000
  26395 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,14n,28p,1103b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2016/texmf-dist/fonts/
-enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/
-texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf
--dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
-/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on main.pdf (10 pages, 231570 bytes).
+{c:/texlive/2016/texmf-dist/f
+onts/enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
+><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/
+texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/ut
+mri8a.pfb>
+Output written on main.pdf (11 pages, 233356 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

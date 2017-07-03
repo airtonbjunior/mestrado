@@ -49,13 +49,15 @@ A Análise de Sentimentos, também chamada de Análise de Opiniões ou Mineraç�
 
 Essa área de estudo tem como principal desafio a Análise de Opiniões, descritas em linguagem natural, para a identificação da polaridade implícita ou explícita no texto. Essa polaridade é, na maior parte das vezes, identificada como uma escala de pontuação de sua característica positiva, negativa ou neutra.
 
-Uma das principais técnicas para aumentar a acurácia a Análise de Sentimentos é a utilização de Dicionários de Dados. Esses dicionários contêm palavras previamente avaliadas por especialistas humanos, principalmente quanto à sua polaridade. Neste contexto, esse conjunto de palavras, juntamente com suas polaridades, é chamado de Dicionário Léxico ou Dicionário de Sentimentos. 
+Quanto aos classificadores de sentimentos, há duas formas principais para o processamento e classificação das mensagens: a abordagem supervisionada e não supervisionada. Na abordagem supervisionada, técnicas de aprendizado de máquina são aplicados à mensagens previamente rotuladas de forma a identificar características que auxiliem na distinção e detecção de sentimentos nas sentenças desconhecidas. Técnicas não supervisionadas atuam principalmente em características sintáticas e semânticas do texto e, geralmente, baseiam-se em Dicionários Léxicos - conjunto de palavras e suas polaridades (grau de positividade e negatividade de uma mensagem). À partir desse dicionário, é feito o processamento das mensagens pelo classificador e retornada a polaridade da mesma. \cite{araujo2013metodos}
 
-Porém, é evidente a limitação inerente à estratégia de utilização do Dicionário Léxico - a própria lista de palavras disponíveis. Esse fato muitas vezes limita a realização de uma análise mais profunda sobre determinado contexto. Nesse sentido, um dos principais desafios na área de Mineração de Opiniões é a criação e ampliação do Dicionário Léxico de forma automatizada, tema central do presente trabalho. Grande parte desses dicionários são construídos de forma manual, fato que caracteriza uma limitação óbvia para a maior parte dos contextos e domínios, como observado em \cite{duwairi2015detecting}. 
+Dentre as principais técnicas de aprendizado de máquina para a classificação de sentimentos, podemos citar o \emph{Support Vector Machines} (SVM) \cite{HADDI2013}, \emph{Naïve Bayes} \cite{Iqbal}, \emph{Adaboost} \cite{graff2017semantic}, Redes Neurais Artificiais, entre outros. \cite{Rodrigues2016}
 
-Existem, basicamente, 3 formas de criação e expansão de um Dicionário Léxico: manual -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Frequentemente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada. Criações de Dicionários utilizando somente abordagem manual, por sua característica limitante, são menos utilizadas e não serão abordadas de forma mais aprofundada no decorrer deste trabalho.
+As abordagens não supervisionadas baseadas em Léxico, como discutido anteriormente, fazem uso de um conjunto de palavras e suas polaridades. Alguns classificadores utilizam Dicionários Léxicos já existentes, enquanto outros se encarregam de criar o próprio dicionário, mais adequado ao contexto e domínio da análise. Essa estratégia faz uso das características do texto e regras sintáticas para determinar a classificação de palavras e frases desconhecidas à partir das palavras contidas no dicionário e suas relações. Dentre as principais técnicas dessa categoria podemos citar \emph{Part-of-Speech Tag} \cite{becker2013}, \emph{Pointwise Mutual Infomation} (PMI) \cite{Turney2002}, entre outros.
 
-Consciente do problema de criação e expansão de Dicionários Léxicos para a Análise de Sentimentos, a ideia principal do presente trabalho é a [descrever aqui]
+Para técnicas que se encarregam da criação e expansão do próprio Dicionário Léxico há, basicamente, 3 formas de fazê-lo: manualmente -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Frequentemente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada.
+
+[descrever mais o classificador e não o léxico - supervisionado e não supervisionado]
 
 \section{Programação Genética}
 Programação Genética é um campo da computação evolucionária que busca resolver problemas, de forma automatizada, sem demandar conhecimentos detalhados sobre a solução \cite{koza1992genetic}. De forma geral, podemos definir a Programação Genética como um método sistemático, não dependente de um domínio específico, usado para permitir que computadores criem programas para solução de problemas de forma automática, inciando com um conhecimento de alto nível sobre as regras gerais dos possíveis modelos.
@@ -102,6 +104,8 @@ Na mesma linha, \cite{eisenstein2016unsupervised} e \cite{bandhakavi2016lexicon}
 
 Ainda tratando especificamente de Léxicos, \cite{kaji} aborda uma estratégia de criação e expansão de dicionários analisando uma coleção de páginas HTML. Apesar de trabalhar com o idioma japonês, a técnica pode ser adequada para outras línguas.
 
+A classificação de sentimentos pode ser dividida em duas abordagens principais, conforme discutido na seção anterior: supervisionada, fazendo uso de técnicas de aprendizado de máquina, e não supervisionada, utilizando Dicionários Léxicos. \cite{araujo2013metodos}
+
 Sistemas Classificadores, como o criado em \cite{Rodrigues2016}, recebem como entrada um texto e retornam a Orientação Semântica do mesmo. Para esse processo, \cite{Rodrigues2016} faz uso de um Dicionário próprio, com grande parte das polaridades anotadas manualmente. Outros classificadores são descritos em \cite{Pang2002}, \cite{Zhou2014}, \cite{silva2010automatic}, \cite{kdir16}, entre outros.
 
 Cada classificador possui regras próprias para a avaliação da Orientação Semântica dos textos de entrada, dependendo do tipo de informação, contexto e outras características do domínio avaliado. A criação de modelo que faça uma classificação eficiente das entradas é um desafio, e demanda um conhecimento prévio sobre o assunto abordado. 
@@ -133,7 +137,7 @@ As funções serão responsáveis por realizar a manipulação dos dados, como o
 	\centering
 	\begin{tabular}{| c | c |}
 	\hline
-	\textbf{Função} & \textbf{Descrição} \\
+	\textbf{Função} & \textbf{Retorno} \\
 	\hline
 	\makecell{polaritySum(str): float} & Soma das polaridades de cada palavra \\& (+1 para positivo e -1 para negativo) \\
 	\hline
@@ -153,6 +157,8 @@ As funções serão responsáveis por realizar a manipulação dos dados, como o
 	\caption{Principais funções utilizadas na Programação Genética}
 	\label{tab_functions}
 \end{table}
+
+Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raíz quadrada, exponenciação, seno e cosseno.
 
 Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é calculado como a diferença entre a quantidade de \emph{tweets} - a quantidade de mensagens avaliadas corretamente quanto à sua polaridade, definida como positiva (número maior que zero) e negativa (número menor que zero). Por exemplo, caso a avaliação seja feita utilizando-se de 500 \emph{tweets} e o modelo consegue prever corretamente a polaridade de 450, temos uma função de aptidão de 50. O melhor caso acontece caso tivermos uma função \emph{fitness} de valor zero, ou seja, uma função que previu corretamente todas as mensagens avaliadas.
 

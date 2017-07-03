@@ -1,5 +1,9 @@
 \begin{thebibliography}{}
 
+\bibitem[Ara{\'u}jo et~al. 2013]{araujo2013metodos}
+Ara{\'u}jo, M., Gon{\c{c}}alves, P., and Benevenuto, F. (2013).
+\newblock M{\'e}todos para an{\'a}lise de sentimentos no twitter.
+
 \bibitem[Asghar et~al. 2014]{asghar2014review}
 Asghar, M.~Z., Khan, A., Ahmad, S., and Kundi, F.~M. (2014).
 \newblock A review of feature extraction in sentiment analysis.
@@ -59,6 +63,11 @@ Ghaleb, O. A.~M. and Vijendran, A.~S. (2016).
 \newblock Survey and analysis of recent sentiment analysis schemes relating to
   social media.
 \newblock {\em Indian Journal of Science and Technology}, 9(41).
+
+\bibitem[Graff et~al. 2017]{graff2017semantic}
+Graff, M., Tellez, E.~S., Escalante, H.~J., and Miranda-Jim{\'e}nez, S. (2017).
+\newblock Semantic genetic programming for sentiment analysis.
+\newblock In {\em NEO 2015}, pages 43--65. Springer.
 
 \bibitem[Guimaraes et~al. 2016]{kdir16}
 Guimaraes, N., Torgo, L., and Figueira, A. (2016).

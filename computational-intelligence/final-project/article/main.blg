@@ -3,51 +3,52 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: sbc.bst
 Database file #1: main.bib
+Warning--empty booktitle in araujo2013metodos
 Warning--empty journal in mcphee2008field
 Warning--empty journal in patelli2011genetic
 Warning--can't use both author and editor fields in Sannino2015
 Warning--empty journal in silva2010automatic
 Warning--empty journal in silveirageraccao
 Warning--can't use both author and editor fields in Zhou2014
-You've used 33 entries,
+You've used 35 entries,
             1935 wiz_defined-function locations,
-            680 strings with 11053 characters,
-and the built_in function-call counts, 14951 in all, are:
-= -- 1515
-> -- 553
-< -- 30
-+ -- 192
-- -- 184
-* -- 1199
-:= -- 2448
-add.period$ -- 106
-call.type$ -- 33
-change.case$ -- 254
-chr.to.int$ -- 33
-cite$ -- 39
-duplicate$ -- 630
-empty$ -- 1073
-format.name$ -- 231
-if$ -- 3082
+            689 strings with 11382 characters,
+and the built_in function-call counts, 15859 in all, are:
+= -- 1602
+> -- 594
+< -- 31
++ -- 206
+- -- 198
+* -- 1269
+:= -- 2597
+add.period$ -- 112
+call.type$ -- 35
+change.case$ -- 271
+chr.to.int$ -- 35
+cite$ -- 42
+duplicate$ -- 672
+empty$ -- 1141
+format.name$ -- 247
+if$ -- 3270
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 36
-newline$ -- 166
-num.names$ -- 99
-pop$ -- 252
+missing$ -- 38
+newline$ -- 175
+num.names$ -- 105
+pop$ -- 278
 preamble$ -- 1
-purify$ -- 257
+purify$ -- 274
 quote$ -- 0
-skip$ -- 502
+skip$ -- 529
 stack$ -- 0
-substring$ -- 1090
-swap$ -- 158
-text.length$ -- 17
+substring$ -- 1138
+swap$ -- 166
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 192
-warning$ -- 6
-while$ -- 124
+type$ -- 204
+warning$ -- 7
+while$ -- 131
 width$ -- 0
-write$ -- 448
-(There were 6 warnings)
+write$ -- 472
+(There were 7 warnings)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  3 JUL 2017 00:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  3 JUL 2017 10:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -620,28 +620,14 @@ Nat-u-ral (PNL), como
 Underfull \vbox (badness 1231) has occurred while \output is active []
 
  [3 <./programTree2.png>] [4 <./GPFlowChart.jpg>]
-Underfull \hbox (badness 1082) in paragraph at lines 99--100
-\OT1/ptm/m/n/12 re-senta uma abor-dagem de ex-pans[]ao l[]exica fazendo uso da 
-t[]ecnica de \OT1/ptm/m/it/12 Point-wise
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+[]\OT1/ptm/m/n/12 Na linha de es-trat[]egias su-per-vi-sion-adas, [[]] e
  []
 
 
-Underfull \hbox (badness 1152) in paragraph at lines 99--100
-\OT1/ptm/m/it/12 cel-lent" \OT1/ptm/m/n/12 e \OT1/ptm/m/it/12 "poor"\OT1/ptm/m/
-n/12 , rep-re-sen-tando Orienta[][]oes Sem[]anticas pos-i-tiva e neg-a-tiva, re
--
- []
-
-
-Underfull \hbox (badness 2005) in paragraph at lines 99--100
-\OT1/ptm/m/n/12 a ex-pans[]ao do Di-cion[]ario s[]ao chamadas de palavras se-me
-nte (\OT1/ptm/m/it/12 seed words\OT1/ptm/m/n/12 , em
- []
-
-
-Underfull \hbox (badness 1132) in paragraph at lines 99--100
-\OT1/ptm/m/n/12 ingl[]es). Como ex-em-plo de tra-bal-hos que uti-lizam o PMI pa
-ra a cria[][]ao e ex-
+Underfull \hbox (badness 2903) in paragraph at lines 107--108
+\OT1/ptm/m/n/12 [[]] ap-re-sen-tam out-ros pro-ced-i-men-tos para apoiar a An[]
+alise
  []
 
 
@@ -654,37 +640,33 @@ a[][]ao da Orienta[][]ao
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 2035) in paragraph at lines 161--162
+[6]
+Underfull \hbox (badness 2035) in paragraph at lines 163--164
 []\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
 n-clu[]^^Pdas fun[][]oes
  []
 
-[6]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 167.
+(Font)              <7> on input line 169.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 167.
- [7] (./main.bbl [8] [9] [10]) [11] (./main.aux) ) 
+(Font)              <5> on input line 169.
+[7] (./main.bbl [8] [9] [10]) [11] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  3170 strings out of 493013
  41964 string characters out of 6136993
- 119704 words of memory out of 5000000
+ 117704 words of memory out of 5000000
  6647 multiletter control sequences out of 15000+600000
  26395 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,14n,28p,1103b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2016/texmf-dist/f
-onts/enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb
-><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/
-texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on main.pdf (11 pages, 233356 bytes).
+ 39i,14n,28p,1129b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2016/texmf-dist/fo
+nts/enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
+<c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/t
+exmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/t
+ype1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utm
+ri8a.pfb>
+Output written on main.pdf (11 pages, 233823 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream

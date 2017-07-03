@@ -122,6 +122,40 @@ A Programação Genética pode auxiliar nesse processo de criação do modelo de
 
 \section{Projeto da solução}
 
+Como discutido na seção anterior, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
+
+O primeiro passo para projetar uma solução de Programação Genética é determinar o conjunto de terminais e funções do modelo. Os terminais serão compostos do \emph{Tweet} que será analisado, bem como de uma constante efêmera, um número real escolhido aleatóriamente entre -3 e 3. A constante efêmera será escolhida de forma aleatória somente no momento de criação do indivíduo, e depois manterá seu valor na árvore.
+
+As funções serão responsáveis por realizar a manipulação dos dados, como o \emph{Tweet} e suas características. A lista das principais funções definidas para a solução pode ser vista na tabela \ref{tab_functions}.
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{| c | c |}
+	\hline
+	\textbf{Função} & \textbf{Descrição} \\
+	\hline
+	\makecell{polaritySum(str): float} & Soma das polaridades de cada palavra \\& (+1 para positivo e -1 para negativo) \\
+	\hline
+	\makecell{hashtagPolaritySum(str): float} & Soma das polaridades de cada hashtag \\& (+1 para positivo e -1 para negativo) \\
+	\hline
+	\makecell{emoticonPolaritySum(str): float} & Soma das polaridades de cada emoticon \\& (+1 para positivo e -1 para negativo) \\
+	\hline
+	\makecell{positiveWordsQuantity(str): float} & Quantidade de palavras positivas \\
+	\hline
+	\makecell{negativeWordsQuantity(str): float} & Quantidade de palavras negativas \\
+	\hline
+	\makecell{hasHashtags(str): bool} & Verifica se o \emph{Tweet} possui hashtag \\
+	\hline
+	\makecell{hasEmoticons(str): bool} & Verifica se o \emph{Tweet} possui emoticon \\
+	\hline
+	\end{tabular}
+	\caption{Principais funções utilizadas na Programação Genética}
+	\label{tab_functions}
+\end{table}
+
+Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é calculado como a diferença entre a quantidade de \emph{tweets} - a quantidade de mensagens avaliadas corretamente quanto à sua polaridade, definida como positiva (número maior que zero) e negativa (número menor que zero). Por exemplo, caso a avaliação seja feita utilizando-se de 500 \emph{tweets} e o modelo consegue prever corretamente a polaridade de 450, temos uma função de aptidão de 50. O melhor caso acontece caso tivermos uma função \emph{fitness} de valor zero, ou seja, uma função que previu corretamente todas as mensagens avaliadas.
+
 \subsection{Bibliotecas}
 
 Para apoiar no desenvolvimento da solução do problema, foi utilizada a biblioteca DEAP\footnote{https://github.com/DEAP/deap} (\emph{Distributed Evolutionary Algorithms in Python}), escrita na linguagem \emph{Python} e disponível para uso gratuito. Fornece abstrações para a implementação de várias classes de algoritmos evolucionários, como Algoritmos Genéticos, Programação Genética, entre outros. \cite{DEAP_JMLR2012}

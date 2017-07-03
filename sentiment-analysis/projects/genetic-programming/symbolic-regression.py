@@ -45,9 +45,12 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral = 0
 
-MAX_ANALYSIS_TWEETS = 50
+MAX_ANALYSIS_TWEETS = 70
+GENERATIONS = 40
 
 best_fitness = 0
+best_fitness_history = []
+
 uses_dummy_function = False
 
 
@@ -428,6 +431,9 @@ def onlyTestFuncion2(float1, float2):
     return ""
 
 
+def repeatInputString(phrase):
+    return phrase
+
 
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
 pset.addPrimitive(operator.add, [float,float], float)
@@ -463,10 +469,13 @@ pset.addPrimitive(hasEmoticons, [str], bool)
 
 pset.addPrimitive(if_then_else, [bool, float, float], float)
 
-# dummy functions
-pset.addPrimitive(onlyTestFuncion, [str, str], float)
-pset.addPrimitive(onlyTestFuncion2, [float, float], str)
+pset.addPrimitive(repeatInputString, [str], str)
 
+# dummy functions
+#pset.addPrimitive(onlyTestFuncion, [str, str], float)
+#pset.addPrimitive(onlyTestFuncion2, [float, float], str)
+
+pset.addTerminal(False, bool)
 
 #pset.addTerminal(polaritySumTerminal(tweets_semeval[tweet_semeval_index]), float)
 pset.addEphemeralConstant("rand", lambda: random.uniform(-2, 2), float)
@@ -487,98 +496,6 @@ toolbox.register("compile", gp.compile, pset=pset)
 
 
 # evaluation function 
-# used to Amazon Reviews
-# DEPRECATED!
-def evalSymbReg(individual):
-    global reviews
-    global reviews_scores
-    global best_fitness
-    global uses_dummy_function
-    fitnessReturn = 0
-
-    # Transform the tree expression in a callable function
-    func = toolbox.compile(expr=individual)
-
-    #logs
-    print("*****\n[New cicle]: " + str(len(reviews)) + " phrases to evaluate\n*****\n")
-    #logs
-    
-    for index, item in enumerate(reviews):        
-
-        if (func(reviews[index]) > 0 and float(reviews_scores[index]) > 0) or (func(reviews[index]) < 0 and float(reviews_scores[index]) < 0) or (func(reviews[index]) == 0 and float(reviews_scores[index]) == 0):
-            fitnessReturn += 1 
-
-        #logs
-        #print(index, item)
-        print("[phrase]: " + reviews[index])
-        print("[value]: " + reviews_scores[index])
-        print("[calculated]:" + str(func(reviews[index])))
-        #logs
-    
-    if uses_dummy_function:
-        fitnessReturn = 0
-        uses_dummy_function = False
-
-    if best_fitness < fitnessReturn:
-        best_fitness = fitnessReturn
-
-
-    #logs    
-    print("[function]: " + str(individual))
-    print("[fitness]: " + str(fitnessReturn))
-    print("\n\n")   
-    #logs
-
-    return fitnessReturn,
-
-
-# evaluation function
-# DEPRECATED 
-def evalSymbRegTweets(individual):
-    global tweets
-    global tweets_score
-
-    global best_fitness
-    global uses_dummy_function
-    fitnessReturn = 0
-
-    # Transform the tree expression in a callable function
-    func = toolbox.compile(expr=individual)
-
-    #logs
-    print(str(len(tweets)) + " phrases to evaluate")
-    #logs
-    
-    for index, item in enumerate(tweets):        
-
-        if (func(tweets[index]) > 0 and float(tweets_score[index]) > 0) or (func(tweets[index]) < 0 and float(tweets_score[index]) < 0):
-            fitnessReturn += 1 
-
-        #logs
-        #print(index, item)
-        print("[phrase]: " + tweets[index])
-        print("[value]: " + str(tweets_score[index]))
-        print("[calculated]:" + str(func(tweets[index])))
-        #logs
-    
-    if uses_dummy_function:
-        fitnessReturn = 0
-        uses_dummy_function = False
-
-    if best_fitness < fitnessReturn:
-        best_fitness = fitnessReturn
-
-
-    #logs    
-    print("[function]: " + str(individual))
-    print("[fitness]: " + str(fitnessReturn))
-    print("\n\n")   
-    #logs
-
-    return fitnessReturn,
-
-
-# evaluation function 
 def evalSymbRegTweetsFromSemeval(individual):
     global tweets_semeval
     global tweets_semeval_score
@@ -590,7 +507,9 @@ def evalSymbRegTweetsFromSemeval(individual):
     global fitness_negative
 
     global best_fitness
+    global best_fitness_history
     global uses_dummy_function
+    
     fitnessReturn = 0
 
     is_positive = 0
@@ -636,6 +555,8 @@ def evalSymbRegTweetsFromSemeval(individual):
 
 
     if best_fitness < fitnessReturn:
+        if best_fitness != 0:
+            best_fitness_history.append(best_fitness)
         best_fitness = fitnessReturn
         fitness_positive = is_positive
         fitness_negative = is_negative
@@ -657,7 +578,7 @@ toolbox.register("evaluate", evalSymbRegTweetsFromSemeval) # , points=[x for x i
 
 toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
-toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=5)
+toolbox.register("expr_mut", gp.genGrow, min_=0, max_=5)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
 toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
@@ -675,15 +596,19 @@ getTweetsFromFileIdLoaded()
 def main():
 
     global best_fitness
+    global best_fitness_history
+
     global positive_tweets
     global negative_tweets
 
     global fitness_positive
     global fitness_negative
 
+    global GENERATIONS
+
     random.seed()
 
-    pop = toolbox.population(n=50)
+    pop = toolbox.population(n=20)
     hof = tools.HallOfFame(1)
     
     
@@ -705,7 +630,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, 300, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 
@@ -714,7 +639,8 @@ def main():
     print("## Results ##\n")
     print("[total tweets]: " + str(positive_tweets + negative_tweets) + " [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]\n")
     print("[best fitness]: " + str(best_fitness) + " [" + str(fitness_positive) + " positives and " + str(fitness_negative) + " negatives]\n")
-    print("[function]: " + str(hof[0]))
+    print("[function]: " + str(hof[0]) + "\n")
+    print(best_fitness_history)
     print("\n")
     #logs 
 
@@ -722,8 +648,8 @@ def main():
 
 
 if __name__ == "__main__":
-    #main()
-    saveTweetsFromIdInFile()
+    main()
+    #saveTweetsFromIdInFile()
 
 end = time.time()
 print("Script ends after " + str(format(end - start, '.3g')) + " seconds")

@@ -110,6 +110,10 @@ Sistemas Classificadores, como o criado em \cite{Rodrigues2016}, recebem como en
 
 Cada classificador possui regras próprias para a avaliação da Orientação Semântica dos textos de entrada, dependendo do tipo de informação, contexto e outras características do domínio avaliado. A criação de modelo que faça uma classificação eficiente das entradas é um desafio, e demanda um conhecimento prévio sobre o assunto abordado. 
 
+Importante destacar, como bem apresentado por \cite{araujo2013metodos}, que somente o Dicionário Léxico não é capaz de prover uma classificação dos sentimentos eficaz e a simples soma das polaridades das palavras pode apresentar resultados não satisfatórios, levando a uma avaliação incorreta. Grande parte dos classificadores possuem heurísticas que trabalham em conjunto com os dicionários, além de processamentos prévios das mensagens, o que proporciona um melhor resultado das classificações.
+
+De forma geral, essas estratégias heurísticas levam em consideração aspectos gramaticais e sintáticos que tem possuem uma importância na expressão do sentimento, como pontuação, negação, intensificação, capitalização, entre outros. Em contextos específicos, como a classificação de \emph{Tweets}, pode-se levar em consideração a quantidade de \emph{hashtags}, gírias, etc.
+
 A criação de modelos pode ser vista como um problema de otimização. Para essa classe de problemas, podemos fazer uso de estratégias de computação evolucionária, baseadas na teoria da evolução de \emph{Darwin}. Dentre os trabalhos que abordam a Análise de Sentimentos, fazendo uso de Estratégias Evolutivas, podem citar \cite{ferreira2015using}, \cite{vohra2013comparative} e \cite{HADDI2013} e \cite{silveirageraccao}.
 
 Conjuntos de dados previamente avaliados são amplamente utilizados para teste dos Sistemas de Classificação. Esses dados tem sua Orientação Semântica determinadas por especialistas humanos, e servem como entrada para a comparação da saída dos classificadores, ou seja, são dados considerados corretos e consistentes. Principais conjuntos de dados disponíveis para utilização no processo de Análise de Sentimentos podem ser vistos em \cite{HuAndLiu2004}, \cite{Iqbal}, \cite{taboada2011lexicon}, entre outros. 
@@ -159,6 +163,8 @@ As funções serão responsáveis por realizar a manipulação dos dados, como o
 	\caption{Principais funções utilizadas na Programação Genética}
 	\label{tab_functions}
 \end{table}
+
+Para a criação das funções, foi levado  em consideração heurísticas apresentadas em trabalhos anteriores sobre o tema e para determinados contextos, como os apresentados em \cite{araujo2013metodos}, \cite{Rodrigues2016}, \cite{Turney2002}, entre outros.
 
 Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raíz quadrada, exponenciação, seno e cosseno.
 

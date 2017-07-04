@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  3 JUL 2017 10:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  4 JUL 2017 13:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -641,20 +641,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
 [6]
-Underfull \hbox (badness 2035) in paragraph at lines 163--164
+Underfull \hbox (badness 2035) in paragraph at lines 169--170
 []\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
 n-clu[]^^Pdas fun[][]oes
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 169.
+(Font)              <7> on input line 175.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 169.
+(Font)              <5> on input line 175.
 [7] (./main.bbl [8] [9] [10]) [11] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  3170 strings out of 493013
  41964 string characters out of 6136993
- 117704 words of memory out of 5000000
+ 118704 words of memory out of 5000000
  6647 multiletter control sequences out of 15000+600000
  26395 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -666,7 +666,7 @@ ts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
 exmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on main.pdf (11 pages, 233823 bytes).
+Output written on main.pdf (11 pages, 234999 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream

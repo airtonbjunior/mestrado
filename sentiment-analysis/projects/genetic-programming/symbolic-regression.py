@@ -14,6 +14,7 @@ import re
 import numpy
 import time
 import csv
+import json
 
 from deap import algorithms
 from deap import base
@@ -45,11 +46,12 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral = 0
 
-MAX_ANALYSIS_TWEETS = 70
-GENERATIONS = 40
+MAX_ANALYSIS_TWEETS = 350
+GENERATIONS = 250
 
 best_fitness = 0
 best_fitness_history = []
+all_fitness_history  = []
 
 uses_dummy_function = False
 
@@ -475,6 +477,7 @@ pset.addPrimitive(repeatInputString, [str], str)
 #pset.addPrimitive(onlyTestFuncion, [str, str], float)
 #pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
+pset.addTerminal(True, bool)
 pset.addTerminal(False, bool)
 
 #pset.addTerminal(polaritySumTerminal(tweets_semeval[tweet_semeval_index]), float)
@@ -489,7 +492,7 @@ creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMax)
 toolbox = base.Toolbox()
 #toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=5)
 
-toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=7)
+toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=10)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
@@ -508,6 +511,8 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     global best_fitness
     global best_fitness_history
+    global all_fitness_history
+
     global uses_dummy_function
     
     fitnessReturn = 0
@@ -564,6 +569,8 @@ def evalSymbRegTweetsFromSemeval(individual):
         is_negative = 0
 
 
+    all_fitness_history.append(fitnessReturn)
+
     #logs    
     print("[function]: " + str(individual))
     print("[fitness]: " + str(fitnessReturn))
@@ -576,13 +583,13 @@ def evalSymbRegTweetsFromSemeval(individual):
 
 toolbox.register("evaluate", evalSymbRegTweetsFromSemeval) # , points=[x for x in reviews])
 
-toolbox.register("select", tools.selTournament, tournsize=3)
+toolbox.register("select", tools.selTournament, tournsize=4)
 toolbox.register("mate", gp.cxOnePoint)
-toolbox.register("expr_mut", gp.genGrow, min_=0, max_=5)
+toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=8)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
-toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
-toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=18))
+toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=25))
+toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=25))
 
 
 # Work on memory to improve performance
@@ -597,6 +604,7 @@ def main():
 
     global best_fitness
     global best_fitness_history
+    global all_fitness_history
 
     global positive_tweets
     global negative_tweets
@@ -608,7 +616,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=20)
+    pop = toolbox.population(n=100)
     hof = tools.HallOfFame(1)
     
     
@@ -630,7 +638,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 1.0, GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 8.5, 5.0, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 
@@ -641,7 +649,10 @@ def main():
     print("[best fitness]: " + str(best_fitness) + " [" + str(fitness_positive) + " positives and " + str(fitness_negative) + " negatives]\n")
     print("[function]: " + str(hof[0]) + "\n")
     print(best_fitness_history)
+    #print("\n")
+    #print(json.dumps(all_fitness_history))
     print("\n")
+    print(set(all_fitness_history))
     #logs 
 
     return pop, log, hof

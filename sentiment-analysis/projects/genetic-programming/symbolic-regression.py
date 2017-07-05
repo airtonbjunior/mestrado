@@ -28,9 +28,9 @@ from twython import Twython
 start = time.time()
 
 
-tweets_semeval = []
+tweets_semeval       = []
 tweets_semeval_score = []
-tweet_semeval_index = 0
+tweet_semeval_index  = 0
 
 dic_positive_words     = []
 dic_negative_words     = []
@@ -44,17 +44,21 @@ negative_tweets = 0
 
 fitness_positive = 0
 fitness_negative = 0
-fitness_neutral = 0
+fitness_neutral  = 0
 
-MAX_ANALYSIS_TWEETS = 350
-GENERATIONS = 250
+MAX_ANALYSIS_TWEETS = 40
+GENERATIONS = 25
 
 best_fitness = 0
-best_fitness_history = []
-all_fitness_history  = []
+best_fitness_history  = []
+all_fitness_history   = []
+generations_unchanged = 0
+max_unchanged_generations = 55
 
 uses_dummy_function = False
 
+log_all_messages = False
+log_parcial_results = True
 
 # Used only one time
 def saveTweetsFromIdInFile():
@@ -90,6 +94,44 @@ def saveTweetsFromIdInFile():
     print("[tweets saved on file]")
 
     file.close() 
+
+
+# get tweets from id (SEMEVAL 2014 database)
+def getTweetsFromFileIdLoadedSemeval2014():
+    print("[loading tweets from train file Semeval 2014]")
+
+    global MAX_ANALYSIS_TWEETS
+
+    global tweets_semeval
+    global tweets_semeval_score
+
+    global positive_tweets
+    global negative_tweets
+
+    tweets_loaded = 0
+
+    with open('datasets/twitter-train-cleansed-B.txt', 'r') as inF:
+        for line in inF:
+            if tweets_loaded < MAX_ANALYSIS_TWEETS:
+                tweet_parsed = line.split("\t")
+                try:
+                    # i'm ignoring the neutral tweets
+                    if(tweet_parsed[2] != "neutral"):
+                        tweets_semeval.append(tweet_parsed[3])
+                        if(tweet_parsed[2] == "positive"):
+                            positive_tweets += 1
+                            tweets_semeval_score.append(1)
+                        else:
+                            negative_tweets += 1
+                            tweets_semeval_score.append(-1)
+
+                        tweets_loaded += 1
+                # treat 403 exception mainly
+                except:
+                    #print("exception")
+                    continue
+    
+    print("[tweets loaded]")
 
 
 # get tweets from id (SEMEVAL database)
@@ -515,42 +557,95 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     global uses_dummy_function
     
+    global log_all_messages
+    global log_parcial_results
+
+    global generations_unchanged
+    global max_unchanged_generations
+
     fitnessReturn = 0
 
     is_positive = 0
     is_negative = 0
+    
+    # parameters to calc the metrics
+    true_positive = 0
+    true_negative = 0
+    false_positive = 0
+    false_negative = 0
+
+    precision_positive = 0
+    precision_negative = 0
+    recall_positive = 0
+    recall_negative = 0
+
+    f1_positive = 0
+    f1_negative = 0
+
+    breaked = False
 
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
-
-    #logs
-    print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]")
-    #logs
     
     for index, item in enumerate(tweets_semeval):        
 
-        try:
-            if (round(func(tweets_semeval[index]), 2) > 0 and float(tweets_semeval_score[index]) > 0):
-                fitnessReturn += 1 
-                is_positive += 1
+        if generations_unchanged >= max_unchanged_generations:
+            breaked = True
+            break
 
-            if (round(func(tweets_semeval[index]), 2) < 0 and float(tweets_semeval_score[index]) < 0):
-                fitnessReturn += 1 
-                is_negative += 1
+        if index == 0:
+            print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]")
+
+        try:
+            if round(func(tweets_semeval[index]), 2) > 0:
+                if float(tweets_semeval_score[index]) > 0:
+                    fitnessReturn += 1 
+                    is_positive   += 1
+                    true_positive += 1
+                else:
+                    false_positive += 1
+
+            if round(func(tweets_semeval[index]), 2) < 0:
+                if float(tweets_semeval_score[index]) < 0:
+                    fitnessReturn += 1 
+                    is_negative   += 1
+                    true_negative += 1
+                else:
+                    false_negative += 1
 
         except:
             continue
 
         #logs
         #print(index, item)
-        print("[phrase]: " + tweets_semeval[index])
-        print("[value]: " + str(tweets_semeval_score[index]))
-        print("[calculated]:" + str(func(tweets_semeval[index])))
+        if log_all_messages:
+            print("[phrase]: " + tweets_semeval[index])
+            print("[value]: " + str(tweets_semeval_score[index]))
+            print("[calculated]:" + str(func(tweets_semeval[index])))
         #logs
     
     if uses_dummy_function:
         fitnessReturn = 0
         uses_dummy_function = False
+
+    if true_positive + false_positive > 0:
+        precision_positive = true_positive / (true_positive + false_positive)
+
+    if true_negative + false_negative > 0:
+        precision_negative = true_negative / (true_negative + false_negative)
+
+
+    if true_positive + false_negative > 0:
+        recall_positive = true_positive / (true_positive + false_negative)
+
+    if true_negative + false_positive > 0:
+        recall_negative = true_negative / (true_negative + false_positive)
+
+    if precision_positive + recall_positive > 0:
+        f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
+
+    if precision_negative + recall_negative > 0:
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
 
 
     # test: i'm forcing don't model only the positive or negative tweets
@@ -567,14 +662,26 @@ def evalSymbRegTweetsFromSemeval(individual):
         fitness_negative = is_negative
         is_positive = 0
         is_negative = 0
+        generations_unchanged = 0
+    else:
+        generations_unchanged += 1
 
 
     all_fitness_history.append(fitnessReturn)
 
-    #logs    
-    print("[function]: " + str(individual))
-    print("[fitness]: " + str(fitnessReturn))
-    print("\n\n")   
+    #logs   
+    if log_parcial_results and not breaked: 
+        print("[function]: " + str(individual))
+        print("[precision positive]: " + str(precision_positive))
+        print("[precision negative]: " + str(precision_negative))
+        print("[recall positive]: " + str(recall_positive))
+        print("[recall negative]: " + str(recall_negative))        
+        print("[f1 positive]: " + str(f1_positive))
+        print("[f1 negative]: " + str(f1_negative))        
+        print("[fitness (accuracy)]: " + str(fitnessReturn))
+        print("[best fitness]: " + str(best_fitness))
+        print("[generations unmodified]: " + str(generations_unchanged))
+        print("\n")   
     #logs
 
     return fitnessReturn,
@@ -597,7 +704,8 @@ toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max
 getDictionary()
 
 # Load the tweets
-getTweetsFromFileIdLoaded()
+#getTweetsFromFileIdLoaded()
+getTweetsFromFileIdLoadedSemeval2014()
 
 
 def main():
@@ -616,7 +724,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=100)
+    pop = toolbox.population(n=15)
     hof = tools.HallOfFame(1)
     
     
@@ -660,6 +768,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
     #saveTweetsFromIdInFile()
 
 end = time.time()

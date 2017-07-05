@@ -71,7 +71,7 @@ recall_negative_history    = []
 f1_positive_history        = []
 f1_negative_history        = []
 
-MAX_ANALYSIS_TWEETS = 5000
+MAX_ANALYSIS_TWEETS = 6000
 GENERATIONS = 60
 generations_unchanged = 0
 max_unchanged_generations = 120
@@ -81,7 +81,7 @@ uses_dummy_function = False
 log_all_messages = False
 log_parcial_results = True
 
-# Used only one time
+# Used only once
 def saveTweetsFromIdInFile():
     print("[loading tweets to save in a file]")
 
@@ -115,6 +115,46 @@ def saveTweetsFromIdInFile():
     print("[tweets saved on file]")
 
     file.close() 
+
+
+# Used only to load the file (once)
+def saveTestTweetsFromFilesIdLoadedSemeval2014():
+    print("[loading tweets from test file Semeval 2014]")
+
+    saveFile = open("datasets/test/SemEval2014-task9-test-B-all-tweets.txt","w") 
+
+    tweet_text = []
+    tweet_polarity = []
+    tweet_base = []
+
+    tweets_loaded = 0
+    polarity_loaded = 0
+
+    with open('d:/SemEval2014-task9-test-B-input.txt', 'r') as inF:
+        for line in inF:
+            tweet_parsed = line.split("\t")
+            tweet_text.append(tweet_parsed[3])
+            tweets_loaded += 1
+            print(tweet_parsed[3])
+    
+    with open('d:/SemEval2014-task9-test-B-gold.txt', 'r') as inF2:
+        for line2 in inF2:
+            tweet_parsed = line2.split("\t")
+            tweet_polarity.append(tweet_parsed[2])
+            tweet_base.append(tweet_parsed[1])
+            polarity_loaded += 1
+            print(tweet_parsed[2])
+    
+    for index, item in enumerate(tweet_text):
+        saveFile.write(tweet_polarity[index].strip() + "\t" + tweet_base[index] + "\t" + tweet_text[index].strip() + "\n")
+
+    saveFile.close()
+
+
+    print("Tweets loaded " + str(tweets_loaded))
+    print("Polarity loaded " + str(polarity_loaded))
+
+    print("[tweets loaded]")
 
 
 # get tweets from id (SEMEVAL 2014 database)
@@ -878,8 +918,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
+    #main()
+    #saveTestTweetsFromFilesIdLoadedSemeval2014()
     #saveTweetsFromIdInFile()
 
 end = time.time()

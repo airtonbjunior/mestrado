@@ -46,9 +46,6 @@ fitness_positive = 0
 fitness_negative = 0
 fitness_neutral  = 0
 
-MAX_ANALYSIS_TWEETS = 40
-GENERATIONS = 25
-
 best_fitness = 0
 best_fitness_history  = []
 all_fitness_history   = []
@@ -63,6 +60,10 @@ best_f1_positive = 0
 best_f1_negative = 0
 best_f1_avg      = 0
 
+best_precision_avg_function = ""
+best_recall_avg_function    = ""
+best_f1_avg_function        = ""
+
 precision_positive_history = []
 precision_negative_history = []
 recall_positive_history    = []
@@ -70,6 +71,8 @@ recall_negative_history    = []
 f1_positive_history        = []
 f1_negative_history        = []
 
+MAX_ANALYSIS_TWEETS = 500
+GENERATIONS = 50
 generations_unchanged = 0
 max_unchanged_generations = 100
 
@@ -573,16 +576,22 @@ def evalSymbRegTweetsFromSemeval(individual):
     global best_fitness_history
     global all_fitness_history
 
+    # Precision
     global best_precision_positive
     global best_precision_negative
     global best_precision_avg
+    global best_precision_avg_function
+    # Recall
     global best_recall_positive
     global best_recall_negative
     global best_recall_avg
+    global best_recall_avg_function
+    # F1
     global best_f1_positive
     global best_f1_negative
     global best_f1_avg
-
+    global best_f1_avg_function
+    # Precision, Recall and F1 history
     global precision_positive_history
     global precision_negative_history
     global recall_positive_history
@@ -704,9 +713,21 @@ def evalSymbRegTweetsFromSemeval(individual):
             best_f1_negative = f1_negative
 
 
+    # Precision, Recall and f1 means
     precision_avg = (precision_positive + precision_negative) / 2
+    if precision_avg > best_precision_avg:
+        best_precision_avg = precision_avg
+        best_precision_avg_function = str(individual)
+
     recall_avg = (recall_positive + recall_negative) / 2
+    if recall_avg > best_recall_avg:
+        best_recall_avg = recall_avg
+        best_recall_avg_function = str(individual)
+
     f1_avg = (f1_positive + f1_negative) / 2
+    if f1_avg > best_f1_avg:
+        best_f1_avg = f1_avg
+        best_f1_avg_function = str(individual)
 
 
     # test: i'm forcing don't model only the positive or negative tweets
@@ -780,10 +801,17 @@ def main():
 
     global best_precision_positive
     global best_precision_negative
+    global best_precision_avg
     global best_recall_positive
     global best_recall_negative
+    global best_recall_avg
     global best_f1_positive
     global best_f1_negative
+    global best_f1_avg
+
+    global best_precision_avg_function
+    global best_recall_avg_function
+    global best_f1_avg_function
 
     global positive_tweets
     global negative_tweets
@@ -795,7 +823,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=15)
+    pop = toolbox.population(n=25)
     hof = tools.HallOfFame(1)
     
     
@@ -829,12 +857,18 @@ def main():
     print("[function]: " + str(hof[0]) + "\n")
     #print(best_fitness_history)
     #print("\n")
-    print("[best precision positive]: " + str(best_precision_positive) + "\n")
-    print("[best precision negative]: " + str(best_precision_negative) + "\n")
-    print("[best recall positive]: " + str(best_recall_positive) + "\n")    
-    print("[best recall negative]: " + str(best_recall_negative) + "\n")
-    print("[best f1 positive]: " + str(best_f1_positive) + "\n")    
-    print("[best f1 negative]: " + str(best_f1_negative) + "\n")
+    print("[best precision positive]: " + str(best_precision_positive))
+    print("[best precision negative]: " + str(best_precision_negative))
+    print("[best precision avg]: " + str(best_precision_avg))
+    print("[best precision avg function]: " + best_precision_avg_function + "\n")    
+    print("[best recall positive]: " + str(best_recall_positive))    
+    print("[best recall negative]: " + str(best_recall_negative))
+    print("[best recall avg]: " + str(best_recall_avg))
+    print("[best recall avg function]: " + best_recall_avg_function + "\n")
+    print("[best f1 positive]: " + str(best_f1_positive))    
+    print("[best f1 negative]: " + str(best_f1_negative))
+    print("[best f1 avg]: " + str(best_f1_avg))
+    print("[best f1 avg function]: " + best_f1_avg_function + "\n")       
     #print(json.dumps(all_fitness_history))
     print("\n")
     #print(set(all_fitness_history))

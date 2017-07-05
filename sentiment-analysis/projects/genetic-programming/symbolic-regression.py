@@ -71,10 +71,10 @@ recall_negative_history    = []
 f1_positive_history        = []
 f1_negative_history        = []
 
-MAX_ANALYSIS_TWEETS = 500
-GENERATIONS = 50
+MAX_ANALYSIS_TWEETS = 1000
+GENERATIONS = 60
 generations_unchanged = 0
-max_unchanged_generations = 100
+max_unchanged_generations = 150
 
 uses_dummy_function = False
 
@@ -823,7 +823,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=25)
+    pop = toolbox.population(n=30)
     hof = tools.HallOfFame(1)
     
     

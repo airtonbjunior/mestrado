@@ -34,7 +34,7 @@ One of the most used strategies in the process of Sentiment Analysis is the Lexi
 \end{abstract}
 
 \begin{resumo} 
-O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescentre produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato, alinhado a facilidade de obtenção dessas informações, fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
+O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescente produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato, alinhado a facilidade de obtenção dessas informações, fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
 
 Uma das estratégias mais utilizadas no processo de Análise de Sentimentos é a utilização de Dicionários Léxicos  - conjunto de palavras e suas polaridades, geralmente definidas como positiva, negativa ou neutra. Apesar de amplamente utilizada, essa abordagem possui alguns desafios a serem superados, como a identificação do domínio do texto, por exemplo - uma palavra pode ter um significado completamente diferente, dependendo do contexto em que se encontra.
 
@@ -42,9 +42,50 @@ Uma das estratégias mais utilizadas no processo de Análise de Sentimentos é a
 \end{resumo}
 
 \section{Introdução}
+[contexto]
+
+A Análise de Sentimentos, também conhecida como Mineração de Opiniões, é uma linha de pesquisa que tem por objetivo a classificação das emoções de um determinado texto, geralmente como positivo, negativo ou neutro. A área vem ganhando destaque nos últimos anos, principalmente por conta da popularização do acesso à Internet e o consequente aumento na quantidade de conteúdo produzido na rede. O uso das redes sociais como \emph{Twitter} e Facebook e a forma com que as pessoas compartilham de suas opiniões e sentimentos sobre os mais diversos assuntos tem motivado a pesquisa de formas automatizadas de classificação desses textos.
+
+[problema]
+
+Podemos dividir as abordagens de classificação de sentimentos em duas classes principais: técnicas supervisionadas e não supervisionadas. A primeira delas utiliza abordagens de aprendizado de máquina para a classificação das opiniões, realizando o treinamento com mensagens previamente classificadas. A abordagem não supervisionada atua em aspectos estruturais do texto e frequentemente fazem uso de Dicionários Léxicos.
+
+[justificativa]
+Para que um classificador tenha resultados satisfatórios, deve levar em consideração aspectos inerentes do contexto pertencentes às opiniões que serão avaliadas. Um modelo de classificação de \emph{Tweets}, por exemplo, geralmente é diferente de um processo de classificação de avaliações de produtos ou comentários políticos, por exemplo.
+
+A criação de um classificador de forma manual também depende de conhecimento prévio sobre o domínio a ser analisado, e depende da experiência do projetista, o que pode prejudicar as estratégias e abordagem do sistema.
+
+[hipótese/especulação]
+
+A programação Genética, como será explanada em detalhes no seção \ref{progGen}, é uma área da computação evolucionária que busca a criação de modelos para resolver problemas de forma automatizada. Um classificador de sentimentos pode ser visto como um modelo, e a criação de um classificador pode ser abordada como um problema de otimização. Com isso, o presente artigo trabalha com a hipótese que a utilização de Programação Genética apresenta-se como uma alternativa viável para treinamento de criação de modelos de classificação de sentimentos eficientes e com resultados satisfatórios.
+
+[proposta]
+
+O presente trabalho tem como proposta principal a criação de um processo para a geração de um modelo de classificação de sentimentos, aderente ao contexto para o qual foi treinado, fazendo uso de Programação Genética. 
+
+[perguntas de pesquisa]
+
+Algumas questões de pesquisa orientam o desenvolvimento deste trabalho, e a intenção é que ao final do desenvolvimento do mesmo possamos respondê-las:
+
+\begin{itemize}
+	\item{É possível criar, de forma automatizada, um classificador de sentimentos utilizando Programação Genética?}
+	\item{Esse classificador é eficiente na classificação de \emph{Tweets} para o contexto que foi criado?}
+\end{itemize}
 
 
-\section{Análise de Sentimentos}
+[contribuições]
+
+A criação de um sistema para a geração automatizada de modelos de classificação de sentimentos, para contextos específicos, e com resultados satisfatórios, pode ser útil para integrar as soluções presentes na literatura e apoiar na validação e melhoria de modelos já existentes.
+
+[divisão do trabalho]
+
+Para o presente trabalho, a seguinte divisão foi estabelecida: inicialmente, conceitos essenciais para o entendimento da solução são apresentados. Na sequência, a abordagem da solução é apresentada em detalhes. Trabalhos relacionados são discutidos de forma a permitir a comparação do método proposto com outros existentes na literatura. Por fim, os resultados do processo são apresentados.
+
+\section{Conceitos}
+
+Nesta seção, serão apresentados, de forma sucinta, conceitos fundamentais para o entendimento do trabalho. Pontos principais dos temas serão apresentados, com um foco nos conceitos relevantes para a solução do problema de pesquisa.
+
+\subsection{Análise de Sentimentos}
 A Análise de Sentimentos, também chamada de Análise de Opiniões ou Mineração de Opiniões, é uma linha de pesquisa abrangente e que vem sendo tema de diversos trabalhos nos últimos anos. Como observado em \cite{liu2010multifaceted}, esse crescente interesse sobre o assunto ocorre principalmente devido ao aumento no número de usuários de Internet e o consequente crescimento da produção de conteúdo independente na rede, como opiniões, avaliações, entre outros. 
 
 Essa área de estudo tem como principal desafio a Análise de Opiniões, descritas em linguagem natural, para a identificação da polaridade implícita ou explícita no texto. Essa polaridade é, na maior parte das vezes, identificada como uma escala de pontuação de sua característica positiva, negativa ou neutra.
@@ -59,7 +100,8 @@ Para técnicas que se encarregam da criação e expansão do próprio Dicionári
 
 [descrever mais o classificador e não o léxico - supervisionado e não supervisionado]
 
-\section{Programação Genética}
+\subsection{Programação Genética}
+\label{progGen}
 Programação Genética é um campo da computação evolucionária que busca resolver problemas, de forma automatizada, sem demandar conhecimentos detalhados sobre a solução \cite{koza1992genetic}. De forma geral, podemos definir a Programação Genética como um método sistemático, não dependente de um domínio específico, usado para permitir que computadores criem programas para solução de problemas de forma automática, inciando com um conhecimento de alto nível sobre as regras gerais dos possíveis modelos.
 
 Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais entradas, produzir uma saída para as mesmas. Embora possam ser representadas por diversos tipos de estruturas, a forma mais comum de representação é por meio de árvores, onde os nós internos representam funções e os nós folha representam terminais do problema. Um exemplo de um programa pode ser visto na figura \ref{treeProgram} \cite{Sannino2015}.
@@ -71,22 +113,13 @@ Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais 
 	\label{treeProgram}
 \end{figure}
 
-Na Programação Genética, assim como em outros algoritmos baseados na evolução humana, são criadas populações onde cada indivíduo representa uma possível solução para o problema. A forma mais comum de inicialização da população é fazê-las de forma aleatória, evoluindo as mesmas no decorrer dos ciclos, chamados de gerações. Para cada geração, programas possivelmente melhores são criados, evoluindo os programas gerados. Assim como a natureza, a Programação Genética é um processo aleatório, e não garante o resultado ótimo. Porém, essa aleatoriedade faz com que, muitas vezes, as soluções fujam de problemas como soluções máximas locais, frequentemente enfrentado por métodos determiníticos gulosos \cite{mcphee2008field}.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics{GPFlowChart}
-	\caption{Fluxograma da Programação Genética}
-	\label{flowchart GP}
-\end{figure}
+Na Programação Genética, assim como em outros algoritmos baseados na evolução humana, são criadas populações onde cada indivíduo representa uma possível solução para o problema. A forma mais comum de inicialização da população é fazê-las de forma aleatória, evoluindo as mesmas no decorrer dos ciclos, chamados de gerações. Para cada geração, programas possivelmente melhores são criados, evoluindo os programas gerados. Assim como a natureza, a Programação Genética é um processo aleatório, e não garante o resultado ótimo. Porém, essa aleatoriedade faz com que, muitas vezes, as soluções fujam de problemas como soluções máximas locais, frequentemente enfrentado por métodos determinísticos gulosos \cite{mcphee2008field}.
 
 Uma das características mais importantes da Programação Genética é a função de aptidão, ou função \emph{fitness}. Essa função busca representar, de forma quantitativa, a similaridade de cada indivíduo em relação ao resultado esperado. A escolha de uma boa função \emph{fitness} está intimamente ligada ao tipo do problema.
 
 Os responsáveis pela evolução da população de indivíduos são os operadores genéticos. Para a Programação Genética, os principais operadores são a seleção, mutação e \emph{crossover}. Na seleção, um indivíduo é escolhido para fazer parte da próxima geração. A mutação modifica um nó da árvore, de forma a criar um indivíduo modificado em uma das partes escolhida aleatoriamente. O \emph{crossover} realiza o cruzamento entre dois indivíduos (pais), gerando duas novas possíveis soluções para o problema (filhos). Além desses principais operadores, existem outros como a edição, encapsulamento e a destruição \cite{patelli2011genetic}.
 
 [Colocar mais informações aqui?]
-
-O processo de criação e evolução de indivíduos e gerações pode ser visto em detalhes no fluxograma apresentado na figura \ref{flowchart GP}
 
 \section{Trabalhos relacionados}
 
@@ -118,7 +151,9 @@ A criação de modelos pode ser vista como um problema de otimização. Para ess
 
 Conjuntos de dados previamente avaliados são amplamente utilizados para teste dos Sistemas de Classificação. Esses dados tem sua Orientação Semântica determinadas por especialistas humanos, e servem como entrada para a comparação da saída dos classificadores, ou seja, são dados considerados corretos e consistentes. Principais conjuntos de dados disponíveis para utilização no processo de Análise de Sentimentos podem ser vistos em \cite{HuAndLiu2004}, \cite{Iqbal}, \cite{taboada2011lexicon}, entre outros. 
 
-\section{Análise do problema}
+
+\section{Abordagem}
+\subsection{Análise do problema}
 
 A criação de um classificador de sentimentos para um determinado contexto é um desafio de pesquisa na área de Análise de Sentimentos. Detalhes intrínsecos do domínio do texto, idioma, entre outros, podem ser relevantes para as regras de classificação. 
 
@@ -130,7 +165,7 @@ Por sua característica inerentemente paralela, esse tipo de abordagem consegue 
 
 O indivíduo de melhor \emph{fitness} retornado pelo algoritmo de Programação Genética tem grandes chances de ser um modelo de classificação de sentimentos com bons resultados.
 
-\section{Projeto da solução}
+\subsection{Projeto da solução}
 
 Como discutido na seção anterior, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
 
@@ -166,7 +201,7 @@ As funções serão responsáveis por realizar a manipulação dos dados, como o
 
 Para a criação das funções, foi levado  em consideração heurísticas apresentadas em trabalhos anteriores sobre o tema e para determinados contextos, como os apresentados em \cite{araujo2013metodos}, \cite{Rodrigues2016}, \cite{Turney2002}, entre outros.
 
-Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raíz quadrada, exponenciação, seno e cosseno.
+Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raiz quadrada, exponenciação, seno e cosseno.
 
 Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é calculado como a diferença entre a quantidade de \emph{tweets} - a quantidade de mensagens avaliadas corretamente quanto à sua polaridade, definida como positiva (número maior que zero) e negativa (número menor que zero). Por exemplo, caso a avaliação seja feita utilizando-se de 500 \emph{tweets} e o modelo consegue prever corretamente a polaridade de 450, temos uma função de aptidão de 50. O melhor caso acontece caso tivermos uma função \emph{fitness} de valor zero, ou seja, uma função que previu corretamente todas as mensagens avaliadas.
 

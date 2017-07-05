@@ -71,10 +71,10 @@ recall_negative_history    = []
 f1_positive_history        = []
 f1_negative_history        = []
 
-MAX_ANALYSIS_TWEETS = 1000
+MAX_ANALYSIS_TWEETS = 5000
 GENERATIONS = 60
 generations_unchanged = 0
-max_unchanged_generations = 150
+max_unchanged_generations = 120
 
 uses_dummy_function = False
 

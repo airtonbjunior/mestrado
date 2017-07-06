@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  6 JUL 2017 01:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  6 JUL 2017 01:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -666,18 +666,22 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [8]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 249.
+               Default added (so using `tbp') on input line 246.
 
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 266.
 
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 283.
+
 (./main.bbl [9] [10] [11]) [12] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3186 strings out of 493013
- 42206 string characters out of 6136993
- 117747 words of memory out of 5000000
- 6662 multiletter control sequences out of 15000+600000
+ 3187 strings out of 493013
+ 42216 string characters out of 6136993
+ 117758 words of memory out of 5000000
+ 6663 multiletter control sequences out of 15000+600000
  26395 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,11n,28p,1083b,228s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -688,7 +692,7 @@ fb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/
 2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fo
 nts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/tim
 es/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (12 pages, 136629 bytes).
+Output written on main.pdf (12 pages, 138015 bytes).
 PDF statistics:
  73 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream

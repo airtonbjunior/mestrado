@@ -234,13 +234,30 @@ Utilizou-se, também, o dicionário de emoticons SentiStrength\footnote{http://s
 
 \subsection{\emph{Datasets}}
 
-Há diversas bases de dados anotadas disponíveis na Internet para \emph{download}. O escopo do presente trabalho é a Análise de Sentimentos em \emph{Tweets}, por isso utilizou-se uma base disponibilizada para o evento SemEvaL 2016\footnote{http://alt.qcri.org/semeval2016/} (\emph{International Workshop on Semantic Evaluation}), uma das principais referências na área de análise semântica.  
+Há diversas bases de dados anotadas disponíveis na Internet para \emph{download}. O escopo do presente trabalho é a Análise de Sentimentos em \emph{Tweets}, por isso utilizou-se uma base disponibilizada para o evento SemEvaL 2014\footnote{http://alt.qcri.org/semeval2014/} (\emph{International Workshop on Semantic Evaluation}), uma das principais referências na área de análise semântica.  
 
-O evento é dividido por \emph{Tasks}, que possuem objetivos distintos dentro da área de análise semântica. Para este trabalho, utilizou-se a base de dados da \emph{Task 4} - \emph{Sentiment Analysis in Twitter}. São disponibilizadas bases de treinamento e de testes para \emph{download}\footnote{http://alt.qcri.org/semeval2016/task4/data/uploads/semeval2016-task4.traindevdevtest.v1.2.zip} no site do evento.
+O evento é dividido por \emph{Tasks}, que possuem objetivos distintos dentro da área de análise semântica. Para este trabalho, utilizou-se a base de dados da \emph{Task 9} - \emph{Sentiment Analysis in Twitter}. São disponibilizadas bases de treinamento e de testes para \emph{download}\footnote{http://alt.qcri.org/semeval2014/task9/index.php?id=data-and-tools} no site do evento.
 
-A base de treinamento aplicada no trabalho possui 1421 \emph{Tweets}, avaliados como positivo, negativo ou neutro. Por decisão de projeto, as mensagens neutras são ignoradas no decorrer do trabalho. Essa base possui 802 \emph{Tweets} positivos e 130 negativos, além de 489 mensagens neutras ignoradas. [Base muito desbalanceada - problema? Verificar novamente esse número, baixar a base de novo]
+A base de treinamento aplicada no trabalho possui 9684 \emph{Tweets}, com a seguinte divisão de polaridades: 3640 mensagens positivas, 1458 negativas e 4586 neutras.
 
-[Falar sobre a base de teste agora]
+O evento também disponibiliza uma base de testes, que serve como critério de avaliação e comparação dos trabalhos submetidos para cada \emph{task}. A base fornecida é dividida em 5 categorias, e possui um total de 8987 \emph{Tweets}. Detalhes da divisão e da polaridade das bases podem ser visualizadas na tabela \ref{datasets}
+
+
+\begin{table}[]
+\centering
+\label{datasets}
+	\begin{tabular}{lc}
+	\multicolumn{1}{c}{\textbf{Base de Dados}} & \textit{\textbf{Tweets}} \\ \hline
+	Tweets2013 & 3813 \\ \hline
+	Tweets2014 & 1853 \\ \hline
+	\textit{Tweets2014Sarcasm} & 86 \\ \hline
+	SMS2013 & 2093 \\ \hline
+	LiveJournal2014 & 1142 \\ \hline
+	Total & 8987
+	\end{tabular}
+\caption{Bases de testes - Semeval2014}
+\end{table}
+
 
 \section{Resultados}
 
@@ -267,7 +284,7 @@ A base de treinamento aplicada no trabalho possui 1421 \emph{Tweets}, avaliados 
 \centering
 \label{resultsl}
 	\begin{tabular}{lcccc}
-	\multicolumn{1}{c}{\textbf{Base de Teste}}     & \multicolumn{1}{c}{\textbf{Acurácia}} & \multicolumn{1}{c}{\textbf{Precisão}} & \multicolumn{1}{c}	{\textbf{Recall}} & \multicolumn{1}{c}{\textbf{F1}} \\ \hline
+	\multicolumn{1}{c}{\textbf{Base de Teste}}     & \multicolumn{1}{c}{\textbf{Acurácia}} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}	{\textbf{Recall (média)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} \\ \hline
 	Tweets2013 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
 	Tweets2014 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
 	Tweets2014Sarcasm & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline

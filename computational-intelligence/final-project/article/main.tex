@@ -28,49 +28,46 @@
 \begin{abstract}
 The increase in the number of Internet users in recent years has resulted in a growing content production by its users. Often, the WEB is used as a platform for debates, opinions, evaluations, etc. This fact, in line with the ease of obtaining the information, made the area of Sentiment Analysis, also called Opinion Mining, a growing interest on the part of reserachers.
 
-One of the most used strategies in the process of Sentiment Analysis is the Lexical Dictionaries - a set of words and their polarities, generally defined as positive, negative or neutral. Although widely used, this approach has some challenges to overcome, such as identifying the domain of the text, for example - a word can have a completely different meaning depending on the context in which it is found.
-
 [continue]
 \end{abstract}
 
 \begin{resumo} 
 O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescente produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato, alinhado a facilidade de obtenção dessas informações, fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
 
-Uma das estratégias mais utilizadas no processo de Análise de Sentimentos é a utilização de Dicionários Léxicos  - conjunto de palavras e suas polaridades, geralmente definidas como positiva, negativa ou neutra. Apesar de amplamente utilizada, essa abordagem possui alguns desafios a serem superados, como a identificação do domínio do texto, por exemplo - uma palavra pode ter um significado completamente diferente, dependendo do contexto em que se encontra.
-
 [continuar]
 \end{resumo}
 
 \section{Introdução}
 
-A Análise de Sentimentos, também conhecida como Mineração de Opiniões, é uma linha de pesquisa que tem por objetivo a classificação das emoções de um determinado texto, geralmente como positivo, negativo ou neutro. A área vem ganhando destaque nos últimos anos, principalmente por conta da popularização do acesso à Internet e o consequente aumento na quantidade de conteúdo produzido na rede. O uso das redes sociais como \emph{Twitter} e Facebook e a forma com que as pessoas compartilham de suas opiniões e sentimentos sobre os mais diversos assuntos tem motivado a pesquisa de formas automatizadas de classificação desses textos.
+A Análise de Sentimentos, também conhecida como Mineração de Opiniões, é uma linha de pesquisa que tem por objetivo a classificação das emoções de um determinado texto, geralmente como positivo, negativo ou neutro. A área vem ganhando destaque nos últimos anos, principalmente por conta da popularização do acesso à Internet e o consequente aumento na quantidade de conteúdo produzido na rede. O uso das redes sociais como \emph{Twitter} e Facebook e a forma com que as pessoas compartilham suas opiniões e sentimentos sobre os mais diversos assuntos tem motivado a pesquisa de formas automatizadas de classificação desses textos.
 
 Podemos dividir as abordagens de classificação de sentimentos em duas classes principais: técnicas supervisionadas e não supervisionadas. A primeira delas utiliza abordagens de aprendizado de máquina para a classificação das opiniões, realizando o treinamento com mensagens previamente classificadas. A abordagem não supervisionada atua em aspectos estruturais do texto e frequentemente fazem uso de Dicionários Léxicos.
 
-Para que um classificador tenha resultados satisfatórios, deve levar em consideração aspectos inerentes do contexto pertencentes às opiniões que serão avaliadas. Um modelo de classificação de \emph{Tweets}, por exemplo, geralmente é diferente de um processo de classificação de avaliações de produtos ou comentários políticos, por exemplo.
+Para que um classificador tenha resultados satisfatórios, deve levar em consideração aspectos inerentes do contexto pertencentes às opiniões que serão avaliadas. Um modelo de classificação de \emph{Tweets}, por exemplo, geralmente é diferente de um processo de classificação de avaliações de produtos ou comentários políticos.
 
-A criação de um classificador de forma manual também depende de conhecimento prévio sobre o domínio a ser analisado, e depende da experiência do projetista, o que pode prejudicar as estratégias e abordagem do sistema.
+A criação de um modelo de classificador de sentimentos de forma manual também depende de conhecimento prévio sobre o domínio a ser analisado, e demanda experiência do projetista, o que pode prejudicar as estratégias e abordagem do sistema.
 
 
-A programação Genética, como será explanada em detalhes no seção \ref{progGen}, é uma área da computação evolucionária que busca a criação de modelos para resolver problemas de forma automatizada. Um classificador de sentimentos pode ser visto como um modelo, e a criação de um classificador pode ser abordada como um problema de otimização. Com isso, o presente artigo trabalha com a hipótese que a utilização de Programação Genética apresenta-se como uma alternativa viável para treinamento de criação de modelos de classificação de sentimentos eficientes e com resultados satisfatórios.
+A programação Genética, explanada em detalhes no seção \ref{progGen}, é uma área da computação evolucionária que busca a criação de modelos para resolver problemas de forma automatizada. Um classificador de sentimentos pode ser visto como um modelo, e a criação de um classificador pode ser abordada como um problema de otimização. Com isso, o presente artigo trabalha com a hipótese que a utilização de Programação Genética apresenta-se como uma alternativa viável para o treinamento e a criação de modelos de classificação de sentimentos eficientes e com resultados satisfatórios.
 
-O presente trabalho tem como proposta principal a criação de um sistema para a geração de um modelo de classificação de sentimentos, aderente ao contexto para o qual foi treinado, fazendo uso de Programação Genética. 
+A proposta principal deste trabalho é a criação de um sistema para a geração de um modelo de classificação de sentimentos, aderente ao contexto para o qual foi treinado, fazendo uso de Programação Genética. 
 
-Algumas questões de pesquisa orientam o desenvolvimento deste trabalho, e a intenção é que ao final do desenvolvimento do mesmo possamos respondê-las:
+Algumas questões de pesquisa orientam o desenvolvimento do artigo, e a intenção é que ao final do desenvolvimento do mesmo possamos respondê-las. São elas:
 
 \begin{itemize}
-	\item{É possível criar, de forma automatizada, um classificador de sentimentos utilizando Programação Genética?}
-	\item{Esse classificador é eficiente na classificação de \emph{Tweets} para o contexto que foi criado?}
+	\item{É possível criar, de forma automatizada, um modelo de classificação de sentimentos utilizando Programação Genética?}
+	\item{Caso seja possível, esse modelo é eficiente na classificação de \emph{Tweets} para o contexto que foi criado?}
+	\item{Os resultados desse modelo são compatíveis com os classificadores disponíveis atualmente?}
 \end{itemize}
 
 
-A criação de um sistema para a geração automatizada de modelos de classificação de sentimentos, para contextos específicos, e com resultados satisfatórios, pode ser útil para integrar as soluções presentes na literatura e apoiar na validação e melhoria de modelos já existentes.
+A criação de um sistema para a geração automatizada de modelos de classificação de sentimentos, para contextos específicos, e com resultados satisfatórios, pode ser útil para integrar as soluções presentes na literatura e apoiar na validação e na melhoria de modelos já existentes.
 
-Para o presente trabalho, a seguinte divisão foi estabelecida: inicialmente, conceitos essenciais para o entendimento da solução são apresentados. Na sequência, a abordagem da solução é apresentada em detalhes. Trabalhos relacionados são discutidos de forma a permitir a comparação do método proposto com outros existentes na literatura. Por fim, os resultados do processo são apresentados.
+Este trabalho está organizado da seguinte maneira: inicialmente, conceitos essenciais para o entendimento do problema de pesquisa são apresentados. Na sequência, a abordagem da solução é apresentada em detalhes. Trabalhos relacionados são discutidos de forma a permitir a comparação do método proposto com outros existentes na literatura. Por fim, os resultados do processo são apresentados.
 
 \section{Conceitos}
 
-Nesta seção, serão apresentados, de forma sucinta, conceitos fundamentais para o entendimento do trabalho. Pontos principais dos temas serão apresentados, com um foco nos conceitos relevantes para a solução do problema de pesquisa.
+Nesta seção, serão apresentados, de forma sucinta, conceitos fundamentais para o entendimento do trabalho. Pontos principais dos temas serão discutidos, com foco nos conceitos relevantes para a solução do problema de pesquisa.
 
 \subsection{Análise de Sentimentos}
 A Análise de Sentimentos, também chamada de Análise de Opiniões ou Mineração de Opiniões, é uma linha de pesquisa abrangente e que vem sendo tema de diversos trabalhos nos últimos anos. Como observado em \cite{liu2010multifaceted}, esse crescente interesse sobre o assunto ocorre principalmente devido ao aumento no número de usuários de Internet e o consequente crescimento da produção de conteúdo independente na rede, como opiniões, avaliações, entre outros. 
@@ -81,11 +78,13 @@ Quanto aos classificadores de sentimentos, há duas formas principais para o pro
 
 Dentre as principais técnicas de aprendizado de máquina para a classificação de sentimentos, podemos citar o \emph{Support Vector Machines} (SVM) \cite{HADDI2013}, \emph{Naïve Bayes} \cite{Iqbal}, \emph{Adaboost} \cite{graff2017semantic}, Redes Neurais Artificiais, entre outros. \cite{Rodrigues2016}
 
+Importante destacar que, para o desenvolvimento de um bom modelo supervisionado, é essencial que haja uma quantidade considerável e representativa de dados previamente rotulados pertencentes ao domínio do problema, para que o treinamento possa ser feito de forma satisfatória. \cite{araujo2013metodos}
+
 As abordagens não supervisionadas baseadas em Léxico, como discutido anteriormente, fazem uso de um conjunto de palavras e suas polaridades. Alguns classificadores utilizam Dicionários Léxicos já existentes, enquanto outros se encarregam de criar o próprio dicionário, mais adequado ao contexto e domínio da análise. Essa estratégia faz uso das características do texto e regras sintáticas para determinar a classificação de palavras e frases desconhecidas à partir das palavras contidas no dicionário e suas relações. Dentre as principais técnicas dessa categoria podemos citar \emph{Part-of-Speech Tag} \cite{becker2013}, \emph{Pointwise Mutual Infomation} (PMI) \cite{Turney2002}, entre outros.
 
 Para técnicas que se encarregam da criação e expansão do próprio Dicionário Léxico há, basicamente, 3 formas de fazê-lo: manualmente -  processo realizado por especialistas humanos que analisam cada palavra, atribuindo uma Orientação Semântica para cada uma delas -  e duas formas (semi) automatizadas: baseada em Dicionário e baseada em Corpus. Frequentemente, essas técnicas são utilizadas em conjunto, principalmente a validação manual de Dicionários criados de forma automatizada.
 
-[descrever mais o classificador e não o léxico - supervisionado e não supervisionado]
+O contexto no qual uma palavra está inserida muitas vezes determina seu valor na classificação da opinião como um todo. Palavras pode ter polaridades diferentes, dependendo do domínio ao qual é aplicada. Sabendo disso, classificadores de sentimentos devem levar em consideração uma série de fatores para que os resultados da mineração de opiniões seja satisfatório. Não há um modelo pré definido para a classificação de sentimentos em qualquer contexto.
 
 \subsection{Programação Genética}
 \label{progGen}
@@ -100,97 +99,126 @@ Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais 
 	\label{treeProgram}
 \end{figure}
 
-Na Programação Genética, assim como em outros algoritmos baseados na evolução humana, são criadas populações onde cada indivíduo representa uma possível solução para o problema. A forma mais comum de inicialização da população é fazê-las de forma aleatória, evoluindo as mesmas no decorrer dos ciclos, chamados de gerações. Para cada geração, programas possivelmente melhores são criados, evoluindo os programas gerados. Assim como a natureza, a Programação Genética é um processo aleatório, e não garante o resultado ótimo. Porém, essa aleatoriedade faz com que, muitas vezes, as soluções fujam de problemas como soluções máximas locais, frequentemente enfrentado por métodos determinísticos gulosos \cite{mcphee2008field}.
+Na Programação Genética, assim como em outros algoritmos baseados na evolução humana, são criadas populações onde cada indivíduo representa uma possível solução para o problema. A forma mais comum de inicialização da população é fazê-las de forma aleatória, evoluindo as mesmas no decorrer dos ciclos, chamados de gerações. Para cada geração, programas possivelmente melhores são criados, evoluindo os programas (modelos) gerados. Assim como a natureza, a Programação Genética é um processo aleatório, e não garante o resultado ótimo. Porém, essa aleatoriedade faz com que, muitas vezes, as soluções fujam de problemas como soluções máximas locais, frequentemente enfrentados por métodos determinísticos gulosos \cite{mcphee2008field}.
 
 Uma das características mais importantes da Programação Genética é a função de aptidão, ou função \emph{fitness}. Essa função busca representar, de forma quantitativa, a similaridade de cada indivíduo em relação ao resultado esperado. A escolha de uma boa função \emph{fitness} está intimamente ligada ao tipo do problema.
 
 Os responsáveis pela evolução da população de indivíduos são os operadores genéticos. Para a Programação Genética, os principais operadores são a seleção, mutação e \emph{crossover}. Na seleção, um indivíduo é escolhido para fazer parte da próxima geração. A mutação modifica um nó da árvore, de forma a criar um indivíduo modificado em uma das partes escolhida aleatoriamente. O \emph{crossover} realiza o cruzamento entre dois indivíduos (pais), gerando duas novas possíveis soluções para o problema (filhos). Além desses principais operadores, existem outros como a edição, encapsulamento e a destruição \cite{patelli2011genetic}.
 
-[Colocar mais informações aqui?]
+Por sua característica inerentemente paralela, esse tipo de abordagem consegue encontrar resultados muito próximos da solução ótima (às vezes encontra a melhor resolução) para problemas complexos com grandes espaços de busca.
 
 \section{Trabalhos relacionados}
 
 \label{sec:bibl}
 
-A Análise de Sentimentos é uma linha de pesquisa multidisciplinar, podendo ser considerada uma subárea de Processamento de Linguagem Natural (PNL), como afirma \cite{liu2010multifaceted}. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, entre outros trabalhos.
+Como discutido em seções anteriores, a quantidade de trabalhos na área de análise de sentimento vem crescendo a cada ano, motivado, principalmente, pela importância da área no contexto atual de geração e análise de grande quantidade de dados e informações.
 
-A classificação de sentimentos pode ser dividida em duas abordagens principais, conforme discutido na seção anterior: supervisionada, fazendo uso de técnicas de aprendizado de máquina, e não supervisionada, utilizando Dicionários Léxicos. \cite{araujo2013metodos}
+Ao debatermos os trabalhos relacionados à area de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}, uma das principais referências do assunto. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, \cite{kaji}, entre outros trabalhos.
+
+Embasamento teórico sobre a divisão dos métodos de classificação de sentimentos em abordagens supervisionadas e não supervisionadas são apresentadas de forma clara em \cite{araujo2013metodos}
 
 No contexto de prognóstico automatizado de Orientação Semântica de palavras, um dos primeiros trabalhos apresentados foi \cite{Hatzivassiloglou}, focando na previsão de polaridade de adjetivos.
 
-Uma das formas não supervisionadas de prever a polaridade sentimental de palavras desconhecidas é levar em consideração aspectos sintáticos e semânticos do texto. \cite{Turney2002} apresenta uma abordagem de expansão léxica fazendo uso da técnica de \emph{Pointwise Mutual Infomation} (PMI), com o objetivo de calcular a co-ocorrência de palavras e, com isso, comparar a polaridade de novas palavras com outras já conhecidas. Nesse trabalho, amplamente referenciado por outras pesquisas, o autor compara o conjunto de palavras de Orientação Semântica desconhecida com as palavras \emph{ "excellent"} e \emph{"poor"}, representando Orientações Semânticas positiva e negativa, respectivamente. Essas palavras previamente conhecidas utilizadas como base para a expansão do Dicionário são chamadas de palavras semente (\emph{seed words}, em inglês). Como exemplo de trabalhos que utilizam o PMI para a criação e expansão do Dicionário Léxico podemos citar \cite{becker2013}, \cite{Zhou2014}, \cite{Pinto2007}. \cite{Pantel2006}, \cite{duwairi2015detecting}, entre outros.
+Uma das formas não supervisionadas de classificação leva em consideração aspectos sintáticos e semânticos do texto. \cite{Turney2002} apresenta uma abordagem de expansão léxica fazendo uso da técnica de \emph{Pointwise Mutual Infomation} (PMI), com o objetivo de calcular a co-ocorrência de palavras e, com isso, comparar a polaridade de novas palavras com outras já conhecidas. Nesse trabalho, amplamente referenciado por outras pesquisas, o autor compara o conjunto de palavras de Orientação Semântica desconhecida com as palavras \emph{ "excellent"} e \emph{"poor"}, representando Orientações Semânticas positiva e negativa, respectivamente. Essas palavras previamente conhecidas utilizadas como base para a expansão do Dicionário são chamadas de palavras semente (\emph{seed words}, em inglês). Como exemplo de trabalhos que utilizam o PMI para a criação e expansão do Dicionário Léxico podemos citar \cite{becker2013}, \cite{Zhou2014}, \cite{Pinto2007}. \cite{Pantel2006}, \cite{duwairi2015detecting}, entre outros.
 
 Outro importante trabalho sobre Mineração de Opiniões, \cite{taboada2011lexicon} apresenta uma abordagem de Análise de Sentimentos baseada em Léxico combinada com uma verificação manual. Esse trabalho apresenta o SO-CAL (\emph{Semantic Orientation Calculator}), que usa lista de palavras já consolidadas para a geração de dicionários com novas entradas e suas polaridades de forma não supervisionada.
 
-Ainda tratando especificamente de Léxicos, \cite{kaji} aborda uma estratégia de criação e expansão de dicionários analisando uma coleção de páginas HTML. Apesar de trabalhar com o idioma japonês, a técnica pode ser adequada para outras línguas.
-
 Na linha de estratégias supervisionadas, \cite{eisenstein2016unsupervised} e \cite{bandhakavi2016lexicon} apresentam outros procedimentos para apoiar a Análise de Sentimentos. O primeiro apresenta uma abordagem usando a técnica de \emph{Naive Bayes} para a classificação dos aspectos e cita problemas de estimativas de palavras e avaliação dos léxicos criados. O segundo faz uma comparação de algumas técnicas de avaliação em 4 conjuntos de dados diferentes, apresentando uma análise quantitativa do mesmo. Abordagens e comparações semelhantes, com algumas modificações no domínio e no idioma do problema abordado, podem ser vistos em \cite{khoo2017lexicon}, \cite{asghar2014review} e \cite{ding2008holistic}.
 
-Sistemas Classificadores, como o criado em \cite{Rodrigues2016}, recebem como entrada um texto e retornam a Orientação Semântica do mesmo. Para esse processo, \cite{Rodrigues2016} faz uso de um Dicionário próprio, com grande parte das polaridades anotadas manualmente. Outros classificadores são descritos em \cite{Pang2002}, \cite{Zhou2014}, \cite{silva2010automatic}, \cite{kdir16}, entre outros.
-
-Cada classificador possui regras próprias para a avaliação da Orientação Semântica dos textos de entrada, dependendo do tipo de informação, contexto e outras características do domínio avaliado. A criação de modelo que faça uma classificação eficiente das entradas é um desafio, e demanda um conhecimento prévio sobre o assunto abordado. 
+Sistemas Classificadores, como o criado em \cite{Rodrigues2016}, recebem como entrada um texto e retornam a Orientação Semântica do mesmo. Para esse processo, \cite{Rodrigues2016} faz uso de um Dicionário próprio, com grande parte das polaridades anotadas manualmente. O processo de classificação, desafios da área e outros exemplos de classificadores são discutidos em \cite{Pang2002}, \cite{Zhou2014}, \cite{silva2010automatic}, \cite{kdir16}, entre outros.
 
 Importante destacar, como bem apresentado por \cite{araujo2013metodos}, que somente o Dicionário Léxico não é capaz de prover uma classificação dos sentimentos eficaz e a simples soma das polaridades das palavras pode apresentar resultados não satisfatórios, levando a uma avaliação incorreta. Grande parte dos classificadores possuem heurísticas que trabalham em conjunto com os dicionários, além de processamentos prévios das mensagens, o que proporciona um melhor resultado das classificações.
 
 De forma geral, essas estratégias heurísticas levam em consideração aspectos gramaticais e sintáticos que tem possuem uma importância na expressão do sentimento, como pontuação, negação, intensificação, capitalização, entre outros. Em contextos específicos, como a classificação de \emph{Tweets}, pode-se levar em consideração a quantidade de \emph{hashtags}, gírias, etc.
 
-A criação de modelos pode ser vista como um problema de otimização. Para essa classe de problemas, podemos fazer uso de estratégias de computação evolucionária, baseadas na teoria da evolução de \emph{Darwin}. Dentre os trabalhos que abordam a Análise de Sentimentos, fazendo uso de Estratégias Evolutivas, podem citar \cite{ferreira2015using}, \cite{vohra2013comparative} e \cite{HADDI2013} e \cite{silveirageraccao}.
+A criação de modelos pode ser vista como um problema de otimização. Para essa classe de problemas, podemos fazer uso de estratégias de computação evolucionária, baseadas na teoria da evolução de \emph{Darwin}. Dentre os trabalhos que abordam a Análise de Sentimentos fazendo uso de Estratégias Evolutivas, podem citar \cite{ferreira2015using}, \cite{vohra2013comparative}, \cite{HADDI2013} e \cite{silveirageraccao}.
 
 Conjuntos de dados previamente avaliados são amplamente utilizados para teste dos Sistemas de Classificação. Esses dados tem sua Orientação Semântica determinadas por especialistas humanos, e servem como entrada para a comparação da saída dos classificadores, ou seja, são dados considerados corretos e consistentes. Principais conjuntos de dados disponíveis para utilização no processo de Análise de Sentimentos podem ser vistos em \cite{HuAndLiu2004}, \cite{Iqbal}, \cite{taboada2011lexicon}, entre outros. 
 
 
 \section{Abordagem}
+Nesta seção, serão apresentadas as abordagens de análise do problema de pesquisa e do projeto da solução, com detalhes relevantes de implementação, dados utilizados, bibliotecas de apoio, entre outros.
+
 \subsection{Análise do problema}
 
 A criação de um classificador de sentimentos para um determinado contexto é um desafio de pesquisa na área de Análise de Sentimentos. Detalhes intrínsecos do domínio do texto, idioma, entre outros, podem ser relevantes para as regras de classificação. 
 
-O modelo de classificação, portanto, pode ser descrito como um programa. Como discutido na seção anterior, podemos abordar essa situação como um problema de otimização, com o objetivo de encontrar um modelo que represente a solução desejada.
+O modelo de classificação, portanto, pode ser descrito como um programa. Podemos abordar essa situação como um problema de otimização, com o objetivo de encontrar um modelo que represente a solução desejada.
 
 A Programação Genética pode auxiliar nesse processo de criação do modelo de classificação. De posse de um conjunto de dados previamente classificados, podemos treinar nossa população de possíveis soluções (indivíduos), avaliando seu \emph{fitness} de acordo com a semelhança com o resultado esperado para determinada entrada.
 
-Por sua característica inerentemente paralela, esse tipo de abordagem consegue encontrar resultados muito próximos da solução ótima (às vezes encontra a melhor resolução) para problemas complexos com grandes espaços de busca.
+Por possuir uma forma de atuação paralela, essa abordagem resulta em soluções muito próximas da solução ótima (às vezes encontra a melhor resolução) para problemas complexos.
 
-O indivíduo de melhor \emph{fitness} retornado pelo algoritmo de Programação Genética tem grandes chances de ser um modelo de classificação de sentimentos com bons resultados.
+O indivíduo mais apto (de melhor \emph{fitness}) retornado pelo algoritmo de Programação Genética tem grandes chances de ser um modelo de classificação de sentimentos com bons resultados.
 
 \subsection{Projeto da solução}
 
-Como discutido na seção anterior, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
+Como explanado na seção \ref{progGen}, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
 
-O primeiro passo para projetar uma solução de Programação Genética é determinar o conjunto de terminais e funções do modelo. Os terminais serão compostos do \emph{Tweet} que será analisado, bem como de uma constante efêmera, um número real escolhido aleatóriamente entre -3 e 3. A constante efêmera será escolhida de forma aleatória somente no momento de criação do indivíduo, e depois manterá seu valor na árvore.
+O primeiro passo para projetar uma solução de Programação Genética é determinar o conjunto de terminais e funções do modelo. Os terminais serão compostos pelos \emph{Tweets} que serão analisados, bem como por uma constante efêmera, um número real escolhido aleatóriamente entre -3 e 3. A constante efêmera será escolhida de forma aleatória somente no momento de criação do indivíduo, e depois manterá seu valor na árvore.
 
 As funções serão responsáveis por realizar a manipulação dos dados, como o \emph{Tweet} e suas características. A lista das principais funções definidas para a solução pode ser vista na tabela \ref{tab_functions}.
 
 
-\begin{table}[h]
+\begin{table}[]
 	\centering
-	\begin{tabular}{| c | c |}
+	\begin{tabular}{l|c}
+	\multicolumn{1}{c}{\textbf{Função}} & \multicolumn{1}{c}{\textbf{Retorno}} \\
 	\hline
-	\textbf{Função} & \textbf{Retorno} \\
+	polaritySum(str): float & Soma das polaridades de cada palavra \\& (+1 para positivo e -1 para negativo) \\
 	\hline
-	\makecell{polaritySum(str): float} & Soma das polaridades de cada palavra \\& (+1 para positivo e -1 para negativo) \\
+	hashtagPolaritySum(str): float & Soma das polaridades de cada hashtag \\& (+1 para positivo e -1 para negativo) \\
 	\hline
-	\makecell{hashtagPolaritySum(str): float} & Soma das polaridades de cada hashtag \\& (+1 para positivo e -1 para negativo) \\
+	emoticonPolaritySum(str): float & Soma das polaridades de cada emoticon \\& (+1 para positivo e -1 para negativo) \\
 	\hline
-	\makecell{emoticonPolaritySum(str): float} & Soma das polaridades de cada emoticon \\& (+1 para positivo e -1 para negativo) \\
+	positiveWordsQuantity(str): float & Quantidade de palavras positivas \\
 	\hline
-	\makecell{positiveWordsQuantity(str): float} & Quantidade de palavras positivas \\
+	negativeWordsQuantity(str): float & Quantidade de palavras negativas \\
 	\hline
-	\makecell{negativeWordsQuantity(str): float} & Quantidade de palavras negativas \\
+	hasHashtags(str): bool & Verifica se o \emph{Tweet} possui hashtag \\
 	\hline
-	\makecell{hasHashtags(str): bool} & Verifica se o \emph{Tweet} possui hashtag \\
-	\hline
-	\makecell{hasEmoticons(str): bool} & Verifica se o \emph{Tweet} possui emoticon \\
+	hasEmoticons(str): bool & Verifica se o \emph{Tweet} possui emoticon \\
 	\hline
 	\end{tabular}
 	\caption{Principais funções utilizadas na Programação Genética}
 	\label{tab_functions}
 \end{table}
 
-Para a criação das funções, foi levado  em consideração heurísticas apresentadas em trabalhos anteriores sobre o tema e para determinados contextos, como os apresentados em \cite{araujo2013metodos}, \cite{Rodrigues2016}, \cite{Turney2002}, entre outros.
+Para a criação das funções, foi levado em consideração heurísticas apresentadas em trabalhos anteriores sobre o tema e para determinados contextos, como os apresentados em \cite{araujo2013metodos}, \cite{Rodrigues2016}, \cite{Turney2002}, entre outros.
 
 Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raiz quadrada, exponenciação, seno e cosseno.
 
-Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é calculado como a diferença entre a quantidade de \emph{tweets} - a quantidade de mensagens avaliadas corretamente quanto à sua polaridade, definida como positiva (número maior que zero) e negativa (número menor que zero). Por exemplo, caso a avaliação seja feita utilizando-se de 500 \emph{tweets} e o modelo consegue prever corretamente a polaridade de 450, temos uma função de aptidão de 50. O melhor caso acontece caso tivermos uma função \emph{fitness} de valor zero, ou seja, uma função que previu corretamente todas as mensagens avaliadas.
+Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é definido como a acurácia do classificador, ou seja, a quantidade de \emph{Tweets} avaliados corretamente quanto à sua polaridade, definida como positiva (número maior que zero) e negativa (número menor que zero).
+
+Outras métricas são utilizadas para a verificação da qualidade do classificador: precisão, \emph{recall} e F1. Detalhes de cada uma dessas funções são apresentadas na tabela \ref{metrics}. Para todas essas medições, são considerados 4 possibilidades de classificação dos \emph{Tweets}, conforme apresentado na tabela \ref{metricsTrueFalse}
+
+\begin{table}[]
+\centering
+\label{metricsTrueFalse}
+	\begin{tabular}{l|c}
+	\multicolumn{1}{c}{\textbf{Terminologia}} & \multicolumn{1}{c}{\textbf{Descrição}} \\ \hline
+	Verdadeiro Positivo (VP) & Modelo retornou Positivo e a classe real é Positivo \\ \hline
+	Verdadeiro Negativo (VN) & Modelo retornou Negativo e a classe real é Negativo \\ \hline
+	Falso Positivo (FP) & Modelo retornou Positivo e a classe real é Negativo \\ \hline
+	Falso Negativo (FN) & Modelo retornou Negativo e a classe real é Positivo \\ \hline
+	\end{tabular}
+	\caption{Dados utilizados para as métricas do modelo}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\label{metrics}
+	\begin{tabular}{cc}
+	\hline
+	\textbf{Métrica} & \textbf{Fórmula} \\ \hline
+	Acurácia & (VP + VN )/ (VP + FP +VN + FN) \\ \hline
+	Precisão & VP / (VP + FP) \\ \hline
+	\textit{Recall} & VP / (VP + FN) \\ \hline
+	F1 & 2 x (Precisão * Recall) / (Precisão + Recall) \\ \hline
+	\end{tabular}
+	\caption{Métricas utilizadas para avaliar o modelo de classificação}
+\end{table}
 
 \subsection{Bibliotecas}
 

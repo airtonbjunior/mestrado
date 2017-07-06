@@ -216,7 +216,39 @@ A base de treinamento aplicada no trabalho possui 1421 \emph{Tweets}, avaliados 
 
 \section{Resultados}
 
-[Fazer tabela com os parâmetros (gerações, população, etc)]
+\subsection{Criação do modelo}
+
+\begin{table}[]
+	\centering
+	\label{parametersGP}
+	\begin{tabular}{cccccc}
+	\textit{\textbf{Tweets}} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
+	3000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
+	4000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
+	5000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
+	5000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
+	5100 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
+	\end{tabular}
+	\caption{Parâmetros da Programação Genética}
+\end{table}
+
+
+\subsection{Teste do modelo}
+
+\begin{table}[]
+\centering
+\label{resultsl}
+	\begin{tabular}{lcccc}
+	\multicolumn{1}{c}{\textbf{Base de Teste}}     & \multicolumn{1}{c}{\textbf{Acurácia}} & \multicolumn{1}{c}{\textbf{Precisão}} & \multicolumn{1}{c}	{\textbf{Recall}} & \multicolumn{1}{c}{\textbf{F1}} \\ \hline
+	Tweets2013 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
+	Tweets2014 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
+	Tweets2014Sarcasm & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
+	SMS2013 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
+	LiveJournal2014 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
+	Todas & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline	
+	\end{tabular}
+	\caption{Resultados divididos por base de dados}
+\end{table}
 
 \section{Conclusão}\label{conclusion}
 

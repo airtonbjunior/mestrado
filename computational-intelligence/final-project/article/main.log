@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  5 JUL 2017 12:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  5 JUL 2017 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -656,24 +656,32 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 197.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 197.
- [8] (./main.bbl [9] [10] [11]) [12] (./main.aux) ) 
+ [8]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 221.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 238.
+
+(./main.bbl [9] [10] [11]) [12] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3182 strings out of 493013
- 42155 string characters out of 6136993
- 121706 words of memory out of 5000000
- 6658 multiletter control sequences out of 15000+600000
+ 3184 strings out of 493013
+ 42179 string characters out of 6136993
+ 121726 words of memory out of 5000000
+ 6660 multiletter control sequences out of 15000+600000
  26395 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,14n,28p,1129b,233s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2016/texmf-dist/
-fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/tex
-live/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-di
-st/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/ur
-w/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on main.pdf (12 pages, 132975 bytes).
+{c:/texlive/2016/texmf-dist/fonts
+/enc/dvips/base/8r.enc}<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/
+2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fo
+nts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/tim
+es/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (12 pages, 135282 bytes).
 PDF statistics:
  73 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream

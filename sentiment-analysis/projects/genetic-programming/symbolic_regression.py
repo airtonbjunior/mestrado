@@ -41,6 +41,7 @@ dic_negative_emoticons = []
 
 positive_tweets = 0
 negative_tweets = 0
+#neutral_tweets = 0
 
 fitness_positive = 0
 fitness_negative = 0
@@ -52,12 +53,17 @@ all_fitness_history   = []
 
 best_precision_positive = 0
 best_precision_negative = 0
+best_precision_neutral  = 0
 best_precision_avg      = 0
+
 best_recall_positive = 0
 best_recall_negative = 0
+best_recall_neutral  = 0
 best_recall_avg      = 0
+
 best_f1_positive = 0
 best_f1_negative = 0
+best_f1_neutral  = 0
 best_f1_avg      = 0
 
 best_precision_avg_function = ""
@@ -168,6 +174,7 @@ def getTweetsFromFileIdLoadedSemeval2014():
 
     global positive_tweets
     global negative_tweets
+    #global neutral_tweets
 
     tweets_loaded = 0
 
@@ -187,6 +194,14 @@ def getTweetsFromFileIdLoadedSemeval2014():
                             tweets_semeval_score.append(-1)
 
                         tweets_loaded += 1
+                    
+                    # Uncomment when I want to consider the neutral tweets
+                    #else:
+                        #tweets_semeval.append(tweet_parsed[3])
+                        #tweets_semeval_score.append(0)
+                        #neutral_tweets += 1
+
+                        #tweets_loaded += 1
                 # treat 403 exception mainly
                 except:
                     #print("exception")
@@ -855,6 +870,7 @@ def main():
 
     global positive_tweets
     global negative_tweets
+    #global neutral_tweets
 
     global fitness_positive
     global fitness_negative
@@ -918,7 +934,7 @@ def main():
 
 
 if __name__ == "__main__":
-    #main()
+    main()
     #saveTestTweetsFromFilesIdLoadedSemeval2014()
     #saveTweetsFromIdInFile()
 

@@ -21,6 +21,9 @@ tweets_2013_score = []
 tweets_2014       = []
 tweets_2014_score = []
 
+tweets_2014_sarcasm       = []
+tweets_2014_sarcasm_score = []
+
 sms_2013       = []
 sms_2013_score = []
 
@@ -166,7 +169,14 @@ def getTestTweetsFromSemeval2014():
                             if tweet_parsed[0] == "positive":
                                 tweets_liveJournal2014_score.append(1)
                             else:
-                                tweets_liveJournal2014_score.append(-1)                            
+                                tweets_liveJournal2014_score.append(-1) 
+
+                        elif tweet_parsed[1] == "Twitter2014Sarcasm":
+                            tweets_2014_sarcasm.append(tweet_parsed[2])
+                            if tweet_parsed[0] == "positive":
+                                tweets_2014_sarcasm_score.append(1)
+                            else:
+                                tweets_2014_sarcasm_score.append(-1)                                                            
 
                         tweets_loaded += 1
                 # treat 403 exception mainly
@@ -260,10 +270,10 @@ def evaluateTweets2013Messages(model):
     print("[messages evaluated]: " + str(len(tweets_2013)))
     print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
     print("[model]: " + str(model))
-    print("[accuracy]: " + str(accuracy))
-    print("[precision_avg]: " + str(precision_avg))
-    print("[recall avg]: " + str(recall_avg))
-    print("[f1 avg]: " + str(f1_avg))
+    print("[accuracy]: " + str(round(accuracy, 2)))
+    print("[precision_avg]: " + str(round(precision_avg, 2)))
+    print("[recall avg]: " + str(round(recall_avg, 2)))
+    print("[f1 avg]: " + str(round(f1_avg, 2)))
 
 
 # Evaluate only the Tweets2014
@@ -349,10 +359,100 @@ def evaluateTweets2014Messages(model):
     print("[messages evaluated]: " + str(len(tweets_2014)))
     print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
     print("[model]: " + str(model))
-    print("[accuracy]: " + str(accuracy))
-    print("[precision_avg]: " + str(precision_avg))
-    print("[recall avg]: " + str(recall_avg))
-    print("[f1 avg]: " + str(f1_avg))
+    print("[accuracy]: " + str(round(accuracy, 2)))
+    print("[precision_avg]: " + str(round(precision_avg, 2)))
+    print("[recall avg]: " + str(round(recall_avg, 2)))
+    print("[f1 avg]: " + str(round(f1_avg, 2)))
+
+
+
+# Evaluate only the Tweets2014 Sarcasm
+def evaluateTweets2014SarcasmMessages(model):
+    global tweets_2014_sarcasm
+    global tweets_2014_sarcasm_score
+
+    message = ""
+    model_analysis = ""
+    result = 0
+
+    # parameters to calc the metrics
+    true_positive = 0
+    true_negative = 0
+    false_positive = 0
+    false_negative = 0
+
+    accuracy = 0
+
+    precision_positive = 0
+    precision_negative = 0
+    precision_avg = 0
+
+    recall_positive = 0
+    recall_negative = 0
+    recall_avg = 0
+
+    f1_positive = 0
+    f1_negative = 0
+    f1_avg = 0
+
+    # only 2013 for while
+    for index, item in enumerate(tweets_2014_sarcasm): 
+        message = str(tweets_2014_sarcasm[index]).strip().replace("'", "")
+        message = "'" + message + "'"
+
+        model_analysis = model.replace("x", message)
+        #print(model_analysis)
+        #print(str(eval(model_analysis)))
+        result = eval(model_analysis)
+
+        if result > 0:
+            if tweets_2014_sarcasm_score[index] > 0:
+                true_positive += 1
+            else:
+                false_positive += 1
+        else:
+            if tweets_2014_sarcasm_score[index] < 0:
+                true_negative += 1
+            else:
+                false_negative += 1
+
+    if true_positive + false_positive + true_negative + false_negative > 0:
+        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+
+    if true_positive + false_positive > 0:
+        precision_positive = true_positive / (true_positive + false_positive)
+
+    if true_negative + false_negative > 0:
+        precision_negative = true_negative / (true_negative + false_negative)
+
+    if true_positive + false_negative > 0:
+        recall_positive = true_positive / (true_positive + false_negative)
+
+    if true_negative + false_positive > 0:
+        recall_negative = true_negative / (true_negative + false_positive)
+
+    if precision_positive + recall_positive > 0:
+        f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
+
+    if precision_negative + recall_negative > 0:
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+
+    # Precision, Recall and f1 means
+    precision_avg = (precision_positive + precision_negative) / 2
+    
+    recall_avg = (recall_positive + recall_negative) / 2
+
+    f1_avg = (f1_positive + f1_negative) / 2         
+
+    print("\n")
+    print("[Tweets2014Sarcasm messages]")
+    print("[messages evaluated]: " + str(len(tweets_2014_sarcasm)))
+    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[model]: " + str(model))
+    print("[accuracy]: " + str(round(accuracy, 2)))
+    print("[precision_avg]: " + str(round(precision_avg, 2)))
+    print("[recall avg]: " + str(round(recall_avg, 2)))
+    print("[f1 avg]: " + str(round(f1_avg, 2)))    
 
 
 # Evaluate only the SMS2013
@@ -438,10 +538,10 @@ def evaluateSMS2013(model):
     print("[messages evaluated]: " + str(len(sms_2013)))
     print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
     print("[model]: " + str(model))
-    print("[accuracy]: " + str(accuracy))
-    print("[precision_avg]: " + str(precision_avg))
-    print("[recall avg]: " + str(recall_avg))
-    print("[f1 avg]: " + str(f1_avg))
+    print("[accuracy]: " + str(round(accuracy, 2)))
+    print("[precision_avg]: " + str(round(precision_avg, 2)))
+    print("[recall avg]: " + str(round(recall_avg, 2)))
+    print("[f1 avg]: " + str(round(f1_avg, 2)))
 
 
 
@@ -528,7 +628,7 @@ def evaluateTweetsLiveJournal2014(model):
     print("[messages evaluated]: " + str(len(tweets_liveJournal2014)))
     print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
     print("[model]: " + str(model))
-    print("[accuracy]: " + str(accuracy))
+    print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
@@ -623,7 +723,7 @@ def evaluateAllMessages(model):
     f1_avg = (f1_positive + f1_negative) / 2         
 
     print("\n")
-    print("Evaluate all messages")
+    print("[All messages]")
     print("[messages evaluated]: " + str(len(allMessages)))
     print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
     print("[model]: " + str(model))
@@ -641,8 +741,9 @@ if __name__ == "__main__":
     evaluateTweets2014Messages("polaritySum(x)")
     evaluateSMS2013("polaritySum(x)")
     evaluateTweetsLiveJournal2014("polaritySum(x)")
+    evaluateTweets2014SarcasmMessages("polaritySum(x)")
     evaluateAllMessages("polaritySum(x)")
 
 
 end = time.time()
-print("\n\nScript ends after " + str(format(end - start, '.3g')) + " seconds")
+print("\n\n[Script ends after " + str(format(end - start, '.3g')) + " seconds]")

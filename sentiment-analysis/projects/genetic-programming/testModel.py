@@ -1,4 +1,7 @@
 import time 
+import operator
+import math
+import re
 
 # log time
 start = time.time()
@@ -28,7 +31,7 @@ sms_2013       = []
 sms_2013_score = []
 
 
-
+# get the dictionaries
 def getDictionary():
     print("[loading dictionary]")
 
@@ -66,57 +69,6 @@ def getDictionary():
             dic_negative_emoticons.append(line6.strip())             
 
     print("[dictionary loaded] [words, hashtags and emoticons]")
-
-
-# Return the sum of the word polarities (positive[+1], negative[-1])
-# Liu's dicionary of positive and negative words
-def polaritySum(phrase):
-    global dic_positive_words
-    global dic_negative_words
-
-    words = phrase.split()
-
-    total_sum = 0
-
-    for word in words:
-        if word in dic_positive_words:
-            total_sum += 1 
-
-        if word in dic_negative_words:
-            total_sum -= 1
-
-    return total_sum
-
-
-def positiveEmoticons(phrase):
-    global dic_positive_emoticons
-    words = phrase.split()
-
-    total_sum = 0
-
-    for word in words:
-        if word in dic_positive_emoticons:
-            total_sum += 1               
-
-    return total_sum
-
-
-def negativeEmoticons(phrase):
-    global dic_negative_emoticons
-    words = phrase.split()
-
-    total_sum = 0
-
-    for word in words:
-        if word in dic_negative_emoticons:
-            total_sum += 1               
-
-    return total_sum
-
-
-# sum of the emoticons polarities only
-def emoticonsPolaritySum(phrase):
-    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
 
 
 # get the test tweets from Semeval 2014 task 9
@@ -187,6 +139,204 @@ def getTestTweetsFromSemeval2014():
     print("[tweets loaded]")
 
 
+### Begin functions (improve this - import the functions of the other file)
+
+def add(left, right):
+    return left + right
+
+def sub(left, right):
+    return left - right
+
+
+def mul(left, right):
+    return left * right
+
+def sin(value):
+    return math.sin(value)
+    
+def cos(value):
+    return math.cos(value)
+
+# Define new functions
+# Protected Div (check division by zero)
+def protectedDiv(left, right):
+    try:
+        return left / right
+    except ZeroDivisionError:
+        return 1
+
+
+# Log
+def protectedLog(value):
+    try:
+        return math.log10(value)
+    except:
+        return 1    
+
+
+# Sqrt
+def protectedSqrt(value):
+    try:
+        return math.sqrt(value)
+    except:
+        return 1  
+
+
+def invertSignal(val):
+    return -val
+
+
+def negativeWordsQuantity(phrase):
+    global dic_negative_words
+    negative_words = 0
+    words = phrase.split()
+    
+    for word in words:
+        if word in dic_negative_words:
+            negative_words += 1
+
+    return negative_words
+
+
+def positiveWordsQuantity(phrase):
+    global dic_positive_words
+    positive_words = 0
+    words = phrase.split()
+    
+    for word in words:
+        if word in dic_positive_words:
+            positive_words += 1
+
+    return positive_words 
+
+
+# Return the sum of the word polarities (positive[+1], negative[-1])
+# Liu's dicionary of positive and negative words
+def polaritySum(phrase):
+    global dic_positive_words
+    global dic_negative_words
+
+    words = phrase.split()
+
+    total_sum = 0
+
+    for word in words:
+        if word in dic_positive_words:
+            total_sum += 1 
+
+        if word in dic_negative_words:
+            total_sum -= 1
+
+    return total_sum
+
+
+def positiveEmoticons(phrase):
+    global dic_positive_emoticons
+    words = phrase.split()
+
+    total_sum = 0
+
+    for word in words:
+        if word in dic_positive_emoticons:
+            total_sum += 1               
+
+    return total_sum
+
+
+def negativeEmoticons(phrase):
+    global dic_negative_emoticons
+    words = phrase.split()
+
+    total_sum = 0
+
+    for word in words:
+        if word in dic_negative_emoticons:
+            total_sum += 1               
+
+    return total_sum
+
+
+# sum of the emoticons polarities only
+def emoticonsPolaritySum(phrase):
+    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
+
+
+# sum of the hashtag polarities only
+def hashtagPolaritySum(phrase):
+    return positiveHashtags(phrase) - negativeHashtags(phrase)
+
+
+# Positive Hashtags
+def positiveHashtags(phrase):
+    global dic_positive_words
+    global dic_positive_hashtags
+    total = 0
+    if "#" in phrase:
+        #print("has hashtag")
+        hashtags = re.findall(r"#(\w+)", phrase)
+
+        for hashtag in hashtags:
+            if hashtag in dic_positive_hashtags:
+                total += 1 
+            else:
+                if hashtag in dic_positive_words:
+                    total += 1 
+
+    return total
+
+
+# Negative Hashtags
+def negativeHashtags(phrase):
+    global dic_negative_words
+    global dic_negative_hashtags
+    total = 0
+    if "#" in phrase:
+        #print("has hashtag")
+        hashtags = re.findall(r"#(\w+)", phrase)
+
+        for hashtag in hashtags:
+            if hashtag in dic_negative_hashtags:
+                total += 1 
+            else:
+                if hashtag in dic_negative_words:
+                    total += 1 
+
+    return total
+
+
+# Check if has hashtags on phrase
+def hasHashtag(phrase):
+    return True if "#" in phrase else False
+
+
+# Check if has emoticons on phrase
+def hasEmoticons(phrase):
+    global dic_negative_emoticons
+    global dic_positive_emoticons
+    
+    words = phrase.split()
+
+    for word in words:
+        if (word in dic_negative_emoticons) or (word in dic_positive_emoticons):
+            return True
+
+    return False
+
+
+# logic operators
+# Define a new if-then-else function
+def if_then_else(input, output1, output2):
+    if input: return output1
+    else: return output2
+
+
+def repeatInputString(phrase):
+    return phrase
+
+### End functions (improve this - import the functions of the other file)
+
+
+
 # Evaluate only the Tweets2013
 def evaluateTweets2013Messages(model):
     global tweets_2013
@@ -226,16 +376,16 @@ def evaluateTweets2013Messages(model):
         #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
-        if result > 0:
-            if tweets_2013_score[index] > 0:
+        if tweets_2013_score[index] > 0:
+            if result > 0:
                 true_positive += 1
             else:
-                false_positive += 1
+                false_negative += 1
         else:
-            if tweets_2013_score[index] < 0:
+            if result < 0:
                 true_negative += 1
             else:
-                false_negative += 1
+                false_positive += 1
 
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
@@ -274,6 +424,10 @@ def evaluateTweets2013Messages(model):
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[true_positive]: " + str(true_positive))
+    print("[false_positive]: " + str(false_positive))
+    print("[true_negative]: " + str(true_negative))
+    print("[false_negative]: " + str(false_negative))
 
 
 # Evaluate only the Tweets2014
@@ -315,16 +469,16 @@ def evaluateTweets2014Messages(model):
         #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
-        if result > 0:
-            if tweets_2014_score[index] > 0:
+        if tweets_2014_score[index] > 0:
+            if result > 0:
                 true_positive += 1
             else:
-                false_positive += 1
+                false_negative += 1
         else:
-            if tweets_2014_score[index] < 0:
+            if result < 0:
                 true_negative += 1
             else:
-                false_negative += 1
+                false_positive += 1
 
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
@@ -363,6 +517,10 @@ def evaluateTweets2014Messages(model):
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[true_positive]: " + str(true_positive))
+    print("[false_positive]: " + str(false_positive))
+    print("[true_negative]: " + str(true_negative))
+    print("[false_negative]: " + str(false_negative))    
 
 
 
@@ -405,16 +563,16 @@ def evaluateTweets2014SarcasmMessages(model):
         #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
-        if result > 0:
-            if tweets_2014_sarcasm_score[index] > 0:
+        if tweets_2014_sarcasm_score[index] > 0:
+            if result > 0:
                 true_positive += 1
             else:
-                false_positive += 1
+                false_negative += 1
         else:
-            if tweets_2014_sarcasm_score[index] < 0:
+            if result < 0:
                 true_negative += 1
             else:
-                false_negative += 1
+                false_positive += 1
 
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
@@ -452,7 +610,11 @@ def evaluateTweets2014SarcasmMessages(model):
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
-    print("[f1 avg]: " + str(round(f1_avg, 2)))    
+    print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[true_positive]: " + str(true_positive))
+    print("[false_positive]: " + str(false_positive))
+    print("[true_negative]: " + str(true_negative))
+    print("[false_negative]: " + str(false_negative))
 
 
 # Evaluate only the SMS2013
@@ -494,16 +656,16 @@ def evaluateSMS2013(model):
         #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
-        if result > 0:
-            if sms_2013_score[index] > 0:
+        if sms_2013_score[index] > 0:
+            if result > 0:
                 true_positive += 1
             else:
-                false_positive += 1
+                false_negative += 1
         else:
-            if sms_2013_score[index] < 0:
+            if result < 0:
                 true_negative += 1
             else:
-                false_negative += 1
+                false_positive += 1
 
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
@@ -542,6 +704,10 @@ def evaluateSMS2013(model):
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[true_positive]: " + str(true_positive))
+    print("[false_positive]: " + str(false_positive))
+    print("[true_negative]: " + str(true_negative))
+    print("[false_negative]: " + str(false_negative))
 
 
 
@@ -584,16 +750,16 @@ def evaluateTweetsLiveJournal2014(model):
         #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
-        if result > 0:
-            if tweets_liveJournal2014_score[index] > 0:
+        if tweets_liveJournal2014_score[index] > 0:
+            if result > 0:
                 true_positive += 1
             else:
-                false_positive += 1
+                false_negative += 1
         else:
-            if tweets_liveJournal2014_score[index] < 0:
+            if result < 0:
                 true_negative += 1
             else:
-                false_negative += 1
+                false_positive += 1
 
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
@@ -632,6 +798,10 @@ def evaluateTweetsLiveJournal2014(model):
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[true_positive]: " + str(true_positive))
+    print("[false_positive]: " + str(false_positive))
+    print("[true_negative]: " + str(true_negative))
+    print("[false_negative]: " + str(false_negative))
 
 
 
@@ -683,16 +853,16 @@ def evaluateAllMessages(model):
         #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
-        if result > 0:
-            if allScores[index] > 0:
+        if allScores[index] > 0:
+            if result > 0:
                 true_positive += 1
             else:
-                false_positive += 1
+                false_negative += 1
         else:
-            if allScores[index] < 0:
+            if result < 0:
                 true_negative += 1
             else:
-                false_negative += 1
+                false_positive += 1
     
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
@@ -731,18 +901,24 @@ def evaluateAllMessages(model):
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[true_positive]: " + str(true_positive))
+    print("[false_positive]: " + str(false_positive))
+    print("[true_negative]: " + str(true_negative))
+    print("[false_negative]: " + str(false_negative))
 
 
 if __name__ == "__main__":
     getDictionary()
     getTestTweetsFromSemeval2014()
 
-    evaluateTweets2013Messages("polaritySum(x)")
-    evaluateTweets2014Messages("polaritySum(x)")
-    evaluateSMS2013("polaritySum(x)")
-    evaluateTweetsLiveJournal2014("polaritySum(x)")
-    evaluateTweets2014SarcasmMessages("polaritySum(x)")
-    evaluateAllMessages("polaritySum(x)")
+    function_to_evaluate = "sub(sin(exp(sin(1.9020279296585225))), add(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedLog(protectedLog(sub(sub(negativeEmoticons(repeatInputString(repeatInputString(x))), add(positiveWordsQuantity(repeatInputString(x)), sin(polaritySum(x)))), add(protectedDiv(positiveWordsQuantity(repeatInputString(x)), negativeEmoticons(repeatInputString(x))), polaritySum(repeatInputString(repeatInputString(x))))))))))"
+
+    evaluateTweets2013Messages(function_to_evaluate)
+    evaluateTweets2014Messages(function_to_evaluate)
+    evaluateSMS2013(function_to_evaluate)
+    evaluateTweetsLiveJournal2014(function_to_evaluate)
+    evaluateTweets2014SarcasmMessages(function_to_evaluate)
+    evaluateAllMessages(function_to_evaluate)
 
 
 end = time.time()

@@ -78,7 +78,7 @@ f1_positive_history        = []
 f1_negative_history        = []
 
 MAX_ANALYSIS_TWEETS = 6000
-GENERATIONS = 60
+GENERATIONS = 70
 generations_unchanged = 0
 max_unchanged_generations = 120
 
@@ -662,6 +662,8 @@ def evalSymbRegTweetsFromSemeval(individual):
     global generations_unchanged
     global max_unchanged_generations
 
+    correct_evaluations = 0
+
     fitnessReturn = 0
 
     is_positive = 0
@@ -672,6 +674,8 @@ def evalSymbRegTweetsFromSemeval(individual):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+
+    accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
@@ -700,23 +704,24 @@ def evalSymbRegTweetsFromSemeval(individual):
             print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]")
 
         try:
-            if round(func(tweets_semeval[index]), 2) > 0:
-                if float(tweets_semeval_score[index]) > 0:
-                    fitnessReturn += 1 
+            if float(tweets_semeval_score[index]) > 0:
+                if float(func(tweets_semeval[index])) > 0:
+                    correct_evaluations += 1 
                     is_positive   += 1
                     true_positive += 1
                 else:
-                    false_positive += 1
+                    false_negative += 1
 
-            if round(func(tweets_semeval[index]), 2) < 0:
-                if float(tweets_semeval_score[index]) < 0:
-                    fitnessReturn += 1 
+            else:
+                if float(func(tweets_semeval[index])) < 0:
+                    correct_evaluations += 1 
                     is_negative   += 1
                     true_negative += 1
                 else:
-                    false_negative += 1
+                    false_positive += 1
 
         except:
+            print("exception")
             continue
 
         #logs
@@ -727,10 +732,21 @@ def evalSymbRegTweetsFromSemeval(individual):
             print("[calculated]:" + str(func(tweets_semeval[index])))
         #logs
     
+
+    # accuracy here
+    # fitnessReturn = correct_evaluations
+
+
     if uses_dummy_function:
         fitnessReturn = 0
         uses_dummy_function = False
 
+
+    if true_positive + false_positive + true_negative + false_negative > 0:
+        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+
+
+    fitnessReturn = accuracy
 
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
@@ -821,6 +837,10 @@ def evalSymbRegTweetsFromSemeval(individual):
         print("[fitness (accuracy)]: " + str(fitnessReturn))
         print("[best fitness]: " + str(best_fitness))
         print("[generations unmodified]: " + str(generations_unchanged))
+        print("[true_positive]: " + str(true_positive))
+        print("[false_positive]: " + str(false_positive))
+        print("[true_negative]: " + str(true_negative))
+        print("[false_negative]: " + str(false_negative))
         print("\n")   
     #logs
 
@@ -879,7 +899,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=30)
+    pop = toolbox.population(n=35)
     hof = tools.HallOfFame(1)
     
     

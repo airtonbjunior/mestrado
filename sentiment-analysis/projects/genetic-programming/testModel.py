@@ -153,7 +153,7 @@ def mul(left, right):
 
 def sin(value):
     return math.sin(value)
-    
+
 def cos(value):
     return math.cos(value)
 
@@ -911,7 +911,7 @@ if __name__ == "__main__":
     getDictionary()
     getTestTweetsFromSemeval2014()
 
-    function_to_evaluate = "sub(sin(exp(sin(1.9020279296585225))), add(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedLog(protectedLog(sub(sub(negativeEmoticons(repeatInputString(repeatInputString(x))), add(positiveWordsQuantity(repeatInputString(x)), sin(polaritySum(x)))), add(protectedDiv(positiveWordsQuantity(repeatInputString(x)), negativeEmoticons(repeatInputString(x))), polaritySum(repeatInputString(repeatInputString(x))))))))))"
+    function_to_evaluate = "protectedDiv(protectedDiv(sub(0.46102290893297626, invertSignal(negativeHashtags(repeatInputString(repeatInputString(x))))), protectedDiv(add(negativeHashtags(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))), exp(sub(sub(polaritySum(repeatInputString(repeatInputString(x))), negativeEmoticons(repeatInputString(x))), protectedLog(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(x)))))))), sub(emoticonsPolaritySum(repeatInputString(repeatInputString(x))), negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(x))))))), 1.1363947614119714)"
 
     evaluateTweets2013Messages(function_to_evaluate)
     evaluateTweets2014Messages(function_to_evaluate)

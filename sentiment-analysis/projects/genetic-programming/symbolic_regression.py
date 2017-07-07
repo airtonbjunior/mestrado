@@ -51,6 +51,8 @@ best_fitness = 0
 best_fitness_history  = []
 all_fitness_history   = []
 
+best_accuracy = 0
+
 best_precision_positive = 0
 best_precision_negative = 0
 best_precision_neutral  = 0
@@ -65,6 +67,7 @@ best_f1_positive = 0
 best_f1_negative = 0
 best_f1_neutral  = 0
 best_f1_avg      = 0
+best_f1_positive_negative_avg = 0
 
 best_precision_avg_function = ""
 best_recall_avg_function    = ""
@@ -80,10 +83,15 @@ f1_positive_history        = []
 f1_negative_history        = []
 f1_neutral_history         = []
 
-MAX_ANALYSIS_TWEETS = 500
+MAX_ANALYSIS_TWEETS = 10000
+
+MAX_POSITIVES_TWEETS = 0
+MAX_NEGATIVES_TWEETS = 0
+MAX_NEUTRAL_TWEETS = 0
+
 GENERATIONS = 70
 generations_unchanged = 0
-max_unchanged_generations = 40
+max_unchanged_generations = 100
 
 uses_dummy_function = False
 
@@ -634,6 +642,7 @@ def evalSymbRegTweetsFromSemeval(individual):
     global best_fitness_history
     global all_fitness_history
 
+    global best_accuracy
     # Precision
     global best_precision_positive
     global best_precision_negative
@@ -651,6 +660,7 @@ def evalSymbRegTweetsFromSemeval(individual):
     global best_f1_negative
     global best_f1_neutral
     global best_f1_avg
+    global best_f1_positive_negative_avg
     global best_f1_avg_function
     # Precision, Recall and F1 history
     global precision_positive_history
@@ -701,6 +711,7 @@ def evalSymbRegTweetsFromSemeval(individual):
     f1_negative = 0
     f1_neutral  = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
     breaked = False
 
@@ -776,6 +787,8 @@ def evalSymbRegTweetsFromSemeval(individual):
     if true_positive + false_positive + true_negative + false_negative > 0:
         accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    if accuracy > best_accuracy:
+        best_accuracy = accuracy 
 
     # Begin PRECISION
     if true_positive + false_positive > 0:
@@ -848,6 +861,9 @@ def evalSymbRegTweetsFromSemeval(individual):
         best_f1_avg = f1_avg
         best_f1_avg_function = str(individual)
 
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2
+    if f1_positive_negative_avg > best_f1_positive_negative_avg:
+        best_f1_positive_negative_avg = f1_positive_negative_avg
 
     # The metric that represent the fitness
     # fitnessReturn = accuracy
@@ -880,6 +896,7 @@ def evalSymbRegTweetsFromSemeval(individual):
     #logs   
     if log_parcial_results and not breaked: 
         print("[function]: " + str(individual))
+        print("[accuracy]: " + str(round(accuracy, 3)))
         print("[precision positive]: " + str(round(precision_positive, 3)))
         print("[precision negative]: " + str(round(precision_negative, 3)))
         print("[precision neutral]: " + str(round(precision_neutral, 3)))
@@ -934,6 +951,7 @@ def main():
     global best_fitness_history
     global all_fitness_history
 
+    global best_accuracy
     global best_precision_positive
     global best_precision_negative
     global best_precision_avg
@@ -943,6 +961,7 @@ def main():
     global best_f1_positive
     global best_f1_negative
     global best_f1_avg
+    global best_f1_positive_negative_avg
 
     global best_precision_avg_function
     global best_recall_avg_function
@@ -959,7 +978,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=35)
+    pop = toolbox.population(n=40)
     hof = tools.HallOfFame(1)
     
     
@@ -991,6 +1010,7 @@ def main():
     print("[total tweets]: " + str(positive_tweets + negative_tweets + neutral_tweets) + " [" + str(positive_tweets) + " positives, " + str(negative_tweets) + " negatives and " + str(neutral_tweets) + " neutrals]\n")
     print("[best fitness (F1 avg)]: " + str(best_fitness) + " [" + str(fitness_positive + fitness_negative + fitness_neutral) + " correct evaluations] ["+ str(fitness_positive) + " positives, " + str(fitness_negative) + " negatives and " + str(fitness_neutral) + " neutrals]\n")
     print("[function]: " + str(hof[0]) + "\n")
+    print("[best accuracy]: " + str(best_accuracy) + "\n")
     print("[best precision positive]: " + str(best_precision_positive))
     print("[best precision negative]: " + str(best_precision_negative))
     print("[best precision neutral]: "  + str(best_precision_neutral))    
@@ -1003,6 +1023,7 @@ def main():
     print("[best f1 positive]: " + str(best_f1_positive))    
     print("[best f1 negative]: " + str(best_f1_negative))
     print("[best f1 avg]: " + str(best_f1_avg))
+    print("[best f1 avg SemEval (positive and negative)]: " + str(best_f1_positive_negative_avg))
     print("[best f1 avg function]: " + best_f1_avg_function + "\n")       
     #print(json.dumps(all_fitness_history))
     print("\n")

@@ -17,18 +17,33 @@ dic_negative_emoticons = []
 
 tweets_liveJournal2014       = []
 tweets_liveJournal2014_score = []
+tweets_liveJournal2014_positive = 0
+tweets_liveJournal2014_negative = 0
+tweets_liveJournal2014_neutral  = 0
 
 tweets_2013       = []
 tweets_2013_score = []
+tweets_2013_positive = 0
+tweets_2013_negative = 0
+tweets_2013_neutral  = 0
 
 tweets_2014       = []
 tweets_2014_score = []
+tweets_2014_positive = 0
+tweets_2014_negative = 0
+tweets_2014_neutral  = 0
 
 tweets_2014_sarcasm       = []
 tweets_2014_sarcasm_score = []
+tweets_2014_sarcasm_positive = 0
+tweets_2014_sarcasm_negative = 0
+tweets_2014_sarcasm_neutral  = 0
 
 sms_2013       = []
 sms_2013_score = []
+sms_2013_positive = 0
+sms_2013_negative = 0
+sms_2013_neutral  = 0
 
 
 # get the dictionaries
@@ -79,12 +94,33 @@ def getTestTweetsFromSemeval2014():
 
     global tweets_liveJournal2014
     global tweets_liveJournal2014_score
+    global tweets_liveJournal2014_positive
+    global tweets_liveJournal2014_negative
+    global tweets_liveJournal2014_neutral
+    
     global tweets_2013
     global tweets_2013_score
+    global tweets_2013_positive
+    global tweets_2013_negative
+    global tweets_2013_neutral
+    
     global tweets_2014
     global tweets_2014_score
+    global tweets_2014_positive
+    global tweets_2014_negative
+    global tweets_2014_neutral
+    
     global sms_2013
     global sms_2013_score
+    global sms_2013_positive
+    global sms_2013_negative
+    global sms_2013_neutral
+
+    global tweets_2014_sarcasm
+    global tweets_2014_sarcasm_score
+    global tweets_2014_sarcasm_positive
+    global tweets_2014_sarcasm_negative
+    global tweets_2014_sarcasm_neutral
 
     tweets_loaded = 0
 
@@ -93,44 +129,82 @@ def getTestTweetsFromSemeval2014():
             if tweets_loaded < MAX_ANALYSIS_TWEETS:
                 tweet_parsed = line.split("\t")
                 try:
-                    # i'm ignoring the neutral tweets
-                    if(tweet_parsed[0] != "neutral"):
-                        if tweet_parsed[1] == "Twitter2013":
-                            tweets_2013.append(tweet_parsed[2])
-                            if tweet_parsed[0] == "positive":
-                                tweets_2013_score.append(1)
-                            else:
-                                tweets_2013_score.append(-1)
+                    if tweet_parsed[1] == "Twitter2013":
+                        tweets_2013.append(tweet_parsed[2])
+                        
+                        if tweet_parsed[0] == "positive":
+                            tweets_2013_score.append(1)
+                            tweets_2013_positive += 1
+                        
+                        elif tweet_parsed[0] == "negative":
+                            tweets_2013_score.append(-1)
+                            tweets_2013_negative += 1
+                        
+                        elif tweet_parsed[0] == "neutral":
+                            tweets_2013_score.append(0)
+                            tweets_2013_neutral += 1
 
-                        elif tweet_parsed[1] == "Twitter2014":
-                            tweets_2014.append(tweet_parsed[2])
-                            if tweet_parsed[0] == "positive":
-                                tweets_2014_score.append(1)
-                            else:
-                                tweets_2014_score.append(-1)
+                    elif tweet_parsed[1] == "Twitter2014":
+                        tweets_2014.append(tweet_parsed[2])
+                        
+                        if tweet_parsed[0] == "positive":
+                            tweets_2014_score.append(1)
+                            tweets_2014_positive += 1
+                        
+                        elif tweet_parsed[0] == "negative":
+                            tweets_2014_score.append(-1)
+                            tweets_2014_negative += 1
+                        
+                        elif tweet_parsed[0] == "neutral":
+                            tweets_2014_score.append(0)
+                            tweets_2014_neutral += 1
 
-                        elif tweet_parsed[1] == "SMS2013":
-                            sms_2013.append(tweet_parsed[2])
-                            if tweet_parsed[0] == "positive":
-                                sms_2013_score.append(1)
-                            else:
-                                sms_2013_score.append(-1)
+                    elif tweet_parsed[1] == "SMS2013":
+                        sms_2013.append(tweet_parsed[2])
+                        
+                        if tweet_parsed[0] == "positive":
+                            sms_2013_score.append(1)
+                            sms_2013_positive += 1
+                        
+                        elif tweet_parsed[0] == "negative":
+                            sms_2013_score.append(-1)
+                            sms_2013_negative += 1
+                        
+                        elif tweet_parsed[0] == "neutral":
+                            sms_2013_score.append(0)
+                            sms_2013_neutral += 1
 
-                        elif tweet_parsed[1] == "LiveJournal2014":
-                            tweets_liveJournal2014.append(tweet_parsed[2])
-                            if tweet_parsed[0] == "positive":
-                                tweets_liveJournal2014_score.append(1)
-                            else:
-                                tweets_liveJournal2014_score.append(-1) 
+                    elif tweet_parsed[1] == "LiveJournal2014":
+                        tweets_liveJournal2014.append(tweet_parsed[2])
+                        
+                        if tweet_parsed[0] == "positive":
+                            tweets_liveJournal2014_score.append(1)
+                            tweets_liveJournal2014_positive += 1
+                        
+                        elif tweet_parsed[0] == "negative":
+                            tweets_liveJournal2014_score.append(-1)
+                            tweets_liveJournal2014_negative += 1
+                        
+                        elif tweet_parsed[0] == "neutral":
+                            tweets_liveJournal2014_score.append(0)
+                            tweets_liveJournal2014_neutral += 1
 
-                        elif tweet_parsed[1] == "Twitter2014Sarcasm":
-                            tweets_2014_sarcasm.append(tweet_parsed[2])
-                            if tweet_parsed[0] == "positive":
-                                tweets_2014_sarcasm_score.append(1)
-                            else:
-                                tweets_2014_sarcasm_score.append(-1)                                                            
+                    elif tweet_parsed[1] == "Twitter2014Sarcasm":
+                        tweets_2014_sarcasm.append(tweet_parsed[2])
+                        
+                        if tweet_parsed[0] == "positive":
+                            tweets_2014_sarcasm_score.append(1)
+                            tweets_2014_sarcasm_positive += 1
+                        
+                        elif tweet_parsed[0] == "negative":
+                            tweets_2014_sarcasm_score.append(-1)
+                            tweets_2014_sarcasm_negative += 1
+                        
+                        elif tweet_parsed[0] == "neutral":
+                            tweets_2014_sarcasm_score.append(0)                                                           
+                            tweets_2014_sarcasm_neutral += 1
 
-                        tweets_loaded += 1
+                    tweets_loaded += 1
                 # treat 403 exception mainly
                 except:
                     #print("exception")
@@ -342,6 +416,10 @@ def evaluateTweets2013Messages(model):
     global tweets_2013
     global tweets_2013_score
 
+    global tweets_2013_positive
+    global tweets_2013_negative
+    global tweets_2013_neutral
+
     message = ""
     model_analysis = ""
     result = 0
@@ -351,83 +429,127 @@ def evaluateTweets2013Messages(model):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    true_neutral  = 0
+    false_neutral = 0
 
     accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
+    precision_neutral = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
-    # only 2013 for while
+
     for index, item in enumerate(tweets_2013): 
         message = str(tweets_2013[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("x", message)
-        #print(model_analysis)
-        #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
         if tweets_2013_score[index] > 0:
             if result > 0:
                 true_positive += 1
             else:
-                false_negative += 1
-        else:
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_negative += 1
+                
+        elif tweets_2013_score[index] < 0:
             if result < 0:
                 true_negative += 1
             else:
-                false_positive += 1
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_positive += 1
+
+        elif tweets_2013_score[index] == 0:
+            if result == 0:
+                true_neutral += 1
+            else:
+                if result < 0:
+                    false_negative += 1
+                else:
+                    false_positive += 1
+
 
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
 
+
     if true_negative + false_negative > 0:
         precision_negative = true_negative / (true_negative + false_negative)
+    
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+    # End PRECISION
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    # Begin RECALL
+    if tweets_2013_positive > 0:
+        recall_positive = true_positive / tweets_2013_positive
 
+
+    if tweets_2013_negative > 0:
+        recall_negative = true_negative / tweets_2013_negative
+
+    if tweets_2013_neutral > 0:
+        recall_neutral = true_neutral / tweets_2013_neutral
+    # End RECALL
+
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
 
     if precision_negative + recall_negative > 0:
-        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)
+
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)                  
+    # End F1        
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
 
-    f1_avg = (f1_positive + f1_negative) / 2         
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
+
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2         
 
     print("\n")
-    print("[Tweets2013 messages]")
+    print("[Twitter2013 messages]")
     print("[messages evaluated]: " + str(len(tweets_2013)))
-    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[correct evaluations]: " + str(true_positive + true_negative + true_neutral) + " (" + str(true_positive) + " positives, " + str(true_negative) + " negatives and " + str(true_neutral) + " neutrals)")
     print("[model]: " + str(model))
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 2)))    
     print("[true_positive]: " + str(true_positive))
     print("[false_positive]: " + str(false_positive))
     print("[true_negative]: " + str(true_negative))
     print("[false_negative]: " + str(false_negative))
+    print("[true_neutral]: " + str(true_neutral))
+    print("[false_neutral]: " + str(false_neutral))  
 
 
 # Evaluate only the Tweets2014
@@ -435,6 +557,10 @@ def evaluateTweets2014Messages(model):
     global tweets_2014
     global tweets_2014_score
 
+    global tweets_2014_positive
+    global tweets_2014_negative
+    global tweets_2014_neutral
+
     message = ""
     model_analysis = ""
     result = 0
@@ -444,83 +570,127 @@ def evaluateTweets2014Messages(model):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    true_neutral  = 0
+    false_neutral = 0
 
     accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
+    precision_neutral = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
-    # only 2013 for while
+
     for index, item in enumerate(tweets_2014): 
         message = str(tweets_2014[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("x", message)
-        #print(model_analysis)
-        #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
         if tweets_2014_score[index] > 0:
             if result > 0:
                 true_positive += 1
             else:
-                false_negative += 1
-        else:
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_negative += 1
+                
+        elif tweets_2014_score[index] < 0:
             if result < 0:
                 true_negative += 1
             else:
-                false_positive += 1
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_positive += 1
+
+        elif tweets_2014_score[index] == 0:
+            if result == 0:
+                true_neutral += 1
+            else:
+                if result < 0:
+                    false_negative += 1
+                else:
+                    false_positive += 1
+
 
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
 
+
     if true_negative + false_negative > 0:
         precision_negative = true_negative / (true_negative + false_negative)
+    
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+    # End PRECISION
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    # Begin RECALL
+    if tweets_2014_positive > 0:
+        recall_positive = true_positive / tweets_2014_positive
 
+
+    if tweets_2014_negative > 0:
+        recall_negative = true_negative / tweets_2014_negative
+
+    if tweets_2014_neutral > 0:
+        recall_neutral = true_neutral / tweets_2014_neutral
+    # End RECALL
+
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
 
     if precision_negative + recall_negative > 0:
-        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)
+
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)                  
+    # End F1        
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
 
-    f1_avg = (f1_positive + f1_negative) / 2         
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
+
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2         
 
     print("\n")
-    print("[Tweets2014 messages]")
+    print("[Twitter2014 messages]")
     print("[messages evaluated]: " + str(len(tweets_2014)))
-    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[correct evaluations]: " + str(true_positive + true_negative + true_neutral) + " (" + str(true_positive) + " positives, " + str(true_negative) + " negatives and " + str(true_neutral) + " neutrals)")
     print("[model]: " + str(model))
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 2)))    
     print("[true_positive]: " + str(true_positive))
     print("[false_positive]: " + str(false_positive))
     print("[true_negative]: " + str(true_negative))
-    print("[false_negative]: " + str(false_negative))    
+    print("[false_negative]: " + str(false_negative))
+    print("[true_neutral]: " + str(true_neutral))
+    print("[false_neutral]: " + str(false_neutral))  
 
 
 
@@ -529,6 +699,10 @@ def evaluateTweets2014SarcasmMessages(model):
     global tweets_2014_sarcasm
     global tweets_2014_sarcasm_score
 
+    global tweets_2014_sarcasm_positive
+    global tweets_2014_sarcasm_negative
+    global tweets_2014_sarcasm_neutral
+
     message = ""
     model_analysis = ""
     result = 0
@@ -538,83 +712,127 @@ def evaluateTweets2014SarcasmMessages(model):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    true_neutral  = 0
+    false_neutral = 0
 
     accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
+    precision_neutral = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
-    # only 2013 for while
+
     for index, item in enumerate(tweets_2014_sarcasm): 
         message = str(tweets_2014_sarcasm[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("x", message)
-        #print(model_analysis)
-        #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
         if tweets_2014_sarcasm_score[index] > 0:
             if result > 0:
                 true_positive += 1
             else:
-                false_negative += 1
-        else:
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_negative += 1
+                
+        elif tweets_2014_sarcasm_score[index] < 0:
             if result < 0:
                 true_negative += 1
             else:
-                false_positive += 1
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_positive += 1
+
+        elif tweets_2014_sarcasm_score[index] == 0:
+            if result == 0:
+                true_neutral += 1
+            else:
+                if result < 0:
+                    false_negative += 1
+                else:
+                    false_positive += 1
+
 
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
 
+
     if true_negative + false_negative > 0:
         precision_negative = true_negative / (true_negative + false_negative)
+    
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+    # End PRECISION
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    # Begin RECALL
+    if tweets_2014_sarcasm_positive > 0:
+        recall_positive = true_positive / tweets_2014_sarcasm_positive
 
+
+    if tweets_2014_sarcasm_negative > 0:
+        recall_negative = true_negative / tweets_2014_sarcasm_negative
+
+    if tweets_2014_sarcasm_neutral > 0:
+        recall_neutral = true_neutral / tweets_2014_sarcasm_neutral
+    # End RECALL
+
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
 
     if precision_negative + recall_negative > 0:
-        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)
+
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)                  
+    # End F1        
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
 
-    f1_avg = (f1_positive + f1_negative) / 2         
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
+
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2         
 
     print("\n")
-    print("[Tweets2014Sarcasm messages]")
+    print("[Twitter2014Sarcasm messages]")
     print("[messages evaluated]: " + str(len(tweets_2014_sarcasm)))
-    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[correct evaluations]: " + str(true_positive + true_negative + true_neutral) + " (" + str(true_positive) + " positives, " + str(true_negative) + " negatives and " + str(true_neutral) + " neutrals)")
     print("[model]: " + str(model))
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 2)))    
     print("[true_positive]: " + str(true_positive))
     print("[false_positive]: " + str(false_positive))
     print("[true_negative]: " + str(true_negative))
     print("[false_negative]: " + str(false_negative))
+    print("[true_neutral]: " + str(true_neutral))
+    print("[false_neutral]: " + str(false_neutral))
 
 
 # Evaluate only the SMS2013
@@ -622,6 +840,10 @@ def evaluateSMS2013(model):
     global sms_2013
     global sms_2013_score
 
+    global sms_2013_positive
+    global sms_2013_negative
+    global sms_2013_negative
+
     message = ""
     model_analysis = ""
     result = 0
@@ -631,83 +853,128 @@ def evaluateSMS2013(model):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    true_neutral  = 0
+    false_neutral = 0
 
     accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
+    precision_neutral = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
-    # only 2013 for while
+
     for index, item in enumerate(sms_2013): 
         message = str(sms_2013[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("x", message)
-        #print(model_analysis)
-        #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
         if sms_2013_score[index] > 0:
             if result > 0:
                 true_positive += 1
             else:
-                false_negative += 1
-        else:
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_negative += 1
+                
+        elif sms_2013_score[index] < 0:
             if result < 0:
                 true_negative += 1
             else:
-                false_positive += 1
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_positive += 1
+
+        elif sms_2013_score[index] == 0:
+            if result == 0:
+                true_neutral += 1
+            else:
+                if result < 0:
+                    false_negative += 1
+                else:
+                    false_positive += 1
+
 
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
 
+
     if true_negative + false_negative > 0:
         precision_negative = true_negative / (true_negative + false_negative)
+    
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+    # End PRECISION
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    # Begin RECALL
+    if sms_2013_positive > 0:
+        recall_positive = true_positive / sms_2013_positive
 
+
+    if sms_2013_negative > 0:
+        recall_negative = true_negative / sms_2013_negative
+
+    if sms_2013_neutral > 0:
+        recall_neutral = true_neutral / sms_2013_neutral
+    # End RECALL
+
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
 
     if precision_negative + recall_negative > 0:
-        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)
+
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)                  
+    # End F1        
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
 
-    f1_avg = (f1_positive + f1_negative) / 2         
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
+
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2   
+   
 
     print("\n")
     print("[SMS2013 messages]")
     print("[messages evaluated]: " + str(len(sms_2013)))
-    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[correct evaluations]: " + str(true_positive + true_negative + true_neutral) + " (" + str(true_positive) + " positives, " + str(true_negative) + " negatives and " + str(true_neutral) + " neutrals)")
     print("[model]: " + str(model))
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 2)))    
     print("[true_positive]: " + str(true_positive))
     print("[false_positive]: " + str(false_positive))
     print("[true_negative]: " + str(true_negative))
     print("[false_negative]: " + str(false_negative))
+    print("[true_neutral]: " + str(true_neutral))
+    print("[false_neutral]: " + str(false_neutral))
 
 
 
@@ -716,6 +983,10 @@ def evaluateTweetsLiveJournal2014(model):
     global tweets_liveJournal2014
     global tweets_liveJournal2014_score
 
+    global tweets_liveJournal2014_positive
+    global tweets_liveJournal2014_negative
+    global tweets_liveJournal2014_neutral
+
     message = ""
     model_analysis = ""
     result = 0
@@ -725,83 +996,126 @@ def evaluateTweetsLiveJournal2014(model):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    true_neutral  = 0
+    false_neutral = 0
 
     accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
+    precision_neutral = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
-    # only 2013 for while
     for index, item in enumerate(tweets_liveJournal2014): 
         message = str(tweets_liveJournal2014[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("x", message)
-        #print(model_analysis)
-        #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
         if tweets_liveJournal2014_score[index] > 0:
             if result > 0:
                 true_positive += 1
             else:
-                false_negative += 1
-        else:
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_negative += 1
+                
+        elif tweets_liveJournal2014_score[index] < 0:
             if result < 0:
                 true_negative += 1
             else:
-                false_positive += 1
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_positive += 1
+
+        elif tweets_liveJournal2014_score[index] == 0:
+            if result == 0:
+                true_neutral += 1
+            else:
+                if result < 0:
+                    false_negative += 1
+                else:
+                    false_positive += 1
+
 
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
 
+
     if true_negative + false_negative > 0:
         precision_negative = true_negative / (true_negative + false_negative)
+    
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+    # End PRECISION
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    # Begin RECALL
+    if tweets_liveJournal2014_positive > 0:
+        recall_positive = true_positive / tweets_liveJournal2014_positive
 
+
+    if tweets_liveJournal2014_negative > 0:
+        recall_negative = true_negative / tweets_liveJournal2014_negative
+
+    if tweets_liveJournal2014_neutral > 0:
+        recall_neutral = true_neutral / tweets_liveJournal2014_neutral
+    # End RECALL
+
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
 
     if precision_negative + recall_negative > 0:
-        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)
+
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)                  
+    # End F1        
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
 
-    f1_avg = (f1_positive + f1_negative) / 2         
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
+
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2         
 
     print("\n")
     print("[LiveJournal2014 messages]")
     print("[messages evaluated]: " + str(len(tweets_liveJournal2014)))
-    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[correct evaluations]: " + str(true_positive + true_negative + true_neutral) + " (" + str(true_positive) + " positives, " + str(true_negative) + " negatives and " + str(true_neutral) + " neutrals)")
     print("[model]: " + str(model))
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 2)))    
     print("[true_positive]: " + str(true_positive))
     print("[false_positive]: " + str(false_positive))
     print("[true_negative]: " + str(true_negative))
     print("[false_negative]: " + str(false_negative))
+    print("[true_neutral]: " + str(true_neutral))
+    print("[false_neutral]: " + str(false_neutral))
 
 
 
@@ -815,6 +1129,28 @@ def evaluateAllMessages(model):
     global tweets_2014_score
     global sms_2013
     global sms_2013_score
+    global tweets_2014_sarcasm
+    global tweets_2014_sarcasm_score
+
+    global tweets_liveJournal2014_positive
+    global tweets_liveJournal2014_negative
+    global tweets_liveJournal2014_neutral
+
+    global tweets_2013_positive
+    global tweets_2013_negative
+    global tweets_2013_neutral
+
+    global tweets_2014_positive
+    global tweets_2014_negative
+    global tweets_2014_neutral
+
+    global sms_2013_positive
+    global sms_2013_negative
+    global sms_2013_neutral
+
+    global tweets_2014_sarcasm_positive
+    global tweets_2014_sarcasm_negative
+    global tweets_2014_sarcasm_neutral
 
     message = ""
     model_analysis = ""
@@ -825,93 +1161,137 @@ def evaluateAllMessages(model):
     true_negative = 0
     false_positive = 0
     false_negative = 0
+    true_neutral  = 0
+    false_neutral = 0
 
     accuracy = 0
-    
+
     precision_positive = 0
     precision_negative = 0
+    precision_neutral = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral = 0
     f1_avg = 0
+    f1_positive_negative_avg = 0
 
-    allMessages = tweets_2013 + tweets_2014 + tweets_liveJournal2014 + sms_2013
-    allScores   = tweets_2013_score + tweets_2014_score + tweets_liveJournal2014_score + sms_2013_score
+    allMessages = tweets_2013 + tweets_2014 + tweets_liveJournal2014 + sms_2013 + tweets_2014_sarcasm
+    allScores   = tweets_2013_score + tweets_2014_score + tweets_liveJournal2014_score + sms_2013_score + tweets_2014_sarcasm_score
 
-    # only 2013 for while
+    
     for index, item in enumerate(allMessages): 
         message = str(allMessages[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("x", message)
-        #print(model_analysis)
-        #print(str(eval(model_analysis)))
         result = eval(model_analysis)
 
         if allScores[index] > 0:
             if result > 0:
                 true_positive += 1
             else:
-                false_negative += 1
-        else:
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_negative += 1
+                
+        elif allScores[index] < 0:
             if result < 0:
                 true_negative += 1
             else:
-                false_positive += 1
+                if result == 0:
+                    false_neutral += 1
+                else:
+                    false_positive += 1
+
+        elif allScores[index] == 0:
+            if result == 0:
+                true_neutral += 1
+            else:
+                if result < 0:
+                    false_negative += 1
+                else:
+                    false_positive += 1    
+
     
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
 
+
     if true_negative + false_negative > 0:
         precision_negative = true_negative / (true_negative + false_negative)
+    
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+    # End PRECISION
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    # Begin RECALL
+    if tweets_2014_sarcasm_positive + tweets_2013_positive + tweets_2014_positive + sms_2013_positive + tweets_liveJournal2014_positive > 0:
+        recall_positive = true_positive / (tweets_2014_sarcasm_positive + tweets_2013_positive + tweets_2014_positive + sms_2013_positive + tweets_liveJournal2014_positive)
 
+
+    if tweets_2014_sarcasm_negative + tweets_2013_negative + tweets_2014_negative + sms_2013_negative + tweets_liveJournal2014_negative > 0:
+        recall_negative = true_negative / (tweets_2014_sarcasm_negative + tweets_2013_negative + tweets_2014_negative + sms_2013_negative + tweets_liveJournal2014_negative)
+
+    if tweets_2014_sarcasm_neutral + tweets_2013_neutral + tweets_2014_neutral + sms_2013_neutral + tweets_liveJournal2014_neutral > 0:
+        recall_neutral = true_neutral / (tweets_2014_sarcasm_neutral + tweets_2013_neutral + tweets_2014_neutral + sms_2013_neutral + tweets_liveJournal2014_neutral)
+    # End RECALL
+
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
 
     if precision_negative + recall_negative > 0:
-        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)        
+        f1_negative = 2 * (precision_negative * recall_negative) / (precision_negative + recall_negative)
+
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)                  
+    # End F1        
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
 
-    f1_avg = (f1_positive + f1_negative) / 2         
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
+
+    f1_positive_negative_avg = (f1_positive + f1_negative) / 2         
 
     print("\n")
     print("[All messages]")
     print("[messages evaluated]: " + str(len(allMessages)))
-    print("[correct evaluations]: " + str(true_positive + true_negative) + " (" + str(true_positive) + " positives and " + str(true_negative) + " negatives)")
+    print("[correct evaluations]: " + str(true_positive + true_negative + true_neutral) + " (" + str(true_positive) + " positives, " + str(true_negative) + " negatives and " + str(true_neutral) + " neutrals)")
     print("[model]: " + str(model))
     print("[accuracy]: " + str(round(accuracy, 2)))
     print("[precision_avg]: " + str(round(precision_avg, 2)))
     print("[recall avg]: " + str(round(recall_avg, 2)))
     print("[f1 avg]: " + str(round(f1_avg, 2)))
+    print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 2)))    
     print("[true_positive]: " + str(true_positive))
     print("[false_positive]: " + str(false_positive))
     print("[true_negative]: " + str(true_negative))
     print("[false_negative]: " + str(false_negative))
+    print("[true_neutral]: " + str(true_neutral))
+    print("[false_neutral]: " + str(false_neutral))
 
 
 if __name__ == "__main__":
     getDictionary()
     getTestTweetsFromSemeval2014()
 
-    function_to_evaluate = "protectedDiv(protectedDiv(sub(0.46102290893297626, invertSignal(negativeHashtags(repeatInputString(repeatInputString(x))))), protectedDiv(add(negativeHashtags(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))), exp(sub(sub(polaritySum(repeatInputString(repeatInputString(x))), negativeEmoticons(repeatInputString(x))), protectedLog(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(x)))))))), sub(emoticonsPolaritySum(repeatInputString(repeatInputString(x))), negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(x))))))), 1.1363947614119714)"
+    function_to_evaluate = "invertSignal(sub(negativeWordsQuantity(repeatInputString(repeatInputString(x))), positiveWordsQuantity(repeatInputString(repeatInputString(x)))))"
 
     evaluateTweets2013Messages(function_to_evaluate)
     evaluateTweets2014Messages(function_to_evaluate)

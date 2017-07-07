@@ -41,7 +41,7 @@ dic_negative_emoticons = []
 
 positive_tweets = 0
 negative_tweets = 0
-#neutral_tweets = 0
+neutral_tweets  = 0
 
 fitness_positive = 0
 fitness_negative = 0
@@ -72,15 +72,18 @@ best_f1_avg_function        = ""
 
 precision_positive_history = []
 precision_negative_history = []
+precision_neutral_history  = []
 recall_positive_history    = []
 recall_negative_history    = []
+recall_neutral_history     = []
 f1_positive_history        = []
 f1_negative_history        = []
+f1_neutral_history         = []
 
-MAX_ANALYSIS_TWEETS = 6000
+MAX_ANALYSIS_TWEETS = 500
 GENERATIONS = 70
 generations_unchanged = 0
-max_unchanged_generations = 120
+max_unchanged_generations = 40
 
 uses_dummy_function = False
 
@@ -174,7 +177,7 @@ def getTweetsFromFileIdLoadedSemeval2014():
 
     global positive_tweets
     global negative_tweets
-    #global neutral_tweets
+    global neutral_tweets
 
     tweets_loaded = 0
 
@@ -194,14 +197,12 @@ def getTweetsFromFileIdLoadedSemeval2014():
                             tweets_semeval_score.append(-1)
 
                         tweets_loaded += 1
-                    
-                    # Uncomment when I want to consider the neutral tweets
-                    #else:
-                        #tweets_semeval.append(tweet_parsed[3])
-                        #tweets_semeval_score.append(0)
-                        #neutral_tweets += 1
-
-                        #tweets_loaded += 1
+                    else:
+                        tweets_semeval.append(tweet_parsed[3])
+                        tweets_semeval_score.append(0)
+                        neutral_tweets += 1
+                        tweets_loaded += 1
+                
                 # treat 403 exception mainly
                 except:
                     #print("exception")
@@ -623,9 +624,11 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     global positive_tweets
     global negative_tweets
+    global neutral_tweets
 
     global fitness_positive
     global fitness_negative
+    global fitness_neutral
 
     global best_fitness
     global best_fitness_history
@@ -634,21 +637,25 @@ def evalSymbRegTweetsFromSemeval(individual):
     # Precision
     global best_precision_positive
     global best_precision_negative
+    global best_precision_neutral
     global best_precision_avg
     global best_precision_avg_function
     # Recall
     global best_recall_positive
     global best_recall_negative
+    global best_recall_neutral
     global best_recall_avg
     global best_recall_avg_function
     # F1
     global best_f1_positive
     global best_f1_negative
+    global best_f1_neutral
     global best_f1_avg
     global best_f1_avg_function
     # Precision, Recall and F1 history
     global precision_positive_history
     global precision_negative_history
+    global precision_neutral_history
     global recall_positive_history
     global recall_negative_history
     global f1_positive_history
@@ -668,25 +675,31 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     is_positive = 0
     is_negative = 0
+    is_neutral  = 0
     
     # parameters to calc the metrics
     true_positive = 0
     true_negative = 0
+    true_neutral  = 0
     false_positive = 0
     false_negative = 0
+    false_neutral  = 0
 
     accuracy = 0
 
     precision_positive = 0
     precision_negative = 0
+    precision_neutral  = 0
     precision_avg = 0
 
     recall_positive = 0
     recall_negative = 0
+    recall_neutral  = 0
     recall_avg = 0
 
     f1_positive = 0
     f1_negative = 0
+    f1_neutral  = 0
     f1_avg = 0
 
     breaked = False
@@ -701,7 +714,7 @@ def evalSymbRegTweetsFromSemeval(individual):
             break
 
         if index == 0:
-            print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]")
+            print("\n[New cicle]: " + str(len(tweets_semeval)) + " phrases to evaluate [" + str(positive_tweets) + " positives, " + str(negative_tweets) + " negatives and " + str(neutral_tweets) + " neutrals]")
 
         try:
             if float(tweets_semeval_score[index]) > 0:
@@ -710,15 +723,33 @@ def evalSymbRegTweetsFromSemeval(individual):
                     is_positive   += 1
                     true_positive += 1
                 else:
-                    false_negative += 1
+                    if float(func(tweets_semeval[index])) == 0:
+                        false_neutral += 1
+                    else:
+                        false_negative += 1
 
-            else:
+            elif float(tweets_semeval_score[index]) < 0:
                 if float(func(tweets_semeval[index])) < 0:
                     correct_evaluations += 1 
                     is_negative   += 1
                     true_negative += 1
                 else:
-                    false_positive += 1
+                    if float(func(tweets_semeval[index])) == 0:
+                        false_neutral += 1
+                    else:
+                        false_positive += 1
+
+            elif float(tweets_semeval_score[index]) == 0:
+                if float(func(tweets_semeval[index])) == 0:
+                    correct_evaluations += 1 
+                    is_neutral   += 1
+                    true_neutral += 1
+                else:
+                    if float(func(tweets_semeval[index])) < 0:
+                        false_negative += 1
+                    else:
+                        false_positive += 1
+
 
         except:
             print("exception")
@@ -743,11 +774,10 @@ def evalSymbRegTweetsFromSemeval(individual):
 
 
     if true_positive + false_positive + true_negative + false_negative > 0:
-        accuracy = (true_positive + true_negative) / (true_positive + false_positive + true_negative + false_negative)
+        accuracy = (true_positive + true_negative + true_neutral) / (true_positive + false_positive + true_negative + false_negative + true_neutral + false_neutral)
 
 
-    fitnessReturn = accuracy
-
+    # Begin PRECISION
     if true_positive + false_positive > 0:
         precision_positive = true_positive / (true_positive + false_positive)
         if precision_positive > best_precision_positive:
@@ -758,20 +788,33 @@ def evalSymbRegTweetsFromSemeval(individual):
         precision_negative = true_negative / (true_negative + false_negative)
         if precision_negative > best_precision_negative:
             best_precision_negative = precision_negative
+    
 
+    if true_neutral + false_neutral > 0:
+        precision_neutral = true_neutral / (true_neutral + false_neutral)
+        if precision_neutral > best_precision_neutral:
+            best_precision_neutral = precision_neutral
+    # End PRECISION
 
-    if true_positive + false_negative > 0:
-        recall_positive = true_positive / (true_positive + false_negative)
+    # Begin RECALL
+    if positive_tweets > 0:
+        recall_positive = true_positive / positive_tweets
         if recall_positive > best_recall_positive:
             best_recall_positive = recall_positive
 
 
-    if true_negative + false_positive > 0:
-        recall_negative = true_negative / (true_negative + false_positive)
+    if negative_tweets > 0:
+        recall_negative = true_negative / negative_tweets
         if recall_negative > best_recall_negative:
             best_recall_negative = recall_negative
 
+    if neutral_tweets > 0:
+        recall_neutral = true_neutral / neutral_tweets
+        if recall_neutral > best_recall_neutral:
+            best_recall_neutral = recall_neutral
+    # End RECALL
 
+    # Begin F1
     if precision_positive + recall_positive > 0:
         f1_positive = 2 * (precision_positive * recall_positive) / (precision_positive + recall_positive)
         if f1_positive > best_f1_positive:
@@ -783,22 +826,32 @@ def evalSymbRegTweetsFromSemeval(individual):
         if f1_negative > best_f1_negative:
             best_f1_negative = f1_negative
 
+    if precision_neutral + recall_neutral > 0:
+        f1_neutral = 2 * (precision_neutral * recall_neutral) / (precision_neutral + recall_neutral)        
+        if f1_neutral > best_f1_neutral:
+            best_f1_neutral = f1_neutral            
+    # End F1
 
     # Precision, Recall and f1 means
-    precision_avg = (precision_positive + precision_negative) / 2
+    precision_avg = (precision_positive + precision_negative + precision_neutral) / 3
     if precision_avg > best_precision_avg:
         best_precision_avg = precision_avg
         best_precision_avg_function = str(individual)
 
-    recall_avg = (recall_positive + recall_negative) / 2
+    recall_avg = (recall_positive + recall_negative + recall_neutral) / 3
     if recall_avg > best_recall_avg:
         best_recall_avg = recall_avg
         best_recall_avg_function = str(individual)
 
-    f1_avg = (f1_positive + f1_negative) / 2
+    f1_avg = (f1_positive + f1_negative + f1_neutral) / 3
     if f1_avg > best_f1_avg:
         best_f1_avg = f1_avg
         best_f1_avg_function = str(individual)
+
+
+    # The metric that represent the fitness
+    # fitnessReturn = accuracy
+    fitnessReturn = f1_avg
 
 
     # test: i'm forcing don't model only the positive or negative tweets
@@ -813,8 +866,10 @@ def evalSymbRegTweetsFromSemeval(individual):
         best_fitness = fitnessReturn
         fitness_positive = is_positive
         fitness_negative = is_negative
+        fitness_neutral  = is_neutral
         is_positive = 0
         is_negative = 0
+        is_neutral  = 0
         generations_unchanged = 0
     else:
         generations_unchanged += 1
@@ -825,22 +880,27 @@ def evalSymbRegTweetsFromSemeval(individual):
     #logs   
     if log_parcial_results and not breaked: 
         print("[function]: " + str(individual))
-        print("[precision positive]: " + str(precision_positive))
-        print("[precision negative]: " + str(precision_negative))
-        print("[precision avg]: " + str(precision_avg))        
-        print("[recall positive]: " + str(recall_positive))
-        print("[recall negative]: " + str(recall_negative))
-        print("[recall avg]: " + str(recall_avg))
-        print("[f1 positive]: " + str(f1_positive))
-        print("[f1 negative]: " + str(f1_negative))
-        print("[f1 avg]: " + str(f1_avg))
-        print("[fitness (accuracy)]: " + str(fitnessReturn))
-        print("[best fitness]: " + str(best_fitness))
+        print("[precision positive]: " + str(round(precision_positive, 3)))
+        print("[precision negative]: " + str(round(precision_negative, 3)))
+        print("[precision neutral]: " + str(round(precision_neutral, 3)))
+        print("[precision avg]: " + str(round(precision_avg, 3)))
+        print("[recall positive]: " + str(round(recall_positive, 3)))
+        print("[recall negative]: " + str(round(recall_negative, 3)))
+        print("[recall neutral]: " + str(round(recall_neutral, 3)))
+        print("[recall avg]: " + str(round(recall_avg, 3)))
+        print("[f1 positive]: " + str(round(f1_positive, 3)))
+        print("[f1 negative]: " + str(round(f1_negative, 3)))
+        print("[f1 neutral]: " + str(round(f1_neutral, 3)))        
+        print("[f1 avg]: " + str(round(f1_avg, 3)))
+        print("[fitness (F1 avg)]: " + str(round(fitnessReturn, 3)))
+        print("[best fitness]: " + str(round(best_fitness, 3)))
         print("[generations unmodified]: " + str(generations_unchanged))
         print("[true_positive]: " + str(true_positive))
         print("[false_positive]: " + str(false_positive))
         print("[true_negative]: " + str(true_negative))
         print("[false_negative]: " + str(false_negative))
+        print("[true_neutral]: " + str(true_neutral))
+        print("[false_neutral]: " + str(false_neutral))        
         print("\n")   
     #logs
 
@@ -890,7 +950,7 @@ def main():
 
     global positive_tweets
     global negative_tweets
-    #global neutral_tweets
+    global neutral_tweets
 
     global fitness_positive
     global fitness_negative
@@ -928,13 +988,12 @@ def main():
     #logs
     print("\n")
     print("## Results ##\n")
-    print("[total tweets]: " + str(positive_tweets + negative_tweets) + " [" + str(positive_tweets) + " positives and " + str(negative_tweets) + " negatives]\n")
-    print("[best fitness]: " + str(best_fitness) + " [" + str(fitness_positive) + " positives and " + str(fitness_negative) + " negatives]\n")
+    print("[total tweets]: " + str(positive_tweets + negative_tweets + neutral_tweets) + " [" + str(positive_tweets) + " positives, " + str(negative_tweets) + " negatives and " + str(neutral_tweets) + " neutrals]\n")
+    print("[best fitness (F1 avg)]: " + str(best_fitness) + " [" + str(fitness_positive + fitness_negative + fitness_neutral) + " correct evaluations] ["+ str(fitness_positive) + " positives, " + str(fitness_negative) + " negatives and " + str(fitness_neutral) + " neutrals]\n")
     print("[function]: " + str(hof[0]) + "\n")
-    #print(best_fitness_history)
-    #print("\n")
     print("[best precision positive]: " + str(best_precision_positive))
     print("[best precision negative]: " + str(best_precision_negative))
+    print("[best precision neutral]: "  + str(best_precision_neutral))    
     print("[best precision avg]: " + str(best_precision_avg))
     print("[best precision avg function]: " + best_precision_avg_function + "\n")    
     print("[best recall positive]: " + str(best_recall_positive))    

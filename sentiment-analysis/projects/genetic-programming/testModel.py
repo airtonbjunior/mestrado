@@ -1292,7 +1292,7 @@ if __name__ == "__main__":
     getTestTweetsFromSemeval2014()
 
     #function_to_evaluate = "invertSignal(sub(negativeWordsQuantity(repeatInputString(repeatInputString(x))), positiveWordsQuantity(repeatInputString(repeatInputString(x)))))"
-    function_to_evaluate = "polaritySum(x)"
+    function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
 
     evaluateTweets2013Messages(function_to_evaluate)
     evaluateTweets2014Messages(function_to_evaluate)

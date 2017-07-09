@@ -85,13 +85,13 @@ f1_neutral_history         = []
 
 MAX_ANALYSIS_TWEETS = 10000
 
-MAX_POSITIVES_TWEETS = 0
-MAX_NEGATIVES_TWEETS = 0
-MAX_NEUTRAL_TWEETS = 0
+MAX_POSITIVES_TWEETS = 1400
+MAX_NEGATIVES_TWEETS = 1400
+MAX_NEUTRAL_TWEETS = 1400
 
 GENERATIONS = 500
 generations_unchanged = 0
-max_unchanged_generations = 350
+max_unchanged_generations = 50
 
 uses_dummy_function = False
 
@@ -196,21 +196,24 @@ def getTweetsFromFileIdLoadedSemeval2014():
                 try:
                     # i'm ignoring the neutral tweets
                     if(tweet_parsed[2] != "neutral"):
-                        tweets_semeval.append(tweet_parsed[3])
                         if(tweet_parsed[2] == "positive"):
-                            positive_tweets += 1
-                            tweets_semeval_score.append(1)
+                            if(positive_tweets < MAX_POSITIVES_TWEETS):
+                                positive_tweets += 1
+                                tweets_semeval.append(tweet_parsed[3])
+                                tweets_semeval_score.append(1)
+                                tweets_loaded += 1
                         else:
-                            negative_tweets += 1
-                            tweets_semeval_score.append(-1)
-
-                        tweets_loaded += 1
+                            if(negative_tweets < MAX_NEGATIVES_TWEETS):
+                                negative_tweets += 1
+                                tweets_semeval.append(tweet_parsed[3])
+                                tweets_semeval_score.append(-1)
+                                tweets_loaded += 1
                     else:
-                        tweets_semeval.append(tweet_parsed[3])
-                        tweets_semeval_score.append(0)
-                        neutral_tweets += 1
-                        tweets_loaded += 1
-                
+                        if(neutral_tweets < MAX_NEUTRAL_TWEETS):
+                            tweets_semeval.append(tweet_parsed[3])
+                            tweets_semeval_score.append(0)
+                            neutral_tweets += 1
+                            tweets_loaded += 1
                 # treat 403 exception mainly
                 except:
                     #print("exception")

@@ -6,6 +6,13 @@
 \usepackage{makecell}
 \usepackage{multirow}
 \usepackage{float}
+\usepackage{array}
+\usepackage{changepage}
+\usepackage{enumitem}
+
+
+\renewcommand{\theenumi}{\Alph{enumi}}
+
      
 \sloppy
 
@@ -233,9 +240,11 @@ Especificamente para o contexto de Programação Genética, DEAP fornece funcion
 
 \subsection{Dicionários}
 
-Para o presente trabalho, [foram utilizados - colocar algo que queira dizer isso] os dicionários de palavras positivas e negativas de \cite{HuAndLiu2004}\footnote{https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html\#lexicon}. Os dicionários fornecem um conjunto de 4783 palavras negativas e 2006 palavras positivas para apoiar no processo de Análise de Sentimentos.
+Para o presente trabalho, foram utilizados os dicionários de palavras positivas e negativas de \cite{HuAndLiu2004}\footnote{https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html\#lexicon}. Os dicionários fornecem um conjunto de 4783 palavras negativas e 2006 palavras positivas para apoiar no processo de Análise de Sentimentos.
 
 Utilizou-se, também, o dicionário de emoticons SentiStrength\footnote{http://sentistrength.wlv.ac.uk/}, que fornece 46 emoticons positivos e 58 negativos.
+
+A escolha desses dicionários deu-se, principalmente, por terem sido utilizados como base para o SemEval 2014, \emph{task} 9. Ao considerar as mesmas bases disponibilizadas pela competição, é possível fazer a comparação dos resultados obtidos neste trabalho com os avaliados pelo evento.
 
 \subsection{\emph{Datasets}}
 \label{datasets}
@@ -251,11 +260,11 @@ O evento também disponibiliza uma base de testes, que serve como critério de a
 \centering
 	\begin{tabular}{lc}
 	\multicolumn{1}{c}{\textbf{Base de Dados}} & \textit{\textbf{Tweets}} \\ \hline
-	1 - Tweets2013 & 3813 \\ \hline
-	2 - Tweets2014 & 1853 \\ \hline
-	3 - \textit{Tweets2014Sarcasm} & 86 \\ \hline
-	4 - SMS2013 & 2093 \\ \hline
-	5 - LiveJournal2014 & 1142 \\ \hline
+	Tweets2013 & 3813 \\ \hline
+	Tweets2014 & 1853 \\ \hline
+	\textit{Tweets2014Sarcasm} & 86 \\ \hline
+	SMS2013 & 2093 \\ \hline
+	LiveJournal2014 & 1142 \\ \hline
 	Total & 8987
 	\end{tabular}
 \caption{Bases de testes - Semeval2014}
@@ -272,54 +281,106 @@ A criação do modelo é feita pelo processo de Programação Genética, tendo c
 
 Alguns parâmetros devem ser definidos para o funcionamento da Programação Genética. Os principais deles são quantidade de gerações, população, taxa de \emph{crossover} e taxa de mutação. Não há uma regra para a definição desses valores, e cada problema deve ter uma abordagem diferente. Para o presente trabalho, os parâmetros definidos para a criação e evolução dos modelos podem ser vistos na tabela \ref{parametersGP}.
 
-Com o objetivo de diminuir a quantidade de tempo de processamento para a criação dos modelos pelo algoritmo de Programação Genética, foi criado um parâmetro que determina a quantidade máxima aceitável de gerações sem evolução no \emph{fitness}, ou seja, a quantidade de ciclos seguidos em que não houve melhoria no melhor indivíduo da população. 
-
-Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando as mesmas entradas (base de treinamento) e modificando somente os parâmetros da Programação Genética. Cada um dos modelos foi testado com a base de testes disponibilizada pelo SemEval 2014.
-
-Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
-\begin{itemize}
-	\item{polaritySum(x)}
-	\item{polaritySum(x)}
-	\item{polaritySum(x)}		
-\end{itemize}
-
-
-\begin{table}[]
-\centering
-\begin{tabular}{lcccccccccccccc}
-\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
- &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
-1 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
-2 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-3 & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
-4 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
-5 & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
-Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
-\end{tabular}
-\caption{Resultados dos testes do modelo 1}
-\label{test1}
-\end{table}
-
-
-
-\begin{table}[]
+\begin{table}[H]
 	\centering
 	\begin{tabular}{cccccc}
-	\textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
-	40 & 100 & 3.5\% & 1.5\% & 150 \\ \hline
-	40 & 50 & 2\% & 1\% & 150 \\ \hline
-	40 & 50 & 2\% & 1\% & 150 \\ \hline
-	40 & 50 & 2\% & 1\% & 150 \\ \hline
-	40 & 50 & 2\% & 1\% & 150 \\ \hline
+	\textbf{Modelo} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
+	A & 50 & 100 & 3.5\% & 1.5\% & 150 \\ \hline
+	B & 50 & 150 & 4.5\% & 2.5\% & 150 \\ \hline
+	C & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
 	\end{tabular}
 	\caption{Parâmetros da Programação Genética}
 	\label{parametersGP}
 \end{table}
 
+Com o objetivo de diminuir a quantidade de tempo de processamento para a criação dos modelos pelo algoritmo de Programação Genética, foi criado um parâmetro que determina a quantidade máxima aceitável de gerações sem evolução no \emph{fitness}, ou seja, a quantidade de ciclos seguidos em que não houve melhoria no melhor indivíduo da população. 
+
+Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando as mesmas entradas (base de treinamento) e modificando somente os parâmetros da Programação Genética. Cada um dos modelos foi testado com a base de testes disponibilizada pelo SemEval 2014.
+
+Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
+\begin{enumerate}[label=\Alph*]
+	\item{if\_then\_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))}  [Criar Árvore] 
+	\item{polaritySum(x)}
+	\item{polaritySum(x)} [colocar imagem para cada modelo]
+\end{enumerate}
+
+
 
 \subsection{Teste do modelo}
 
-\begin{table}[]
+Os modelos foram testados com a base de testes disponiblizada pela organização do evento SemEval 2014. Como apresentado na tabela \ref{datasets}, as mensagens são divididas em 5 bases de teste: Twitter2013, Twitter2014, Twitter2014Sarcasm, SMS2013 e LiveJournal2014. Os resultados foram calculados para cada base e, posteriormente, de forma geral, utilizando todas as mensagens.
+
+Especificamente no cálculo do F1, foi criado uma segunda média, levando em consideração somente o F1 positivo e negativo, desconsiderando o neutro. Esse foi o critério adotado pela equipe de avaliação do SemEval 2014 (\emph{task} 9, B), e foi aplicado no presente trabalho para que fosse possível comparar os resultados do mesmo com os classificadores submetidos para o evento.
+
+O resultado da task está disponível no site evento está disponível para consulta no site do evento \footnote{https://docs.google.com/spreadsheets/d/1CmDicfEIxRgyoAix9BsVcC3qoRFEq0XDTSnBLVdavu8/}.
+
+Os testes foram realizados para cada um dos modelos criados, e os resultados podem ser vistos nas tabelas \ref{test1}, \ref{test2} e \ref{test3}. Precisão, \emph{Recall} e F1 foram calculados para as mensagens Positivas (P), Negativas (N) e Neutras (Nt), além da Média (Avg). Especificamente para F1, foi feita a média somente das mensagens positivas e negativas (Avg +/-) pelo motivo citado anteriormente.
+
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-1.3cm}{}
+\begin{tabular}{lcccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+ &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
+Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
+Twiiter2013 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & \textbf{0.6} & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.5 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+\end{tabular}
+\caption{Resultados dos testes do modelo A}
+\label{test1}
+\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-1.3cm}{}
+\begin{tabular}{lcccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+ &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
+Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
+Twiiter2013 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+\end{tabular}
+\caption{Resultados dos testes do modelo B [Colocar dados corretos]}
+\label{test2}
+\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-1.3cm}{}
+\begin{tabular}{lcccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+ &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
+Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
+Twiiter2013 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+\end{tabular}
+\caption{Resultados dos testes do modelo C [Colocar dados corretos]}
+\label{test3}
+\end{adjustwidth}
+\end{table}
+
+\section{Conclusão}\label{conclusion}
+
+[Comparar com alguns trabalhos do evento]
+
+[Dizer que sarcasmo teve resultados ruins]
+
+[Mostrar melhores resultados]
+
+[Explanar critérios que podem ser modificados no GP]
+
+\begin{table}[H]
 \centering
 	\begin{tabular}{lcccc}
 	\multicolumn{1}{c}{\textbf{Base de Teste}}     & \multicolumn{1}{c}{\textbf{Acurácia}} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}	{\textbf{Recall (média)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} \\ \hline
@@ -330,11 +391,9 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 
 	LiveJournal2014 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
 	Todas & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline	
 	\end{tabular}
-	\caption{Resultados divididos por base de dados}
+	\caption{Resultados divididos por base de dados [Ver o que fazer com essa tabela, está perdida]}
 	\label{resultsl}
 \end{table}
-
-\section{Conclusão}\label{conclusion}
 
 \bibliographystyle{sbc}
 \bibliography{main}

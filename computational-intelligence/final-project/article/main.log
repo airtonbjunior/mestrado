@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  9 JUL 2017 01:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  9 JUL 2017 02:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -459,6 +459,19 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box27
 \@float@everytoks=\toks22
 \@floatcapt=\box28
+)
+(c:/texlive/2016/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count95
+\cp@tempcnt=\count96
+)
+(c:/texlive/2016/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip49
+\enit@outerparindent=\dimen126
+\enit@toks=\toks23
+\enit@inbox=\box29
+\enitdp@description=\count97
 ) (./main.aux
 
 LaTeX Warning: Label `datasets' multiply defined.
@@ -466,19 +479,19 @@ LaTeX Warning: Label `datasets' multiply defined.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 29.
  (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -518,17 +531,17 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 
 (c:/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count95
-\scratchdimen=\dimen126
-\scratchbox=\box29
-\nofMPsegments=\count96
-\nofMParguments=\count97
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count98
-\MPscratchDim=\dimen127
-\MPnumerator=\count99
-\makeMPintoPDFobject=\count100
-\everyMPtoPDFconversion=\toks24
+\scratchcounter=\count98
+\scratchdimen=\dimen127
+\scratchbox=\box30
+\nofMPsegments=\count99
+\nofMParguments=\count100
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count101
+\MPscratchDim=\dimen128
+\MPnumerator=\count102
+\makeMPintoPDFobject=\count103
+\everyMPtoPDFconversion=\toks25
 ) (c:/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -576,29 +589,29 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 24.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <16> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 24.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 24.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 24.
+(Font)              <12> on input line 31.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 24.
+(Font)              <8> on input line 31.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 24.
+(Font)              <6> on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 26.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 33.
 
-Underfull \hbox (badness 1521) in paragraph at lines 33--34
+Underfull \hbox (badness 1521) in paragraph at lines 40--41
 \OT1/ptm/m/it/12 teve como con-sequ[]encia uma cres-cente produ[][]ao de conte[
 ]udo por seus
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 38.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 45.
 
-Underfull \hbox (badness 3428) in paragraph at lines 44--45
+Underfull \hbox (badness 3428) in paragraph at lines 51--52
 []\OT1/ptm/m/n/12 Para que um clas-si-fi-cador tenha re-sul-ta-dos sat-is-fat[]
 orios, deve levar em
  []
@@ -606,55 +619,56 @@ orios, deve levar em
 [1
 
 {c:/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 56.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 63.
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 56.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
  [2] [3]
 <programTree2.png, id=18, 105.39375pt x 222.07968pt>
 File: programTree2.png Graphic file (type png)
  <use programTree2.png>
-Package pdftex.def Info: programTree2.png used on input line 95.
+Package pdftex.def Info: programTree2.png used on input line 102.
 (pdftex.def)             Requested size: 105.39348pt x 222.07913pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 96.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 103.
+
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 96.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 103.
 
-Underfull \hbox (badness 1014) in paragraph at lines 100--101
+Underfull \hbox (badness 1014) in paragraph at lines 107--108
 []\OT1/ptm/m/n/12 Na Programa[][]ao Gen[]etica, as-sim como em out-ros al-go-ri
 t-mos basea-dos na
  []
 
 [4 <./programTree2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 \OT1/ptm/m/n/12 [[]], [[]], [[]],
  []
 
 
-Underfull \hbox (badness 5217) in paragraph at lines 114--115
+Underfull \hbox (badness 5217) in paragraph at lines 121--122
 \OT1/ptm/m/n/12 [[]], [[]], [[]], en-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 []\OT1/ptm/m/n/12 Na linha de es-trat[]egias su-per-vi-sion-adas, [[]] e
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 124--125
+Underfull \hbox (badness 2903) in paragraph at lines 131--132
 \OT1/ptm/m/n/12 [[]] ap-re-sen-tam out-ros pro-ced-i-men-tos para apoiar a An[]
 alise
  []
 
 [5] [6]
-Underfull \hbox (badness 2846) in paragraph at lines 150--151
+Underfull \hbox (badness 2846) in paragraph at lines 157--158
 []\OT1/ptm/m/n/12 O in-div[]^^Pduo mais apto (de mel-hor \OT1/ptm/m/it/12 fit-n
 ess\OT1/ptm/m/n/12 ) re-tor-nado pelo al-go-ritmo de
  []
@@ -662,50 +676,47 @@ ess\OT1/ptm/m/n/12 ) re-tor-nado pelo al-go-ritmo de
 <diagrama2.png, id=29, 1056.94875pt x 685.56125pt>
 File: diagrama2.png Graphic file (type png)
  <use diagrama2.png>
-Package pdftex.def Info: diagrama2.png used on input line 156.
+Package pdftex.def Info: diagrama2.png used on input line 163.
 (pdftex.def)             Requested size: 426.79135pt x 276.82437pt.
  [7 <./diagrama2.png>]
-Underfull \hbox (badness 2035) in paragraph at lines 194--195
+Underfull \hbox (badness 2035) in paragraph at lines 201--202
 []\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
 n-clu[]^^Pdas fun[][]oes
  []
 
 [8]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 230.
+(Font)              <7> on input line 237.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 230.
- [9]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 287.
-
-
-Overfull \hbox (59.83557pt too wide) in paragraph at lines 289--299
- [][] 
+(Font)              <5> on input line 237.
+ [9] [10]
+Overfull \hbox (52.84657pt too wide) in paragraph at lines 322--332
+[][] 
  []
 
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 305.
+Overfull \hbox (52.84657pt too wide) in paragraph at lines 340--350
+[][] 
+ []
 
+[11]
+Overfull \hbox (52.84657pt too wide) in paragraph at lines 358--368
+[][] 
+ []
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 322.
-
-(./main.bbl [10] [11] [12] [13]) [14] (./main.aux)
+(./main.bbl [12] [13] [14]) [15] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3298 strings out of 493013
- 43806 string characters out of 6136993
- 126712 words of memory out of 5000000
- 6766 multiletter control sequences out of 15000+600000
+ 3627 strings out of 493013
+ 49284 string characters out of 6136993
+ 130629 words of memory out of 5000000
+ 7087 multiletter control sequences out of 15000+600000
  26395 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,28p,1083b,232s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,11n,28p,1083b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/font
 s/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/u
@@ -713,10 +724,10 @@ rw/helvetic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a
 .pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/
 2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (14 pages, 183771 bytes).
+Output written on main.pdf (15 pages, 187979 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 86 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  9 JUL 2017 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  9 JUL 2017 19:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -639,11 +639,22 @@ File: omsptm.fd
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 65.
  [2] [3]
-<programTree2.png, id=18, 105.39375pt x 222.07968pt>
-File: programTree2.png Graphic file (type png)
- <use programTree2.png>
-Package pdftex.def Info: programTree2.png used on input line 104.
-(pdftex.def)             Requested size: 105.39348pt x 222.07913pt.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 100.
+
+
+(c:/texlive/2016/texmf-dist/tex/latex/psnfss/omlptm.fd
+File: omlptm.fd 
+)
+LaTeX Font Info:    Font shape `OML/ptm/m/it' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 100.
+LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
+
+<treeGP.png, id=18, 499.8675pt x 365.365pt>
+File: treeGP.png Graphic file (type png)
+ <use treeGP.png>
+Package pdftex.def Info: treeGP.png used on input line 104.
+(pdftex.def)             Requested size: 426.79135pt x 311.96104pt.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 105.
 
 
@@ -658,7 +669,7 @@ Underfull \hbox (badness 1014) in paragraph at lines 109--110
 t-mos basea-dos na
  []
 
-[4 <./programTree2.png>]
+[4 <./treeGP.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 123--124
 \OT1/ptm/m/n/12 [[]], [[]], [[]],
  []
@@ -668,7 +679,7 @@ Underfull \hbox (badness 5217) in paragraph at lines 123--124
 \OT1/ptm/m/n/12 [[]], [[]], [[]], en-
  []
 
-
+[5]
 Underfull \hbox (badness 10000) in paragraph at lines 133--134
 []\OT1/ptm/m/n/12 Na linha de es-trat[]egias su-per-vi-sion-adas, [[]] e
  []
@@ -679,29 +690,38 @@ Underfull \hbox (badness 2903) in paragraph at lines 133--134
 alise
  []
 
-[5] [6]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
 Underfull \hbox (badness 2846) in paragraph at lines 159--160
 []\OT1/ptm/m/n/12 O in-div[]^^Pduo mais apto (de mel-hor \OT1/ptm/m/it/12 fit-n
 ess\OT1/ptm/m/n/12 ) re-tor-nado pelo al-go-ritmo de
  []
 
-<diagrama2.png, id=29, 1056.94875pt x 685.56125pt>
-File: diagrama2.png Graphic file (type png)
- <use diagrama2.png>
-Package pdftex.def Info: diagrama2.png used on input line 165.
-(pdftex.def)             Requested size: 426.79135pt x 276.82437pt.
- [7 <./diagrama2.png>]
-Underfull \hbox (badness 2035) in paragraph at lines 203--204
+
+Underfull \vbox (badness 2680) has occurred while \output is active []
+
+ [7]
+Underfull \hbox (badness 2035) in paragraph at lines 196--197
 []\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
 n-clu[]^^Pdas fun[][]oes
  []
 
-[8]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 239.
+(Font)              <7> on input line 232.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 239.
- [9] [10]
+(Font)              <5> on input line 232.
+[8] <diagrama3.png, id=39, 1056.94875pt x 693.59125pt>
+File: diagrama3.png Graphic file (type png)
+ <use diagrama3.png>
+Package pdftex.def Info: diagrama3.png used on input line 254.
+(pdftex.def)             Requested size: 426.79135pt x 280.06683pt.
+
+Underfull \vbox (badness 7869) has occurred while \output is active []
+
+ [9]
+[10 <./diagrama3.png>]
 Overfull \hbox (22.22333pt too wide) in paragraph at lines 305--306
 \OT1/ptm/m/n/12 (repeatInputString(repeatInputString(repeatInputString(repeatIn
 putString(x)))))))))))),
@@ -755,36 +775,37 @@ Overfull \hbox (34.04677pt too wide) in paragraph at lines 360--370
 [][] 
  []
 
-
+[12]
 Underfull \hbox (badness 1102) in paragraph at lines 381--382
 []\OT1/ptm/m/n/12 Como pode-mos perce-ber, os re-sul-ta-dos do clas-si-fi-cador
  para a base \OT1/ptm/m/it/12 Twit-
  []
 
-[12] (./main.bbl [13] [14]) [15] (./main.aux)
+(./main.bbl [13] [14] [15]) [16] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3709 strings out of 493013
- 50055 string characters out of 6136993
- 137512 words of memory out of 5000000
- 7164 multiletter control sequences out of 15000+600000
+ 3728 strings out of 493013
+ 50354 string characters out of 6136993
+ 136512 words of memory out of 5000000
+ 7180 multiletter control sequences out of 15000+600000
  26501 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,11n,28p,1083b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/u
-rw/helvetic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a
-.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/
-2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fo
-nts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (15 pages, 188813 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvet
+ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
+texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
+/urw/times/utmri8a.pfb>
+Output written on main.pdf (16 pages, 198231 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

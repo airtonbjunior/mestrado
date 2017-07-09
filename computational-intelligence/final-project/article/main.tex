@@ -97,12 +97,12 @@ O contexto no qual uma palavra está inserida muitas vezes determina seu valor n
 \label{progGen}
 Programação Genética é um campo da computação evolucionária que busca resolver problemas, de forma automatizada, sem demandar conhecimentos detalhados sobre a solução \cite{koza1992genetic}. De forma geral, podemos definir a Programação Genética como um método sistemático, não dependente de um domínio específico, usado para permitir que computadores criem programas para solução de problemas de forma automática, inciando com um conhecimento de alto nível sobre as regras gerais dos possíveis modelos.
 
-Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais entradas, produzir uma saída para as mesmas. Embora possam ser representadas por diversos tipos de estruturas, a forma mais comum de representação é por meio de árvores, onde os nós internos representam funções e os nós folha representam terminais do problema. Um exemplo de um programa pode ser visto na figura \ref{treeProgram} \cite{Sannino2015}.
+Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais entradas, produzir uma saída para as mesmas. Embora possam ser representadas por diversos tipos de estruturas, a forma mais comum de representação é por meio de árvores, onde os nós internos representam funções e os nós folha representam terminais do problema. Um exemplo de um programa pode ser visto na figura \ref{treeProgram}, que representa o código \emph{if( X \textgreater Y) then \{ X * 6 +  1.9 \} else \{ X / cos(X) \}}
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics{programTree2}
-	\caption{Programa representado a expressão (7.9 + (3.2 \* y) - x)}
+	\includegraphics[width=1.0\textwidth]{treeGP}
+	\caption{Exemplo de um programa em Programação Genética}
 	\label{treeProgram}
 \end{figure}
 
@@ -159,13 +159,6 @@ Por possuir uma forma de atuação paralela, essa abordagem resulta em soluçõe
 O indivíduo mais apto (de melhor \emph{fitness}) retornado pelo algoritmo de Programação Genética tem grandes chances de ser um modelo de classificação de sentimentos com bons resultados.
 
 \subsection{Projeto da solução}
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=1\textwidth]{diagrama2}
-	\caption{Diagrama simplificado da solução}
-	\label{diagrama}
-\end{figure}
 
 Como explanado na seção \ref{progGen}, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
 
@@ -255,6 +248,13 @@ Há diversas bases de dados anotadas disponíveis na Internet para \emph{downloa
 O evento é dividido por \emph{Tasks}, que possuem objetivos distintos dentro da área de pesquisa. Para este trabalho, utilizou-se a base de dados da \emph{Task 9} - \emph{Sentiment Analysis in Twitter}. São disponibilizadas bases de treinamento e de testes para \emph{download}\footnote{http://alt.qcri.org/semeval2014/task9/index.php?id=data-and-tools} no site do evento.
 
 A base de treinamento aplicada no trabalho possui 9684 \emph{Tweets}, com a seguinte divisão de polaridades: 3640 mensagens positivas, 1458 negativas e 4586 neutras.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{diagrama3}
+	\caption{Diagrama simplificado da solução}
+	\label{diagrama}
+\end{figure}
 
 O evento também disponibiliza uma base de testes, que serve como critério de avaliação e comparação dos trabalhos submetidos para cada \emph{task}. A base fornecida é dividida em 5 categorias, e possui um total de 8987 \emph{Tweets}. Detalhes da divisão e da polaridade das bases podem ser visualizadas na tabela \ref{datasets}.
 

@@ -89,9 +89,9 @@ MAX_POSITIVES_TWEETS = 0
 MAX_NEGATIVES_TWEETS = 0
 MAX_NEUTRAL_TWEETS = 0
 
-GENERATIONS = 100
+GENERATIONS = 600
 generations_unchanged = 0
-max_unchanged_generations = 150
+max_unchanged_generations = 300
 
 uses_dummy_function = False
 
@@ -978,7 +978,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=40)
+    pop = toolbox.population(n=50)
     hof = tools.HallOfFame(1)
     
     
@@ -1000,7 +1000,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 3.5, 1.5, GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 9.5, 5.5, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

@@ -1,13 +1,11 @@
 \documentclass[12pt]{article}
-
 \usepackage{sbc-template}
-
 \usepackage{graphicx,url}
-
 %\usepackage[brazil]{babel}   
 \usepackage[utf8]{inputenc}  
-
 \usepackage{makecell}
+\usepackage{multirow}
+\usepackage{float}
      
 \sloppy
 
@@ -153,6 +151,13 @@ O indivíduo mais apto (de melhor \emph{fitness}) retornado pelo algoritmo de Pr
 
 \subsection{Projeto da solução}
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=1\textwidth]{diagrama2}
+	\caption{Diagrama simplificado da solução}
+	\label{diagrama}
+\end{figure}
+
 Como explanado na seção \ref{progGen}, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
 
 O primeiro passo para projetar uma solução de Programação Genética é determinar o conjunto de terminais e funções do modelo. Os terminais serão compostos pelos \emph{Tweets} que serão analisados, bem como por uma constante efêmera, um número real escolhido aleatóriamente entre -3 e 3. A constante efêmera será escolhida de forma aleatória somente no momento de criação do indivíduo, e depois manterá seu valor na árvore.
@@ -160,9 +165,11 @@ O primeiro passo para projetar uma solução de Programação Genética é deter
 As funções serão responsáveis por realizar a manipulação dos dados, como o \emph{Tweet} e suas características. A lista das principais funções definidas para a solução pode ser vista na tabela \ref{tab_functions}.
 
 
-\begin{table}[]
+Para a criação das funções, foi levado em consideração heurísticas apresentadas em trabalhos anteriores sobre o tema e para determinados contextos, como os apresentados em \cite{araujo2013metodos}, \cite{Rodrigues2016}, \cite{Turney2002}, entre outros.
+
+\begin{table}[H]
 	\centering
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 	\multicolumn{1}{c}{\textbf{Função}} & \multicolumn{1}{c}{\textbf{Retorno}} \\
 	\hline
 	polaritySum(str): float & Soma das polaridades de cada palavra \\& (+1 para positivo e -1 para negativo) \\
@@ -184,40 +191,38 @@ As funções serão responsáveis por realizar a manipulação dos dados, como o
 	\label{tab_functions}
 \end{table}
 
-Para a criação das funções, foi levado em consideração heurísticas apresentadas em trabalhos anteriores sobre o tema e para determinados contextos, como os apresentados em \cite{araujo2013metodos}, \cite{Rodrigues2016}, \cite{Turney2002}, entre outros.
-
 Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raiz quadrada, exponenciação, seno e cosseno.
 
-Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é definido como a acurácia do classificador, ou seja, a quantidade de \emph{Tweets} avaliados corretamente quanto à sua polaridade, definida como positiva (número maior que zero) e negativa (número menor que zero).
+Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é definido como o F1 médio do classificador, calculado utilizando a fórmula apresentada na tabela \ref{metrics}
 
-Outras métricas são utilizadas para a verificação da qualidade do classificador: precisão, \emph{recall} e F1. Detalhes de cada uma dessas funções são apresentadas na tabela \ref{metrics}. Para todas essas medições, são considerados 4 possibilidades de classificação dos \emph{Tweets}, conforme apresentado na tabela \ref{metricsTrueFalse}
-
-\begin{table}[]
+\begin{table}[H]
 \centering
-\label{metricsTrueFalse}
-	\begin{tabular}{l|c}
-	\multicolumn{1}{c}{\textbf{Terminologia}} & \multicolumn{1}{c}{\textbf{Descrição}} \\ \hline
-	Verdadeiro Positivo (VP) & Modelo retornou Positivo e a classe real é Positivo \\ \hline
-	Verdadeiro Negativo (VN) & Modelo retornou Negativo e a classe real é Negativo \\ \hline
-	Falso Positivo (FP) & Modelo retornou Positivo e a classe real é Negativo \\ \hline
-	Falso Negativo (FN) & Modelo retornou Negativo e a classe real é Positivo \\ \hline
-	\end{tabular}
-	\caption{Dados utilizados para as métricas do modelo}
-\end{table}
-
-
-\begin{table}[]
-\centering
-\label{metrics}
 	\begin{tabular}{cc}
-	\hline
 	\textbf{Métrica} & \textbf{Fórmula} \\ \hline
-	Acurácia & (VP + VN )/ (VP + FP +VN + FN) \\ \hline
-	Precisão & VP / (VP + FP) \\ \hline
-	\textit{Recall} & VP / (VP + FN) \\ \hline
+	Acurácia & (VP + VN + VNt )/ Total de mensagens \\ \hline
+	Precisão (positiva) & VP / Positivos retornados pelo modelo \\ \hline
+	\textit{Recall} (positivo) & VP / Mensagens positivas \\ \hline
 	F1 & 2 x (Precisão * Recall) / (Precisão + Recall) \\ \hline
 	\end{tabular}
 	\caption{Métricas utilizadas para avaliar o modelo de classificação}
+	\label{metrics}
+\end{table}
+
+Outras métricas são utilizadas para a verificação da qualidade do classificador: acurácia, precisão e \emph{recall}. Detalhes de cada uma dessas funções são apresentadas na tabela \ref{metrics}. Para todas essas medições, são considerados 6 possibilidades de classificação dos \emph{Tweets}: Verdadeiro Positivo (VP), Verdadeiro Negativo (VN), Verdadeiro Neutro (VNt), Falso Positivo (FP), Falso Negativo (FN) e Falso Neutro (FNt), conforme apresentado na tabela \ref{metricsTrueFalse}.
+
+\begin{table}[H]
+\centering
+	\begin{tabular}{lc}
+	\multicolumn{1}{c}{\textbf{Terminologia}} & \multicolumn{1}{c}{\textbf{Descrição}} \\ \hline
+	Verdadeiro Positivo (VP) & Modelo retornou Positivo e a classe real é Positivo \\ \hline
+	Verdadeiro Negativo (VN) & Modelo retornou Negativo e a classe real é Negativo \\ \hline
+	Verdadeiro Neutro (VNt) & Modelo retornou Neutro e a classe real é Neutro \\ \hline
+	Falso Positivo (FP) & Modelo retornou Positivo e a classe real não é Positivo \\ \hline
+	Falso Negativo (FN) & Modelo retornou Negativo e a classe real não é Negativo \\ \hline
+	Falso Neutro (FNt) & Modelo retornou Neutro e a classe real não é Neutro \\ \hline
+	\end{tabular}
+	\caption{Dados utilizados para as métricas do modelo}
+	\label{metricsTrueFalse}
 \end{table}
 
 \subsection{Bibliotecas}
@@ -233,48 +238,82 @@ Para o presente trabalho, [foram utilizados - colocar algo que queira dizer isso
 Utilizou-se, também, o dicionário de emoticons SentiStrength\footnote{http://sentistrength.wlv.ac.uk/}, que fornece 46 emoticons positivos e 58 negativos.
 
 \subsection{\emph{Datasets}}
-
+\label{datasets}
 Há diversas bases de dados anotadas disponíveis na Internet para \emph{download}. O escopo do presente trabalho é a Análise de Sentimentos em \emph{Tweets}, por isso utilizou-se uma base disponibilizada para o evento SemEvaL 2014\footnote{http://alt.qcri.org/semeval2014/} (\emph{International Workshop on Semantic Evaluation}), uma das principais referências na área de análise semântica.  
 
-O evento é dividido por \emph{Tasks}, que possuem objetivos distintos dentro da área de análise semântica. Para este trabalho, utilizou-se a base de dados da \emph{Task 9} - \emph{Sentiment Analysis in Twitter}. São disponibilizadas bases de treinamento e de testes para \emph{download}\footnote{http://alt.qcri.org/semeval2014/task9/index.php?id=data-and-tools} no site do evento.
+O evento é dividido por \emph{Tasks}, que possuem objetivos distintos dentro da área de pesquisa. Para este trabalho, utilizou-se a base de dados da \emph{Task 9} - \emph{Sentiment Analysis in Twitter}. São disponibilizadas bases de treinamento e de testes para \emph{download}\footnote{http://alt.qcri.org/semeval2014/task9/index.php?id=data-and-tools} no site do evento.
 
 A base de treinamento aplicada no trabalho possui 9684 \emph{Tweets}, com a seguinte divisão de polaridades: 3640 mensagens positivas, 1458 negativas e 4586 neutras.
 
-O evento também disponibiliza uma base de testes, que serve como critério de avaliação e comparação dos trabalhos submetidos para cada \emph{task}. A base fornecida é dividida em 5 categorias, e possui um total de 8987 \emph{Tweets}. Detalhes da divisão e da polaridade das bases podem ser visualizadas na tabela \ref{datasets}
+O evento também disponibiliza uma base de testes, que serve como critério de avaliação e comparação dos trabalhos submetidos para cada \emph{task}. A base fornecida é dividida em 5 categorias, e possui um total de 8987 \emph{Tweets}. Detalhes da divisão e da polaridade das bases podem ser visualizadas na tabela \ref{datasets}.
+
+\begin{table}[H]
+\centering
+	\begin{tabular}{lc}
+	\multicolumn{1}{c}{\textbf{Base de Dados}} & \textit{\textbf{Tweets}} \\ \hline
+	1 - Tweets2013 & 3813 \\ \hline
+	2 - Tweets2014 & 1853 \\ \hline
+	3 - \textit{Tweets2014Sarcasm} & 86 \\ \hline
+	4 - SMS2013 & 2093 \\ \hline
+	5 - LiveJournal2014 & 1142 \\ \hline
+	Total & 8987
+	\end{tabular}
+\caption{Bases de testes - Semeval2014}
+\label{datasets}
+\end{table}
+
+\section{Resultados}
+
+Nesta seção, serão apresentados os resultados obtidos com os modelos gerados pelo sistema. 
+
+\subsection{Criação do modelo}
+
+A criação do modelo é feita pelo processo de Programação Genética, tendo como entrada os \emph{Tweets} da base de treinamento utilizada no trabalho e discutida na seção \ref{datasets}. Os processos de Programação Genética encarregam-se da criação e evolução da população de indivíduos, conforme os princípios citados anteriormente.
+
+Alguns parâmetros devem ser definidos para o funcionamento da Programação Genética. Os principais deles são quantidade de gerações, população, taxa de \emph{crossover} e taxa de mutação. Não há uma regra para a definição desses valores, e cada problema deve ter uma abordagem diferente. Para o presente trabalho, os parâmetros definidos para a criação e evolução dos modelos podem ser vistos na tabela \ref{parametersGP}.
+
+Com o objetivo de diminuir a quantidade de tempo de processamento para a criação dos modelos pelo algoritmo de Programação Genética, foi criado um parâmetro que determina a quantidade máxima aceitável de gerações sem evolução no \emph{fitness}, ou seja, a quantidade de ciclos seguidos em que não houve melhoria no melhor indivíduo da população. 
+
+Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando as mesmas entradas (base de treinamento) e modificando somente os parâmetros da Programação Genética. Cada um dos modelos foi testado com a base de testes disponibilizada pelo SemEval 2014.
+
+Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
+\begin{itemize}
+	\item{polaritySum(x)}
+	\item{polaritySum(x)}
+	\item{polaritySum(x)}		
+\end{itemize}
 
 
 \begin{table}[]
 \centering
-\label{datasets}
-	\begin{tabular}{lc}
-	\multicolumn{1}{c}{\textbf{Base de Dados}} & \textit{\textbf{Tweets}} \\ \hline
-	Tweets2013 & 3813 \\ \hline
-	Tweets2014 & 1853 \\ \hline
-	\textit{Tweets2014Sarcasm} & 86 \\ \hline
-	SMS2013 & 2093 \\ \hline
-	LiveJournal2014 & 1142 \\ \hline
-	Total & 8987
-	\end{tabular}
-\caption{Bases de testes - Semeval2014}
+\begin{tabular}{lcccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+ &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
+1 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
+2 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+3 & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
+4 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
+5 & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+\end{tabular}
+\caption{Resultados dos testes do modelo 1}
+\label{test1}
 \end{table}
 
 
-\section{Resultados}
-
-\subsection{Criação do modelo}
 
 \begin{table}[]
 	\centering
-	\label{parametersGP}
 	\begin{tabular}{cccccc}
-	\textit{\textbf{Tweets}} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
-	3000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
-	4000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
-	5000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
-	5000 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
-	5100 & 40 & 50 & 2\% & 1\% & 150 \\ \hline
+	\textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
+	40 & 100 & 3.5\% & 1.5\% & 150 \\ \hline
+	40 & 50 & 2\% & 1\% & 150 \\ \hline
+	40 & 50 & 2\% & 1\% & 150 \\ \hline
+	40 & 50 & 2\% & 1\% & 150 \\ \hline
+	40 & 50 & 2\% & 1\% & 150 \\ \hline
 	\end{tabular}
 	\caption{Parâmetros da Programação Genética}
+	\label{parametersGP}
 \end{table}
 
 
@@ -282,7 +321,6 @@ O evento também disponibiliza uma base de testes, que serve como critério de a
 
 \begin{table}[]
 \centering
-\label{resultsl}
 	\begin{tabular}{lcccc}
 	\multicolumn{1}{c}{\textbf{Base de Teste}}     & \multicolumn{1}{c}{\textbf{Acurácia}} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}	{\textbf{Recall (média)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} \\ \hline
 	Tweets2013 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
@@ -293,6 +331,7 @@ O evento também disponibiliza uma base de testes, que serve como critério de a
 	Todas & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline	
 	\end{tabular}
 	\caption{Resultados divididos por base de dados}
+	\label{resultsl}
 \end{table}
 
 \section{Conclusão}\label{conclusion}

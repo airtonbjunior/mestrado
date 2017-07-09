@@ -89,9 +89,9 @@ MAX_POSITIVES_TWEETS = 0
 MAX_NEGATIVES_TWEETS = 0
 MAX_NEUTRAL_TWEETS = 0
 
-GENERATIONS = 600
+GENERATIONS = 500
 generations_unchanged = 0
-max_unchanged_generations = 300
+max_unchanged_generations = 350
 
 uses_dummy_function = False
 
@@ -909,6 +909,7 @@ def evalSymbRegTweetsFromSemeval(individual):
         print("[f1 negative]: " + str(round(f1_negative, 3)))
         print("[f1 neutral]: " + str(round(f1_neutral, 3)))        
         print("[f1 avg]: " + str(round(f1_avg, 3)))
+        print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 3)))
         print("[fitness (F1 avg)]: " + str(round(fitnessReturn, 3)))
         print("[best fitness]: " + str(round(best_fitness, 3)))
         print("[generations unmodified]: " + str(generations_unchanged))
@@ -927,13 +928,13 @@ def evalSymbRegTweetsFromSemeval(individual):
 
 toolbox.register("evaluate", evalSymbRegTweetsFromSemeval) # , points=[x for x in reviews])
 
-toolbox.register("select", tools.selTournament, tournsize=4)
+toolbox.register("select", tools.selTournament, tournsize=3)
 toolbox.register("mate", gp.cxOnePoint)
-toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=8)
+toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=10)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
-toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=25))
-toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=25))
+toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=16))
+toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=16))
 
 
 # Work on memory to improve performance
@@ -978,7 +979,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=50)
+    pop = toolbox.population(n=80)
     hof = tools.HallOfFame(1)
     
     
@@ -1000,7 +1001,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 9.5, 5.5, GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 5.5, 2.5, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

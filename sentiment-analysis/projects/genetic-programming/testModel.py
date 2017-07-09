@@ -231,6 +231,9 @@ def sin(value):
 def cos(value):
     return math.cos(value)
 
+def exp(value):
+    return math.e ** value
+
 # Define new functions
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
@@ -455,7 +458,7 @@ def evaluateTweets2013Messages(model):
         message = str(tweets_2013[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
-        model_analysis = model.replace("x", message)
+        model_analysis = model.replace("(x)", "(" + message + ")")
         result = eval(model_analysis)
 
         if tweets_2013_score[index] > 0:
@@ -561,6 +564,7 @@ def evaluateTweets2013Messages(model):
     print("[false_neutral]: " + str(false_neutral))
 
 
+
 # Evaluate only the Tweets2014
 def evaluateTweets2014Messages(model):
     global tweets_2014
@@ -605,7 +609,7 @@ def evaluateTweets2014Messages(model):
         message = str(tweets_2014[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
-        model_analysis = model.replace("x", message)
+        model_analysis = model.replace("(x)", "(" + message + ")")
         result = eval(model_analysis)
 
         if tweets_2014_score[index] > 0:
@@ -756,7 +760,7 @@ def evaluateTweets2014SarcasmMessages(model):
         message = str(tweets_2014_sarcasm[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
-        model_analysis = model.replace("x", message)
+        model_analysis = model.replace("(x)", "(" + message + ")")
         result = eval(model_analysis)
 
         if tweets_2014_sarcasm_score[index] > 0:
@@ -862,6 +866,7 @@ def evaluateTweets2014SarcasmMessages(model):
     print("[false_neutral]: " + str(false_neutral))
 
 
+
 # Evaluate only the SMS2013
 def evaluateSMS2013(model):
     global sms_2013
@@ -906,7 +911,7 @@ def evaluateSMS2013(model):
         message = str(sms_2013[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
-        model_analysis = model.replace("x", message)
+        model_analysis = model.replace("(x)", "(" + message + ")")
         result = eval(model_analysis)
 
         if sms_2013_score[index] > 0:
@@ -1057,7 +1062,7 @@ def evaluateTweetsLiveJournal2014(model):
         message = str(tweets_liveJournal2014[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
-        model_analysis = model.replace("x", message)
+        model_analysis = model.replace("(x)", "(" + message + ")")
         result = eval(model_analysis)
 
         if tweets_liveJournal2014_score[index] > 0:
@@ -1235,7 +1240,7 @@ def evaluateAllMessages(model):
         message = str(allMessages[index]).strip().replace("'", "")
         message = "'" + message + "'"
 
-        model_analysis = model.replace("x", message)
+        model_analysis = model.replace("(x)", "(" + message + ")")
         result = eval(model_analysis)
 
         if allScores[index] > 0:
@@ -1345,8 +1350,11 @@ if __name__ == "__main__":
     getDictionary()
     getTestTweetsFromSemeval2014()
 
-    #function_to_evaluate = "invertSignal(sub(negativeWordsQuantity(repeatInputString(repeatInputString(x))), positiveWordsQuantity(repeatInputString(repeatInputString(x)))))"
-    function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
+    function_to_evaluate = "mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))"
+    #function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
+    
+    #function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(x), polaritySum(x))"
+
 
     evaluateTweets2013Messages(function_to_evaluate)
     evaluateTweets2014Messages(function_to_evaluate)

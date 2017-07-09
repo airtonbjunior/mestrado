@@ -9,6 +9,8 @@
 \usepackage{array}
 \usepackage{changepage}
 \usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
 
 
 \renewcommand{\theenumi}{\Alph{enumi}}
@@ -285,8 +287,8 @@ Alguns parâmetros devem ser definidos para o funcionamento da Programação Gen
 	\centering
 	\begin{tabular}{cccccc}
 	\textbf{Modelo} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
-	A & 50 & 100 & 3.5\% & 1.5\% & 150 \\ \hline
-	B & 50 & 150 & 4.5\% & 2.5\% & 150 \\ \hline
+	A & 50 & 500 & 3.5\% & 1.5\% & 150 \\ \hline
+	B & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
 	C & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
 	\end{tabular}
 	\caption{Parâmetros da Programação Genética}
@@ -300,7 +302,7 @@ Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando 
 Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
 \begin{enumerate}[label=\Alph*]
 	\item{if\_then\_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))}  [Criar Árvore] 
-	\item{polaritySum(x)}
+	\item mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))), \\protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))
 	\item{polaritySum(x)} [colocar imagem para cada modelo]
 \end{enumerate}
 
@@ -314,17 +316,17 @@ Especificamente no cálculo do F1, foi criado uma segunda média, levando em con
 
 O resultado da task está disponível no site evento está disponível para consulta no site do evento \footnote{https://docs.google.com/spreadsheets/d/1CmDicfEIxRgyoAix9BsVcC3qoRFEq0XDTSnBLVdavu8/}.
 
-Os testes foram realizados para cada um dos modelos criados, e os resultados podem ser vistos nas tabelas \ref{test1}, \ref{test2} e \ref{test3}. Precisão, \emph{Recall} e F1 foram calculados para as mensagens Positivas (P), Negativas (N) e Neutras (Nt), além da Média (Avg). Especificamente para F1, foi feita a média somente das mensagens positivas e negativas (Avg +/-) pelo motivo citado anteriormente.
+Os testes foram realizados para cada um dos modelos criados, e os resultados podem ser vistos nas tabelas \ref{test1}, \ref{test2} e \ref{test3}. Precisão, \emph{Recall} e F1 foram calculados para as mensagens Positivas (P), Negativas (N) e Neutras (Nt), além da Média (Avg). Especificamente para F1, foi calculada, também, a média somente das mensagens positivas e negativas (Avg +/-) pelo motivo citado anteriormente. A acurácia (Acc) representa a quantidade de acertos em relação ao total de mensagens.
 
 \begin{table}[H]
 \centering
-\begin{adjustwidth}{-1.3cm}{}
+\begin{adjustwidth}{-1cm}{}
 \begin{tabular}{lcccccccccccccc}
-\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
-Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
-Twiiter2013 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
+Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 &  \textbf{0.6} & 0.5 \\ \hline
+Twiiter2014 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & {\ul0.4} & 0.3 & 0.1 & 0.8 & {\ul0.4} & 0.3 & 0.1 & 0.3 & 0.3 & {\ul0.2} \\ \hline
 SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
 LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & \textbf{0.6} & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.5 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
 Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
@@ -336,30 +338,30 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4
 
 \begin{table}[H]
 \centering
-\begin{adjustwidth}{-1.3cm}{}
+\begin{adjustwidth}{-1cm}{}
 \begin{tabular}{lcccccccccccccc}
-\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
-Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
-Twiiter2013 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
-SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
-LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
-Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+Twitter2013 & 0.5 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
+Twitter2014 & 0.5 & 0.3 & 0.5 & 0.5 & 0.5 & 0.4 & 0.4 & 0.7 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.4 & 0.2 & {\ul 0.3} & 0.3 & 0.1 & 0.8 & {\ul 0.4} & 0.3 & 0.1 & 0.3 & 0.3 & {\ul 0.2} \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.6 & 0.6 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
 \end{tabular}
-\caption{Resultados dos testes do modelo B [Colocar dados corretos]}
+\caption{Resultados dos testes do modelo B}
 \label{test2}
 \end{adjustwidth}
 \end{table}
 
 \begin{table}[H]
 \centering
-\begin{adjustwidth}{-1.3cm}{}
+\begin{adjustwidth}{-1cm}{}
 \begin{tabular}{lcccccccccccccc}
-\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
 Twiiter2013 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
-Twiiter2013 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Twiiter2014 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
 Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
 SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
 LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
@@ -375,6 +377,8 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 
 [Comparar com alguns trabalhos do evento]
 
 [Dizer que sarcasmo teve resultados ruins]
+
+Como podemos perceber, os resultados do classificador para a base \emph{Twitter2014Sarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão melhores classificadores para esse contexto.
 
 [Mostrar melhores resultados]
 

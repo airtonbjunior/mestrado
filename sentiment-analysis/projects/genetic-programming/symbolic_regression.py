@@ -551,18 +551,6 @@ def if_then_else(input, output1, output2):
     else: return output2
 
 
-def onlyTestFuncion(string1, string2):
-    global uses_dummy_function
-    uses_dummy_function = True
-    return 1
-
-
-def onlyTestFuncion2(float1, float2):
-    global uses_dummy_function
-    uses_dummy_function = True
-    return ""
-
-
 def repeatInputString(phrase):
     return phrase
 
@@ -602,10 +590,6 @@ pset.addPrimitive(hasEmoticons, [str], bool)
 pset.addPrimitive(if_then_else, [bool, float, float], float)
 
 pset.addPrimitive(repeatInputString, [str], str)
-
-# dummy functions
-#pset.addPrimitive(onlyTestFuncion, [str, str], float)
-#pset.addPrimitive(onlyTestFuncion2, [float, float], str)
 
 pset.addTerminal(True, bool)
 pset.addTerminal(False, bool)
@@ -931,7 +915,7 @@ def evalSymbRegTweetsFromSemeval(individual):
 
 toolbox.register("evaluate", evalSymbRegTweetsFromSemeval) # , points=[x for x in reviews])
 
-toolbox.register("select", tools.selTournament, tournsize=3)
+toolbox.register("select", tools.selTournament, tournsize=5)
 toolbox.register("mate", gp.cxOnePoint)
 toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=10)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
@@ -1004,7 +988,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 5.5, 2.5, GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 20.5, 15.5, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

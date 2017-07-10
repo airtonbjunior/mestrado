@@ -199,21 +199,6 @@ Outra característica importante a ser definida para o trabalho é a função de
 
 \begin{table}[H]
 \centering
-	\begin{tabular}{cc}
-	\textbf{Métrica} & \textbf{Fórmula} \\ \hline
-	Acurácia & (VP + VN + VNt )/ Total de mensagens \\ \hline
-	Precisão (positiva) & VP / Positivos retornados pelo modelo \\ \hline
-	\textit{Recall} (positivo) & VP / Mensagens positivas \\ \hline
-	F1 & 2 x (Precisão * Recall) / (Precisão + Recall) \\ \hline
-	\end{tabular}
-	\caption{Métricas utilizadas para avaliar o modelo de classificação}
-	\label{metrics}
-\end{table}
-
-Outras métricas são utilizadas para a verificação da qualidade do classificador: acurácia, precisão e \emph{recall}. Detalhes de cada uma dessas funções são apresentadas na tabela \ref{metrics}. Para todas essas medições, são considerados 6 possibilidades de classificação dos \emph{Tweets}: Verdadeiro Positivo (VP), Verdadeiro Negativo (VN), Verdadeiro Neutro (VNt), Falso Positivo (FP), Falso Negativo (FN) e Falso Neutro (FNt), conforme apresentado na tabela \ref{metricsTrueFalse}.
-
-\begin{table}[H]
-\centering
 	\begin{tabular}{lc}
 	\multicolumn{1}{c}{\textbf{Terminologia}} & \multicolumn{1}{c}{\textbf{Descrição}} \\ \hline
 	Verdadeiro Positivo (VP) & Modelo retornou Positivo e a classe real é Positivo \\ \hline
@@ -225,6 +210,32 @@ Outras métricas são utilizadas para a verificação da qualidade do classifica
 	\end{tabular}
 	\caption{Dados utilizados para as métricas do modelo}
 	\label{metricsTrueFalse}
+\end{table}
+
+Outras métricas são utilizadas para a verificação da qualidade do classificador: acurácia, precisão e \emph{recall}. Detalhes de cada uma dessas funções são apresentadas na tabela \ref{metrics}. Para todas essas medições, são considerados 6 possibilidades de classificação dos \emph{Tweets}: Verdadeiro Positivo (VP), Verdadeiro Negativo (VN), Verdadeiro Neutro (VNt), Falso Positivo (FP), Falso Negativo (FN) e Falso Neutro (FNt), conforme apresentado na tabela \ref{metricsTrueFalse}.
+
+
+\begin{table}[H]
+\centering
+	\begin{tabular}{lc}
+	\textbf{Métrica} & \textbf{Fórmula} \\ \hline
+	Acurácia & (VP + VN + VNt )/ Total de mensagens \\ \hline
+	Precisão positiva (PP) & VP / Positivos retornados pelo modelo \\ \hline
+	\textit{Recall} positivo (RP) & VP / Mensagens positivas \\ \hline
+	F1 positivo (FP) & 2 x (PP * RP) / (PP + RP) \\ \hline
+	Precisão negativa (PN) & VN / Negativos retornados pelo modelo \\ \hline
+	\textit{Recall} negativo (RN) & VN / Mensagens negativas \\ \hline
+	F1 negativo (FN) & 2 x (PN * RN) / (PN + RN) \\ \hline
+	Precisão neutra (PNt) & VNt / Neutros retornados pelo modelo \\ \hline
+	\textit{Recall} neutro (RNt) & VNt / Mensagens neutras \\ \hline
+	F1 neutro (FNt) & 2 x (PNt * RNt) / (PNt + RNt) \\ \hline
+	Precisão média & (PP + PN + PNt) / 3 \\ \hline
+	\emph{Recall} médio & (RP + RN + RNt) / 3 \\ \hline	
+	F1 médio & (FP + FN + FNt) / 3 \\ \hline
+	F1 médio SemEval & (FP + FN) / 2 \\ \hline	
+	\end{tabular}
+	\caption{Métricas utilizadas para avaliar o modelo de classificação}
+	\label{metrics}
 \end{table}
 
 \subsection{Bibliotecas}
@@ -301,6 +312,21 @@ Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando 
 
 Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
 \begin{enumerate}[label=\Alph*]
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\textwidth]{treeA}
+		\caption{Modelo A}
+		\label{AModel}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1.0\textwidth]{treeB2}
+		\caption{Modelo B}
+		\label{BModel}
+	\end{figure}
+
 	\item{if\_then\_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))}  [Criar Árvore] 
 	\item mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))), \\protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))
 	\item{polaritySum(x)} [colocar imagem para cada modelo]
@@ -372,6 +398,17 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 
 \end{adjustwidth}
 \end{table}
 
+
+\subsection{Melhorias futuras}
+
+Buscando melhores resultados nos testes, algumas melhorias podem ser realizadas no processo de criação do modelo de classificação. A primeira delas é a inclusão de novas funções, que poderão ser utilizadas pela Programação Genética em busca de um modelo mais adequado ao contexto de classificação. 
+
+Modificações nos parâmetros do algoritmo também podem trazer melhores resultados, como um maior número de indivíduos (população), maior número de gerações e, também, alterações nos parâmetros de probabilidade de \emph{crossover} e mutação.
+
+A busca por dicionários complementares também pode auxiliar na melhoria dos resultados do processo. Especificamente no contexto de \emph{Tweets}, um dicionário consistente de \emph{emoticons} e \emph{hashtags}, por exemplo, podem incrementar os resultados de forma significativa.
+
+Treinar o processo com bases de dados maiores e mais balanceadas também pode auxiliar na busca por melhores resultados. Apesar de implementar a funcionalidade de balanceamento de polaridades, o conjunto de dados de treinamento atual pode ser insuficiente para a criação de um modelo com resultados satisfatórios.
+
 \section{Conclusão}\label{conclusion}
 
 [Comparar com alguns trabalhos do evento]
@@ -383,6 +420,7 @@ Como podemos perceber, os resultados do classificador para a base \emph{Twitter2
 [Mostrar melhores resultados]
 
 [Explanar critérios que podem ser modificados no GP]
+
 
 \begin{table}[H]
 \centering

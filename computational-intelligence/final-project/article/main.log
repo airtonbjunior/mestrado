@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  9 JUL 2017 19:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  9 JUL 2017 23:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -708,92 +708,110 @@ Underfull \hbox (badness 2035) in paragraph at lines 196--197
 n-clu[]^^Pdas fun[][]oes
  []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 232.
+(Font)              <7> on input line 243.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 232.
-[8] <diagrama3.png, id=39, 1056.94875pt x 693.59125pt>
+(Font)              <5> on input line 243.
+
+[9] <diagrama3.png, id=42, 1056.94875pt x 693.59125pt>
 File: diagrama3.png Graphic file (type png)
  <use diagrama3.png>
-Package pdftex.def Info: diagrama3.png used on input line 254.
+Package pdftex.def Info: diagrama3.png used on input line 265.
 (pdftex.def)             Requested size: 426.79135pt x 280.06683pt.
 
-Underfull \vbox (badness 7869) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-[10 <./diagrama3.png>]
-Overfull \hbox (22.22333pt too wide) in paragraph at lines 305--306
+ [10 <./diagrama3.png>] <treeA.png, id=47, 585.18625pt x 365.365pt>
+File: treeA.png Graphic file (type png)
+ <use treeA.png>
+Package pdftex.def Info: treeA.png used on input line 318.
+(pdftex.def)             Requested size: 426.79135pt x 266.48007pt.
+
+<treeB2.png, id=48, 610.28pt x 453.695pt>
+File: treeB2.png Graphic file (type png)
+ <use treeB2.png>
+Package pdftex.def Info: treeB2.png used on input line 325.
+(pdftex.def)             Requested size: 426.79135pt x 317.29358pt.
+ [11] [12 <./treeA.png> <./treeB2.png>]
+Overfull \hbox (22.22333pt too wide) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 (repeatInputString(repeatInputString(repeatInputString(repeatIn
 putString(x)))))))))))),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 (repeatInputString(repeatInputString(repeatInputString(x)))))))
 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 mul(sub(sin(-0.7500287440821918), pro-tected-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 protectedSqrt(protectedDiv(protectedLog(0.30225574066002103),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 (repeatInputString(repeatInputString(repeatInputString(repeatIn
 putString(x)))))),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.16319410154
 15768))),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 \OT1/ptm/m/n/12 -0.27062630818833844)))), mul(protectedDiv(protectedLog(-
  []
 
-[11]
-Overfull \hbox (34.04677pt too wide) in paragraph at lines 324--334
+
+Overfull \hbox (34.04677pt too wide) in paragraph at lines 350--360
 [][] 
  []
 
 
-Overfull \hbox (34.04677pt too wide) in paragraph at lines 342--352
+Underfull \vbox (badness 4595) has occurred while \output is active []
+
+ [13]
+Overfull \hbox (34.04677pt too wide) in paragraph at lines 368--378
 [][] 
  []
 
 
-Overfull \hbox (34.04677pt too wide) in paragraph at lines 360--370
+Overfull \hbox (34.04677pt too wide) in paragraph at lines 386--396
 [][] 
  []
 
-[12]
-Underfull \hbox (badness 1102) in paragraph at lines 381--382
+[14]
+Underfull \hbox (badness 1102) in paragraph at lines 418--419
 []\OT1/ptm/m/n/12 Como pode-mos perce-ber, os re-sul-ta-dos do clas-si-fi-cador
  para a base \OT1/ptm/m/it/12 Twit-
  []
 
-(./main.bbl [13] [14] [15]) [16] (./main.aux)
+(./main.bbl [15] [16] [17]) [18] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3728 strings out of 493013
- 50354 string characters out of 6136993
- 136512 words of memory out of 5000000
- 7180 multiletter control sequences out of 15000+600000
+ 3740 strings out of 493013
+ 50503 string characters out of 6136993
+ 136531 words of memory out of 5000000
+ 7190 multiletter control sequences out of 15000+600000
  26501 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,28p,1083b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,11n,28p,1083b,318s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
@@ -802,10 +820,10 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
 texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on main.pdf (16 pages, 198231 bytes).
+Output written on main.pdf (18 pages, 266441 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 104 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

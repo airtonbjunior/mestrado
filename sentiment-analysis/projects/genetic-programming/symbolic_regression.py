@@ -91,7 +91,7 @@ MAX_NEUTRAL_TWEETS = 1400
 
 GENERATIONS = 500
 generations_unchanged = 0
-max_unchanged_generations = 50
+max_unchanged_generations = 250
 
 uses_dummy_function = False
 
@@ -988,7 +988,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 20.5, 15.5, GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 0.5, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

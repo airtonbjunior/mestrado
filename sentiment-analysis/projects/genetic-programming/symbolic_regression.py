@@ -1017,6 +1017,8 @@ def main():
     #print(set(all_fitness_history))
     #logs 
 
+    # Plot the data contained on all_fitness_history
+
     return pop, log, hof
 
 

@@ -91,7 +91,7 @@ MAX_NEUTRAL_TWEETS = 1400
 
 GENERATIONS = 500
 generations_unchanged = 0
-max_unchanged_generations = 250
+max_unchanged_generations = 400
 
 uses_dummy_function = False
 
@@ -929,7 +929,6 @@ toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max
 getDictionary()
 
 # Load the tweets
-#getTweetsFromFileIdLoaded()
 getTweetsFromFileIdLoadedSemeval2014()
 
 
@@ -966,7 +965,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=80)
+    pop = toolbox.population(n=200)
     hof = tools.HallOfFame(1)
     
     
@@ -988,7 +987,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 2.5, 0.5, GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 4.5, 1.5, GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)#True)
 
 

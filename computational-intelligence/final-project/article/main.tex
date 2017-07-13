@@ -340,9 +340,29 @@ Os modelos criados após o processamento foram (a variável x representa a entra
 
 Os modelos foram testados com a base de testes disponiblizada pela organização do evento SemEval 2014. Como apresentado na tabela \ref{datasets}, as mensagens são divididas em 5 bases de teste: Twitter2013, Twitter2014, Twitter2014Sarcasm, SMS2013 e LiveJournal2014. Os resultados foram calculados para cada base e, posteriormente, de forma geral, utilizando todas as mensagens.
 
-Especificamente no cálculo do F1, foi criado uma segunda média, levando em consideração somente o F1 positivo e negativo, desconsiderando o neutro. Esse foi o critério adotado pela equipe de avaliação do SemEval 2014 (\emph{task} 9, B), e foi aplicado no presente trabalho para que fosse possível comparar os resultados do mesmo com os classificadores submetidos para o evento.
+A tabela \ref{correctEvaluations} apresenta a quantidade de \emph{Tweets} avaliados corretamente por modelo. 
 
-O resultado da task está disponível no site evento está disponível para consulta no site do evento \footnote{https://docs.google.com/spreadsheets/d/1CmDicfEIxRgyoAix9BsVcC3qoRFEq0XDTSnBLVdavu8/}.
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-1.5cm}{}
+\begin{tabular}{lccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textit{\textbf{Tweets}} & \multicolumn{12}{c}{\textbf{Avaliados corretamente}} \\
+ & \multicolumn{1}{l}{} & \multicolumn{4}{c}{Modelo A} & \multicolumn{4}{c}{\textbf{Modelo B}} & \multicolumn{4}{c}{Modelo C} \\
+ & \multicolumn{1}{l}{} & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T \\
+Tweets2013 & 3813 & 779 & 239 & 1257 & 2275 & 773 & 279 & 1253 & 2287 & 674 & 294 & 1261 & 2229 \\ \hline
+Tweets2014 & 1853 & 425 & 69 & 507 & 1001 & 422 & 79 & 494 & 995 & 354 & 85 & 503 & 942 \\ \hline
+Sarcasm & 86 & 11 & 2 & 11 & 24 & 11 & 3 & 11 & 25 & 11 & 5 & 11 & 27 \\ \hline
+SMS2013 & 2093 & 237 & 120 & 993 & 1350 & 234 & 135 & 986 & 1355 & 209 & 136 & 999 & 1344 \\ \hline
+LiveJournal & 1142 & 257 & 131 & 312 & 700 & 255 & 154 & 307 & 716 & 233 & 157 & 314 & 704 \\ \hline
+Todas & 8987 & 1709 & 561 & 3080 & 5350 & 1695 & 650 & 3033 & 5378 & 1481 & 677 & 3088 & 5246\\ \hline
+\end{tabular}
+\caption{Avaliações corretas por base}
+\label{correctEvaluations}
+\end{adjustwidth}
+\end{table}
+
+
+Com relação ao cálculo de outras métricas (apresentadas na tabela \ref{metrics}), especificamente no processamento de F1, foi criada uma segunda média, levando em consideração somente o F1 positivo e negativo, desconsiderando o neutro. Esse foi o critério adotado pela equipe de avaliação do SemEval 2014 (\emph{task} 9, B), e foi aplicado no presente trabalho para que fosse possível comparar os resultados do mesmo com os classificadores submetidos para a competição. O resultado da \emph{task} está disponível para consulta no site do evento \footnote{https://docs.google.com/spreadsheets/d/1CmDicfEIxRgyoAix9BsVcC3qoRFEq0XDTSnBLVdavu8/}.
 
 Os testes foram realizados para cada um dos modelos criados, e os resultados podem ser vistos nas tabelas \ref{test1}, \ref{test2} e \ref{test3}. Precisão, \emph{Recall} e F1 foram calculados para as mensagens Positivas (P), Negativas (N) e Neutras (Nt), além da Média (Avg). Especificamente para F1, foi calculada, também, a média somente das mensagens positivas e negativas (Avg +/-) pelo motivo citado anteriormente. A acurácia (Acc) representa a quantidade de acertos em relação ao total de mensagens.
 
@@ -400,31 +420,9 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.4 & 0.4 & 0.8 & 0.5 & 0.5 & 0.4
 \end{adjustwidth}
 \end{table}
 
+Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAvgResults} apresenta as médias das métricas calculadas para cada base de teste e, também, para o total de mensagens.
 
-\subsection{Melhorias futuras}
-
-Buscando melhores resultados nos testes, algumas melhorias podem ser realizadas no processo de criação do modelo de classificação. A primeira delas é a inclusão de novas funções, que poderão ser utilizadas pela Programação Genética em busca de um modelo mais adequado ao contexto de classificação. 
-
-Modificações nos parâmetros do algoritmo também podem trazer melhores resultados, como um maior número de indivíduos (população), maior número de gerações e, também, alterações nos parâmetros de probabilidade de \emph{crossover} e mutação.
-
-A busca por dicionários complementares também pode auxiliar na melhoria dos resultados do processo. Especificamente no contexto de \emph{Tweets}, um dicionário consistente de \emph{emoticons} e \emph{hashtags}, por exemplo, podem incrementar os resultados de forma significativa.
-
-Treinar o processo com bases de dados maiores e mais balanceadas também pode auxiliar na busca por melhores resultados. Apesar de implementar a funcionalidade de balanceamento de polaridades, o conjunto de dados de treinamento atual pode ser insuficiente para a criação de um modelo com resultados satisfatórios.
-
-\section{Conclusão}\label{conclusion}
-
-[Comparar com alguns trabalhos do evento]
-
-[Dizer que sarcasmo teve resultados ruins]
-
-Como podemos perceber, os resultados do classificador para a base \emph{Twitter2014Sarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão melhores classificadores para esse contexto.
-
-[Mostrar melhores resultados]
-
-[Explanar critérios que podem ser modificados no GP]
-
-
-\begin{table}[]
+\begin{table}[H]
 \centering
 \begin{adjustwidth}{-1cm}{}
 \begin{tabular}{clccccc}
@@ -453,26 +451,26 @@ Como podemos perceber, os resultados do classificador para a base \emph{Twitter2
 \end{adjustwidth}
 \end{table}
 
+\subsection{Melhorias futuras}
 
+Buscando melhores resultados nos testes, algumas melhorias podem ser realizadas no processo de criação do modelo de classificação. A primeira delas é a inclusão de novas funções, que poderão ser utilizadas pela Programação Genética em busca de um modelo mais adequado ao contexto de classificação. 
 
-\begin{table}[]
-\centering
-\begin{adjustwidth}{-1.5cm}{}
-\begin{tabular}{lccccccccccccc}
-\multicolumn{1}{c}{\textbf{Base}} & \textit{\textbf{Tweets}} & \multicolumn{12}{c}{\textbf{Avaliados corretamente}} \\
- & \multicolumn{1}{l}{} & \multicolumn{4}{c}{Modelo A} & \multicolumn{4}{c}{\textbf{Modelo B}} & \multicolumn{4}{c}{Modelo C} \\
- & \multicolumn{1}{l}{} & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T \\
-Tweets2013 & 3813 & 779 & 239 & 1257 & 2275 & 773 & 279 & 1253 & 2287 & 674 & 294 & 1261 & 2229 \\ \hline
-Tweets2014 & 1853 & 425 & 69 & 507 & 1001 & 422 & 79 & 494 & 995 & 354 & 85 & 503 & 942 \\ \hline
-Sarcasm & 86 & 11 & 2 & 11 & 24 & 11 & 3 & 11 & 25 & 11 & 5 & 11 & 27 \\ \hline
-SMS2013 & 2093 & 237 & 120 & 993 & 1350 & 234 & 135 & 986 & 1355 & 209 & 136 & 999 & 1344 \\ \hline
-LiveJournal & 1142 & 257 & 131 & 312 & 700 & 255 & 154 & 307 & 716 & 233 & 157 & 314 & 704 \\ \hline
-Todas & 8987 & 1709 & 561 & 3080 & 5350 & 1695 & 650 & 3033 & 5378 & 1481 & 677 & 3088 & 5246\\ \hline
-\end{tabular}
-\caption{Avaliações corretas por base}
-\label{correctEvaluations}
-\end{adjustwidth}
-\end{table}
+Modificações nos parâmetros do algoritmo também podem trazer melhores resultados, como um maior número de indivíduos (população), maior número de gerações e, também, alterações nos parâmetros de probabilidade de \emph{crossover} e mutação.
+
+A busca por dicionários complementares também pode auxiliar na melhoria dos resultados do processo. Especificamente no contexto de \emph{Tweets}, um dicionário consistente de \emph{emoticons} e \emph{hashtags}, por exemplo, podem incrementar os resultados de forma significativa.
+
+Treinar o processo com bases de dados maiores e mais balanceadas também pode auxiliar na busca por melhores resultados. Apesar de implementar a funcionalidade de balanceamento de polaridades, o conjunto de dados de treinamento atual pode ser insuficiente para a criação de um modelo com resultados satisfatórios.
+
+\section{Conclusão}\label{conclusion}
+
+[Comparar com alguns trabalhos do evento]
+
+Como podemos perceber, os resultados do classificador para a base \emph{Twitter2014Sarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão melhores classificadores para esse contexto.
+
+[Mostrar melhores resultados]
+
+[Explanar critérios que podem ser modificados no GP]
+
 
 
 

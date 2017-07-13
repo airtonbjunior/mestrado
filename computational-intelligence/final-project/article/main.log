@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  13 JUL 2017 12:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  13 JUL 2017 13:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -742,46 +742,41 @@ File: treeC.png Graphic file (type png)
  <use treeC.png>
 Package pdftex.def Info: treeC.png used on input line 331.
 (pdftex.def)             Requested size: 384.1096pt x 341.8121pt.
- [12 <./treeA.png> <./treeB2.png>] [13 <./treeC.png>]
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 352--362
+ [12 <./treeA.png> <./treeB2.png>]
+Overfull \hbox (59.65668pt too wide) in paragraph at lines 348--359
+[][] 
+ []
+
+[13 <./treeC.png>]
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 372--382
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 370--380
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 390--400
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 388--398
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 408--418
 [][] 
  []
 
-[14]
-Underfull \hbox (badness 1102) in paragraph at lines 420--421
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Overfull \hbox (43.72354pt too wide) in paragraph at lines 428--449
+[][] 
+ []
+
+[15]
+Underfull \hbox (badness 1102) in paragraph at lines 468--469
 []\OT1/ptm/m/n/12 Como pode-mos perce-ber, os re-sul-ta-dos do clas-si-fi-cador
  para a base \OT1/ptm/m/it/12 Twit-
  []
 
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 427.
-
-
-Overfull \hbox (43.72354pt too wide) in paragraph at lines 430--451
-[][] 
- []
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 458.
-
-
-Overfull \hbox (59.65668pt too wide) in paragraph at lines 461--472
-[][] 
- []
-
-(./main.bbl [15] [16] [17]) [18] (./main.aux)
+(./main.bbl [16] [17]) [18] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -793,7 +788,7 @@ Here is how much of TeX's memory you used:
  7188 multiletter control sequences out of 15000+600000
  26501 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,28p,1083b,274s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,11n,28p,1083b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2016/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
@@ -802,7 +797,7 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
 texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 295046 bytes).
+Output written on main.pdf (18 pages, 295596 bytes).
 PDF statistics:
  106 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

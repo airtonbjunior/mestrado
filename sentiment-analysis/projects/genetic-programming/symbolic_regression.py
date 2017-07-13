@@ -25,6 +25,7 @@ from deap import gp
 from twython import Twython
 
 from stemming.porter2 import stem
+from nltk.corpus import stopwords
 
 # log time
 start = time.time()
@@ -91,9 +92,9 @@ MAX_POSITIVES_TWEETS = 1400
 MAX_NEGATIVES_TWEETS = 1400
 MAX_NEUTRAL_TWEETS = 1400
 
-GENERATIONS = 1000
+GENERATIONS = 300
 generations_unchanged = 0
-max_unchanged_generations = 500
+max_unchanged_generations = 50
 
 uses_dummy_function = False
 
@@ -557,6 +558,17 @@ def repeatInputString(phrase):
     return phrase
 
 
+def removeStopWords(phrase):
+    words = phrase.split()
+    stop = set(stopwords.words('english'))
+    return_phrase = ""
+
+    for word in words:
+        if word not in stop:
+            return_phrase += word + " "               
+
+    return return_phrase
+
 def stemmingText(phrase):
     words = phrase.split()
     
@@ -603,6 +615,7 @@ pset.addPrimitive(hasEmoticons, [str], bool)
 pset.addPrimitive(if_then_else, [bool, float, float], float)
 
 pset.addPrimitive(stemmingText, [str], str)
+pset.addPrimitive(removeStopWords, [str], str)
 #pset.addPrimitive(repeatInputString, [str], str)
 
 pset.addTerminal(True, bool)
@@ -979,7 +992,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=250)
+    pop = toolbox.population(n=35)
     hof = tools.HallOfFame(3)
     
     

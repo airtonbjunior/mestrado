@@ -24,6 +24,8 @@ from deap import gp
 
 from twython import Twython
 
+from stemming.porter2 import stem
+
 # log time
 start = time.time()
 
@@ -555,6 +557,17 @@ def repeatInputString(phrase):
     return phrase
 
 
+def stemmingText(phrase):
+    words = phrase.split()
+    
+    stemmed_phrase = ""
+
+    for word in words:
+        stemmed_phrase += stem(word) + " "               
+
+    return stemmed_phrase.strip()
+
+
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
 pset.addPrimitive(operator.add, [float,float], float)
 pset.addPrimitive(operator.sub, [float,float], float)
@@ -589,7 +602,8 @@ pset.addPrimitive(hasEmoticons, [str], bool)
 
 pset.addPrimitive(if_then_else, [bool, float, float], float)
 
-pset.addPrimitive(repeatInputString, [str], str)
+pset.addPrimitive(stemmingText, [str], str)
+#pset.addPrimitive(repeatInputString, [str], str)
 
 pset.addTerminal(True, bool)
 pset.addTerminal(False, bool)

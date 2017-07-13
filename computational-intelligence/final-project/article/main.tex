@@ -33,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-The increase in the number of Internet users in recent years has resulted in a growing content production by its users. Often, the WEB is used as a platform for debates, opinions, evaluations, etc. This fact, in line with the ease of obtaining the information, made the area of Sentiment Analysis, also called Opinion Mining, a growing interest on the part of reserachers.
+The increase in the number of Internet users in recent years has resulted in a growing content production by its users. Often, the WEB is used as a platform for debates, opinions, evaluations, etc. This fact, in line with the ease of obtaining the information, made the area of Sentiment Analysis, also called Opinion Mining, a growing interest on the part of researchers.
 
 [continue]
 \end{abstract}
@@ -120,13 +120,13 @@ Por sua característica inerentemente paralela, esse tipo de abordagem consegue 
 
 Como discutido em seções anteriores, a quantidade de trabalhos na área de análise de sentimento vem crescendo a cada ano, motivado, principalmente, pela importância da área no contexto atual de geração e análise de grande quantidade de dados e informações.
 
-Ao debatermos os trabalhos relacionados à area de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}, uma das principais referências do assunto. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, \cite{kaji}, entre outros trabalhos.
+Ao debatermos os trabalhos relacionados à área de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}, uma das principais referências do assunto. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instrínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, \cite{kaji}, entre outros trabalhos.
 
 Embasamento teórico sobre a divisão dos métodos de classificação de sentimentos em abordagens supervisionadas e não supervisionadas são apresentadas de forma clara em \cite{araujo2013metodos}
 
 No contexto de prognóstico automatizado de Orientação Semântica de palavras, um dos primeiros trabalhos apresentados foi \cite{Hatzivassiloglou}, focando na previsão de polaridade de adjetivos.
 
-Uma das formas não supervisionadas de classificação leva em consideração aspectos sintáticos e semânticos do texto. \cite{Turney2002} apresenta uma abordagem de expansão léxica fazendo uso da técnica de \emph{Pointwise Mutual Infomation} (PMI), com o objetivo de calcular a co-ocorrência de palavras e, com isso, comparar a polaridade de novas palavras com outras já conhecidas. Nesse trabalho, amplamente referenciado por outras pesquisas, o autor compara o conjunto de palavras de Orientação Semântica desconhecida com as palavras \emph{ "excellent"} e \emph{"poor"}, representando Orientações Semânticas positiva e negativa, respectivamente. Essas palavras previamente conhecidas utilizadas como base para a expansão do Dicionário são chamadas de palavras semente (\emph{seed words}, em inglês). Como exemplo de trabalhos que utilizam o PMI para a criação e expansão do Dicionário Léxico podemos citar \cite{becker2013}, \cite{Zhou2014}, \cite{Pinto2007}. \cite{Pantel2006}, \cite{duwairi2015detecting}, entre outros.
+Uma das formas não supervisionadas de classificação leva em consideração aspectos sintáticos e semânticos do texto. \cite{Turney2002} apresenta uma abordagem de expansão léxica fazendo uso da técnica de \emph{Pointwise Mutual Infomation} (PMI), com o objetivo de calcular a coocorrência de palavras e, com isso, comparar a polaridade de novas palavras com outras já conhecidas. Nesse trabalho, amplamente referenciado por outras pesquisas, o autor compara o conjunto de palavras de Orientação Semântica desconhecida com as palavras \emph{ "excellent"} e \emph{"poor"}, representando Orientações Semânticas positiva e negativa, respectivamente. Essas palavras previamente conhecidas utilizadas como base para a expansão do Dicionário são chamadas de palavras semente (\emph{seed words}, em inglês). Como exemplo de trabalhos que utilizam o PMI para a criação e expansão do Dicionário Léxico podemos citar \cite{becker2013}, \cite{Zhou2014}, \cite{Pinto2007}. \cite{Pantel2006}, \cite{duwairi2015detecting}, entre outros.
 
 Outro importante trabalho sobre Mineração de Opiniões, \cite{taboada2011lexicon} apresenta uma abordagem de Análise de Sentimentos baseada em Léxico combinada com uma verificação manual. Esse trabalho apresenta o SO-CAL (\emph{Semantic Orientation Calculator}), que usa lista de palavras já consolidadas para a geração de dicionários com novas entradas e suas polaridades de forma não supervisionada.
 
@@ -162,7 +162,7 @@ O indivíduo mais apto (de melhor \emph{fitness}) retornado pelo algoritmo de Pr
 
 Como explanado na seção \ref{progGen}, a Programação Genética pode ser utilizada para a criação de um modelo de solução - um programa - para a resolução de um dado problema. No caso do presente trabalho, queremos encontrar um modelo de classificação de sentimentos em \emph{Tweets}.
 
-O primeiro passo para projetar uma solução de Programação Genética é determinar o conjunto de terminais e funções do modelo. Os terminais serão compostos pelos \emph{Tweets} que serão analisados, bem como por uma constante efêmera, um número real escolhido aleatóriamente entre -3 e 3. A constante efêmera será escolhida de forma aleatória somente no momento de criação do indivíduo, e depois manterá seu valor na árvore.
+O primeiro passo para projetar uma solução de Programação Genética é determinar o conjunto de terminais e funções do modelo. Os terminais serão compostos pelos \emph{Tweets} que serão analisados, bem como por uma constante efêmera, um número real escolhido aleatoriamente entre -3 e 3. A constante efêmera será escolhida de forma aleatória somente no momento de criação do indivíduo, e depois manterá seu valor na árvore.
 
 As funções serão responsáveis por realizar a manipulação dos dados, como o \emph{Tweet} e suas características. A lista das principais funções definidas para a solução pode ser vista na tabela \ref{tab_functions}.
 
@@ -248,7 +248,7 @@ Especificamente para o contexto de Programação Genética, DEAP fornece funcion
 
 Para o presente trabalho, foram utilizados os dicionários de palavras positivas e negativas de \cite{HuAndLiu2004}\footnote{https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html\#lexicon}. Os dicionários fornecem um conjunto de 4783 palavras negativas e 2006 palavras positivas para apoiar no processo de Análise de Sentimentos.
 
-Utilizou-se, também, o dicionário de emoticons SentiStrength\footnote{http://sentistrength.wlv.ac.uk/}, que fornece 46 emoticons positivos e 58 negativos.
+Utilizou-se, também, o dicionário de \emph{emoticons} SentiStrength\footnote{http://sentistrength.wlv.ac.uk/}, que fornece 46 \emph{emoticons} positivos e 58 negativos.
 
 A escolha desses dicionários deu-se, principalmente, por terem sido utilizados como base para o SemEval 2014, \emph{task} 9. Ao considerar as mesmas bases disponibilizadas pela competição, é possível fazer a comparação dos resultados obtidos neste trabalho com os avaliados pelo evento.
 
@@ -338,7 +338,7 @@ Os modelos criados após o processamento foram (a variável x representa a entra
 
 \subsection{Testes dos modelos}
 
-Os modelos foram testados com a base de testes disponiblizada pela organização do evento SemEval 2014. Como apresentado na tabela \ref{datasets}, as mensagens são divididas em 5 bases de teste: Twitter2013, Twitter2014, Twitter2014Sarcasm, SMS2013 e LiveJournal2014. Os resultados foram calculados para cada base e, posteriormente, de forma geral, utilizando todas as mensagens.
+Os modelos foram testados com a base de testes disponibilizada pela organização do evento SemEval 2014. Como apresentado na tabela \ref{datasets}, as mensagens são divididas em 5 bases de teste: Twitter2013, Twitter2014, Twitter2014Sarcasm, SMS2013 e LiveJournal2014. Os resultados foram calculados para cada base e, posteriormente, de forma geral, utilizando todas as mensagens.
 
 A tabela \ref{correctEvaluations} apresenta a quantidade de \emph{Tweets} avaliados corretamente por modelo. 
 

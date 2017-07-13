@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  12 JUL 2017 11:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  12 JUL 2017 22:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -799,16 +799,25 @@ Underfull \hbox (badness 1102) in paragraph at lines 418--419
  para a base \OT1/ptm/m/it/12 Twit-
  []
 
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 441.
+
+
+Overfull \hbox (12.41628pt too wide) in paragraph at lines 444--465
+[][] 
+ []
+
 (./main.bbl [15] [16] [17]) [18] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3740 strings out of 493013
- 50503 string characters out of 6136993
- 136531 words of memory out of 5000000
- 7190 multiletter control sequences out of 15000+600000
+ 3741 strings out of 493013
+ 50518 string characters out of 6136993
+ 136541 words of memory out of 5000000
+ 7191 multiletter control sequences out of 15000+600000
  26501 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,11n,28p,1083b,318s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -820,7 +829,7 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
 texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 266456 bytes).
+Output written on main.pdf (18 pages, 267529 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

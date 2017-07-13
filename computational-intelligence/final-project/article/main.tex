@@ -278,7 +278,7 @@ O evento também disponibiliza uma base de testes, que serve como critério de a
 	\textit{Tweets2014Sarcasm} & 86 \\ \hline
 	SMS2013 & 2093 \\ \hline
 	LiveJournal2014 & 1142 \\ \hline
-	Total & 8987
+	Total & 8987 \\ \hline
 	\end{tabular}
 \caption{Bases de testes - Semeval2014}
 \label{datasets}
@@ -300,7 +300,7 @@ Alguns parâmetros devem ser definidos para o funcionamento da Programação Gen
 	\textbf{Modelo} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
 	A & 50 & 500 & 3.5\% & 1.5\% & 150 \\ \hline
 	B & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
-	C & 50 & 500 & 4.5\% & 2.5\% & 500 \\ \hline
+	C & 100 & 500 & 4.5\% & 2.5\% & 500 \\ \hline
 	\end{tabular}
 	\caption{Parâmetros da Programação Genética}
 	\label{parametersGP}
@@ -311,7 +311,6 @@ Com o objetivo de diminuir a quantidade de tempo de processamento para a criaç�
 Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando as mesmas entradas (base de treinamento) e modificando somente os parâmetros da Programação Genética. Cada um dos modelos foi testado com a base de testes disponibilizada pelo SemEval 2014.
 
 Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
-\begin{enumerate}[label=\Alph*]
 
 	\begin{figure}[H]
 		\centering
@@ -327,11 +326,13 @@ Os modelos criados após o processamento foram (a variável x representa a entra
 		\label{BModel}
 	\end{figure}
 
-	\item{if\_then\_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))}  [Criar Árvore] 
-	\item{mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))), \\protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))}
-	\item{add(invertSignal(negativeWordsQuantity(repeatInputString(repeatInputString\\(repeatInputString(x))))), sin(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))}
-	\item{polaritySum(x)} [colocar imagem para cada modelo]
-\end{enumerate}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{treeC}
+		\caption{Modelo C}
+		\label{CModel}
+	\end{figure}
+
 
 
 
@@ -423,50 +424,57 @@ Como podemos perceber, os resultados do classificador para a base \emph{Twitter2
 [Explanar critérios que podem ser modificados no GP]
 
 
-\begin{table}[H]
-\centering
-	\begin{tabular}{lcccc}
-	\multicolumn{1}{c}{\textbf{Base de Teste}}     & \multicolumn{1}{c}{\textbf{Acurácia}} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}	{\textbf{Recall (média)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} \\ \hline
-	Tweets2013 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
-	Tweets2014 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
-	Tweets2014Sarcasm & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
-	SMS2013 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
-	LiveJournal2014 & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline
-	Todas & 0.50 & 0.50 & 0.50 & 0.50 \\ \hline	
-	\end{tabular}
-	\caption{Resultados divididos por base de dados [Ver o que fazer com essa tabela, está perdida]}
-	\label{resultsl}
-\end{table}
-
-
 \begin{table}[]
 \centering
 \begin{adjustwidth}{-1cm}{}
 \begin{tabular}{clccccc}
-\multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}{\textbf{Recall (médio)}} & \multicolumn{1}{c}{\textbf{F1 Média}} & \textbf{F1 SemEval} \\
-\multirow{6}{*}{\rotatebox{90}{Modelo A}} & Twitter2013 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ 
- & Twitter2014 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ 
- & Sarcasm & 0.3 & 0.1 & 0.3 & 0.3 & {\ul 0.2} \\ 
- & SMS2013 & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ 
- & LiveJournal & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ 
- & Todas & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5\\ \hline
- \multirow{6}{*}{\rotatebox{90}{Modelo B}} & Twitter2013 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ 
- & Twitter2014 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ 
- & Sarcasm & 0.3 & 0.1 & 0.3 & 0.3 & {\ul 0.2} \\ 
- & SMS2013 & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ 
- & LiveJournal & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ 
- & Todas & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5\\ \hline
- \multirow{6}{*}{\rotatebox{90}{Modelo C}} & Twitter2013 & 0.5846 & 0.5734 & 0.5623 & 0.5529 & 0.5 \\
- & Twitter2014 & 0.5084 & 0.5001 & 0.511 & 0.4704 & 0.4205 \\
+\multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}{\textbf{Recall (médio)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} & \textbf{F1 (SemEval)} \\
+\multirow{6}{*}{\rotatebox{90}{Modelo A}} & Tweets2013 & 0.5966 & 0.5881 & 0.5532 & 0.5583 & 0.5111 \\
+ & Tweets2014 & 0.5402 & 0.5284 & 0.5107 & 0.4937 & 0.4538 \\
+ & TwitterSarcasm & 0.2791 & 0.3623 & 0.4098 & 0.2597 & 0.2229 \\
+ & SMS2013 & 0.645 & 0.5904 & 0.5363 & 0.5499 & 0.4476 \\
+ & LiveJournal & 0.613 & 0.639 & 0.5973 & 0.6011 & 0.5894 \\
+ & Todas & 0.5953 & 0.5898 & 0.5444 & 0.552 & 0.4974\\ \hline
+ \multirow{6}{*}{\rotatebox{90}{\textbf{Modelo B}}} & Tweets2013 & 0.5998 & 0.581 & 0.5697 & 0.5666 & 0.5186 \\
+ & Tweets2014 & 0.537 & 0.5141 & 0.5197 & 0.4929 & 0.4507 \\
+ & TwitterSarcasm & 0.2907 & 0.3426 & 0.4182 & 0.2772 & 0.2412 \\
+ & SMS2013 & 0.6474 & 0.583 & 0.5451 & 0.5569 & 0.4549 \\
+ & LiveJournal & 0.627 & 0.6364 & 0.6169 & 0.6189 & 0.6052 \\
+ & Todas & 0.5984 & 0.5812 & 0.5584 & 0.5603 & 0.5051\\ \hline
+ \multirow{6}{*}{\rotatebox{90}{Modelo C}} & Tweets2013 & 0.5846 & 0.5734 & 0.5623 & 0.5529 & 0.5 \\
+ & Tweets2014 & 0.5084 & 0.5001 & 0.511 & 0.4704 & 0.4205 \\
  & TwitterSarcasm & 0.314 & 0.3943 & 0.4348 & 0.3067 & 0.2854 \\
  & SMS2013 & 0.6421 & 0.5705 & 0.5325 & 0.5446 & 0.435 \\
- & LiveJournal2014 & 0.6165 & 0.6265 & 0.6087 & 0.6079 & 0.5861 \\
+ & LiveJournal & 0.6165 & 0.6265 & 0.6087 & 0.6079 & 0.5861 \\
  & Todas & 0.5837 & 0.5701 & 0.5485 & 0.5451 & 0.4833
 \end{tabular}
-\caption{Resultados médios por modelo [Não colocar números quebrados aqui]}
+\caption{Resultados médios por modelo}
 \label{tabAvgResults}
 \end{adjustwidth}
 \end{table}
+
+
+
+\begin{table}[]
+\centering
+\begin{adjustwidth}{-1.5cm}{}
+\begin{tabular}{lccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textit{\textbf{Tweets}} & \multicolumn{12}{c}{\textbf{Avaliados corretamente}} \\
+ & \multicolumn{1}{l}{} & \multicolumn{4}{c}{Modelo A} & \multicolumn{4}{c}{\textbf{Modelo B}} & \multicolumn{4}{c}{Modelo C} \\
+ & \multicolumn{1}{l}{} & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T \\
+Tweets2013 & 3813 & 779 & 239 & 1257 & 2275 & 773 & 279 & 1253 & 2287 & 674 & 294 & 1261 & 2229 \\ \hline
+Tweets2014 & 1853 & 425 & 69 & 507 & 1001 & 422 & 79 & 494 & 995 & 354 & 85 & 503 & 942 \\ \hline
+Sarcasm & 86 & 11 & 2 & 11 & 24 & 11 & 3 & 11 & 25 & 11 & 5 & 11 & 27 \\ \hline
+SMS2013 & 2093 & 237 & 120 & 993 & 1350 & 234 & 135 & 986 & 1355 & 209 & 136 & 999 & 1344 \\ \hline
+LiveJournal & 1142 & 257 & 131 & 312 & 700 & 255 & 154 & 307 & 716 & 233 & 157 & 314 & 704 \\ \hline
+Todas & 8987 & 1709 & 561 & 3080 & 5350 & 1695 & 650 & 3033 & 5378 & 1481 & 677 & 3088 & 5246\\ \hline
+\end{tabular}
+\caption{Avaliações corretas por base}
+\label{correctEvaluations}
+\end{adjustwidth}
+\end{table}
+
+
 
 \bibliographystyle{sbc}
 \bibliography{main}

@@ -300,7 +300,7 @@ Alguns parâmetros devem ser definidos para o funcionamento da Programação Gen
 	\textbf{Modelo} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
 	A & 50 & 500 & 3.5\% & 1.5\% & 150 \\ \hline
 	B & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
-	C & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
+	C & 50 & 500 & 4.5\% & 2.5\% & 500 \\ \hline
 	\end{tabular}
 	\caption{Parâmetros da Programação Genética}
 	\label{parametersGP}
@@ -328,13 +328,14 @@ Os modelos criados após o processamento foram (a variável x representa a entra
 	\end{figure}
 
 	\item{if\_then\_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))}  [Criar Árvore] 
-	\item mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))), \\protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))
+	\item{mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(x))))))), \\protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))}
+	\item{add(invertSignal(negativeWordsQuantity(repeatInputString(repeatInputString\\(repeatInputString(x))))), sin(polaritySum(repeatInputString(repeatInputString(repeatInputString\\(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))}
 	\item{polaritySum(x)} [colocar imagem para cada modelo]
 \end{enumerate}
 
 
 
-\subsection{Teste do modelo}
+\subsection{Testes dos modelos}
 
 Os modelos foram testados com a base de testes disponiblizada pela organização do evento SemEval 2014. Como apresentado na tabela \ref{datasets}, as mensagens são divididas em 5 bases de teste: Twitter2013, Twitter2014, Twitter2014Sarcasm, SMS2013 e LiveJournal2014. Os resultados foram calculados para cada base e, posteriormente, de forma geral, utilizando todas as mensagens.
 
@@ -352,7 +353,7 @@ Os testes foram realizados para cada um dos modelos criados, e os resultados pod
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
 Tweets2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 &  \textbf{0.6} & 0.5 \\ \hline
 Tweets2014 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & {\ul0.4} & 0.3 & 0.1 & 0.8 & {\ul0.4} & 0.3 & 0.1 & 0.3 & 0.3 & {\ul0.2} \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & {\ul0.4} & 0.3 & 0.1 & 0.8 & {\ul0.4} & 0.3 & 0.1 & 0.3 & {\ul0.3} & {\ul0.2} \\ \hline
 SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
 LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & \textbf{0.6} & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.5 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
 Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
@@ -370,7 +371,7 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
 Tweets2013 & 0.5 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
 Tweets2014 & 0.5 & 0.3 & 0.5 & 0.5 & 0.5 & 0.4 & 0.4 & 0.7 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.4 & 0.2 & {\ul 0.3} & 0.3 & 0.1 & 0.8 & {\ul 0.4} & 0.3 & 0.1 & 0.3 & 0.3 & {\ul 0.2} \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.4 & 0.2 & {\ul 0.3} & 0.3 & 0.1 & 0.8 & {\ul 0.4} & 0.3 & 0.1 & 0.3 & {\ul 0.3} & {\ul 0.2} \\ \hline
 SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ \hline
 LiveJournal & 0.6 & 0.7 & 0.6 & 0.6 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
 Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
@@ -386,14 +387,14 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 
 \begin{tabular}{lcccccccccccccc}
 \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
-Tweets2013 & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 & 0.6 & 0.5 \\ \hline
-Tweets2014 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & 0.4 & 0.3 & 0.1 & 0.8 & 0.4 & 0.3 & 0.1 & 0.3 & 0.3 & 0.2 \\ \hline
-SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & 0.6 & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
-LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & 0.6 & 0.6 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 & 0.6 & 0.6 \\ \hline
-Todas & 0.6 & 0.7 & 0.5 & 0.6 & 0.6 & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+Tweets2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.4 & 0.5 & 0.8 & \textbf{0.6} & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
+Tweets2014 & 0.5 & 0.7 & 0.3 & 0.5 & 0.5 & 0.4 & 0.4 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.6 & 0.2 & {\ul 0.4} & 0.3 & 0.1 & 0.8 & {\ul 0.4} & 0.4 & 0.2 & 0.3 & {\ul 0.3} & {\ul 0.3} \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.8 & 0.5 & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.6 & 0.6 & \textbf{0.6} & 0.5 & 0.5 & 0.8 & \textbf{0.6} & 0.6 & 0.6 & 0.7 & \textbf{0.6} & \textbf{0.6} \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.4 & 0.4 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
 \end{tabular}
-\caption{Resultados dos testes do modelo C [Colocar dados corretos]}
+\caption{Resultados dos testes do modelo C}
 \label{test3}
 \end{adjustwidth}
 \end{table}
@@ -455,12 +456,12 @@ Como podemos perceber, os resultados do classificador para a base \emph{Twitter2
  & SMS2013 & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ 
  & LiveJournal & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ 
  & Todas & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5\\ \hline
- \multirow{6}{*}{\rotatebox{90}{Modelo C}} & Twitter2013 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ 
- & Twitter2014 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ 
- & Sarcasm & 0.3 & 0.1 & 0.3 & 0.3 & {\ul 0.2} \\ 
- & SMS2013 & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ 
- & LiveJournal & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ 
- & Todas & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5
+ \multirow{6}{*}{\rotatebox{90}{Modelo C}} & Twitter2013 & 0.5846 & 0.5734 & 0.5623 & 0.5529 & 0.5 \\
+ & Twitter2014 & 0.5084 & 0.5001 & 0.511 & 0.4704 & 0.4205 \\
+ & TwitterSarcasm & 0.314 & 0.3943 & 0.4348 & 0.3067 & 0.2854 \\
+ & SMS2013 & 0.6421 & 0.5705 & 0.5325 & 0.5446 & 0.435 \\
+ & LiveJournal2014 & 0.6165 & 0.6265 & 0.6087 & 0.6079 & 0.5861 \\
+ & Todas & 0.5837 & 0.5701 & 0.5485 & 0.5451 & 0.4833
 \end{tabular}
 \caption{Resultados médios por modelo [Não colocar números quebrados aqui]}
 \label{tabAvgResults}

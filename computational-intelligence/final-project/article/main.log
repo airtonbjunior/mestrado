@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  13 JUL 2017 13:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  13 JUL 2017 21:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -654,7 +654,7 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
 File: treeGP.png Graphic file (type png)
  <use treeGP.png>
 Package pdftex.def Info: treeGP.png used on input line 104.
-(pdftex.def)             Requested size: 426.79135pt x 311.96104pt.
+(pdftex.def)             Requested size: 298.75264pt x 218.37329pt.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 105.
 
 
@@ -679,7 +679,7 @@ Underfull \hbox (badness 5217) in paragraph at lines 123--124
 \OT1/ptm/m/n/12 [[]], [[]], [[]], en-
  []
 
-[5]
+
 Underfull \hbox (badness 10000) in paragraph at lines 133--134
 []\OT1/ptm/m/n/12 Na linha de es-trat[]egias su-per-vi-sion-adas, [[]] e
  []
@@ -690,7 +690,7 @@ Underfull \hbox (badness 2903) in paragraph at lines 133--134
 alise
  []
 
-
+[5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
@@ -700,10 +700,10 @@ ess\OT1/ptm/m/n/12 ) re-tor-nado pelo al-go-ritmo de
  []
 
 
-Underfull \vbox (badness 2680) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
-Underfull \hbox (badness 2035) in paragraph at lines 196--197
+Underfull \hbox (badness 2035) in paragraph at lines 198--199
 []\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
 n-clu[]^^Pdas fun[][]oes
  []
@@ -713,14 +713,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 243.
+(Font)              <7> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 243.
+(Font)              <5> on input line 245.
 
 [9] <diagrama3.png, id=42, 1056.94875pt x 693.59125pt>
 File: diagrama3.png Graphic file (type png)
  <use diagrama3.png>
-Package pdftex.def Info: diagrama3.png used on input line 265.
+Package pdftex.def Info: diagrama3.png used on input line 267.
 (pdftex.def)             Requested size: 426.79135pt x 280.06683pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -728,37 +728,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [10 <./diagrama3.png>] <treeA.png, id=47, 585.18625pt x 365.365pt>
 File: treeA.png Graphic file (type png)
  <use treeA.png>
-Package pdftex.def Info: treeA.png used on input line 317.
+Package pdftex.def Info: treeA.png used on input line 319.
 (pdftex.def)             Requested size: 426.79135pt x 266.48007pt.
 
 [11] <treeB2.png, id=51, 610.28pt x 453.695pt>
 File: treeB2.png Graphic file (type png)
  <use treeB2.png>
-Package pdftex.def Info: treeB2.png used on input line 324.
+Package pdftex.def Info: treeB2.png used on input line 326.
 (pdftex.def)             Requested size: 426.79135pt x 317.29358pt.
 
 <treeC.png, id=52, 455.7025pt x 405.515pt>
 File: treeC.png Graphic file (type png)
  <use treeC.png>
-Package pdftex.def Info: treeC.png used on input line 331.
+Package pdftex.def Info: treeC.png used on input line 333.
 (pdftex.def)             Requested size: 384.1096pt x 341.8121pt.
  [12 <./treeA.png> <./treeB2.png>]
-Overfull \hbox (59.65668pt too wide) in paragraph at lines 348--359
+Overfull \hbox (59.65668pt too wide) in paragraph at lines 350--361
 [][] 
  []
 
 [13 <./treeC.png>]
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 372--382
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 374--384
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 390--400
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 392--402
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 408--418
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 410--420
 [][] 
  []
 
@@ -766,12 +766,12 @@ Overfull \hbox (33.37486pt too wide) in paragraph at lines 408--418
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14]
-Overfull \hbox (43.72354pt too wide) in paragraph at lines 428--449
+Overfull \hbox (43.72354pt too wide) in paragraph at lines 430--451
 [][] 
  []
 
 [15]
-Underfull \hbox (badness 1102) in paragraph at lines 468--469
+Underfull \hbox (badness 1102) in paragraph at lines 470--471
 []\OT1/ptm/m/n/12 Como pode-mos perce-ber, os re-sul-ta-dos do clas-si-fi-cador
  para a base \OT1/ptm/m/it/12 Twit-
  []
@@ -797,7 +797,7 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
 texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 295606 bytes).
+Output written on main.pdf (18 pages, 295646 bytes).
 PDF statistics:
  106 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

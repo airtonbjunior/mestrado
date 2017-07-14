@@ -101,7 +101,7 @@ Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=1.0\textwidth]{treeGP}
+	\includegraphics[width=0.7\textwidth]{treeGP}
 	\caption{Exemplo de um programa em Programação Genética}
 	\label{treeProgram}
 \end{figure}
@@ -174,11 +174,11 @@ Para a criação das funções, foi levado em consideração heurísticas aprese
 	\begin{tabular}{ll}
 	\multicolumn{1}{c}{\textbf{Função}} & \multicolumn{1}{c}{\textbf{Retorno}} \\
 	\hline
-	polaritySum(str): float & Soma das polaridades de cada palavra \\& (+1 para positivo e -1 para negativo) \\
+	polaritySum(str): float & Soma das polaridades de cada palavra  \\
 	\hline
-	hashtagPolaritySum(str): float & Soma das polaridades de cada hashtag \\& (+1 para positivo e -1 para negativo) \\
+	hashtagPolaritySum(str): float & Soma das polaridades de cada hashtag \\
 	\hline
-	emoticonPolaritySum(str): float & Soma das polaridades de cada emoticon \\& (+1 para positivo e -1 para negativo) \\
+	emoticonPolaritySum(str): float & Soma das polaridades de cada emoticon  \\
 	\hline
 	positiveWordsQuantity(str): float & Quantidade de palavras positivas \\
 	\hline
@@ -187,6 +187,8 @@ Para a criação das funções, foi levado em consideração heurísticas aprese
 	hasHashtags(str): bool & Verifica se o \emph{Tweet} possui hashtag \\
 	\hline
 	hasEmoticons(str): bool & Verifica se o \emph{Tweet} possui emoticon \\
+	\hline
+	removeStopWords(str): str & Remove os \emph{stopwords} do \emph{Tweet} \\
 	\hline
 	\end{tabular}
 	\caption{Principais funções utilizadas na Programação Genética}
@@ -218,7 +220,7 @@ Outras métricas são utilizadas para a verificação da qualidade do classifica
 \begin{table}[H]
 \centering
 	\begin{tabular}{ll}
-	\textbf{Métrica} & \textbf{Fórmula} \\ \hline
+	\multicolumn{1}{c}{\textbf{Métrica}} & \multicolumn{1}{c}{\textbf{Fórmula}} \\ \hline
 	Acurácia & (VP + VN + VNt )/ Total de mensagens \\ \hline
 	Precisão positiva (PP) & VP / Positivos retornados pelo modelo \\ \hline
 	\textit{Recall} positivo (RP) & VP / Mensagens positivas \\ \hline

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  13 JUL 2017 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  13 JUL 2017 21:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -729,7 +729,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: treeA.png Graphic file (type png)
  <use treeA.png>
 Package pdftex.def Info: treeA.png used on input line 319.
-(pdftex.def)             Requested size: 426.79135pt x 266.48007pt.
+(pdftex.def)             Requested size: 384.1096pt x 239.83151pt.
 
 [11] <treeB2.png, id=51, 610.28pt x 453.695pt>
 File: treeB2.png Graphic file (type png)
@@ -741,7 +741,10 @@ Package pdftex.def Info: treeB2.png used on input line 326.
 File: treeC.png Graphic file (type png)
  <use treeC.png>
 Package pdftex.def Info: treeC.png used on input line 333.
-(pdftex.def)             Requested size: 384.1096pt x 341.8121pt.
+(pdftex.def)             Requested size: 320.0935pt x 284.84857pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [12 <./treeA.png> <./treeB2.png>]
 Overfull \hbox (59.65668pt too wide) in paragraph at lines 350--361
 [][] 
@@ -762,21 +765,18 @@ Overfull \hbox (33.37486pt too wide) in paragraph at lines 410--420
 [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
+[14]
 Overfull \hbox (43.72354pt too wide) in paragraph at lines 430--451
 [][] 
  []
 
-[15]
+
 Underfull \hbox (badness 1102) in paragraph at lines 470--471
 []\OT1/ptm/m/n/12 Como pode-mos perce-ber, os re-sul-ta-dos do clas-si-fi-cador
  para a base \OT1/ptm/m/it/12 Twit-
  []
 
-(./main.bbl [16] [17]) [18] (./main.aux)
+[15] (./main.bbl [16] [17]) [18] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -784,7 +784,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3739 strings out of 493013
  50451 string characters out of 6136993
- 136550 words of memory out of 5000000
+ 135550 words of memory out of 5000000
  7188 multiletter control sequences out of 15000+600000
  26501 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -797,7 +797,7 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/
 texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 295646 bytes).
+Output written on main.pdf (18 pages, 295402 bytes).
 PDF statistics:
  106 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

@@ -410,6 +410,29 @@ def if_then_else(input, output1, output2):
 def repeatInputString(phrase):
     return phrase
 
+
+def removeStopWords(phrase):
+    global stop_words
+
+    words = phrase.split()
+    return_phrase = ""
+
+    for word in words:
+        if word not in stop_words:
+            return_phrase += word + " "               
+            
+    return return_phrase
+
+
+def stemmingText(phrase):
+    words = phrase.split()
+    
+    stemmed_phrase = ""
+
+    for word in words:
+        stemmed_phrase += stem(word) + " "               
+
+    return stemmed_phrase.strip()
 ### End functions (improve this - import the functions of the other file)
 
 

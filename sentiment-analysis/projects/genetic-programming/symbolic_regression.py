@@ -96,7 +96,11 @@ GENERATIONS = 300
 generations_unchanged = 0
 max_unchanged_generations = 50
 
+stop_words = set(stopwords.words('english'))
+
 uses_dummy_function = False
+used_stop_words = False
+used_stemming_words = False
 
 log_all_messages = False
 log_parcial_results = True
@@ -323,7 +327,6 @@ def getTweets():
         f.close()
 
 
-
 def getDictionary():
     print("[loading dictionary]")
 
@@ -360,7 +363,22 @@ def getDictionary():
         for line6 in inF6:
             dic_negative_emoticons.append(line6.strip())             
 
+    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
+        for line7 in inF7:
+            #removing composite words for while 
+            if float(line7.split("\t")[0]) > 0 and not ' ' in line7.split("\t")[1].strip():
+                if "#" in line7.split("\t")[1].strip():
+                    dic_positive_hashtags.append(line7.split("\t")[1].strip()[1:])
+                else:
+                    dic_positive_words.append(line7.split("\t")[1].strip())
+            elif float(line7.split("\t")[0]) < 0 and not ' ' in line7.split("\t")[1].strip():
+                if "#" in line7.split("\t")[1].strip():
+                    dic_negative_hashtags.append(line7.split("\t")[1].strip()[1:])
+                else:
+                    dic_negative_words.append(line7.split("\t")[1].strip())
+
     print("[dictionary loaded] [words, hashtags and emoticons]")
+
 
 # Define new functions
 # Protected Div (check division by zero)
@@ -416,7 +434,6 @@ def positiveWordsQuantity(phrase):
 
 
 # Return the sum of the word polarities (positive[+1], negative[-1])
-# Liu's dicionary of positive and negative words
 def polaritySum(phrase):
     global dic_positive_words
     global dic_negative_words
@@ -489,7 +506,6 @@ def negativeEmoticons(phrase):
     return total_sum
 
 
-
 # Positive Hashtags
 def positiveHashtags(phrase):
     global dic_positive_words
@@ -559,24 +575,36 @@ def repeatInputString(phrase):
 
 
 def removeStopWords(phrase):
+    global stop_words
+    global used_stop_words
+
+    if used_stop_words:
+        return phrase
+
     words = phrase.split()
-    stop = set(stopwords.words('english'))
     return_phrase = ""
 
     for word in words:
-        if word not in stop:
+        if word not in stop_words:
             return_phrase += word + " "               
 
+    used_stop_words = True
     return return_phrase
 
+
 def stemmingText(phrase):
+    global used_stemming_words
     words = phrase.split()
     
+    if used_stemming_words:
+        return phrase
+
     stemmed_phrase = ""
 
     for word in words:
         stemmed_phrase += stem(word) + " "               
 
+    used_stemming_words = True
     return stemmed_phrase.strip()
 
 
@@ -686,7 +714,9 @@ def evalSymbRegTweetsFromSemeval(individual):
     global f1_negative_history
 
     global uses_dummy_function
-    
+    global used_stop_words
+    global used_stemming_words
+
     global log_all_messages
     global log_parcial_results
 
@@ -731,7 +761,9 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     # Transform the tree expression in a callable function
     func = toolbox.compile(expr=individual)
-    
+    used_stop_words = False
+    used_stemming_words = False
+
     for index, item in enumerate(tweets_semeval):        
 
         if generations_unchanged >= max_unchanged_generations:

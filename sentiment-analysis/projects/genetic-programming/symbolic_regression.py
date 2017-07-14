@@ -1082,7 +1082,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+    print(str(hasEmoticons("myungsoo back to korea today \u002c and he will go to japan tomorrow morning omf no wonder he looked so tired and getting thinner :((")))
     #saveTestTweetsFromFilesIdLoadedSemeval2014()
     #saveTweetsFromIdInFile()
 

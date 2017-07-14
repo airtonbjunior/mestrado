@@ -8,6 +8,10 @@ start = time.time()
 
 MAX_ANALYSIS_TWEETS = 10000
 
+false_neutral_log = 0
+false_negative_log = 0
+false_positive_log = 0
+
 dic_positive_words     = []
 dic_negative_words     = []
 dic_positive_hashtags  = []
@@ -82,6 +86,20 @@ def getDictionary():
     with open('dictionaries/negative-emoticons.txt', 'r') as inF6:
         for line6 in inF6:
             dic_negative_emoticons.append(line6.strip())             
+
+    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
+        for line7 in inF7:
+            #removing composite words for while 
+            if float(line7.split("\t")[0]) > 0 and not ' ' in line7.split("\t")[1].strip():
+                if "#" in line7.split("\t")[1].strip():
+                    dic_positive_hashtags.append(line7.split("\t")[1].strip()[1:])
+                else:
+                    dic_positive_words.append(line7.split("\t")[1].strip())
+            elif float(line7.split("\t")[0]) < 0 and not ' ' in line7.split("\t")[1].strip():
+                if "#" in line7.split("\t")[1].strip():
+                    dic_negative_hashtags.append(line7.split("\t")[1].strip()[1:])
+                else:
+                    dic_negative_words.append(line7.split("\t")[1].strip())
 
     print("[dictionary loaded] [words, hashtags and emoticons]")
 
@@ -420,7 +438,7 @@ def removeStopWords(phrase):
     for word in words:
         if word not in stop_words:
             return_phrase += word + " "               
-            
+
     return return_phrase
 
 
@@ -1225,6 +1243,9 @@ def evaluateAllMessages(model):
     global tweets_2014_sarcasm_negative
     global tweets_2014_sarcasm_neutral
 
+    global false_neutral_log
+    global false_negative_log
+
     message = ""
     model_analysis = ""
     result = 0
@@ -1279,10 +1300,15 @@ def evaluateAllMessages(model):
             if result < 0:
                 true_negative += 1
             else:
+                false_negative_log += 1
                 if result == 0:
                     false_neutral += 1
                 else:
                     false_positive += 1
+            
+                if false_negative_log <= 10:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result))
 
         elif allScores[index] == 0:
             if result == 0:
@@ -1379,11 +1405,11 @@ if __name__ == "__main__":
     #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
     function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
 
-    evaluateTweets2013Messages(function_to_evaluate)
-    evaluateTweets2014Messages(function_to_evaluate)
-    evaluateSMS2013(function_to_evaluate)
-    evaluateTweetsLiveJournal2014(function_to_evaluate)
-    evaluateTweets2014SarcasmMessages(function_to_evaluate)
+    #evaluateTweets2013Messages(function_to_evaluate)
+    #evaluateTweets2014Messages(function_to_evaluate)
+    #evaluateSMS2013(function_to_evaluate)
+    #evaluateTweetsLiveJournal2014(function_to_evaluate)
+    #evaluateTweets2014SarcasmMessages(function_to_evaluate)
     evaluateAllMessages(function_to_evaluate)
 
 

@@ -94,7 +94,7 @@ MAX_NEUTRAL_TWEETS = 1400
 
 GENERATIONS = 500
 generations_unchanged = 0
-max_unchanged_generations = 50
+max_unchanged_generations = 150
 
 stop_words = set(stopwords.words('english'))
 
@@ -914,7 +914,7 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     # The metric that represent the fitness
     # fitnessReturn = accuracy
-    fitnessReturn = f1_avg
+    fitnessReturn = f1_positive_negative_avg
 
 
     # test: i'm forcing don't model only the positive or negative tweets
@@ -957,7 +957,7 @@ def evalSymbRegTweetsFromSemeval(individual):
         print("[f1 neutral]: " + str(round(f1_neutral, 3)))        
         print("[f1 avg]: " + str(round(f1_avg, 3)))
         print("[f1 avg SemEval (positive and negative)]: " + str(round(f1_positive_negative_avg, 3)))
-        print("[fitness (F1 avg)]: " + str(round(fitnessReturn, 3)))
+        print("[fitness (F1 +/-)]: " + str(round(fitnessReturn, 3)))
         print("[best fitness]: " + str(round(best_fitness, 3)))
         print("[generations unmodified]: " + str(generations_unchanged))
         print("[true_positive]: " + str(true_positive))
@@ -1025,7 +1025,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=25)
+    pop = toolbox.population(n=30)
     hof = tools.HallOfFame(3)
     
     

@@ -294,7 +294,7 @@ O evento também disponibiliza uma base de testes, que serve como critério de a
 
 Nesta seção, serão apresentados os resultados obtidos com os modelos gerados pelo sistema. 
 
-\subsection{Criação do modelo}
+\subsection{Criação dos modelos}
 
 A criação do modelo é feita pelo processo de Programação Genética, tendo como entrada os \emph{Tweets} da base de treinamento utilizada no trabalho e discutida na seção \ref{datasets}. Os processos de Programação Genética encarregam-se da criação e evolução da população de indivíduos, conforme os princípios citados anteriormente.
 
@@ -340,7 +340,7 @@ Os modelos criados após o processamento foram (a variável x representa a entra
 	\end{figure}
 
 
-
+Além dos modelos criados por meio do processo de Programação Genética, foram realizados testes com um modelo de classificador padrão simples, que faz a soma das polaridades das palavras contidas nas mensagens, representado pela função \emph{polaritySum(x)}. O objetivo principal é criar um ponto de comparação entre um modelo simples e os modelos gerados pelo processo proposto neste trabalho, de forma a identificar os possíveis ganhos nos resultados dos novos classificadores.
 
 \subsection{Testes dos modelos}
 
@@ -355,12 +355,12 @@ A tabela \ref{correctEvaluations} apresenta a quantidade de \emph{Tweets} avalia
 \multicolumn{1}{c}{\textbf{Base}} & \textit{\textbf{Tweets}} & \multicolumn{12}{c}{\textbf{Avaliados corretamente}} \\
  & \multicolumn{1}{l}{} & \multicolumn{4}{c}{Modelo A} & \multicolumn{4}{c}{\textbf{Modelo B}} & \multicolumn{4}{c}{Modelo C} \\
  & \multicolumn{1}{l}{} & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & T \\
-Tweets2013 & 3813 & 779 & 239 & 1257 & 2275 & 773 & 279 & 1253 & 2287 & 674 & 294 & 1261 & 2229 \\ \hline
-Tweets2014 & 1853 & 425 & 69 & 507 & 1001 & 422 & 79 & 494 & 995 & 354 & 85 & 503 & 942 \\ \hline
+Tweets2013 & 3813 & 778 & 244 & 1254 & 2276 & 773 & 280 & 1253 & 2288 & 674 & 294 & 1261 & 2229 \\ \hline
+Tweets2014 & 1853 & 425 & 71 & 507 & 1001 & 422 & 79 & 494 & 995 & 354 & 85 & 503 & 942 \\ \hline
 Sarcasm & 86 & 11 & 2 & 11 & 24 & 11 & 3 & 11 & 25 & 11 & 5 & 11 & 27 \\ \hline
 SMS2013 & 2093 & 237 & 120 & 993 & 1350 & 234 & 135 & 986 & 1355 & 209 & 136 & 999 & 1344 \\ \hline
 LiveJournal & 1142 & 257 & 131 & 312 & 700 & 255 & 154 & 307 & 716 & 233 & 157 & 314 & 704 \\ \hline
-Todas & 8987 & 1709 & 561 & 3080 & 5350 & 1695 & 650 & 3033 & 5378 & 1481 & 677 & 3088 & 5246\\ \hline
+Todas & 8987 & 1709 & 561 & 3080 & 5350 & 1695 & 651 & 3033 & 5379 & 1481 & 677 & 3088 & 5246\\ \hline
 \end{tabular}
 \caption{Avaliações corretas por base}
 \label{correctEvaluations}
@@ -378,12 +378,12 @@ Os testes foram realizados para cada um dos modelos criados, e os resultados pod
 \begin{tabular}{lcccccccccccccc}
 \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
-Tweets2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.6 &  \textbf{0.6} & 0.5 \\ \hline
-Tweets2014 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & {\ul0.4} & 0.3 & 0.1 & 0.8 & {\ul0.4} & 0.3 & 0.1 & 0.3 & {\ul0.3} & {\ul0.2} \\ \hline
-SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
-LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & \textbf{0.6} & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.5 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
-Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.5 & 0.5 \\ \hline
+Tweets2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.6 & 0.6 & 0.5 & 0.6 &  \textbf{0.6} & 0.5 \\ \hline
+Tweets2014 & 0.5 & 0.7 & 0.4 & 0.5 & 0.5 & 0.4 & 0.4 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.5 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & {\ul0.4} & 0.3 & 0.1 & 0.8 & {\ul0.4} & 0.4 & 0.1 & 0.3 & {\ul0.3} & {\ul0.2} \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.8 & 0.5 & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & \textbf{0.6} & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.7 & 0.5 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4 & 0.7 & 0.6 & 0.5 \\ \hline
 \end{tabular}
 \caption{Resultados dos testes do modelo A}
 \label{test1}
@@ -396,11 +396,11 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & 0.5 & 0.6 & 0.4
 \begin{tabular}{lcccccccccccccc}
 \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
  &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
-Tweets2013 & 0.5 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
-Tweets2014 & 0.5 & 0.3 & 0.5 & 0.5 & 0.5 & 0.4 & 0.4 & 0.7 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.4 \\ \hline
-Sarcasm & 0.3 & 0.4 & 0.4 & 0.2 & {\ul 0.3} & 0.3 & 0.1 & 0.8 & {\ul 0.4} & 0.3 & 0.1 & 0.3 & {\ul 0.3} & {\ul 0.2} \\ \hline
-SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.4 \\ \hline
-LiveJournal & 0.6 & 0.7 & 0.6 & 0.6 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.6 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
+Tweets2013 & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.5 & 0.8 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
+Tweets2014 & 0.5 & 0.7 & 0.3 & 0.5 & 0.5 & 0.4 & 0.4 & 0.7 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.5 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.4 & 0.2 & {\ul 0.3} & 0.3 & 0.1 & 0.8 & {\ul 0.4} & 0.4 & 0.1 & 0.3 & {\ul 0.3} & {\ul 0.2} \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.5 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.5 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.6 & 0.6 & \textbf{0.6} & 0.6 & 0.5 & 0.7 & \textbf{0.6} & 0.7 & 0.6 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
 Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.5 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.4 & 0.7 & \textbf{0.6} & 0.5 \\ \hline
 \end{tabular}
 \caption{Resultados dos testes do modelo B}
@@ -451,18 +451,18 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
 \begin{adjustwidth}{-1cm}{}
 \begin{tabular}{clccccc}
 \multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}{\textbf{Recall (médio)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} & \textbf{F1 (+/-)} \\
-\multirow{6}{*}{\rotatebox{90}{Modelo A}} & Tweets2013 & 0.5966 & 0.5881 & 0.5532 & 0.5583 & 0.5111 \\
- & Tweets2014 & 0.5402 & 0.5284 & 0.5107 & 0.4937 & 0.4538 \\
+\multirow{6}{*}{\rotatebox{90}{Modelo A}} & Tweets2013 & 0.5969 & 0.5886 & 0.5552 & 0.5599 & 0.5137 \\
+ & Tweets2014 & 0.5413 & 0.5309 & 0.514 & 0.4967 & 0.458 \\
  & TwitterSarcasm & 0.2791 & 0.3623 & 0.4098 & 0.2597 & 0.2229 \\
- & SMS2013 & 0.645 & 0.5904 & 0.5363 & 0.5499 & 0.4476 \\
- & LiveJournal & 0.613 & 0.639 & 0.5973 & 0.6011 & 0.5894 \\
- & Todas & 0.5953 & 0.5898 & 0.5444 & 0.552 & 0.4974\\ \hline
- \multirow{6}{*}{\rotatebox{90}{\textbf{Modelo B}}} & Tweets2013 & 0.5998 & 0.581 & 0.5697 & 0.5666 & 0.5186 \\
+ & SMS2013 & 0.645 & 0.5898 & 0.5363 & 0.5498 & 0.4472 \\
+ & LiveJournal & 0.613 & 0.6381 & 0.5973 & 0.601 & 0.5889 \\
+ & Todas & 0.5956 & 0.5901 & 0.5456 & 0.5531 & 0.4999\\ \hline
+ \multirow{6}{*}{\rotatebox{90}{\textbf{Modelo B}}} & Tweets2013 & 0.6001 & 0.5815 & 0.5702 & 0.5671 & 0.5193 \\
  & Tweets2014 & 0.537 & 0.5141 & 0.5197 & 0.4929 & 0.4507 \\
  & TwitterSarcasm & 0.2907 & 0.3426 & 0.4182 & 0.2772 & 0.2412 \\
  & SMS2013 & 0.6474 & 0.583 & 0.5451 & 0.5569 & 0.4549 \\
  & LiveJournal & 0.627 & 0.6364 & 0.6169 & 0.6189 & 0.6052 \\
- & Todas & 0.5984 & 0.5812 & 0.5584 & 0.5603 & 0.5051\\ \hline
+ & Todas & 0.5985 & 0.5814 & 0.5586 & 0.5605 & 0.5054\\ \hline
  \multirow{6}{*}{\rotatebox{90}{Modelo C}} & Tweets2013 & 0.5846 & 0.5734 & 0.5623 & 0.5529 & 0.5 \\
  & Tweets2014 & 0.5084 & 0.5001 & 0.511 & 0.4704 & 0.4205 \\
  & TwitterSarcasm & 0.314 & 0.3943 & 0.4348 & 0.3067 & 0.2854 \\
@@ -481,6 +481,23 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
 \end{adjustwidth}
 \end{table}
 
+
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-0.5cm}{}
+\begin{tabular}{lcccc}
+\multicolumn{1}{c}{\textbf{Base}} & \multicolumn{1}{c}{\textbf{Melhor Modelo}} & \multicolumn{1}{c}{\textbf{Valor (F1 +/-)}} & \multicolumn{1}{c}{\textbf{Posição SemEval 2014}} & \multicolumn{1}{c}{\textbf{Top 3 SemEval}} \\ \hline
+Tweets2013 & Modelo B & 0.5193 & 43º & \begin{tabular}[c]{@{}l@{}}1º 0.7212\\ 2º 0.7075\\ 3º 0.7040\end{tabular} \\ \hline
+Tweets2014 & Modelo A & 0.458 & 48º & \begin{tabular}[c]{@{}l@{}}1º 0.7096\\ 2º 0.7014\\ 3º 0.6995\end{tabular} \\ \hline
+TwitterSarcasm & Modelo C & 0.2854 & 52º & \begin{tabular}[c]{@{}l@{}}1º 0.5816\\ 2º 0.5726\\ 3º 0.5650\end{tabular} \\ \hline
+SMS2013 & Modelo B & 0.4549 & 45º & \begin{tabular}[c]{@{}l@{}}1º 0.7028\\ 2º 0.6768\\ 3º 0.6751\end{tabular} \\ \hline
+LiveJournal & Modelo B & 0.6052 & 37º & \begin{tabular}[c]{@{}l@{}}1º 0.7484\\ 2º 0.7446\\ 3º 0.7399\end{tabular} \\ \hline
+\end{tabular}
+\caption{Comparação de resultados com o SemEval 2014 \emph{task}9}
+\label{compareResults}
+\end{adjustwidth}
+\end{table}
+
 \subsection{Melhorias futuras}
 
 Buscando melhores resultados nos testes, algumas melhorias podem ser realizadas no processo de criação do modelo de classificação. A primeira delas é a inclusão de novas funções, que poderão ser utilizadas pela Programação Genética em busca de um modelo mais adequado ao contexto de classificação. 
@@ -495,7 +512,7 @@ Treinar o processo com bases de dados maiores e mais balanceadas também pode au
 
 [Comparar com alguns trabalhos do evento]
 
-Como podemos perceber, os resultados do classificador para a base \emph{Twitter2014Sarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão melhores classificadores para esse contexto.
+Como podemos perceber, os resultados do classificador para a base \emph{TwitterSarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão melhores classificadores para esse contexto.
 
 [Mostrar melhores resultados]
 

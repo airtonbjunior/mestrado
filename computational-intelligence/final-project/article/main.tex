@@ -481,6 +481,9 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
 \end{adjustwidth}
 \end{table}
 
+Uma forma de avaliar a eficiência dos modelos gerados pelo processo é comparar com os resultados dos classificadores submetidos para o SemEval 2014, \emph{task} 9. Como estamos fazendo uso da mesma base de treinamento e de testes utilizados no evento, é possível comparar e avaliar a colocação dos modelos gerados no \emph{ranking} dos trabalhos. A tabela \ref{compareResults} apresenta uma comparação dos melhores resultados obtidos pelo presente trabalho em relação aos trabalhos submetidos para o evento. 
+
+O evento, como discutido nas seções anteriores, leva em consideração para a avaliação dos classificadores o F1 médio das mensagens positivas e negativas, desconsiderando as mensagens neutras. Apesar disso, os classificadores não são binários, as mensagens neutras somente não são contabilizadas na média final. Como fator de comparação, ainda na tabela \ref{compareResults} são apresentados os valores de F1 médio dos 3 primeiros colocados, separados por base de dados.
 
 \begin{table}[H]
 \centering
@@ -498,6 +501,19 @@ LiveJournal & Modelo B & 0.6052 & 37º & \begin{tabular}[c]{@{}l@{}}1º 0.7484\\
 \end{adjustwidth}
 \end{table}
 
+\section{Conclusão}\label{conclusion}
+
+Como podemos perceber, os resultados do melhor classificador para a base \emph{TwitterSarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo - F1 médio (positivo e negativo) de 0.2854. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão possibilidades de criação de modelos melhores para esse contexto.
+
+Os melhores resultados dos modelos gerados puderam ser observados na base \emph{LiveJournal}, com um F1 médio de 0.6052. Isso se deve ao fato das mensagens dessa base conterem palavras mais comuns e pouco uso de gírias e abreviações. Isso faz com que as palavras sejam encontradas mais facilmente no dicionário, melhorando o resultado final da classificação.
+
+Apesar dos resultados iniciais estarem abaixo dos melhores classificadores apresentados no SemEval 2014, foi possível responder as questões de pesquisa formuladas no capítulo inicial deste trabalho. 
+
+Mostramos que é possível a criação automatizada de um modelo de classificação fazendo uso do processo de Programação Genética. Com os parâmetros, funções e modelos atuais, esses classificadores possuem um resultado abaixo do esperado, e podemos afirmar que tem eficiência média na classificação das mensagens de um modo geral. Em relação a outros classificadores, a melhoria de alguns itens pontuais, como novos dicionários e funções, possivelmente trará melhores resultados.
+
+
+O processo de geração de modelos utilizando a Programação Genética é estocástico. Por isso, ????????
+
 \subsection{Melhorias futuras}
 
 Buscando melhores resultados nos testes, algumas melhorias podem ser realizadas no processo de criação do modelo de classificação. A primeira delas é a inclusão de novas funções, que poderão ser utilizadas pela Programação Genética em busca de um modelo mais adequado ao contexto de classificação. 
@@ -507,16 +523,6 @@ Modificações nos parâmetros do algoritmo também podem trazer melhores result
 A busca por dicionários complementares também pode auxiliar na melhoria dos resultados do processo. Especificamente no contexto de \emph{Tweets}, um dicionário consistente de \emph{emoticons} e \emph{hashtags}, por exemplo, podem incrementar os resultados de forma significativa.
 
 Treinar o processo com bases de dados maiores e mais balanceadas também pode auxiliar na busca por melhores resultados. Apesar de implementar a funcionalidade de balanceamento de polaridades, o conjunto de dados de treinamento atual pode ser insuficiente para a criação de um modelo com resultados satisfatórios.
-
-\section{Conclusão}\label{conclusion}
-
-[Comparar com alguns trabalhos do evento]
-
-Como podemos perceber, os resultados do classificador para a base \emph{TwitterSarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão melhores classificadores para esse contexto.
-
-[Mostrar melhores resultados]
-
-[Explanar critérios que podem ser modificados no GP]
 
 
 

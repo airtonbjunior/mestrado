@@ -94,7 +94,7 @@ MAX_NEUTRAL_TWEETS = 1400
 
 GENERATIONS = 500
 generations_unchanged = 0
-max_unchanged_generations = 150
+max_unchanged_generations = 50
 
 stop_words = set(stopwords.words('english'))
 
@@ -363,19 +363,20 @@ def getDictionary():
         for line6 in inF6:
             dic_negative_emoticons.append(line6.strip())             
 
-    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
-        for line7 in inF7:
-            #removing composite words for while 
-            if float(line7.split("\t")[0]) > 0 and not ' ' in line7.split("\t")[1].strip():
-                if "#" in line7.split("\t")[1].strip():
-                    dic_positive_hashtags.append(line7.split("\t")[1].strip()[1:])
-                else:
-                    dic_positive_words.append(line7.split("\t")[1].strip())
-            elif float(line7.split("\t")[0]) < 0 and not ' ' in line7.split("\t")[1].strip():
-                if "#" in line7.split("\t")[1].strip():
-                    dic_negative_hashtags.append(line7.split("\t")[1].strip()[1:])
-                else:
-                    dic_negative_words.append(line7.split("\t")[1].strip())
+
+#    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
+#        for line7 in inF7:
+#            #removing composite words for while 
+#            if float(line7.split("\t")[0]) > 0 and not ' ' in line7.split("\t")[1].strip():
+#                if "#" in line7.split("\t")[1].strip():
+#                    dic_positive_hashtags.append(line7.split("\t")[1].strip()[1:])
+#                else:
+#                    dic_positive_words.append(line7.split("\t")[1].strip())
+#            elif float(line7.split("\t")[0]) < 0 and not ' ' in line7.split("\t")[1].strip():
+#                if "#" in line7.split("\t")[1].strip():
+#                    dic_negative_hashtags.append(line7.split("\t")[1].strip()[1:])
+#                else:
+#                    dic_negative_words.append(line7.split("\t")[1].strip())
 
     print("[dictionary loaded] [words, hashtags and emoticons]")
 
@@ -1024,7 +1025,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=50)
+    pop = toolbox.population(n=25)
     hof = tools.HallOfFame(3)
     
     
@@ -1082,8 +1083,7 @@ def main():
 
 
 if __name__ == "__main__":
-    #main()
-    print(str(hasEmoticons("myungsoo back to korea today \u002c and he will go to japan tomorrow morning omf no wonder he looked so tired and getting thinner :((")))
+    main()
     #saveTestTweetsFromFilesIdLoadedSemeval2014()
     #saveTweetsFromIdInFile()
 

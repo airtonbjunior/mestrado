@@ -246,6 +246,10 @@ Para apoiar no desenvolvimento da solução do problema, foi utilizada a bibliot
 
 Especificamente para o contexto de Programação Genética, DEAP fornece funcionalidades para controle de criação das estruturas de árvores, operadores genéticos, parametrização das operações, \emph{logs}, entre outras.
 
+Para a stemização - processo de redução de palavras flexionadas para sua forma raíz - foi utilizada a biblioteca stemming 1.0\footnote{https://pypi.python.org/pypi/stemming/1.0} do \emph{python}.
+
+Para a criação de uma lista de \emph{stopwords} - palavras que podem ser consideradas irrelevantes para a análise do texto - foi utilizada a biblioteca nltk\footnote{http://www.nltk.org/}.
+
 \subsection{Dicionários}
 
 Para o presente trabalho, foram utilizados os dicionários de palavras positivas e negativas de \cite{HuAndLiu2004}\footnote{https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html\#lexicon}. Os dicionários fornecem um conjunto de 4783 palavras negativas e 2006 palavras positivas para apoiar no processo de Análise de Sentimentos.
@@ -422,13 +426,31 @@ Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.4 & 0.4 & 0.8 & 0.5 & 0.5 & 0.4
 \end{adjustwidth}
 \end{table}
 
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-1cm}{}
+\begin{tabular}{lcccccccccccccc}
+\multicolumn{1}{c}{\textbf{Base}} & \textbf{Acc} & \multicolumn{4}{c}{\textbf{Precisão}} & \multicolumn{4}{c}{\textit{\textbf{Recall}}} & \multicolumn{5}{c}{\textbf{F1}} \\
+ &  & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & Avg & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{N} & \multicolumn{1}{c|}{Nt} & \multicolumn{1}{c|}{Avg} & Avg +/- \\
+Tweets2013 & 0.6 & 0.7 & 0.5 & 0.5 & \textbf{0.6} & 0.4 & 0.4 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 &  0.5 & 0.5 \\ \hline
+Tweets2014 & 0.5 & 0.7 & 0.4 & 0.4 & 0.5 & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.3 & 0.6 & 0.5 & 0.4 \\ \hline
+Sarcasm & 0.3 & 0.4 & 0.5 & 0.2 & {\ul0.4} & 0.3 & 0.1 & 0.8 & {\ul0.4} & 0.3 & 0.1 & 0.3 & {\ul0.2} & {\ul0.2} \\ \hline
+SMS2013 & 0.6 & 0.5 & 0.5 & 0.7 & \textbf{0.6} & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.7 & 0.5 & 0.4 \\ \hline
+LiveJournal & 0.6 & 0.7 & 0.7 & 0.5 & \textbf{0.6} & 0.6 & 0.4 & 0.8 & \textbf{0.6} & 0.6 & 0.5 & 0.6 & \textbf{0.6} & \textbf{0.6} \\ \hline
+Todas & 0.6 & 0.7 & 0.5 & 0.6 & \textbf{0.6} & 0.4 & 0.3 & 0.8 & 0.5 & 0.5 & 0.4 & 0.6 & 0.5 & 0.5 \\ \hline
+\end{tabular}
+\caption{Resultados dos testes do modelo \emph{polaritySum(x)}}
+\label{test1}
+\end{adjustwidth}
+\end{table}
+
 Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAvgResults} apresenta as médias das métricas calculadas para cada base de teste e, também, para o total de mensagens.
 
 \begin{table}[H]
 \centering
 \begin{adjustwidth}{-1cm}{}
 \begin{tabular}{clccccc}
-\multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}{\textbf{Recall (médio)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} & \textbf{F1 (SemEval)} \\
+\multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{Base}} & \textbf{Acurácia} & \multicolumn{1}{c}{\textbf{Precisão (média)}} & \multicolumn{1}{c}{\textbf{Recall (médio)}} & \multicolumn{1}{c}{\textbf{F1 (média)}} & \textbf{F1 (+/-)} \\
 \multirow{6}{*}{\rotatebox{90}{Modelo A}} & Tweets2013 & 0.5966 & 0.5881 & 0.5532 & 0.5583 & 0.5111 \\
  & Tweets2014 & 0.5402 & 0.5284 & 0.5107 & 0.4937 & 0.4538 \\
  & TwitterSarcasm & 0.2791 & 0.3623 & 0.4098 & 0.2597 & 0.2229 \\
@@ -446,7 +468,13 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
  & TwitterSarcasm & 0.314 & 0.3943 & 0.4348 & 0.3067 & 0.2854 \\
  & SMS2013 & 0.6421 & 0.5705 & 0.5325 & 0.5446 & 0.435 \\
  & LiveJournal & 0.6165 & 0.6265 & 0.6087 & 0.6079 & 0.5861 \\
- & Todas & 0.5837 & 0.5701 & 0.5485 & 0.5451 & 0.4833
+ & Todas & 0.5837 & 0.5701 & 0.5485 & 0.5451 & 0.4833\\ \hline
+ \multirow{6}{*}{\rotatebox{90}{\emph{polaritySum(x)}}} & Tweets2013 & 0.5796 & 0.5753 & 0.5354 & 0.5377 & 0.4831 \\
+ & Tweets2014 & 0.5175 & 0.5163 & 0.4955 & 0.4726 & 0.4262 \\
+ & TwitterSarcasm & 0.2791 & 0.3623 & 0.4098 & 0.2597 & 0.2229 \\
+ & SMS2013 & 0.6436 & 0.5859 & 0.5283 & 0.5428 & 0.4358 \\
+ & LiveJournal & 0.6121 & 0.6419 & 0.5968 & 0.5999 & 0.5845 \\
+ & Todas & 0.583 & 0.5807 & 0.5314 & 0.5367 & 0.476
 \end{tabular}
 \caption{Resultados médios por modelo}
 \label{tabAvgResults}

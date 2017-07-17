@@ -3,6 +3,9 @@ import operator
 import math
 import re
 
+from stemming.porter2 import stem
+from nltk.corpus import stopwords
+
 # log time
 start = time.time()
 
@@ -49,6 +52,7 @@ sms_2013_positive = 0
 sms_2013_negative = 0
 sms_2013_neutral  = 0
 
+stop_words = set(stopwords.words('english'))
 
 # get the dictionaries
 def getDictionary():
@@ -87,19 +91,19 @@ def getDictionary():
         for line6 in inF6:
             dic_negative_emoticons.append(line6.strip())             
 
-    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
-        for line7 in inF7:
-            #removing composite words for while 
-            if float(line7.split("\t")[0]) > 0 and not ' ' in line7.split("\t")[1].strip():
-                if "#" in line7.split("\t")[1].strip():
-                    dic_positive_hashtags.append(line7.split("\t")[1].strip()[1:])
-                else:
-                    dic_positive_words.append(line7.split("\t")[1].strip())
-            elif float(line7.split("\t")[0]) < 0 and not ' ' in line7.split("\t")[1].strip():
-                if "#" in line7.split("\t")[1].strip():
-                    dic_negative_hashtags.append(line7.split("\t")[1].strip()[1:])
-                else:
-                    dic_negative_words.append(line7.split("\t")[1].strip())
+#    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
+#        for line7 in inF7:
+#            #removing composite words for while 
+#            if float(line7.split("\t")[0]) > 0 and not ' ' in line7.split("\t")[1].strip():
+#                if "#" in line7.split("\t")[1].strip():
+#                    dic_positive_hashtags.append(line7.split("\t")[1].strip()[1:])
+#                else:
+#                    dic_positive_words.append(line7.split("\t")[1].strip())
+#            elif float(line7.split("\t")[0]) < 0 and not ' ' in line7.split("\t")[1].strip():
+#                if "#" in line7.split("\t")[1].strip():
+#                    dic_negative_hashtags.append(line7.split("\t")[1].strip()[1:])
+#                else:
+#                    dic_negative_words.append(line7.split("\t")[1].strip())
 
     print("[dictionary loaded] [words, hashtags and emoticons]")
 
@@ -1306,9 +1310,9 @@ def evaluateAllMessages(model):
                 else:
                     false_positive += 1
             
-                if false_negative_log <= 10:
-                    print("[Negative phrase evaluation error]: " + message)
-                    print("[Polarity calculated]: " + str(result))
+                #if false_negative_log <= 10:
+                    #print("[Negative phrase evaluation error]: " + message)
+                    #print("[Polarity calculated]: " + str(result))
 
         elif allScores[index] == 0:
             if result == 0:
@@ -1403,13 +1407,15 @@ if __name__ == "__main__":
     #function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(x), polaritySum(x))"
 
     #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
-    function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
+    #function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
 
-    #evaluateTweets2013Messages(function_to_evaluate)
-    #evaluateTweets2014Messages(function_to_evaluate)
-    #evaluateSMS2013(function_to_evaluate)
-    #evaluateTweetsLiveJournal2014(function_to_evaluate)
-    #evaluateTweets2014SarcasmMessages(function_to_evaluate)
+    function_to_evaluate = "polaritySum(x)"
+
+    evaluateTweets2013Messages(function_to_evaluate)
+    evaluateTweets2014Messages(function_to_evaluate)
+    evaluateSMS2013(function_to_evaluate)
+    evaluateTweetsLiveJournal2014(function_to_evaluate)
+    evaluateTweets2014SarcasmMessages(function_to_evaluate)
     evaluateAllMessages(function_to_evaluate)
 
 

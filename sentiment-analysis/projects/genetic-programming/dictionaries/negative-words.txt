@@ -4669,6 +4669,7 @@ vomits
 vulgar
 vulnerable
 wack
+wacky
 wail
 wallow
 wane

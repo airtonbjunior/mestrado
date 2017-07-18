@@ -26,6 +26,9 @@ from twython import Twython
 
 from stemming.porter2 import stem
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+#import nltk
+#nltk.download()
 
 # log time
 start = time.time()
@@ -579,8 +582,8 @@ def removeStopWords(phrase):
     global stop_words
     global used_stop_words
 
-    if used_stop_words:
-        return phrase
+    #if used_stop_words:
+        #return phrase
 
     words = phrase.split()
     return_phrase = ""
@@ -597,8 +600,8 @@ def stemmingText(phrase):
     global used_stemming_words
     words = phrase.split()
     
-    if used_stemming_words:
-        return phrase
+    #if used_stemming_words:
+        #return phrase
 
     stemmed_phrase = ""
 
@@ -607,6 +610,19 @@ def stemmingText(phrase):
 
     used_stemming_words = True
     return stemmed_phrase.strip()
+
+
+def lemmingText(phrase):
+    lemmatizer = WordNetLemmatizer()
+    words = phrase.split()
+
+    lemmed_phrase = ""
+
+    for word in words:
+        # I'm always considering that the word is a verb
+        lemmed_phrase += lemmatizer.lemmatize(word, 'v') + " "               
+
+    return lemmed_phrase.strip()
 
 
 def removeLinks(phrase):
@@ -1094,8 +1110,15 @@ def main():
 
 if __name__ == "__main__":
     #main()
-    print(removeEllipsis(removeLinks("1st debate showed emperor has no clothes...Wonder how the court jester\u002c shoeless Joe will do against Ryan? #gop")))
-    print(str(hasEmoticons("'@1DsHotTamale ~.~t u cant just tweet sum1 GUESS WHO IMMA SEE THURSDAY and NIT TWEET THEM BACK!! >.< lol")))
+
+    lemmatizer = WordNetLemmatizer()
+
+    print(lemmingText("showed"))
+    print(stemmingText("showed"))
+    print(lemmingText(removeEllipsis("1st debates showed emperor has no clothes...Wonder how the courts jester\u002c shoeless Joe will do against Ryan? #gop")))
+    print(stemmingText(removeEllipsis("1st debate showed emperor has no clothes...Wonder how the court jester\u002c shoeless Joe will do against Ryan? #gop")))
+
+    #print(removeEllipsis(removeLinks("1st debate showed emperor has no clothes...Wonder how the court jester\u002c shoeless Joe will do against Ryan? #gop")))
     #saveTestTweetsFromFilesIdLoadedSemeval2014()
     #saveTweetsFromIdInFile()
 

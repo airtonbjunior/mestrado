@@ -33,15 +33,15 @@
 \maketitle
 
 \begin{abstract}
-The increase in the number of Internet users in recent years has resulted in a growing content production by its users. Often, the WEB is used as a platform for debates, opinions, evaluations, etc. This fact, in line with the ease of obtaining the information, made the area of Sentiment Analysis, also called Opinion Mining, a growing interest on the part of researchers.
-
-[continue]
+dd
 \end{abstract}
 
 \begin{resumo} 
-O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescente produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato, alinhado a facilidade de obtenção dessas informações, fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
+O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescente produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
 
-[continuar]
+A criação de classificadores, portanto, apresenta-se como uma importante área da Mineração de Opiniões. Os classificadores podem ser vistos como modelos e, com essa abordagem, o presente trabalho propõe a utlização de técnicas de Programação Genética para a criação automatizada de modelos eficientes de classificação de sentimentos, fazendo uso da base de treinamento e de testes do evento SemEval 2014.
+
+Os resultados dos modelos gerados foram comparados com os trabalhos submetidos para avaliação no evento, além de um modelo padrão pré-definido de soma simples de polaridade de palavras.
 \end{resumo}
 
 \section{Introdução}
@@ -197,7 +197,7 @@ Para a criação das funções, foi levado em consideração heurísticas aprese
 
 Além das funções citadas na tabela \ref{tab_functions}, também foram incluídas funções matemáticas como adição, subtração, divisão, multiplicação, logaritmo, raiz quadrada, exponenciação, seno e cosseno.
 
-Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é definido como o F1 médio do classificador, calculado utilizando a fórmula apresentada na tabela \ref{metrics}
+Outra característica importante a ser definida para o trabalho é a função de \emph{fitness}. Para a solução, o \emph{fitness} é definido como o F1 médio do classificador, considerando somente as mensagens positivas e negativas, calculado utilizando a fórmula apresentada na tabela \ref{metrics} (F1 médio SemEval).
 
 \begin{table}[H]
 \centering
@@ -224,13 +224,13 @@ Outras métricas são utilizadas para a verificação da qualidade do classifica
 	Acurácia & (VP + VN + VNt )/ Total de mensagens \\ \hline
 	Precisão positiva (PP) & VP / Positivos retornados pelo modelo \\ \hline
 	\textit{Recall} positivo (RP) & VP / Mensagens positivas \\ \hline
-	F1 positivo (FP) & 2 x (PP * RP) / (PP + RP) \\ \hline
+	F1 positivo (FP) & 2 * (PP * RP) / (PP + RP) \\ \hline
 	Precisão negativa (PN) & VN / Negativos retornados pelo modelo \\ \hline
 	\textit{Recall} negativo (RN) & VN / Mensagens negativas \\ \hline
-	F1 negativo (FN) & 2 x (PN * RN) / (PN + RN) \\ \hline
+	F1 negativo (FN) & 2 * (PN * RN) / (PN + RN) \\ \hline
 	Precisão neutra (PNt) & VNt / Neutros retornados pelo modelo \\ \hline
 	\textit{Recall} neutro (RNt) & VNt / Mensagens neutras \\ \hline
-	F1 neutro (FNt) & 2 x (PNt * RNt) / (PNt + RNt) \\ \hline
+	F1 neutro (FNt) & 2 * (PNt * RNt) / (PNt + RNt) \\ \hline
 	Precisão média & (PP + PN + PNt) / 3 \\ \hline
 	\emph{Recall} médio & (RP + RN + RNt) / 3 \\ \hline	
 	F1 médio & (FP + FN + FNt) / 3 \\ \hline
@@ -306,7 +306,7 @@ Alguns parâmetros devem ser definidos para o funcionamento da Programação Gen
 	\textbf{Modelo} & \textbf{População} & \textbf{Gerações} & \textbf{\emph{Crossover}} & \textbf{Mutação} & \textbf{Gerações sem evolução} \\ \hline
 	A & 50 & 500 & 3.5\% & 1.5\% & 150 \\ \hline
 	B & 50 & 600 & 9.5\% & 5.5\% & 300 \\ \hline
-	C & 100 & 500 & 4.5\% & 2.5\% & 500 \\ \hline
+	C & 100 & 650 & 4.5\% & 2.5\% & 450 \\ \hline
 	\end{tabular}
 	\caption{Parâmetros da Programação Genética}
 	\label{parametersGP}
@@ -334,7 +334,7 @@ Os modelos criados após o processamento foram (a variável x representa a entra
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.75\textwidth]{treeC}
+		\includegraphics[width=0.7\textwidth]{treeC}
 		\caption{Modelo C}
 		\label{CModel}
 	\end{figure}
@@ -481,24 +481,22 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
 \end{adjustwidth}
 \end{table}
 
-Uma forma de avaliar a eficiência dos modelos gerados pelo processo é comparar com os resultados dos classificadores submetidos para o SemEval 2014, \emph{task} 9. Como estamos fazendo uso da mesma base de treinamento e de testes utilizados no evento, é possível comparar e avaliar a colocação dos modelos gerados no \emph{ranking} dos trabalhos. A tabela \ref{compareResults} apresenta uma comparação dos melhores resultados obtidos pelo presente trabalho em relação aos trabalhos submetidos para o evento. 
+Uma forma de avaliar a eficiência dos modelos gerados pelo processo é comparar com os resultados dos classificadores submetidos para o SemEval 2014, \emph{task} 9. Como estamos fazendo uso da mesma base de treinamento e de testes utilizados no evento, é possível comparar e avaliar a colocação dos modelos gerados no \emph{ranking} dos trabalhos. A tabela \ref{compareResults} apresenta uma comparação dos melhores resultados obtidos pelo presente trabalho em relação aos trabalhos submetidos para o evento e a posição no \emph{ranking} caso o modelo estivesse participando da competição.
 
 O evento, como discutido nas seções anteriores, leva em consideração para a avaliação dos classificadores o F1 médio das mensagens positivas e negativas, desconsiderando as mensagens neutras. Apesar disso, os classificadores não são binários, as mensagens neutras somente não são contabilizadas na média final. Como fator de comparação, ainda na tabela \ref{compareResults} são apresentados os valores de F1 médio dos 3 primeiros colocados, separados por base de dados.
 
 \begin{table}[H]
 \centering
-\begin{adjustwidth}{-0.5cm}{}
 \begin{tabular}{lcccc}
-\multicolumn{1}{c}{\textbf{Base}} & \multicolumn{1}{c}{\textbf{Melhor Modelo}} & \multicolumn{1}{c}{\textbf{Valor (F1 +/-)}} & \multicolumn{1}{c}{\textbf{Posição SemEval 2014}} & \multicolumn{1}{c}{\textbf{Top 3 SemEval}} \\ \hline
-Tweets2013 & Modelo B & 0.5193 & 43º & \begin{tabular}[c]{@{}l@{}}1º 0.7212\\ 2º 0.7075\\ 3º 0.7040\end{tabular} \\ \hline
-Tweets2014 & Modelo A & 0.458 & 48º & \begin{tabular}[c]{@{}l@{}}1º 0.7096\\ 2º 0.7014\\ 3º 0.6995\end{tabular} \\ \hline
-TwitterSarcasm & Modelo C & 0.2854 & 52º & \begin{tabular}[c]{@{}l@{}}1º 0.5816\\ 2º 0.5726\\ 3º 0.5650\end{tabular} \\ \hline
-SMS2013 & Modelo B & 0.4549 & 45º & \begin{tabular}[c]{@{}l@{}}1º 0.7028\\ 2º 0.6768\\ 3º 0.6751\end{tabular} \\ \hline
-LiveJournal & Modelo B & 0.6052 & 37º & \begin{tabular}[c]{@{}l@{}}1º 0.7484\\ 2º 0.7446\\ 3º 0.7399\end{tabular} \\ \hline
+\multicolumn{1}{c}{\textbf{Base}} & \multicolumn{1}{c}{\textbf{Melhor F1 médio (+/-)}} & \multicolumn{1}{c}{\textbf{Posição SemEval 2014}} & \multicolumn{1}{c}{\textbf{Top 3 SemEval}} \\ \hline
+Tweets2013 &  0.5193 & 43º & \begin{tabular}[c]{@{}l@{}}1º 0.7212\\ 2º 0.7075\\ 3º 0.7040\end{tabular} \\ \hline
+Tweets2014 &  0.458 & 48º & \begin{tabular}[c]{@{}l@{}}1º 0.7096\\ 2º 0.7014\\ 3º 0.6995\end{tabular} \\ \hline
+TwitterSarcasm &  0.2854 & 52º & \begin{tabular}[c]{@{}l@{}}1º 0.5816\\ 2º 0.5726\\ 3º 0.5650\end{tabular} \\ \hline
+SMS2013 & 0.4549 & 45º & \begin{tabular}[c]{@{}l@{}}1º 0.7028\\ 2º 0.6768\\ 3º 0.6751\end{tabular} \\ \hline
+LiveJournal & 0.6052 & 37º & \begin{tabular}[c]{@{}l@{}}1º 0.7484\\ 2º 0.7446\\ 3º 0.7399\end{tabular} \\ \hline
 \end{tabular}
 \caption{Comparação de resultados com o SemEval 2014 \emph{task}9}
 \label{compareResults}
-\end{adjustwidth}
 \end{table}
 
 \section{Conclusão}\label{conclusion}
@@ -507,12 +505,28 @@ Como podemos perceber, os resultados do melhor classificador para a base \emph{T
 
 Os melhores resultados dos modelos gerados puderam ser observados na base \emph{LiveJournal}, com um F1 médio de 0.6052. Isso se deve ao fato das mensagens dessa base conterem palavras mais comuns e pouco uso de gírias e abreviações. Isso faz com que as palavras sejam encontradas mais facilmente no dicionário, melhorando o resultado final da classificação.
 
+Em comparação com o modelo padrão de soma de polaridades, representado pela simples aplicação da função \emph{polaritySum(x)}, o melhor modelo gerado pela Programação Genética obteve um ganho de 6\% na média F1 de todas as bases. A tabela \ref{comparePolaritySum} apresenta a diferença entre os modelos gerados e o modelo de referência \emph{polaritySum(x)}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\multicolumn{1}{c}{\textbf{Base}} & \multicolumn{1}{c}{\textbf{Modelo A}} & \multicolumn{1}{c}{\textbf{Modelo B}} & \multicolumn{1}{c}{\textbf{Modelo C}} \\ \hline
+Tweets2013 & +6\% & +4\% & +4\% \\ \hline
+Tweets2014 & \textbf{+7\%} & {\ul -1\%} & {\ul -1\%} \\ \hline
+Sarcasm & {\ul 0\%} & \textbf{+8\%} & \textbf{+12\%} \\ \hline
+SMS2013 & +3\% & +5\% & 0\% \\ \hline
+LiveJournal & +1\% & +4\% & +1\% \\ \hline
+Todas & +5\% & +6\% & +2\% \\ \hline
+\end{tabular}
+\caption{Ganhos em comparação com o classificador simples \emph{polaritySum(x)}}
+\label{comparePolaritySum}
+\end{table}
+
+Os ganhos apresentados na tabela \ref{comparePolaritySum} podem ser considerados baixos, levando em consideração o custo do processo de criação automatizada dos modelos de classificação frente a um modelo simples e pronto. Em alguns casos, como na base \emph{Tweets2014}, os modelos gerados pela Programação Genética chegam a ter um resultado inferior ao modelo de referência.
+
 Apesar dos resultados iniciais estarem abaixo dos melhores classificadores apresentados no SemEval 2014, foi possível responder as questões de pesquisa formuladas no capítulo inicial deste trabalho. 
 
 Mostramos que é possível a criação automatizada de um modelo de classificação fazendo uso do processo de Programação Genética. Com os parâmetros, funções e modelos atuais, esses classificadores possuem um resultado abaixo do esperado, e podemos afirmar que tem eficiência média na classificação das mensagens de um modo geral. Em relação a outros classificadores, a melhoria de alguns itens pontuais, como novos dicionários e funções, possivelmente trará melhores resultados.
-
-
-O processo de geração de modelos utilizando a Programação Genética é estocástico. Por isso, ????????
 
 \subsection{Melhorias futuras}
 
@@ -524,7 +538,9 @@ A busca por dicionários complementares também pode auxiliar na melhoria dos re
 
 Treinar o processo com bases de dados maiores e mais balanceadas também pode auxiliar na busca por melhores resultados. Apesar de implementar a funcionalidade de balanceamento de polaridades, o conjunto de dados de treinamento atual pode ser insuficiente para a criação de um modelo com resultados satisfatórios.
 
+Por ser um processo estocástico, a geração de modelos por meio de Programação Genética demanda o treinamento de diversas possíveis soluções, de forma a identificar e escolher a melhor delas. Além disso, o processo de treinamento demanda um razoável poder computacional, demandando tempo para que os treinamentos sejam realizados.
 
+Novos treinamentos serão realizados objetivando a criação de modelos de classificação melhores, aumentando o ganho em relação ao modelo padrão de soma de polaridades e aos trabalhos submetidos para o SemEval 2014. Novos dicionários serão incluídos nas novas versões, e espera-se uma melhoria significativa nos resultados finais.
 
 
 \bibliographystyle{sbc}

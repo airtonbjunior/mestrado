@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  17 JUL 2017 21:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  17 JUL 2017 23:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -638,52 +638,52 @@ Underfull \vbox (badness 1365) has occurred while \output is active []
 
  [2]
 [3]
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 104.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 106.
 
  (c:/texlive/2016/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/it' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 104.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 106.
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 106.
 
-<treeGP.png, id=18, 499.8675pt x 365.365pt>
-File: treeGP.png Graphic file (type png)
- <use treeGP.png>
-Package pdftex.def Info: treeGP.png used on input line 108.
-(pdftex.def)             Requested size: 320.0935pt x 233.97217pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 109.
+<treeGP2.png, id=18, 469.755pt x 366.36874pt>
+File: treeGP2.png Graphic file (type png)
+ <use treeGP2.png>
+Package pdftex.def Info: treeGP2.png used on input line 110.
+(pdftex.def)             Requested size: 298.75264pt x 232.99934pt.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 111.
 
 
 (c:/texlive/2016/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 109.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 111.
 
-Underfull \hbox (badness 1014) in paragraph at lines 113--114
+Underfull \hbox (badness 1014) in paragraph at lines 115--116
 []\OT1/ptm/m/n/12 Na Programa[][]ao Gen[]etica, as-sim como em out-ros al-go-ri
 t-mos basea-dos na
  []
 
-[4 <./treeGP.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+[4 <./treeGP2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 \OT1/ptm/m/n/12 [[]], [[]], [[]],
  []
 
 
-Underfull \hbox (badness 5217) in paragraph at lines 129--130
+Underfull \hbox (badness 5217) in paragraph at lines 131--132
 \OT1/ptm/m/n/12 [[]], [[]], [[]], en-
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 []\OT1/ptm/m/n/12 Na linha de es-trat[]egias su-per-vi-sion-adas, [[]] e
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 139--140
+Underfull \hbox (badness 2903) in paragraph at lines 141--142
 \OT1/ptm/m/n/12 [[]] ap-re-sen-tam out-ros pro-ced-i-men-tos para apoiar a An[]
 alise
  []
@@ -692,13 +692,13 @@ alise
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-Underfull \hbox (badness 2846) in paragraph at lines 165--166
+Underfull \hbox (badness 2846) in paragraph at lines 167--168
 []\OT1/ptm/m/n/12 O in-div[]^^Pduo mais apto (de mel-hor \OT1/ptm/m/it/12 fit-n
 ess\OT1/ptm/m/n/12 ) re-tor-nado pelo al-go-ritmo de
  []
 
 [7]
-Underfull \hbox (badness 2035) in paragraph at lines 204--205
+Underfull \hbox (badness 2035) in paragraph at lines 206--207
 []\OT1/ptm/m/n/12 Al[]em das fun[][]oes citadas na tabela 1[], tamb[]em foram i
 n-clu[]^^Pdas fun[][]oes
  []
@@ -708,51 +708,56 @@ Underfull \vbox (badness 1331) has occurred while \output is active []
 
  [8]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 251.
+(Font)              <7> on input line 253.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 251.
+(Font)              <5> on input line 253.
 
 [9] <diagrama3.png, id=42, 1056.94875pt x 693.59125pt>
 File: diagrama3.png Graphic file (type png)
  <use diagrama3.png>
-Package pdftex.def Info: diagrama3.png used on input line 277.
+Package pdftex.def Info: diagrama3.png used on input line 279.
 (pdftex.def)             Requested size: 426.79135pt x 280.06683pt.
 
-[10 <./diagrama3.png>] <treeA.png, id=47, 585.18625pt x 365.365pt>
-File: treeA.png Graphic file (type png)
+[10 <./diagrama3.png>] <treeA2.png, id=47, 415.5525pt x 249.93375pt>
+File: treeA2.png Graphic file (type png)
 
-<use treeA.png>
-Package pdftex.def Info: treeA.png used on input line 329.
-(pdftex.def)             Requested size: 384.1096pt x 239.83151pt.
- [11] <treeB2.png, id=51, 610.28pt x 453.695pt>
-File: treeB2.png Graphic file (type png)
+<use treeA2.png>
+Package pdftex.def Info: treeA2.png used on input line 333.
+(pdftex.def)             Requested size: 298.75264pt x 179.69283pt.
+ [11] <treeB3.png, id=51, 610.28pt x 454.69875pt>
+File: treeB3.png Graphic file (type png)
 
-<use treeB2.png>
-Package pdftex.def Info: treeB2.png used on input line 336.
-(pdftex.def)             Requested size: 426.79135pt x 317.29358pt.
- <treeC.png, id=52, 455.7025pt x 405.515pt>
-File: treeC.png Graphic file (type png)
- <use treeC.png>
-Package pdftex.def Info: treeC.png used on input line 343.
-(pdftex.def)             Requested size: 298.75264pt x 265.85248pt.
+<use treeB3.png>
+Package pdftex.def Info: treeB3.png used on input line 340.
+(pdftex.def)             Requested size: 426.79135pt x 317.99554pt.
+ <treeC2.png, id=52, 269.005pt x 313.17pt>
+File: treeC2.png Graphic file (type png)
+ <use treeC2.png>
+Package pdftex.def Info: treeC2.png used on input line 347.
+(pdftex.def)             Requested size: 149.37958pt x 173.90697pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12 <./treeA.png> <./treeB2.png>]
-Overfull \hbox (59.65668pt too wide) in paragraph at lines 360--371
+ [12 <./treeA2.png> <./treeB3.png>]
+Overfull \hbox (28.4494pt too wide) in paragraph at lines 357--363
+ [][] 
+ []
+
+
+Overfull \hbox (59.65668pt too wide) in paragraph at lines 376--387
 [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13 <./treeC.png>]
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 384--394
+ [13 <./treeC2.png>]
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 400--410
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 402--412
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 418--428
 [][] 
  []
 
@@ -760,21 +765,21 @@ Overfull \hbox (33.37486pt too wide) in paragraph at lines 402--412
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14]
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 420--430
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 436--446
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 438--448
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 454--464
 [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 448.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 464.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 448.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 464.
 
-Overfull \hbox (15.01978pt too wide) in paragraph at lines 458--485
+Overfull \hbox (15.01978pt too wide) in paragraph at lines 474--501
 [][] 
  []
 
@@ -782,11 +787,17 @@ Overfull \hbox (15.01978pt too wide) in paragraph at lines 458--485
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
+Underfull \hbox (badness 1072) in paragraph at lines 510--511
+[]\OT1/ptm/m/n/12 Uma vez que o evento tamb[]em n[]ao disponi-bi-li-zou um re-s
+ul-tado geral de
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16]
 [17]
-Underfull \hbox (badness 1231) in paragraph at lines 549--550
+Underfull \hbox (badness 1231) in paragraph at lines 567--568
 []\OT1/ptm/m/n/12 Novos treina-men-tos ser[]ao re-al-iza-dos ob-je-ti-vando a c
 ria[][]ao de mod-e-los de
  []
@@ -797,10 +808,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3746 strings out of 493013
- 50552 string characters out of 6136993
- 142571 words of memory out of 5000000
- 7193 multiletter control sequences out of 15000+600000
+ 3748 strings out of 493013
+ 50604 string characters out of 6136993
+ 142581 words of memory out of 5000000
+ 7195 multiletter control sequences out of 15000+600000
  28260 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,17n,28p,1082b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -813,7 +824,7 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 exmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on main.pdf (21 pages, 312253 bytes).
+Output written on main.pdf (21 pages, 289819 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  77 compressed objects within 1 object stream

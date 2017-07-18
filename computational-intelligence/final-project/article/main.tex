@@ -63,7 +63,7 @@ A programação Genética, explanada em detalhes no seção \ref{progGen}, é um
 
 A proposta principal deste trabalho é a criação de um sistema para a geração de um modelo de classificação de sentimentos, aderente ao contexto para o qual foi treinado, fazendo uso de Programação Genética. 
 
-Algumas questões de pesquisa orientam o desenvolvimento do artigo, e a intenção é que ao final do desenvolvimento do mesmo possamos respondê-las. São elas:
+Algumas questões de pesquisa orientam o desenvolvimento do artigo, e a intenção é que, ao final do desenvolvimento do mesmo, possamos respondê-las. São elas:
 
 \begin{itemize}
 	\item{É possível criar, de forma automatizada, um modelo de classificação de sentimentos utilizando Programação Genética?}
@@ -78,14 +78,16 @@ Este trabalho está organizado da seguinte maneira: inicialmente, conceitos esse
 
 \section{Conceitos}
 
-Nesta seção, serão apresentados, de forma sucinta, conceitos fundamentais para o entendimento do trabalho. Pontos principais dos temas serão discutidos, com foco nos conceitos relevantes para a solução do problema de pesquisa.
+Nesta seção serão apresentados, de forma sucinta, conceitos fundamentais para o entendimento do trabalho. Pontos principais dos temas serão discutidos, com foco nos conceitos relevantes para a solução do problema de pesquisa.
 
 \subsection{Análise de Sentimentos}
 A Análise de Sentimentos, também chamada de Análise de Opiniões ou Mineração de Opiniões, é uma linha de pesquisa abrangente e que vem sendo tema de diversos trabalhos nos últimos anos. Como observado em \cite{liu2010multifaceted}, esse crescente interesse sobre o assunto ocorre principalmente devido ao aumento no número de usuários de Internet e o consequente crescimento da produção de conteúdo independente na rede, como opiniões, avaliações, entre outros. 
 
 Essa área de estudo tem como principal desafio a Análise de Opiniões, descritas em linguagem natural, para a identificação da polaridade implícita ou explícita no texto. Essa polaridade é, na maior parte das vezes, identificada como uma escala de pontuação de sua característica positiva, negativa ou neutra.
 
-Quanto aos classificadores de sentimentos, há duas formas principais para o processamento e classificação das mensagens: a abordagem supervisionada e não supervisionada. Na abordagem supervisionada, técnicas de aprendizado de máquina são aplicados à mensagens previamente rotuladas de forma a identificar características que auxiliem na distinção e detecção de sentimentos nas sentenças desconhecidas. Técnicas não supervisionadas atuam principalmente em características sintáticas e semânticas do texto e, geralmente, baseiam-se em Dicionários Léxicos - conjunto de palavras e suas polaridades (grau de positividade e negatividade de uma mensagem). À partir desse dicionário, é feito o processamento das mensagens pelo classificador e retornada a polaridade da mesma. \cite{araujo2013metodos}
+Quanto aos classificadores de sentimentos, há duas formas principais para o processamento e classificação das mensagens: a abordagem supervisionada e não supervisionada. Na abordagem supervisionada, técnicas de aprendizado de máquina são aplicados à mensagens previamente rotuladas de forma a identificar características que auxiliem na distinção e detecção de sentimentos nas sentenças desconhecidas. 
+
+Técnicas não supervisionadas atuam principalmente em características sintáticas e semânticas do texto e, geralmente, baseiam-se em Dicionários Léxicos - conjunto de palavras e suas polaridades (grau de positividade e negatividade de uma mensagem). À partir desse dicionário, é feito o processamento das mensagens pelo classificador e retornada a polaridade da mesma. \cite{araujo2013metodos}
 
 Dentre as principais técnicas de aprendizado de máquina para a classificação de sentimentos, podemos citar o \emph{Support Vector Machines} (SVM) \cite{HADDI2013}, \emph{Naïve Bayes} \cite{Iqbal}, \emph{Adaboost} \cite{graff2017semantic}, Redes Neurais Artificiais, entre outros. \cite{Rodrigues2016}
 
@@ -105,12 +107,12 @@ Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.75\textwidth]{treeGP}
+	\includegraphics[width=0.7\textwidth]{treeGP2}
 	\caption{Exemplo de um programa em Programação Genética}
 	\label{treeProgram}
 \end{figure}
 
-Na Programação Genética, assim como em outros algoritmos baseados na evolução humana, são criadas populações onde cada indivíduo representa uma possível solução para o problema. A forma mais comum de inicialização da população é fazê-las de forma aleatória, evoluindo as mesmas no decorrer dos ciclos, chamados de gerações. Para cada geração, programas possivelmente melhores são criados, evoluindo os programas (modelos) gerados. Assim como a natureza, a Programação Genética é um processo aleatório, e não garante o resultado ótimo. Porém, essa aleatoriedade faz com que, muitas vezes, as soluções fujam de problemas como soluções máximas locais, frequentemente enfrentados por métodos determinísticos gulosos \cite{mcphee2008field}.
+Na Programação Genética, assim como em outros algoritmos baseados na evolução humana, são criadas populações onde cada indivíduo representa uma possível solução para o problema. A forma mais comum de inicialização da população é fazê-las de forma aleatória, evoluindo as mesmas no decorrer dos ciclos, chamados de gerações. Para cada geração, programas possivelmente melhores são criados, evoluindo os programas (modelos) gerados. Assim como a natureza, a Programação Genética é um processo aleatório, e não garante o resultado ótimo. Porém, essa aleatoriedade faz com que, muitas vezes, as soluções fujam de problemas como, por exemplo, soluções máximas locais, frequentemente enfrentados por métodos determinísticos gulosos \cite{mcphee2008field}.
 
 Uma das características mais importantes da Programação Genética é a função de aptidão, ou função \emph{fitness}. Essa função busca representar, de forma quantitativa, a similaridade de cada indivíduo em relação ao resultado esperado. A escolha de uma boa função \emph{fitness} está intimamente ligada ao tipo do problema.
 
@@ -124,7 +126,7 @@ Por sua característica inerentemente paralela, esse tipo de abordagem consegue 
 
 Como discutido em seções anteriores, a quantidade de trabalhos na área de análise de sentimento vem crescendo a cada ano, motivado, principalmente, pela importância da área no contexto atual de geração e análise de grande quantidade de dados e informações.
 
-Ao debatermos os trabalhos relacionados à área de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}, uma das principais referências do assunto. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instrínseca dos textos em linguagem natural, objeto de entrada da pesquisa. 
+Ao debatermos os trabalhos relacionados à área de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instrínseca dos textos em linguagem natural, objeto de entrada da pesquisa. 
 
 A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, \cite{kaji}, entre outros trabalhos.
 
@@ -281,6 +283,8 @@ A base de treinamento aplicada no trabalho possui 9684 \emph{Tweets}, com a segu
 
 O evento também disponibiliza uma base de testes, que serve como critério de avaliação e comparação dos trabalhos submetidos para cada \emph{task}. A base fornecida é dividida em 5 categorias, e possui um total de 8987 \emph{Tweets}. Detalhes da divisão e da polaridade das bases podem ser visualizadas na tabela \ref{datasets}.
 
+A figura \ref{diagrama} apresenta um diagrama geral simplificado do projeto da solução e a interação entre os módulos do processo e os dados utilizados.
+
 \begin{table}[H]
 \centering
 	\begin{tabular}{lc}
@@ -304,7 +308,7 @@ Nesta seção, serão apresentados os resultados obtidos com os modelos gerados 
 
 A criação do modelo é feita pelo processo de Programação Genética, tendo como entrada os \emph{Tweets} da base de treinamento utilizada no trabalho e discutida na seção \ref{datasets}. Os processos de Programação Genética encarregam-se da criação e evolução da população de indivíduos, conforme os princípios citados anteriormente.
 
-Alguns parâmetros devem ser definidos para o funcionamento da Programação Genética. Os principais deles são quantidade de gerações, população, taxa de \emph{crossover} e taxa de mutação. Não há uma regra para a definição desses valores, e cada problema deve ter uma abordagem diferente. Para o presente trabalho, os parâmetros definidos para a criação e evolução dos modelos podem ser vistos na tabela \ref{parametersGP}.
+Alguns parâmetros devem ser definidos para o funcionamento da Programação Genética. Os principais são a quantidade de gerações, população, taxa de \emph{crossover} e taxa de mutação. Não há uma regra para a definição desses valores, e cada problema deve ter uma abordagem diferente. Para o presente trabalho, os parâmetros definidos para a criação e evolução dos modelos podem ser vistos na tabela \ref{parametersGP}.
 
 \begin{table}[H]
 	\centering
@@ -322,31 +326,43 @@ Com o objetivo de diminuir a quantidade de tempo de processamento para a criaç�
 
 Inicialmente, foram criados 3 modelos de classificação de sentimentos, usando as mesmas entradas (base de treinamento) e modificando somente os parâmetros da Programação Genética. Cada um dos modelos foi testado com a base de testes disponibilizada pelo SemEval 2014.
 
-Os modelos criados após o processamento foram (a variável x representa a entrada, nesse caso, os \emph{Tweets}):
+Os modelos criados após o processamento são apresentados em forma de árvores nas imagens \ref{AModel}, \ref{BModel} e \ref{CModel} (a variável x representa a entrada, nesse caso, os \emph{Tweets}). A tabela \ref{modelsExpressions} apresenta os modelos gerados em forma de expressões.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{treeA}
+		\includegraphics[width=0.7\textwidth]{treeA2}
 		\caption{Modelo A}
 		\label{AModel}
 	\end{figure}
 	
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=1.0\textwidth]{treeB2}
+		\includegraphics[width=1.0\textwidth]{treeB3}
 		\caption{Modelo B}
 		\label{BModel}
 	\end{figure}
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\textwidth]{treeC}
+		\includegraphics[width=0.35\textwidth]{treeC2}
 		\caption{Modelo C}
 		\label{CModel}
 	\end{figure}
 
 
 Além dos modelos criados por meio do processo de Programação Genética, foram realizados testes com um modelo de classificador padrão simples, que faz a soma das polaridades das palavras contidas nas mensagens, representado pela função \emph{polaritySum(x)}. O objetivo principal é criar um ponto de comparação entre um modelo simples e os modelos gerados pelo processo proposto neste trabalho, de forma a identificar os possíveis ganhos nos resultados dos novos classificadores.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cl}
+\multicolumn{1}{c}{\textbf{Modelo}} & \multicolumn{1}{c}{\textbf{Expressão}} \\ \hline
+A & \begin{tabular}[c]{@{}l@{}}if\_then\_else(hasEmoticons(x), emoticonsPolaritySum(x), polaritySum(x))\end{tabular} \\ \hline
+B & \begin{tabular}[c]{@{}l@{}}mul(add(add(polaritySum(x),positiveEmoticons(x), mul(sub(sin(-0.7), div\\(negativeEmoticons(x), sqrt(div(log(0.30), cos(0.3))))), div(sin(negativeWords(x),\\ add(sqrt(cos(mul(hashtagPolaritySum(x),-1.1))), -0.2)))), mul(div(log (-0.9),\\ negativeEmoticons(x)), exp(add(-0.2, -0.2))))\end{tabular} \\ \hline
+C & \begin{tabular}[c]{@{}l@{}}add(invertSignal(negativeWords(x)), sin(polaritySum(x)))\end{tabular} \\ \hline
+\end{tabular}
+\caption{Modelos gerados pela Programação Genética}
+\label{modelsExpressions}
+\end{table}
 
 \subsection{Testes dos modelos}
 
@@ -489,7 +505,9 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
 
 Uma forma de avaliar a eficiência dos modelos gerados pelo processo é comparar com os resultados dos classificadores submetidos para o SemEval 2014, \emph{task} 9. Como estamos fazendo uso da mesma base de treinamento e de testes utilizados no evento, é possível comparar e avaliar a colocação dos modelos gerados no \emph{ranking} dos trabalhos. A tabela \ref{compareResults} apresenta uma comparação dos melhores resultados obtidos pelo presente trabalho em relação aos trabalhos submetidos para o evento e a posição no \emph{ranking} caso o modelo estivesse participando da competição.
 
-O evento, como discutido nas seções anteriores, leva em consideração para a avaliação dos classificadores o F1 médio das mensagens positivas e negativas, desconsiderando as mensagens neutras. Apesar disso, os classificadores não são binários, as mensagens neutras somente não são contabilizadas na média final. Como fator de comparação, ainda na tabela \ref{compareResults} são apresentados os valores de F1 médio dos 3 primeiros colocados, separados por base de dados.
+O evento, como discutido nas seções anteriores, leva em consideração para a avaliação dos classificadores o F1 médio das mensagens positivas e negativas, desconsiderando as mensagens neutras. Apesar disso, os classificadores não são binários, as mensagens neutras são desconsideradas somente na média final. Como fator de comparação, ainda na tabela \ref{compareResults} são apresentados os valores de F1 médio dos 3 primeiros colocados, separados por base de dados.
+
+Uma vez que o evento também não disponibilizou um resultado geral de classificação de todas as mensagens, a tabela \ref{compareResults} considera somente as bases de forma individual.
 
 \begin{table}[H]
 \centering
@@ -505,9 +523,9 @@ LiveJournal & 0.6052 & 37º & \begin{tabular}[c]{@{}l@{}}1º 0.7484\\ 2º 0.7446
 \label{compareResults}
 \end{table}
 
-\section{Conclusão}\label{conclusion}
+\section{Considerações}\label{conclusion}
 
-Como podemos perceber, os resultados do melhor classificador para a base \emph{TwitterSarcasm}, que possui sarcasmo em seu conteúdo, tiveram um valor muito baixo - F1 médio (positivo e negativo) de 0.2854. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo com certeza trarão possibilidades de criação de modelos melhores para esse contexto.
+Como podemos perceber, os resultados do melhor classificador para a base \emph{TwitterSarcasm}, que possui sarcasmo em seu conteúdo, tiveram um resultado consideravelmente baixo - F1 médio (positivo e negativo) de 0.2854. Isso acontece pela dificuldade de identificação dessa figura de linguagem. A inclusão de novas funções e a utilização de bases de treinamento com mais frases contendo sarcasmo certamente trarão possibilidades de criação de modelos melhores para esse contexto.
 
 Os melhores resultados dos modelos gerados puderam ser observados na base \emph{LiveJournal}, com um F1 médio de 0.6052. Isso se deve ao fato das mensagens dessa base conterem palavras mais comuns e pouco uso de gírias e abreviações. Isso faz com que as palavras sejam encontradas mais facilmente no dicionário, melhorando o resultado final da classificação.
 
@@ -544,7 +562,7 @@ A busca por dicionários complementares também pode auxiliar na melhoria dos re
 
 Treinar o processo com bases de dados maiores e mais balanceadas também pode auxiliar na busca por melhores resultados. Apesar de implementar a funcionalidade de balanceamento de polaridades, o conjunto de dados de treinamento atual pode ser insuficiente para a criação de um modelo com resultados satisfatórios.
 
-Por ser um processo estocástico, a geração de modelos por meio de Programação Genética demanda o treinamento de diversas possíveis soluções, de forma a identificar e escolher a melhor delas. Além disso, o processo de treinamento demanda um razoável poder computacional, demandando tempo para que os treinamentos sejam realizados.
+Por ser um processo estocástico, a geração de modelos por meio de Programação Genética requer o treinamento de diversas possíveis soluções, de forma a identificar e escolher a melhor delas. Além disso, o processo de treinamento exige um razoável poder computacional, demandando tempo considerável para que os treinamentos sejam realizados.
 
 Novos treinamentos serão realizados objetivando a criação de modelos de classificação melhores, aumentando o ganho em relação ao modelo padrão de soma de polaridades e aos trabalhos submetidos para o SemEval 2014. Novos dicionários serão incluídos nas novas versões, e espera-se uma melhoria significativa nos resultados finais.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  17 JUL 2017 23:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.29)  17 JUL 2017 23:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -728,23 +728,28 @@ Package pdftex.def Info: treeA2.png used on input line 333.
 File: treeB3.png Graphic file (type png)
 
 <use treeB3.png>
-Package pdftex.def Info: treeB3.png used on input line 340.
-(pdftex.def)             Requested size: 426.79135pt x 317.99554pt.
- <treeC2.png, id=52, 269.005pt x 313.17pt>
+Package pdftex.def Info: treeB3.png used on input line 341.
+(pdftex.def)             Requested size: 512.14832pt x 381.59743pt.
+
+Overfull \hbox (56.90422pt too wide) in paragraph at lines 341--342
+[][] 
+ []
+
+<treeC2.png, id=52, 269.005pt x 313.17pt>
 File: treeC2.png Graphic file (type png)
  <use treeC2.png>
-Package pdftex.def Info: treeC2.png used on input line 347.
+Package pdftex.def Info: treeC2.png used on input line 349.
 (pdftex.def)             Requested size: 149.37958pt x 173.90697pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6808) has occurred while \output is active []
 
  [12 <./treeA2.png> <./treeB3.png>]
-Overfull \hbox (28.4494pt too wide) in paragraph at lines 357--363
+Overfull \hbox (28.4494pt too wide) in paragraph at lines 359--365
  [][] 
  []
 
 
-Overfull \hbox (59.65668pt too wide) in paragraph at lines 376--387
+Overfull \hbox (59.65668pt too wide) in paragraph at lines 378--389
 [][] 
  []
 
@@ -752,12 +757,12 @@ Overfull \hbox (59.65668pt too wide) in paragraph at lines 376--387
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13 <./treeC2.png>]
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 400--410
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 402--412
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 418--428
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 420--430
 [][] 
  []
 
@@ -765,21 +770,21 @@ Overfull \hbox (33.37486pt too wide) in paragraph at lines 418--428
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14]
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 436--446
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 438--448
 [][] 
  []
 
 
-Overfull \hbox (33.37486pt too wide) in paragraph at lines 454--464
+Overfull \hbox (33.37486pt too wide) in paragraph at lines 456--466
 [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 464.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 466.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 464.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 466.
 
-Overfull \hbox (15.01978pt too wide) in paragraph at lines 474--501
+Overfull \hbox (15.01978pt too wide) in paragraph at lines 476--503
 [][] 
  []
 
@@ -787,7 +792,7 @@ Overfull \hbox (15.01978pt too wide) in paragraph at lines 474--501
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Underfull \hbox (badness 1072) in paragraph at lines 510--511
+Underfull \hbox (badness 1072) in paragraph at lines 512--513
 []\OT1/ptm/m/n/12 Uma vez que o evento tamb[]em n[]ao disponi-bi-li-zou um re-s
 ul-tado geral de
  []
@@ -797,7 +802,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16]
 [17]
-Underfull \hbox (badness 1231) in paragraph at lines 567--568
+Underfull \hbox (badness 1231) in paragraph at lines 569--570
 []\OT1/ptm/m/n/12 Novos treina-men-tos ser[]ao re-al-iza-dos ob-je-ti-vando a c
 ria[][]ao de mod-e-los de
  []
@@ -824,7 +829,7 @@ ic/uhvb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb>
 exmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on main.pdf (21 pages, 289858 bytes).
+Output written on main.pdf (21 pages, 289861 bytes).
 PDF statistics:
  120 PDF objects out of 1000 (max. 8388607)
  77 compressed objects within 1 object stream

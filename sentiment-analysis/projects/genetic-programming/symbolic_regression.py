@@ -92,9 +92,9 @@ MAX_POSITIVES_TWEETS = 1400
 MAX_NEGATIVES_TWEETS = 1400
 MAX_NEUTRAL_TWEETS = 1400
 
-GENERATIONS = 500
+GENERATIONS = 1000
 generations_unchanged = 0
-max_unchanged_generations = 150
+max_unchanged_generations = 450
 
 stop_words = set(stopwords.words('english'))
 
@@ -341,19 +341,19 @@ def getDictionary():
 
     with open('dictionaries/positive-words.txt', 'r') as inF:
         for line in inF:
-            dic_positive_words.append(line.strip())
+            dic_positive_words.append(line.lower().strip())
 
     with open('dictionaries/negative-words.txt', 'r') as inF2:
         for line2 in inF2:
-            dic_negative_words.append(line2.strip())
+            dic_negative_words.append(line2.lower().strip())
 
     with open('dictionaries/positive-hashtags.txt', 'r') as inF3:
         for line3 in inF3:
-            dic_positive_hashtags.append(line3.strip())
+            dic_positive_hashtags.append(line3.lower().strip())
 
     with open('dictionaries/negative-hashtags.txt', 'r') as inF4:
         for line4 in inF4:
-            dic_negative_hashtags.append(line4.strip())            
+            dic_negative_hashtags.append(line4.lower().strip())            
 
     with open('dictionaries/positive-emoticons.txt', 'r') as inF5:
         for line5 in inF5:
@@ -444,10 +444,10 @@ def polaritySum(phrase):
     total_sum = 0
 
     for word in words:
-        if word in dic_positive_words:
+        if word.lower().strip() in dic_positive_words:
             total_sum += 1 
 
-        if word in dic_negative_words:
+        if word.lower().strip() in dic_negative_words:
             total_sum -= 1
 
     return total_sum
@@ -488,7 +488,7 @@ def positiveEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word in dic_positive_emoticons:
+        if word.lower().strip() in dic_positive_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -501,7 +501,7 @@ def negativeEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word in dic_negative_emoticons:
+        if word.lower().strip() in dic_negative_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -609,6 +609,14 @@ def stemmingText(phrase):
     return stemmed_phrase.strip()
 
 
+def removeLinks(phrase):
+    return re.sub(r'http\S+', '', phrase, flags=re.MULTILINE)
+
+
+def removeEllipsis(phrase):
+    return re.sub('\.{3}', ' ', phrase)
+
+
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
 pset.addPrimitive(operator.add, [float,float], float)
 pset.addPrimitive(operator.sub, [float,float], float)
@@ -645,6 +653,8 @@ pset.addPrimitive(if_then_else, [bool, float, float], float)
 
 pset.addPrimitive(stemmingText, [str], str)
 pset.addPrimitive(removeStopWords, [str], str)
+pset.addPrimitive(removeLinks, [str], str)
+pset.addPrimitive(removeEllipsis, [str], str)
 #pset.addPrimitive(repeatInputString, [str], str)
 
 pset.addTerminal(True, bool)
@@ -1025,7 +1035,7 @@ def main():
 
     random.seed()
 
-    pop = toolbox.population(n=30)
+    pop = toolbox.population(n=100)
     hof = tools.HallOfFame(3)
     
     
@@ -1083,7 +1093,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+    print(removeEllipsis(removeLinks("1st debate showed emperor has no clothes...Wonder how the court jester\u002c shoeless Joe will do against Ryan? #gop")))
+    print(str(hasEmoticons("'@1DsHotTamale ~.~t u cant just tweet sum1 GUESS WHO IMMA SEE THURSDAY and NIT TWEET THEM BACK!! >.< lol")))
     #saveTestTweetsFromFilesIdLoadedSemeval2014()
     #saveTweetsFromIdInFile()
 

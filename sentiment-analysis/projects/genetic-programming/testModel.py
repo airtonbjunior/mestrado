@@ -69,19 +69,19 @@ def getDictionary():
 
     with open('dictionaries/positive-words.txt', 'r') as inF:
         for line in inF:
-            dic_positive_words.append(line.strip())
+            dic_positive_words.append(line.lower().strip())
 
     with open('dictionaries/negative-words.txt', 'r') as inF2:
         for line2 in inF2:
-            dic_negative_words.append(line2.strip())
+            dic_negative_words.append(line2.lower().strip())
 
     with open('dictionaries/positive-hashtags.txt', 'r') as inF3:
         for line3 in inF3:
-            dic_positive_hashtags.append(line3.strip())
+            dic_positive_hashtags.append(line3.lower().strip())
 
     with open('dictionaries/negative-hashtags.txt', 'r') as inF4:
         for line4 in inF4:
-            dic_negative_hashtags.append(line4.strip())            
+            dic_negative_hashtags.append(line4.lower().strip())            
 
     with open('dictionaries/positive-emoticons.txt', 'r') as inF5:
         for line5 in inF5:
@@ -89,7 +89,7 @@ def getDictionary():
 
     with open('dictionaries/negative-emoticons.txt', 'r') as inF6:
         for line6 in inF6:
-            dic_negative_emoticons.append(line6.strip())             
+            dic_negative_emoticons.append(line6.strip())              
 
 #    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
 #        for line7 in inF7:
@@ -320,10 +320,10 @@ def polaritySum(phrase):
     total_sum = 0
 
     for word in words:
-        if word in dic_positive_words:
+        if word.lower().strip() in dic_positive_words:
             total_sum += 1 
 
-        if word in dic_negative_words:
+        if word.lower().strip() in dic_negative_words:
             total_sum -= 1
 
     return total_sum
@@ -336,7 +336,7 @@ def positiveEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word in dic_positive_emoticons:
+        if word.lower().strip() in dic_positive_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -349,7 +349,7 @@ def negativeEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word in dic_negative_emoticons:
+        if word.lower().strip() in dic_negative_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -455,6 +455,14 @@ def stemmingText(phrase):
         stemmed_phrase += stem(word) + " "               
 
     return stemmed_phrase.strip()
+
+
+def removeLinks(phrase):
+    return re.sub(r'http\S+', '', phrase, flags=re.MULTILINE)   
+
+
+def removeEllipsis(phrase):
+    return re.sub('\.{3}', ' ', phrase) 
 ### End functions (improve this - import the functions of the other file)
 
 
@@ -1310,9 +1318,9 @@ def evaluateAllMessages(model):
                 else:
                     false_positive += 1
             
-                #if false_negative_log <= 10:
-                    #print("[Negative phrase evaluation error]: " + message)
-                    #print("[Polarity calculated]: " + str(result))
+                if false_negative_log <= 15:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result))
 
         elif allScores[index] == 0:
             if result == 0:
@@ -1407,19 +1415,19 @@ if __name__ == "__main__":
     #function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(x), polaritySum(x))"
 
     #function_to_evaluate = "add(invertSignal(negativeWordsQuantity(x)), sin(polaritySum(x)))"
-    function_to_evaluate = " sub(mul(sub(polaritySum(removeStopWords(stemmingText(x))), sin(-0.3012931295024437)), protectedLog(-0.21199248533470838)), protectedLog(protectedLog(sub(polaritySum(stemmingText(stemmingText(stemmingText(removeStopWords(removeStopWords(removeStopWords(stemmingText(removeStopWords(stemmingText(removeStopWords(x))))))))))), sub(hashtagPolaritySum(removeStopWords(removeStopWords(removeStopWords(x)))), cos(protectedLog(polaritySum(stemmingText(removeStopWords(removeStopWords(x)))))))))))"
+    #function_to_evaluate = " sub(mul(sub(polaritySum(removeStopWords(stemmingText(x))), sin(-0.3012931295024437)), protectedLog(-0.21199248533470838)), protectedLog(protectedLog(sub(polaritySum(stemmingText(stemmingText(stemmingText(removeStopWords(removeStopWords(removeStopWords(stemmingText(removeStopWords(stemmingText(removeStopWords(x))))))))))), sub(hashtagPolaritySum(removeStopWords(removeStopWords(removeStopWords(x)))), cos(protectedLog(polaritySum(stemmingText(removeStopWords(removeStopWords(x)))))))))))"
 
     #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
-    #function_to_evaluate = "if_then_else(hasEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))))))), emoticonsPolaritySum(x), polaritySum(repeatInputString(x)))"
+    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(x))))"
 
     #function_to_evaluate = "polaritySum(x)"
     #function_to_evaluate = "mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))"
 
-    evaluateTweets2013Messages(function_to_evaluate)
-    evaluateTweets2014Messages(function_to_evaluate)
-    evaluateSMS2013(function_to_evaluate)
-    evaluateTweetsLiveJournal2014(function_to_evaluate)
-    evaluateTweets2014SarcasmMessages(function_to_evaluate)
+    #evaluateTweets2013Messages(function_to_evaluate)
+    #evaluateTweets2014Messages(function_to_evaluate)
+    #evaluateSMS2013(function_to_evaluate)
+    #evaluateTweetsLiveJournal2014(function_to_evaluate)
+    #evaluateTweets2014SarcasmMessages(function_to_evaluate)
     evaluateAllMessages(function_to_evaluate)
 
 

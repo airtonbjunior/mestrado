@@ -33,13 +33,17 @@
 \maketitle
 
 \begin{abstract}
-dd
+The increase in the number of Internet users in recent years has resulted in a growing production of content by its users. Often, the WEB is used as a platform for debates, opinions, evaluations, etc. This fact made the area of Sentiment Analysis, also called Opinion Mining, have a growing interest on the part of researchers.
+
+The development of classifiers, therefore, presents itself as an important area of the Opinion Mining. The classifiers can be seen as models and, with this approach, the present work proposes the use of techniques of Genetic Programming for the automated creation of efficient models of sentiment classification, using the train and test datasets of SemEval 2014 event.
+
+The results of the models were compared with the systems submitted for evaluation in the event, in addition to a predefined standard model of simple sum of word polarity.
 \end{abstract}
 
 \begin{resumo} 
 O aumento no número de usuários de Internet nos últimos anos teve como consequência uma crescente produção de conteúdo por seus usuários. Frequentemente, a WEB é utilizada como plataforma para debates, opiniões, avaliações, etc. Esse fato fez com que a área de Análise de Sentimentos, também chamada de Mineração de Opiniões, tivesse um interesse crescente por parte de pesquisadores. 
 
-A criação de classificadores, portanto, apresenta-se como uma importante área da Mineração de Opiniões. Os classificadores podem ser vistos como modelos e, com essa abordagem, o presente trabalho propõe a utlização de técnicas de Programação Genética para a criação automatizada de modelos eficientes de classificação de sentimentos, fazendo uso da base de treinamento e de testes do evento SemEval 2014.
+A criação de classificadores, portanto, apresenta-se como uma importante área da Mineração de Opiniões. Os classificadores podem ser vistos como modelos e, com essa abordagem, o presente trabalho propõe a utilização de técnicas de Programação Genética para a criação automatizada de modelos eficientes de classificação de sentimentos, fazendo uso da base de treinamento e de testes do evento SemEval 2014.
 
 Os resultados dos modelos gerados foram comparados com os trabalhos submetidos para avaliação no evento, além de um modelo padrão pré-definido de soma simples de polaridade de palavras.
 \end{resumo}
@@ -101,7 +105,7 @@ Nesse contexto, programa significa um modelo capaz de, à partir de uma ou mais 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.7\textwidth]{treeGP}
+	\includegraphics[width=0.75\textwidth]{treeGP}
 	\caption{Exemplo de um programa em Programação Genética}
 	\label{treeProgram}
 \end{figure}
@@ -120,7 +124,9 @@ Por sua característica inerentemente paralela, esse tipo de abordagem consegue 
 
 Como discutido em seções anteriores, a quantidade de trabalhos na área de análise de sentimento vem crescendo a cada ano, motivado, principalmente, pela importância da área no contexto atual de geração e análise de grande quantidade de dados e informações.
 
-Ao debatermos os trabalhos relacionados à área de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}, uma das principais referências do assunto. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instrínseca dos textos em linguagem natural, objeto de entrada da pesquisa. A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, \cite{kaji}, entre outros trabalhos.
+Ao debatermos os trabalhos relacionados à área de mineração de opiniões, é praticamente impossível não iniciarmos citando \cite{liu2010multifaceted}, uma das principais referências do assunto. O autor, um dos principais nomes sobre o assunto, conceitualiza o problema e propõe uma forma estruturada de organização dos dados não estruturados, característica instrínseca dos textos em linguagem natural, objeto de entrada da pesquisa. 
+
+A definição de opinião como uma quíntupla (entidade, aspecto da entidade, sentimento, autor e tempo) é utilizada em grande parte dos trabalhos na área, caracterizando-se, portanto, como elemento fundamental nas pesquisas sobre o assunto. Visão geral sobre o tema e principais desafios e técnicas são vistos também em \cite{mohammad2016challenges}, \cite{ghaleb2016survey}, \cite{kdir16}, \cite{taboada2011lexicon}, \cite{bandhakavi2016lexicon}, \cite{Alessia}, \cite{kaji}, entre outros trabalhos.
 
 Embasamento teórico sobre a divisão dos métodos de classificação de sentimentos em abordagens supervisionadas e não supervisionadas são apresentadas de forma clara em \cite{araujo2013metodos}
 
@@ -476,7 +482,7 @@ Para facilitar a comparação do resultado entre os modelos, a tabela \ref{tabAv
  & LiveJournal & 0.6121 & 0.6419 & 0.5968 & 0.5999 & 0.5845 \\
  & Todas & 0.583 & 0.5807 & 0.5314 & 0.5367 & 0.476
 \end{tabular}
-\caption{Resultados médios por modelo}
+\caption{Médias por modelo}
 \label{tabAvgResults}
 \end{adjustwidth}
 \end{table}

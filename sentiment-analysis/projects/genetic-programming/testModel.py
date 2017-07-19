@@ -249,6 +249,8 @@ def getTestTweetsFromSemeval2014():
 def add(left, right):
     return left + right
 
+def sub(left, right):
+    return left - right
 
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
@@ -524,6 +526,9 @@ def evaluateTweets2013Messages(model):
     global tweets_2013_negative
     global tweets_2013_neutral
 
+    false_neutral_log = 0
+    false_negative_log = 0
+
     message = ""
     model_analysis = ""
     result = 0
@@ -575,10 +580,15 @@ def evaluateTweets2013Messages(model):
             if result < 0:
                 true_negative += 1
             else:
+                false_negative_log += 1
                 if result == 0:
                     false_neutral += 1
                 else:
                     false_positive += 1
+
+                if false_negative_log <= 15:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result)) 
 
         elif tweets_2013_score[index] == 0:
             if result == 0:
@@ -663,7 +673,7 @@ def evaluateTweets2013Messages(model):
     print("[false_negative]: " + str(false_negative))
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
-
+    print("\n")
 
 
 # Evaluate only the Tweets2014
@@ -674,6 +684,9 @@ def evaluateTweets2014Messages(model):
     global tweets_2014_positive
     global tweets_2014_negative
     global tweets_2014_neutral
+
+    false_neutral_log = 0
+    false_negative_log = 0
 
     message = ""
     model_analysis = ""
@@ -726,10 +739,15 @@ def evaluateTweets2014Messages(model):
             if result < 0:
                 true_negative += 1
             else:
+                false_negative_log += 1
                 if result == 0:
                     false_neutral += 1
                 else:
                     false_positive += 1
+
+                if false_negative_log <= 15:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result)) 
 
         elif tweets_2014_score[index] == 0:
             if result == 0:
@@ -814,7 +832,7 @@ def evaluateTweets2014Messages(model):
     print("[false_negative]: " + str(false_negative))
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
-
+    print("\n")
 
 
 # Evaluate only the Tweets2014 Sarcasm
@@ -825,6 +843,9 @@ def evaluateTweets2014SarcasmMessages(model):
     global tweets_2014_sarcasm_positive
     global tweets_2014_sarcasm_negative
     global tweets_2014_sarcasm_neutral
+
+    false_neutral_log = 0
+    false_negative_log = 0
 
     message = ""
     model_analysis = ""
@@ -877,10 +898,15 @@ def evaluateTweets2014SarcasmMessages(model):
             if result < 0:
                 true_negative += 1
             else:
+                false_negative_log += 1
                 if result == 0:
                     false_neutral += 1
                 else:
                     false_positive += 1
+
+                if false_negative_log <= 15:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result))    
 
         elif tweets_2014_sarcasm_score[index] == 0:
             if result == 0:
@@ -965,7 +991,7 @@ def evaluateTweets2014SarcasmMessages(model):
     print("[false_negative]: " + str(false_negative))
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
-
+    print("\n")
 
 
 # Evaluate only the SMS2013
@@ -976,6 +1002,9 @@ def evaluateSMS2013(model):
     global sms_2013_positive
     global sms_2013_negative
     global sms_2013_negative
+
+    false_neutral_log = 0
+    false_negative_log = 0
 
     message = ""
     model_analysis = ""
@@ -1028,10 +1057,15 @@ def evaluateSMS2013(model):
             if result < 0:
                 true_negative += 1
             else:
+                false_negative_log += 1
                 if result == 0:
                     false_neutral += 1
                 else:
                     false_positive += 1
+
+                if false_negative_log <= 15:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result))
 
         elif sms_2013_score[index] == 0:
             if result == 0:
@@ -1117,7 +1151,7 @@ def evaluateSMS2013(model):
     print("[false_negative]: " + str(false_negative))
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
-
+    print("\n")
 
 
 # Evaluate only the Tweets2014
@@ -1128,6 +1162,9 @@ def evaluateTweetsLiveJournal2014(model):
     global tweets_liveJournal2014_positive
     global tweets_liveJournal2014_negative
     global tweets_liveJournal2014_neutral
+
+    false_neutral_log = 0
+    false_negative_log = 0
 
     message = ""
     model_analysis = ""
@@ -1161,6 +1198,7 @@ def evaluateTweetsLiveJournal2014(model):
 
     for index, item in enumerate(tweets_liveJournal2014): 
         message = str(tweets_liveJournal2014[index]).strip().replace("'", "")
+        message = message.replace("\\u2018", "").replace("\\u2019", "").replace("\\u002c", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("(x)", "(" + message + ")")
@@ -1179,10 +1217,15 @@ def evaluateTweetsLiveJournal2014(model):
             if result < 0:
                 true_negative += 1
             else:
+                false_negative_log += 1
                 if result == 0:
                     false_neutral += 1
                 else:
                     false_positive += 1
+
+                if false_negative_log <= 15:
+                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Polarity calculated]: " + str(result))
 
         elif tweets_liveJournal2014_score[index] == 0:
             if result == 0:
@@ -1267,7 +1310,7 @@ def evaluateTweetsLiveJournal2014(model):
     print("[false_negative]: " + str(false_negative))
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
-
+    print("\n")
 
 
 # Evaluate all messages
@@ -1303,8 +1346,8 @@ def evaluateAllMessages(model):
     global tweets_2014_sarcasm_negative
     global tweets_2014_sarcasm_neutral
 
-    global false_neutral_log
-    global false_negative_log
+    false_neutral_log = 0
+    false_negative_log = 0
 
     message = ""
     model_analysis = ""
@@ -1454,7 +1497,7 @@ def evaluateAllMessages(model):
     print("[false_negative]: " + str(false_negative))
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
-
+    print("\n")
 
 if __name__ == "__main__":
     getDictionary()
@@ -1468,13 +1511,13 @@ if __name__ == "__main__":
     
     function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(replaceNegatingWords(x)))))))"
     
-    #function_to_evaluate = "add(emoticonsPolaritySum(removeStopWords(x)), polaritySumWithNegationWords(removeEllipsis(removeAllPonctuation(x))))"
+    #function_to_evaluate = "add(if_then_else(hasEmoticons(removeEllipsis(removeEllipsis(x))), sub(emoticonsPolaritySum(x), polaritySum(removeAllPonctuation(removeStopWords(replaceNegatingWords(x))))), polaritySum(stemmingText(removeEllipsis(removeStopWords(x))))), polaritySum(removeAllPonctuation(removeLinks(replaceNegatingWords(x)))))"
 
-    #evaluateTweets2013Messages(function_to_evaluate)
-    #evaluateTweets2014Messages(function_to_evaluate)
-    #evaluateSMS2013(function_to_evaluate)
-    #evaluateTweetsLiveJournal2014(function_to_evaluate)
-    #evaluateTweets2014SarcasmMessages(function_to_evaluate)
+    evaluateTweets2013Messages(function_to_evaluate)
+    evaluateTweets2014Messages(function_to_evaluate)
+    evaluateSMS2013(function_to_evaluate)
+    evaluateTweetsLiveJournal2014(function_to_evaluate)
+    evaluateTweets2014SarcasmMessages(function_to_evaluate)
     evaluateAllMessages(function_to_evaluate)
 
 

@@ -1,3 +1,5 @@
+does not have
+doesn't have
 do not
 did not
 does not
@@ -7,6 +9,7 @@ is not
 would not
 will not
 not even
+have not
 aren't
 arent
 can't
@@ -33,3 +36,5 @@ lack
 didnt
 didn't
 did'nt
+havent
+haven't

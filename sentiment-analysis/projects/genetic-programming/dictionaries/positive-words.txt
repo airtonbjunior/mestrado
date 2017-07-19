@@ -297,7 +297,6 @@ clear
 clear-cut
 cleared
 clearer
-clearly
 clears
 clever
 cleverly

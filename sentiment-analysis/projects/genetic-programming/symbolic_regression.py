@@ -1114,9 +1114,8 @@ def main():
 if __name__ == "__main__":
     #main()
 
-    message = "Cant believe There are no hahahaha wordnotinsidethis many more Catholics who DO NOT agree with Mourdock than Gingrich or others may think."
+    message = "Tracy McGrady signed with a team in China today.  Clearly that team does not have aspirations of reaching the 2nd round"
 
-    message = "Cant believe we didnt even take a trip to the beds today\u002c PALEY saturday now me defo boooooo"
 
     print(message)
     print(str(replaceNegatingWords(message)))

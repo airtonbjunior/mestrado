@@ -13,8 +13,7 @@ import random
 import re
 import numpy
 import time
-import csv
-import json
+import string
 
 from deap import algorithms
 from deap import base
@@ -44,6 +43,7 @@ dic_positive_hashtags  = []
 dic_negative_hashtags  = []
 dic_positive_emoticons = []
 dic_negative_emoticons = []
+dic_negation_words     = []
 
 positive_tweets = 0
 negative_tweets = 0
@@ -311,25 +311,6 @@ def getTweetsFromIds():
     print("[tweets loaded]")
 
 
-# get tweets of tweets.txt
-def getTweets():
-    global tweets
-    global tweets_score
-
-    f = open("tweets.txt", 'rt')
-    try:
-        reader = csv.reader(f)
-        for row in reader:
-            if int(row[1]) > 0:
-                tweets_score.append(row[1])
-            else:
-                tweets_score.append(-1)
-
-            tweets.append(row[3].strip())
-    finally:
-        f.close()
-
-
 def getDictionary():
     print("[loading dictionary]")
 
@@ -341,6 +322,8 @@ def getDictionary():
 
     global dic_positive_emoticons
     global dic_negative_emoticons
+
+    global dic_negation_words
 
     with open('dictionaries/positive-words.txt', 'r') as inF:
         for line in inF:
@@ -365,6 +348,10 @@ def getDictionary():
     with open('dictionaries/negative-emoticons.txt', 'r') as inF6:
         for line6 in inF6:
             dic_negative_emoticons.append(line6.strip())             
+
+    with open('dictionaries/negating-word-list.txt', 'r') as inF7:
+        for line7 in inF7:
+            dic_negation_words.append(line7.strip()) 
 
 
 #    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
@@ -448,12 +435,48 @@ def polaritySum(phrase):
 
     for word in words:
         if word.lower().strip() in dic_positive_words:
+            #print("[positive Word]: " + word)
             total_sum += 1 
 
         if word.lower().strip() in dic_negative_words:
+            #print("[negative Word]: " + word)
             total_sum -= 1
 
     return total_sum
+
+
+# Return the sum of the word polarities (positive[+1], negative[-1])
+def polaritySumWithNegationWords(phrase):
+    global dic_positive_words
+    global dic_negative_words
+    global dic_negation_words
+
+    words = phrase.split()
+
+    total_sum = 0
+
+    index = 0
+
+    for word in words:
+        if word.lower().strip() in dic_positive_words:
+            if index > 0 and words[index-1] in dic_negation_words:
+                print("[has negation word]: " + words[index-1])
+                total_sum -=1
+            else:
+                #print("[positive Word]: " + word)
+                total_sum += 1 
+
+        if word.lower().strip() in dic_negative_words:
+            if index > 0 and words[index-1] in dic_negation_words:
+                print("[has negation word]: " + words[index-1])
+                total_sum +=1
+            else:
+                #print("[negative Word]: " + word)
+                total_sum -= 1
+
+        index += 1    
+
+    return total_sum    
 
 
 # sum of the hashtag polarities only
@@ -465,24 +488,6 @@ def hashtagPolaritySum(phrase):
 def emoticonsPolaritySum(phrase):
     return positiveEmoticons(phrase) - negativeEmoticons(phrase)
 
-    
-def polaritySumTerminal():
-    global dic_positive_words
-    global dic_negative_words
-
-    words = phrase.split()
-
-    total_sum = 0
-
-    for word in words:
-        if word in dic_positive_words:
-            total_sum += 1 
-
-        if word in dic_negative_words:
-            total_sum -= 1
-
-    return total_sum
-
 
 def positiveEmoticons(phrase):
     global dic_positive_emoticons
@@ -491,7 +496,7 @@ def positiveEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word.lower().strip() in dic_positive_emoticons:
+        if word.strip() in dic_positive_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -504,7 +509,7 @@ def negativeEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word.lower().strip() in dic_negative_emoticons:
+        if word.strip() in dic_negative_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -520,10 +525,10 @@ def positiveHashtags(phrase):
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            if hashtag in dic_positive_hashtags:
+            if hashtag.lower().strip() in dic_positive_hashtags:
                 total += 1 
             else:
-                if hashtag in dic_positive_words:
+                if hashtag.lower().strip() in dic_positive_words:
                     total += 1 
 
     return total
@@ -539,10 +544,10 @@ def negativeHashtags(phrase):
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            if hashtag in dic_negative_hashtags:
+            if hashtag.lower().strip() in dic_negative_hashtags:
                 total += 1 
             else:
-                if hashtag in dic_negative_words:
+                if hashtag.lower().strip() in dic_negative_words:
                     total += 1 
 
     return total
@@ -572,10 +577,6 @@ def hasEmoticons(phrase):
 def if_then_else(input, output1, output2):
     if input: return output1
     else: return output2
-
-
-def repeatInputString(phrase):
-    return phrase
 
 
 def removeStopWords(phrase):
@@ -633,6 +634,14 @@ def removeEllipsis(phrase):
     return re.sub('\.{3}', ' ', phrase)
 
 
+def removeDots(phrase):
+    return re.sub('\.', ' ', phrase)
+
+
+def removeAllPonctuation(phrase):
+    return phrase.translate(str.maketrans('','',string.punctuation))
+
+
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
 pset.addPrimitive(operator.add, [float,float], float)
 pset.addPrimitive(operator.sub, [float,float], float)
@@ -656,6 +665,7 @@ pset.addPrimitive(positiveEmoticons, [str], float)
 pset.addPrimitive(negativeEmoticons, [str], float)
 
 pset.addPrimitive(polaritySum, [str], float)
+pset.addPrimitive(polaritySumWithNegationWords, [str], float)
 pset.addPrimitive(hashtagPolaritySum, [str], float)
 pset.addPrimitive(emoticonsPolaritySum, [str], float)
 
@@ -671,7 +681,7 @@ pset.addPrimitive(stemmingText, [str], str)
 pset.addPrimitive(removeStopWords, [str], str)
 pset.addPrimitive(removeLinks, [str], str)
 pset.addPrimitive(removeEllipsis, [str], str)
-#pset.addPrimitive(repeatInputString, [str], str)
+pset.addPrimitive(removeAllPonctuation, [str], str)
 
 pset.addTerminal(True, bool)
 pset.addTerminal(False, bool)
@@ -1111,12 +1121,14 @@ def main():
 if __name__ == "__main__":
     #main()
 
-    lemmatizer = WordNetLemmatizer()
+    print(str(polaritySumWithNegationWords("I don't love you")))
 
-    print(lemmingText("showed"))
-    print(stemmingText("showed"))
-    print(lemmingText(removeEllipsis("1st debates showed emperor has no clothes...Wonder how the courts jester\u002c shoeless Joe will do against Ryan? #gop")))
-    print(stemmingText(removeEllipsis("1st debate showed emperor has no clothes...Wonder how the court jester\u002c shoeless Joe will do against Ryan? #gop")))
+
+    #print(removeAllPonctuation("hi,, hey! i'm only testing!!?:??: das adna i hope it's ok!!??."))
+
+    #print(polaritySum(removeAllPonctuation("@CarlJWood I teach my class to count in pennies at first. I may be part of the problem.")))
+    #print(lemmingText(removeEllipsis(removeAllPonctuation("@CarlJWood I teach my class to count in pennies at first. I may be part of the problem."))))
+    #print(stemmingText(removeEllipsis(removeAllPonctuation("@CarlJWood I teach my class to count in pennies at first. I may be part of the problem."))))
 
     #print(removeEllipsis(removeLinks("1st debate showed emperor has no clothes...Wonder how the court jester\u002c shoeless Joe will do against Ryan? #gop")))
     #saveTestTweetsFromFilesIdLoadedSemeval2014()

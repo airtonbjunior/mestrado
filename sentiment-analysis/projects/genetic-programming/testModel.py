@@ -2,6 +2,7 @@ import time
 import operator
 import math
 import re
+import string
 
 from stemming.porter2 import stem
 from nltk.corpus import stopwords
@@ -22,6 +23,7 @@ dic_positive_hashtags  = []
 dic_negative_hashtags  = []
 dic_positive_emoticons = []
 dic_negative_emoticons = []
+dic_negation_words     = []
 
 tweets_liveJournal2014       = []
 tweets_liveJournal2014_score = []
@@ -55,7 +57,7 @@ sms_2013_neutral  = 0
 
 stop_words = set(stopwords.words('english'))
 
-# get the dictionaries
+
 def getDictionary():
     print("[loading dictionary]")
 
@@ -67,6 +69,8 @@ def getDictionary():
 
     global dic_positive_emoticons
     global dic_negative_emoticons
+
+    global dic_negation_words
 
     with open('dictionaries/positive-words.txt', 'r') as inF:
         for line in inF:
@@ -90,7 +94,12 @@ def getDictionary():
 
     with open('dictionaries/negative-emoticons.txt', 'r') as inF6:
         for line6 in inF6:
-            dic_negative_emoticons.append(line6.strip())              
+            dic_negative_emoticons.append(line6.strip())             
+
+    with open('dictionaries/negating-word-list.txt', 'r') as inF7:
+        for line7 in inF7:
+            dic_negation_words.append(line7.strip()) 
+
 
 #    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
 #        for line7 in inF7:
@@ -238,26 +247,6 @@ def getTestTweetsFromSemeval2014():
 
 ### Begin functions (improve this - import the functions of the other file)
 
-def add(left, right):
-    return left + right
-
-def sub(left, right):
-    return left - right
-
-
-def mul(left, right):
-    return left * right
-
-def sin(value):
-    return math.sin(value)
-
-def cos(value):
-    return math.cos(value)
-
-def exp(value):
-    return math.e ** value
-
-# Define new functions
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
     try:
@@ -307,11 +296,10 @@ def positiveWordsQuantity(phrase):
         if word in dic_positive_words:
             positive_words += 1
 
-    return positive_words 
+    return positive_words    
 
 
 # Return the sum of the word polarities (positive[+1], negative[-1])
-# Liu's dicionary of positive and negative words
 def polaritySum(phrase):
     global dic_positive_words
     global dic_negative_words
@@ -322,12 +310,57 @@ def polaritySum(phrase):
 
     for word in words:
         if word.lower().strip() in dic_positive_words:
+            #print("[positive Word]: " + word)
             total_sum += 1 
 
         if word.lower().strip() in dic_negative_words:
+            #print("[negative Word]: " + word)
             total_sum -= 1
 
     return total_sum
+
+
+def polaritySumWithNegationWords(phrase):
+    global dic_positive_words
+    global dic_negative_words
+    global dic_negation_words
+
+    words = phrase.split()
+
+    total_sum = 0
+
+    index = 0
+
+    for word in words:
+        if word.lower().strip() in dic_positive_words:
+            if index > 0 and words[index-1] in dic_negation_words:
+                #print("[has negation word]: " + words[index-1])
+                total_sum -=1
+            else:
+                #print("[positive Word]: " + word)
+                total_sum += 1 
+
+        if word.lower().strip() in dic_negative_words:
+            if index > 0 and words[index-1] in dic_negation_words:
+                #print("[has negation word]: " + words[index-1])
+                total_sum +=1
+            else:
+                #print("[negative Word]: " + word)
+                total_sum -= 1
+
+        index += 1    
+
+    return total_sum    
+
+
+# sum of the hashtag polarities only
+def hashtagPolaritySum(phrase):
+    return positiveHashtags(phrase) - negativeHashtags(phrase)
+
+
+# sum of the emoticons polarities only
+def emoticonsPolaritySum(phrase):
+    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
 
 
 def positiveEmoticons(phrase):
@@ -337,7 +370,7 @@ def positiveEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word.lower().strip() in dic_positive_emoticons:
+        if word.strip() in dic_positive_emoticons:
             total_sum += 1               
 
     return total_sum
@@ -350,20 +383,10 @@ def negativeEmoticons(phrase):
     total_sum = 0
 
     for word in words:
-        if word.lower().strip() in dic_negative_emoticons:
+        if word.strip() in dic_negative_emoticons:
             total_sum += 1               
 
     return total_sum
-
-
-# sum of the emoticons polarities only
-def emoticonsPolaritySum(phrase):
-    return positiveEmoticons(phrase) - negativeEmoticons(phrase)
-
-
-# sum of the hashtag polarities only
-def hashtagPolaritySum(phrase):
-    return positiveHashtags(phrase) - negativeHashtags(phrase)
 
 
 # Positive Hashtags
@@ -376,10 +399,10 @@ def positiveHashtags(phrase):
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            if hashtag in dic_positive_hashtags:
+            if hashtag.lower().strip() in dic_positive_hashtags:
                 total += 1 
             else:
-                if hashtag in dic_positive_words:
+                if hashtag.lower().strip() in dic_positive_words:
                     total += 1 
 
     return total
@@ -395,10 +418,10 @@ def negativeHashtags(phrase):
         hashtags = re.findall(r"#(\w+)", phrase)
 
         for hashtag in hashtags:
-            if hashtag in dic_negative_hashtags:
+            if hashtag.lower().strip() in dic_negative_hashtags:
                 total += 1 
             else:
-                if hashtag in dic_negative_words:
+                if hashtag.lower().strip() in dic_negative_words:
                     total += 1 
 
     return total
@@ -430,12 +453,12 @@ def if_then_else(input, output1, output2):
     else: return output2
 
 
-def repeatInputString(phrase):
-    return phrase
-
-
 def removeStopWords(phrase):
     global stop_words
+    global used_stop_words
+
+    #if used_stop_words:
+        #return phrase
 
     words = phrase.split()
     return_phrase = ""
@@ -444,17 +467,23 @@ def removeStopWords(phrase):
         if word not in stop_words:
             return_phrase += word + " "               
 
+    used_stop_words = True
     return return_phrase
 
 
 def stemmingText(phrase):
+    global used_stemming_words
     words = phrase.split()
     
+    #if used_stemming_words:
+        #return phrase
+
     stemmed_phrase = ""
 
     for word in words:
         stemmed_phrase += stem(word) + " "               
 
+    used_stemming_words = True
     return stemmed_phrase.strip()
 
 
@@ -472,11 +501,19 @@ def lemmingText(phrase):
 
 
 def removeLinks(phrase):
-    return re.sub(r'http\S+', '', phrase, flags=re.MULTILINE)   
+    return re.sub(r'http\S+', '', phrase, flags=re.MULTILINE)
 
 
 def removeEllipsis(phrase):
-    return re.sub('\.{3}', ' ', phrase) 
+    return re.sub('\.{3}', ' ', phrase)
+
+
+def removeDots(phrase):
+    return re.sub('\.', ' ', phrase)
+
+
+def removeAllPonctuation(phrase):
+    return phrase.translate(str.maketrans('','',string.punctuation))
 ### End functions (improve this - import the functions of the other file)
 
 
@@ -1432,7 +1469,7 @@ if __name__ == "__main__":
     #function_to_evaluate = " sub(mul(sub(polaritySum(removeStopWords(stemmingText(x))), sin(-0.3012931295024437)), protectedLog(-0.21199248533470838)), protectedLog(protectedLog(sub(polaritySum(stemmingText(stemmingText(stemmingText(removeStopWords(removeStopWords(removeStopWords(stemmingText(removeStopWords(stemmingText(removeStopWords(x))))))))))), sub(hashtagPolaritySum(removeStopWords(removeStopWords(removeStopWords(x)))), cos(protectedLog(polaritySum(stemmingText(removeStopWords(removeStopWords(x)))))))))))"
 
     #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
-    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(x)))))"
+    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySumWithNegationWords(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(x))))))"
 
     #function_to_evaluate = "polaritySum(x)"
     #function_to_evaluate = "mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))"

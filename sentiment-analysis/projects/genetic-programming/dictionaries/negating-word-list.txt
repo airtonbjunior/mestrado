@@ -1,3 +1,12 @@
+do not
+did not
+does not
+can not
+could not
+is not
+would not
+will not
+not even
 aren't
 arent
 can't
@@ -7,6 +16,8 @@ couldn't
 couldnt
 don't
 dont
+doesn't
+doesnt
 isn't
 isnt
 never
@@ -17,6 +28,8 @@ wouldn't
 wouldnt
 none
 never
-t
 no
 lack
+didnt
+didn't
+did'nt

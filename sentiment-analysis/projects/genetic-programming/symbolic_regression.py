@@ -428,47 +428,24 @@ def positiveWordsQuantity(phrase):
 def polaritySum(phrase):
     global dic_positive_words
     global dic_negative_words
-
-    words = phrase.split()
-
+    
     total_sum = 0
-
-    for word in words:
-        if word.lower().strip() in dic_positive_words:
-            #print("[positive Word]: " + word)
-            total_sum += 1 
-
-        if word.lower().strip() in dic_negative_words:
-            #print("[negative Word]: " + word)
-            total_sum -= 1
-
-    return total_sum
-
-
-# Return the sum of the word polarities (positive[+1], negative[-1])
-def polaritySumWithNegationWords(phrase):
-    global dic_positive_words
-    global dic_negative_words
-    global dic_negation_words
-
-    words = phrase.split()
-
-    total_sum = 0
-
     index = 0
 
+    words = phrase.split()
+    
     for word in words:
         if word.lower().strip() in dic_positive_words:
-            if index > 0 and words[index-1] in dic_negation_words:
-                print("[has negation word]: " + words[index-1])
+            if index > 0 and words[index-1] == "insidenoteinverterword":
+                print("[has inversion word]: " + words[index-1])
                 total_sum -=1
             else:
                 #print("[positive Word]: " + word)
                 total_sum += 1 
 
         if word.lower().strip() in dic_negative_words:
-            if index > 0 and words[index-1] in dic_negation_words:
-                print("[has negation word]: " + words[index-1])
+            if index > 0 and words[index-1] == "insidenoteinverterword":
+                print("[has inversion word]: " + words[index-1])
                 total_sum +=1
             else:
                 #print("[negative Word]: " + word)
@@ -476,7 +453,27 @@ def polaritySumWithNegationWords(phrase):
 
         index += 1    
 
-    return total_sum    
+    return total_sum  
+
+
+def replaceNegatingWords(phrase):
+    global dic_negation_words
+
+    phrase = phrase.lower()
+    phrase_list = []
+
+    if phrase.split()[0] in dic_negation_words:
+        phrase_list = phrase.split()
+        phrase_list[0] = "insidenoteinverterword"
+        phrase = ' '.join(phrase_list)
+
+    for negation_word in dic_negation_words:
+        negation_word = " " + negation_word + " "
+        if phrase.lower().find(negation_word.lower()) > -1:
+            phrase = phrase.replace(negation_word, " insidenoteinverterword ")
+
+
+    return phrase 
 
 
 # sum of the hashtag polarities only
@@ -665,7 +662,6 @@ pset.addPrimitive(positiveEmoticons, [str], float)
 pset.addPrimitive(negativeEmoticons, [str], float)
 
 pset.addPrimitive(polaritySum, [str], float)
-pset.addPrimitive(polaritySumWithNegationWords, [str], float)
 pset.addPrimitive(hashtagPolaritySum, [str], float)
 pset.addPrimitive(emoticonsPolaritySum, [str], float)
 
@@ -682,6 +678,7 @@ pset.addPrimitive(removeStopWords, [str], str)
 pset.addPrimitive(removeLinks, [str], str)
 pset.addPrimitive(removeEllipsis, [str], str)
 pset.addPrimitive(removeAllPonctuation, [str], str)
+pset.addPrimitive(replaceNegatingWords, [str], str)
 
 pset.addTerminal(True, bool)
 pset.addTerminal(False, bool)
@@ -856,10 +853,6 @@ def evalSymbRegTweetsFromSemeval(individual):
             print("[value]: " + str(tweets_semeval_score[index]))
             print("[calculated]:" + str(func(tweets_semeval[index])))
         #logs
-    
-
-    # accuracy here
-    # fitnessReturn = correct_evaluations
 
 
     if uses_dummy_function:
@@ -1091,7 +1084,7 @@ def main():
     print("\n")
     print("## Results ##\n")
     print("[total tweets]: " + str(positive_tweets + negative_tweets + neutral_tweets) + " [" + str(positive_tweets) + " positives, " + str(negative_tweets) + " negatives and " + str(neutral_tweets) + " neutrals]\n")
-    print("[best fitness (F1 avg)]: " + str(best_fitness) + " [" + str(fitness_positive + fitness_negative + fitness_neutral) + " correct evaluations] ["+ str(fitness_positive) + " positives, " + str(fitness_negative) + " negatives and " + str(fitness_neutral) + " neutrals]\n")
+    print("[best fitness (F1 avg (+/-)]: " + str(best_fitness) + " [" + str(fitness_positive + fitness_negative + fitness_neutral) + " correct evaluations] ["+ str(fitness_positive) + " positives, " + str(fitness_negative) + " negatives and " + str(fitness_neutral) + " neutrals]\n")
     print("[function]: " + str(hof[0]) + "\n")
     print("[best accuracy]: " + str(best_accuracy) + "\n")
     print("[best precision positive]: " + str(best_precision_positive))
@@ -1106,7 +1099,7 @@ def main():
     print("[best f1 positive]: " + str(best_f1_positive))    
     print("[best f1 negative]: " + str(best_f1_negative))
     print("[best f1 avg]: " + str(best_f1_avg))
-    print("[best f1 avg SemEval (positive and negative)]: " + str(best_f1_positive_negative_avg))
+    print("[best f1 avg (+/-)]: " + str(best_f1_positive_negative_avg))
     print("[best f1 avg function]: " + best_f1_avg_function + "\n")       
     #print(json.dumps(all_fitness_history))
     print("\n")
@@ -1121,8 +1114,20 @@ def main():
 if __name__ == "__main__":
     #main()
 
-    print(str(polaritySumWithNegationWords("I don't love you")))
+    message = "Cant believe There are no hahahaha wordnotinsidethis many more Catholics who DO NOT agree with Mourdock than Gingrich or others may think."
 
+    message = "Cant believe we didnt even take a trip to the beds today\u002c PALEY saturday now me defo boooooo"
+
+    print(message)
+    print(str(replaceNegatingWords(message)))
+
+    print(str(polaritySum(message)))
+    print(str(polaritySum(replaceNegatingWords(message))))
+
+    #print(str(message.find("DO NOT")))
+
+    #print(str(spellCheck("im doingg some worng text here to corect")))
+    #print(str(polaritySumWithNegationWords("I don't love you")))
 
     #print(removeAllPonctuation("hi,, hey! i'm only testing!!?:??: das adna i hope it's ok!!??."))
 

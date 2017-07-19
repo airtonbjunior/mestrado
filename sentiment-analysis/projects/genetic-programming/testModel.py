@@ -1,8 +1,8 @@
-import time 
+import string
 import operator
 import math
 import re
-import string
+import time
 
 from stemming.porter2 import stem
 from nltk.corpus import stopwords
@@ -120,7 +120,7 @@ def getDictionary():
 
 # get the test tweets from Semeval 2014 task 9
 def getTestTweetsFromSemeval2014():
-    print("[loading tweets from train file Semeval 2014]")
+    print("[loading tweets from test file Semeval 2014]")
 
     global MAX_ANALYSIS_TWEETS
 
@@ -246,6 +246,9 @@ def getTestTweetsFromSemeval2014():
 
 
 ### Begin functions (improve this - import the functions of the other file)
+def add(left, right):
+    return left + right
+
 
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
@@ -303,46 +306,22 @@ def positiveWordsQuantity(phrase):
 def polaritySum(phrase):
     global dic_positive_words
     global dic_negative_words
-
-    words = phrase.split()
-
+    
     total_sum = 0
-
-    for word in words:
-        if word.lower().strip() in dic_positive_words:
-            #print("[positive Word]: " + word)
-            total_sum += 1 
-
-        if word.lower().strip() in dic_negative_words:
-            #print("[negative Word]: " + word)
-            total_sum -= 1
-
-    return total_sum
-
-
-def polaritySumWithNegationWords(phrase):
-    global dic_positive_words
-    global dic_negative_words
-    global dic_negation_words
-
-    words = phrase.split()
-
-    total_sum = 0
-
     index = 0
 
+    words = phrase.split()
+    
     for word in words:
         if word.lower().strip() in dic_positive_words:
-            if index > 0 and words[index-1] in dic_negation_words:
-                #print("[has negation word]: " + words[index-1])
+            if index > 0 and words[index-1] == "insidenoteinverterword":
                 total_sum -=1
             else:
                 #print("[positive Word]: " + word)
                 total_sum += 1 
 
         if word.lower().strip() in dic_negative_words:
-            if index > 0 and words[index-1] in dic_negation_words:
-                #print("[has negation word]: " + words[index-1])
+            if index > 0 and words[index-1] == "insidenoteinverterword":
                 total_sum +=1
             else:
                 #print("[negative Word]: " + word)
@@ -350,7 +329,25 @@ def polaritySumWithNegationWords(phrase):
 
         index += 1    
 
-    return total_sum    
+    return total_sum  
+
+
+def replaceNegatingWords(phrase):
+    global dic_negation_words
+
+    phrase = phrase.lower()
+    
+    if phrase.split()[0] in dic_negation_words:
+        phrase_list = phrase.split()
+        phrase_list[0] = "insidenoteinverterword"
+        phrase = ' '.join(phrase_list)
+
+    for negation_word in dic_negation_words:
+        negation_word = " " + negation_word + " "
+        if phrase.lower().find(negation_word.lower()) > -1:
+            phrase = phrase.replace(negation_word, " insidenoteinverterword ")
+
+    return phrase 
 
 
 # sum of the hashtag polarities only
@@ -1345,6 +1342,7 @@ def evaluateAllMessages(model):
     
     for index, item in enumerate(allMessages): 
         message = str(allMessages[index]).strip().replace("'", "")
+        message = message.replace("\\u2018", "").replace("\\u2019", "").replace("\\u002c", "")
         message = "'" + message + "'"
 
         model_analysis = model.replace("(x)", "(" + message + ")")
@@ -1462,17 +1460,15 @@ if __name__ == "__main__":
     getDictionary()
     getTestTweetsFromSemeval2014()
 
-    
-    #function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(x), polaritySum(x))"
 
     #function_to_evaluate = "add(invertSignal(negativeWordsQuantity(x)), sin(polaritySum(x)))"
-    #function_to_evaluate = " sub(mul(sub(polaritySum(removeStopWords(stemmingText(x))), sin(-0.3012931295024437)), protectedLog(-0.21199248533470838)), protectedLog(protectedLog(sub(polaritySum(stemmingText(stemmingText(stemmingText(removeStopWords(removeStopWords(removeStopWords(stemmingText(removeStopWords(stemmingText(removeStopWords(x))))))))))), sub(hashtagPolaritySum(removeStopWords(removeStopWords(removeStopWords(x)))), cos(protectedLog(polaritySum(stemmingText(removeStopWords(removeStopWords(x)))))))))))"
-
-    #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
-    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySumWithNegationWords(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(x))))))"
-
-    #function_to_evaluate = "polaritySum(x)"
+    #function_to_evaluate = "sub(mul(sub(polaritySum(removeStopWords(stemmingText(x))), sin(-0.3012931295024437)), protectedLog(-0.21199248533470838)), protectedLog(protectedLog(sub(polaritySum(stemmingText(stemmingText(stemmingText(removeStopWords(removeStopWords(removeStopWords(stemmingText(removeStopWords(stemmingText(removeStopWords(x))))))))))), sub(hashtagPolaritySum(removeStopWords(removeStopWords(removeStopWords(x)))), cos(protectedLog(polaritySum(stemmingText(removeStopWords(removeStopWords(x)))))))))))"
     #function_to_evaluate = "mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))"
+    #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
+    
+    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(replaceNegatingWords(x)))))))"
+    
+    #function_to_evaluate = "add(emoticonsPolaritySum(removeStopWords(x)), polaritySumWithNegationWords(removeEllipsis(removeAllPonctuation(x))))"
 
     #evaluateTweets2013Messages(function_to_evaluate)
     #evaluateTweets2014Messages(function_to_evaluate)

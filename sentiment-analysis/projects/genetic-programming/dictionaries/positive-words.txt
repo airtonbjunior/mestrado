@@ -74,6 +74,7 @@ afordable
 agile
 agilely
 agility
+agree
 agreeable
 agreeableness
 agreeably
@@ -180,6 +181,7 @@ beckon
 beckoned
 beckoning
 beckons
+believe
 believable
 believeable
 beloved
@@ -1085,7 +1087,6 @@ lifesaver
 light-hearted
 lighter
 likable
-like
 liked
 likes
 liking
@@ -1343,7 +1344,6 @@ premier
 prestige
 prestigious
 prettily
-pretty
 priceless
 pride
 principled

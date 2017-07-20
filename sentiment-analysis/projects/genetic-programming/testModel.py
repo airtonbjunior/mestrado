@@ -252,6 +252,18 @@ def add(left, right):
 def sub(left, right):
     return left - right
 
+def mul(left, right):
+    return left * right
+
+def exp(par):
+    return math.exp(par)
+
+def cos(par):
+    return math.cos(par)
+
+def sin(par):
+    return math.sin(par)
+
 # Protected Div (check division by zero)
 def protectedDiv(left, right):
     try:
@@ -339,7 +351,7 @@ def replaceNegatingWords(phrase):
 
     phrase = phrase.lower()
     
-    if phrase.split()[0] in dic_negation_words:
+    if len(phrase.split()) > 0 and phrase.split()[0] in dic_negation_words:
         phrase_list = phrase.split()
         phrase_list[0] = "insidenoteinverterword"
         phrase = ' '.join(phrase_list)
@@ -562,6 +574,7 @@ def evaluateTweets2013Messages(model):
 
     for index, item in enumerate(tweets_2013): 
         message = str(tweets_2013[index]).strip().replace("'", "")
+        message = message.replace("\\u2018", "").replace("\\u2019", "").replace("\\u002c", "")        
         message = "'" + message + "'"
 
         model_analysis = model.replace("(x)", "(" + message + ")")
@@ -587,7 +600,7 @@ def evaluateTweets2013Messages(model):
                     false_positive += 1
 
                 if false_negative_log <= 15:
-                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Negative phrase]: " + message)
                     print("[Polarity calculated]: " + str(result)) 
 
         elif tweets_2013_score[index] == 0:
@@ -721,6 +734,7 @@ def evaluateTweets2014Messages(model):
 
     for index, item in enumerate(tweets_2014): 
         message = str(tweets_2014[index]).strip().replace("'", "")
+        message = message.replace("\\u2018", "").replace("\\u2019", "").replace("\\u002c", "")        
         message = "'" + message + "'"
 
         model_analysis = model.replace("(x)", "(" + message + ")")
@@ -746,7 +760,7 @@ def evaluateTweets2014Messages(model):
                     false_positive += 1
 
                 if false_negative_log <= 15:
-                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Negative phrase]: " + message)
                     print("[Polarity calculated]: " + str(result)) 
 
         elif tweets_2014_score[index] == 0:
@@ -880,6 +894,7 @@ def evaluateTweets2014SarcasmMessages(model):
 
     for index, item in enumerate(tweets_2014_sarcasm): 
         message = str(tweets_2014_sarcasm[index]).strip().replace("'", "")
+        message = message.replace("\\u2018", "").replace("\\u2019", "").replace("\\u002c", "")        
         message = "'" + message + "'"
 
         model_analysis = model.replace("(x)", "(" + message + ")")
@@ -905,7 +920,7 @@ def evaluateTweets2014SarcasmMessages(model):
                     false_positive += 1
 
                 if false_negative_log <= 15:
-                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Negative phrase]: " + message)
                     print("[Polarity calculated]: " + str(result))    
 
         elif tweets_2014_sarcasm_score[index] == 0:
@@ -1039,6 +1054,7 @@ def evaluateSMS2013(model):
 
     for index, item in enumerate(sms_2013): 
         message = str(sms_2013[index]).strip().replace("'", "")
+        message = message.replace("\\u2018", "").replace("\\u2019", "").replace("\\u002c", "")        
         message = "'" + message + "'"
 
         model_analysis = model.replace("(x)", "(" + message + ")")
@@ -1064,7 +1080,7 @@ def evaluateSMS2013(model):
                     false_positive += 1
 
                 if false_negative_log <= 15:
-                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Negative phrase]: " + message)
                     print("[Polarity calculated]: " + str(result))
 
         elif sms_2013_score[index] == 0:
@@ -1224,7 +1240,7 @@ def evaluateTweetsLiveJournal2014(model):
                     false_positive += 1
 
                 if false_negative_log <= 15:
-                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Negative phrase]: " + message)
                     print("[Polarity calculated]: " + str(result))
 
         elif tweets_liveJournal2014_score[index] == 0:
@@ -1411,7 +1427,7 @@ def evaluateAllMessages(model):
                     false_positive += 1
             
                 if false_negative_log <= 15:
-                    print("[Negative phrase evaluation error]: " + message)
+                    print("[Negative phrase]: " + message)
                     print("[Polarity calculated]: " + str(result))
 
         elif allScores[index] == 0:
@@ -1509,9 +1525,15 @@ if __name__ == "__main__":
     #function_to_evaluate = "mul(add(add(polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))))))), positiveEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))))), mul(sub(sin(-0.7500287440821918), protectedDiv(negativeEmoticons(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))), protectedSqrt(protectedDiv(protectedLog(0.30225574066002103), cos(0.3289974105155071))))), protectedDiv(sin(negativeWordsQuantity(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), add(protectedSqrt(cos(mul(hashtagPolaritySum(x), -1.1631941015415768))), -0.27062630818833844)))), mul(protectedDiv(protectedLog(-0.9481590665673725), negativeEmoticons(x)), exp(add(-0.28621032356521914, -0.21595094634073808))))"
     #function_to_evaluate = "add(emoticonsPolaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x)))))), polaritySum(repeatInputString(repeatInputString(repeatInputString(repeatInputString(x))))))"
     
-    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(replaceNegatingWords(x)))))))"
-    
+    #function_to_evaluate = "if_then_else(hasEmoticons(removeEllipsis(x)), sub(cos(protectedSqrt(sub(sin(protectedDiv(polaritySum(replaceNegatingWords(x)), hashtagPolaritySum(x))), hashtagPolaritySum(removeAllPonctuation(removeAllPonctuation(x)))))), protectedLog(emoticonsPolaritySum(removeEllipsis(removeLinks(stemmingText(removeEllipsis(removeEllipsis(x)))))))), polaritySum(removeAllPonctuation(removeLinks(removeAllPonctuation(removeStopWords(removeLinks(removeLinks(removeAllPonctuation(replaceNegatingWords(x))))))))))"
     #function_to_evaluate = "add(if_then_else(hasEmoticons(removeEllipsis(removeEllipsis(x))), sub(emoticonsPolaritySum(x), polaritySum(removeAllPonctuation(removeStopWords(replaceNegatingWords(x))))), polaritySum(stemmingText(removeEllipsis(removeStopWords(x))))), polaritySum(removeAllPonctuation(removeLinks(replaceNegatingWords(x)))))"
+
+    #function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(replaceNegatingWords(x)))))))"
+
+    #function_to_evaluate = "if_then_else(hasEmoticons(stemmingText(x)), emoticonsPolaritySum(removeEllipsis(removeStopWords(removeEllipsis(stemmingText(x))))), polaritySum(removeAllPonctuation(removeEllipsis(removeStopWords(removeAllPonctuation(removeLinks(replaceNegatingWords(removeAllPonctuation(removeLinks(removeAllPonctuation(removeEllipsis(x))))))))))))"
+
+    #function_to_evaluate = "add(polaritySum(removeStopWords(removeEllipsis(removeAllPonctuation(removeAllPonctuation(removeLinks(removeAllPonctuation(replaceNegatingWords(removeEllipsis(removeStopWords(replaceNegatingWords(removeEllipsis(x)))))))))))), sub(mul(exp(if_then_else(True, -1.6617453540075866, -0.1240560689118353)), negativeWordsQuantity(replaceNegatingWords(removeAllPonctuation(replaceNegatingWords(x))))), negativeWordsQuantity(removeAllPonctuation(stemmingText(x)))))"
+    function_to_evaluate = "if_then_else(hasEmoticons(stemmingText(x)), emoticonsPolaritySum(removeEllipsis(removeStopWords(removeEllipsis(stemmingText(x))))), polaritySum(removeAllPonctuation(removeStopWords(replaceNegatingWords(removeEllipsis(removeEllipsis(x)))))))"
 
     evaluateTweets2013Messages(function_to_evaluate)
     evaluateTweets2014Messages(function_to_evaluate)

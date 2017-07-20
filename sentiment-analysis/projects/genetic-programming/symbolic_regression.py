@@ -437,7 +437,7 @@ def polaritySum(phrase):
     for word in words:
         if word.lower().strip() in dic_positive_words:
             if index > 0 and words[index-1] == "insidenoteinverterword":
-                print("[has inversion word]: " + words[index-1])
+                #print("[has inversion word]: " + words[index-1])
                 total_sum -=1
             else:
                 #print("[positive Word]: " + word)
@@ -445,7 +445,7 @@ def polaritySum(phrase):
 
         if word.lower().strip() in dic_negative_words:
             if index > 0 and words[index-1] == "insidenoteinverterword":
-                print("[has inversion word]: " + words[index-1])
+                #print("[has inversion word]: " + words[index-1])
                 total_sum +=1
             else:
                 #print("[negative Word]: " + word)
@@ -1112,16 +1112,16 @@ def main():
 
 
 if __name__ == "__main__":
-    #main()
+    main()
 
-    message = "Tracy McGrady signed with a team in China today.  Clearly that team does not have aspirations of reaching the 2nd round"
+    #message = "Tracy McGrady signed with a team in China today.  Clearly that team does not have aspirations of reaching the 2nd round"
 
 
-    print(message)
-    print(str(replaceNegatingWords(message)))
+    #print(message)
+    #print(str(replaceNegatingWords(message)))
 
-    print(str(polaritySum(message)))
-    print(str(polaritySum(replaceNegatingWords(message))))
+    #print(str(polaritySum(message)))
+    #print(str(polaritySum(replaceNegatingWords(message))))
 
     #print(str(message.find("DO NOT")))
 

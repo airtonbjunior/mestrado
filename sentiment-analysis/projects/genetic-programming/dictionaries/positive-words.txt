@@ -1368,7 +1368,6 @@ progressive
 prolific
 prominence
 prominent
-promise
 promised
 promises
 promising

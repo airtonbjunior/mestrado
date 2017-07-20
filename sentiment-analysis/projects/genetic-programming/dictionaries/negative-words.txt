@@ -642,6 +642,8 @@ condescend
 condescending
 condescendingly
 condescension
+condolence
+condolences
 confess
 confession
 confessions
@@ -2924,6 +2926,7 @@ mistake
 mistaken
 mistakenly
 mistakes
+mistaking
 mistified
 mistress
 mistrust
@@ -3939,6 +3942,7 @@ snobbish
 snobby
 snobish
 snobs
+snore
 snub
 so-cal
 soapy
@@ -4662,6 +4666,7 @@ virulence
 virulent
 virulently
 virus
+t-virus
 vociferous
 vociferously
 volatile

@@ -100,6 +100,19 @@ def getDictionary():
         for line7 in inF7:
             dic_negation_words.append(line7.strip()) 
 
+    with open('dictionaries/goldStandard.tff', 'r') as inF8:
+        for line8 in inF8:
+            if (line8.split()[1] == "+Effect"):
+                for word in line8.split()[2].split(","):
+                    if word not in dic_negative_words and word not in dic_positive_words:
+                        dic_positive_words.append(word)
+                        #print("[positive word]: " + word)
+            
+            elif (line8.split()[1] == "-Effect"):
+                for word in line8.split()[2].split(","):
+                    if word not in dic_positive_words and word not in dic_positive_words:
+                        dic_negative_words.append(word) 
+                        #print("[negative word]: " + word)
 
 #    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
 #        for line7 in inF7:
@@ -1528,14 +1541,18 @@ if __name__ == "__main__":
     #function_to_evaluate = "if_then_else(hasEmoticons(removeEllipsis(x)), sub(cos(protectedSqrt(sub(sin(protectedDiv(polaritySum(replaceNegatingWords(x)), hashtagPolaritySum(x))), hashtagPolaritySum(removeAllPonctuation(removeAllPonctuation(x)))))), protectedLog(emoticonsPolaritySum(removeEllipsis(removeLinks(stemmingText(removeEllipsis(removeEllipsis(x)))))))), polaritySum(removeAllPonctuation(removeLinks(removeAllPonctuation(removeStopWords(removeLinks(removeLinks(removeAllPonctuation(replaceNegatingWords(x))))))))))"
     #function_to_evaluate = "add(if_then_else(hasEmoticons(removeEllipsis(removeEllipsis(x))), sub(emoticonsPolaritySum(x), polaritySum(removeAllPonctuation(removeStopWords(replaceNegatingWords(x))))), polaritySum(stemmingText(removeEllipsis(removeStopWords(x))))), polaritySum(removeAllPonctuation(removeLinks(replaceNegatingWords(x)))))"
 
-    #function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(replaceNegatingWords(x)))))))"
+    function_to_evaluate = "if_then_else(hasEmoticons(x), emoticonsPolaritySum(removeLinks(x)), polaritySum(removeEllipsis(removeLinks(lemmingText(removeAllPonctuation(replaceNegatingWords(x)))))))"
 
     #function_to_evaluate = "if_then_else(hasEmoticons(stemmingText(x)), emoticonsPolaritySum(removeEllipsis(removeStopWords(removeEllipsis(stemmingText(x))))), polaritySum(removeAllPonctuation(removeEllipsis(removeStopWords(removeAllPonctuation(removeLinks(replaceNegatingWords(removeAllPonctuation(removeLinks(removeAllPonctuation(removeEllipsis(x))))))))))))"
 
     #function_to_evaluate = "add(polaritySum(removeStopWords(removeEllipsis(removeAllPonctuation(removeAllPonctuation(removeLinks(removeAllPonctuation(replaceNegatingWords(removeEllipsis(removeStopWords(replaceNegatingWords(removeEllipsis(x)))))))))))), sub(mul(exp(if_then_else(True, -1.6617453540075866, -0.1240560689118353)), negativeWordsQuantity(replaceNegatingWords(removeAllPonctuation(replaceNegatingWords(x))))), negativeWordsQuantity(removeAllPonctuation(stemmingText(x)))))"
     #function_to_evaluate = "if_then_else(hasEmoticons(stemmingText(x)), emoticonsPolaritySum(removeEllipsis(removeStopWords(removeEllipsis(stemmingText(x))))), polaritySum(removeAllPonctuation(removeStopWords(replaceNegatingWords(removeEllipsis(removeEllipsis(x)))))))"
 
-    function_to_evaluate = "polaritySum(x)"
+    #function_to_evaluate = "if_then_else(hasEmoticons(replaceNegatingWords(removeLinks(removeStopWords(removeLinks(x))))), emoticonsPolaritySum(x), polaritySum(removeAllPonctuation(removeAllPonctuation(removeEllipsis(removeEllipsis(removeEllipsis(replaceNegatingWords(replaceNegatingWords(removeStopWords(removeAllPonctuation(replaceNegatingWords(x))))))))))))"
+    #function_to_evaluate = "polaritySum(removeAllPonctuation(removeEllipsis(removeStopWords(removeEllipsis(removeAllPonctuation(replaceNegatingWords(removeLinks(removeLinks(x)))))))))"
+    #function_to_evaluate = "sub(polaritySum(replaceNegatingWords(removeAllPonctuation(removeAllPonctuation(replaceNegatingWords(removeStopWords(x)))))), sin(sin(sub(protectedDiv(negativeWordsQuantity(replaceNegatingWords(replaceNegatingWords(x))), exp(sin(hashtagPolaritySum(removeLinks(removeEllipsis(x)))))), emoticonsPolaritySum(removeStopWords(replaceNegatingWords(x)))))))"
+
+    #function_to_evaluate = "if_then_else(hasEmoticons(x), protectedLog(invertSignal(emoticonsPolaritySum(x))), polaritySum(removeStopWords(replaceNegatingWords(removeAllPonctuation(replaceNegatingWords(replaceNegatingWords(x)))))))"
 
     evaluateTweets2013Messages(function_to_evaluate)
     evaluateTweets2014Messages(function_to_evaluate)

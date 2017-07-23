@@ -26,6 +26,8 @@ from twython import Twython
 from stemming.porter2 import stem
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+
+
 #import nltk
 #nltk.download()
 
@@ -353,6 +355,18 @@ def getDictionary():
         for line7 in inF7:
             dic_negation_words.append(line7.strip()) 
 
+    with open('dictionaries/goldStandard.tff', 'r') as inF8:
+        for line8 in inF8:
+            if (line8.split()[1] == "+Effect"):
+                for word in line8.split()[2].split(","):
+                    dic_positive_words.append(word)
+                    #print("[positive word]: " + word)
+            
+            elif (line8.split()[1] == "-Effect"):
+                for word in line8.split()[2].split(","):
+                    dic_negative_words.append(word)
+                    #print("[negative word]: " + word)
+
 
 #    with open('dictionaries/SemEval2015-English-Twitter-Lexicon.txt', 'r') as inF7:
 #        for line7 in inF7:
@@ -595,7 +609,7 @@ def removeStopWords(phrase):
 
 
 def stemmingText(phrase):
-    global used_stemming_words
+    #global used_stemming_words
     words = phrase.split()
     
     #if used_stemming_words:
@@ -1112,7 +1126,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+
+    print("oi")
 
     #message = "Tracy McGrady signed with a team in China today.  Clearly that team does not have aspirations of reaching the 2nd round"
 

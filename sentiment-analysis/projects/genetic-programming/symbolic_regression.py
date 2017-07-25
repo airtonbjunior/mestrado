@@ -1018,7 +1018,7 @@ def evalSymbRegTweetsFromSemeval(individual):
 
 toolbox.register("evaluate", evalSymbRegTweetsFromSemeval) # , points=[x for x in reviews])
 
-toolbox.register("select", tools.selTournament, tournsize=5)
+toolbox.register("select", tools.selTournament, tournsize=4)
 toolbox.register("mate", gp.cxOnePoint)
 toolbox.register("expr_mut", gp.genHalfAndHalf, min_=0, max_=10)
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)

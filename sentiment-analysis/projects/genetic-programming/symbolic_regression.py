@@ -17,15 +17,15 @@ from deap import creator
 from deap import tools
 from deap import gp
 
-#import variables
+import matplotlib.pyplot as plt
+
 import variables
 from functions import *
 
-first_evaluate = True
+evaluation_acumulated_time = 0
 
 # log time
 start = time.time()
-
 
 pset = gp.PrimitiveSetTyped("MAIN", [str], float)
 pset.addPrimitive(operator.add, [float,float], float)
@@ -80,8 +80,21 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
 
 
+iterate_count = 0
+
 # evaluation function 
 def evalSymbRegTweetsFromSemeval(individual):
+    start = time.time()
+    global iterate_count
+
+    if iterate_count < variables.POPULATION:
+        print("[individual " + str(iterate_count) + " of the generation]")
+        iterate_count += 1
+    else:
+        print("\n[new generation]\n")
+        iterate_count = 0
+
+    global evaluation_acumulated_time
     correct_evaluations = 0
 
     fitnessReturn = 0
@@ -170,12 +183,10 @@ def evalSymbRegTweetsFromSemeval(individual):
             continue
 
         #logs
-        #print(index, item)
         if variables.log_all_messages:
             print("[phrase]: " + variables.tweets_semeval[index])
             print("[value]: " + str(variables.tweets_semeval_score[index]))
             print("[calculated]:" + str(func(variables.tweets_semeval[index])))
-        #logs
 
 
     if true_positive + false_positive + true_negative + false_negative > 0:
@@ -281,6 +292,8 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     variables.all_fitness_history.append(fitnessReturn)
 
+    restartCacheVariables()
+
     #logs   
     if variables.log_parcial_results and not breaked: 
         print("[function]: " + str(individual))
@@ -306,9 +319,12 @@ def evalSymbRegTweetsFromSemeval(individual):
         print("[true_negative]: " + str(true_negative))
         print("[false_negative]: " + str(false_negative))
         print("[true_neutral]: " + str(true_neutral))
-        print("[false_neutral]: " + str(false_neutral))        
+        print("[false_neutral]: " + str(false_neutral))   
+        print("[cicle ends after " + str(format(time.time() - start, '.3g')) + " seconds]")     
         print("\n")   
     #logs
+
+    evaluation_acumulated_time += time.time() - start
 
     return fitnessReturn,
 
@@ -325,9 +341,11 @@ toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max
 
 
 def main():
+    start = time.time()
+    global evaluation_acumulated_time
     random.seed()
 
-    pop = toolbox.population(n=100)
+    pop = toolbox.population(n=variables.POPULATION)
     hof = tools.HallOfFame(3)
 
     # Parameters
@@ -339,7 +357,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 9.5, 4.5, variables.GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 0.8, 0.1, variables.GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)
 
 
@@ -364,11 +382,15 @@ def main():
     print("[best f1 avg]: " + str(variables.best_f1_avg))
     print("[best f1 avg (+/-)]: " + str(variables.best_f1_positive_negative_avg))
     print("[best f1 avg function]: " + variables.best_f1_avg_function + "\n")       
-    #print(json.dumps(variables.all_fitness_historyitness_history))
+    #print(json.dumps(variables.all_fitness_history))
     print("\n")
-    #print(set(variables.all_fitness_historyitness_history))
+    #print(set(variables.all_fitness_history))
     #logs 
 
+    end = time.time()
+    print("[evaluation function consumed " + str(format(evaluation_acumulated_time, '.3g')) + " seconds]")
+    print("[main function ended][" + str(format(end - start, '.3g')) + " seconds]\n")
+    
     return pop, log, hof
 
 
@@ -376,6 +398,13 @@ if __name__ == "__main__":
     loadTrainTweets()
     getDictionary()
     main()
+
+    print(len(variables.all_fitness_history))
+    print(variables.all_fitness_history)
+    # remove the 0's values to plot
+    plt.plot(list(filter(lambda a: a != 0, variables.all_fitness_history)))    
+    plt.ylabel('f1')
+    plt.show()
 
 
 end = time.time()

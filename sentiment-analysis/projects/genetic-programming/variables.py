@@ -15,6 +15,15 @@ DICTIONARY_POSITIVE_EMOTICONS = 'dictionaries/positive-emoticons.txt'
 DICTIONARY_NEGATIVE_EMOTICONS = 'dictionaries/negative-emoticons.txt'
 DICTIONARY_NEGATING_WORDS = 'dictionaries/negating-word-list.txt'
 
+MAX_POSITIVES_TWEETS = 1400
+MAX_NEGATIVES_TWEETS = 1400
+MAX_NEUTRAL_TWEETS   = 1400
+
+GENERATIONS = 40
+POPULATION  = 20
+generations_unchanged = 0
+max_unchanged_generations = 10000
+
 tweets_semeval       = []
 tweets_semeval_score = []
 tweet_semeval_index  = 0
@@ -101,17 +110,15 @@ sms_2013_positive = 0
 sms_2013_negative = 0
 sms_2013_neutral  = 0
 
-MAX_POSITIVES_TWEETS = 1400
-MAX_NEGATIVES_TWEETS = 1400
-MAX_NEUTRAL_TWEETS   = 1400
+stop_words_function_used = False
+stem_function_used = False
+remove_dots_function_used = False
+remove_links_function_used = False
+remove_ellipsis_function_used = False
+remove_all_ponctuaction_function_used = False
 
-GENERATIONS = 1000
-generations_unchanged = 0
-max_unchanged_generations = 450
-
-uses_dummy_function = False
-used_stop_words = False
-used_stemming_words = False
+negative_words_quantity_cache = -1
+positive_words_quantity_cache = -1
 
 log_all_messages = False
 MAX_ANALYSIS_TWEETS = 10000

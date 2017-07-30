@@ -80,19 +80,22 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 toolbox.register("compile", gp.compile, pset=pset)
 
 
-iterate_count = 0
+iterate_count = 1
+generation_count = 1
 
 # evaluation function 
 def evalSymbRegTweetsFromSemeval(individual):
     start = time.time()
     global iterate_count
+    global generation_count
 
-    if iterate_count < variables.POPULATION:
-        print("[individual " + str(iterate_count) + " of the generation]")
+    if iterate_count <= variables.POPULATION:
+        print("[individual " + str(iterate_count) + " of the generation " + str(generation_count) + "]")
         iterate_count += 1
     else:
-        print("\n[new generation]\n")
+        generation_count += 1
         iterate_count = 0
+        print("\n[new generation][start generation " + str(generation_count) + "]\n")
 
     global evaluation_acumulated_time
     correct_evaluations = 0
@@ -402,7 +405,7 @@ if __name__ == "__main__":
     print(len(variables.all_fitness_history))
     print(variables.all_fitness_history)
     # remove the 0's values to plot
-    plt.plot(list(filter(lambda a: a != 0, variables.all_fitness_history)))    
+    plt.plot(list(filter(lambda a: a != 0, variables.all_fitness_history)))   
     plt.ylabel('f1')
     plt.show()
 

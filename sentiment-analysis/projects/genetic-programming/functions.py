@@ -7,6 +7,7 @@ import math
 import re 
 import string
 import time
+import codecs
 
 from stemming.porter2 import stem
 from nltk.stem import WordNetLemmatizer
@@ -21,7 +22,8 @@ def getDictionary():
         for line in inF:
             variables.dic_positive_words.append(line.lower().strip())
 
-    with open(variables.DICTIONARY_NEGATIVE_WORDS, 'r') as inF2:
+    with codecs.open(variables.DICTIONARY_NEGATIVE_WORDS, "r", "latin-1") as inF2:
+    #with open(variables.DICTIONARY_NEGATIVE_WORDS, 'r') as inF2:
         for line2 in inF2:
             variables.dic_negative_words.append(line2.lower().strip())
 

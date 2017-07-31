@@ -295,11 +295,12 @@ def evalSymbRegTweetsFromSemeval(individual):
 
     variables.all_fitness_history.append(fitnessReturn)
 
-    restartCacheVariables()
+    #restartCacheVariables()
 
     #logs   
     if variables.log_parcial_results and not breaked: 
         print("[function]: " + str(individual))
+        print("[correct evaluations]: " + str(correct_evaluations))
         print("[accuracy]: " + str(round(accuracy, 3)))
         print("[precision positive]: " + str(round(precision_positive, 3)))
         print("[precision negative]: " + str(round(precision_negative, 3)))
@@ -360,7 +361,7 @@ def main():
         # Statistics objetc (updated inplace)
         # HallOfFame object that contain the best individuals
         # Whether or not to log the statistics
-    pop, log = algorithms.eaSimple(pop, toolbox, 0.8, 0.1, variables.GENERATIONS, stats=False,
+    pop, log = algorithms.eaSimple(pop, toolbox, 0.3, 0.1, variables.GENERATIONS, stats=False,
                                    halloffame=hof, verbose=False)
 
 
@@ -398,16 +399,36 @@ def main():
 
 
 if __name__ == "__main__":
-    loadTrainTweets()
     getDictionary()
+    loadTrainTweets()
     main()
-
+    
     print(len(variables.all_fitness_history))
     print(variables.all_fitness_history)
     # remove the 0's values to plot
-    plt.plot(list(filter(lambda a: a != 0, variables.all_fitness_history)))   
+    plt.plot(list(filter(lambda a: a != 0, variables.all_fitness_history)))    
     plt.ylabel('f1')
     plt.show()
+
+    #x = "Not sure if I want to go to Eng v Holland game on wed, only got tickets coz of Arsenal players, might not feature now :-("
+    #print(str(removeLinks(replaceNegatingWords(removeStopWords(removeEllipsis(x))))))
+    
+    #print(x)
+
+    #y = str(removeLinks(replaceNegatingWords(removeStopWords(removeEllipsis(x)))))
+    #print("y is " + str(y))
+
+    #print(str(negativeEmoticons(removeLinks(replaceNegatingWords(removeStopWords((removeEllipsis(x))))))))
+    
+    #print(str(negativeEmoticons(x)))
+    #print(str(negativeEmoticons(y)))
+
+    #print(len(variables.all_fitness_history))
+    #print(variables.all_fitness_history)
+    # remove the 0's values to plot
+    #plt.plot(list(filter(lambda a: a != 0, variables.all_fitness_history)))    
+    #plt.ylabel('f1')
+    #plt.show()
 
 
 end = time.time()

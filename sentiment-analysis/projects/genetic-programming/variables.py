@@ -19,7 +19,7 @@ MAX_POSITIVES_TWEETS = 1400
 MAX_NEGATIVES_TWEETS = 1400
 MAX_NEUTRAL_TWEETS   = 1400
 
-GENERATIONS = 60
+GENERATIONS = 10
 POPULATION  = 10
 generations_unchanged = 0
 max_unchanged_generations = 10000
@@ -109,16 +109,6 @@ sms_2013_score = []
 sms_2013_positive = 0
 sms_2013_negative = 0
 sms_2013_neutral  = 0
-
-stop_words_function_used = False
-stem_function_used = False
-remove_dots_function_used = False
-remove_links_function_used = False
-remove_ellipsis_function_used = False
-remove_all_ponctuaction_function_used = False
-
-negative_words_quantity_cache = -1
-positive_words_quantity_cache = -1
 
 log_all_messages = False
 MAX_ANALYSIS_TWEETS = 10000

@@ -110,7 +110,7 @@ def loadTrainTweets():
                             variables.neutral_tweets += 1
                             tweets_loaded += 1
                 except:
-                    #print("exception")
+                    print("exception")
                     continue
     
     end = time.time()
@@ -266,33 +266,33 @@ def invertSignal(val):
 
 
 def negativeWordsQuantity(phrase):
-    negative_words = variables.negative_words_quantity_cache
+    #negative_words = variables.negative_words_quantity_cache
 
-    if variables.negative_words_quantity_cache != -1:
-        negative_words = 0
-        words = phrase.split()
-        
-        for word in words:
-            if word in variables.dic_negative_words:
-                negative_words += 1
+    #if negative_words > -1:
+    negative_words = 0
+    words = phrase.split()
+    
+    for word in words:
+        if word in variables.dic_negative_words:
+            negative_words += 1
 
-        variables.negative_words_quantity_cache = negative_words
+    #variables.negative_words_quantity_cache = negative_words
 
     return negative_words
 
 
 def positiveWordsQuantity(phrase):
-    positive_words = variables.positive_words_quantity_cache
+    #positive_words = variables.positive_words_quantity_cache
     
-    if variables.positive_words_quantity_cache != -1:
-        positive_words = 0
-        words = phrase.split()
-        
-        for word in words:
-            if word in variables.dic_positive_words:
-                positive_words += 1
-        
-        variables.positive_words_quantity_cache = positive_words
+    #if positive_words > -1:
+    positive_words = 0
+    words = phrase.split()
+    
+    for word in words:
+        if word in variables.dic_positive_words:
+            positive_words += 1
+    
+    #variables.positive_words_quantity_cache = positive_words
     
     return positive_words    
 
@@ -435,12 +435,12 @@ def removeStopWords(phrase):
     words = phrase.split()
     return_phrase = ""
 
-    if not variables.stop_words_function_used:
-        for word in words:
-            if word not in variables.stop_words:
-                return_phrase += word + " "               
+    #if not variables.stop_words_function_used:
+    for word in words:
+        if word not in variables.stop_words:
+            return_phrase += word + " "               
 
-    variables.stop_words_function_used = True
+    #variables.stop_words_function_used = True
     return return_phrase
 
 
@@ -449,11 +449,11 @@ def stemmingText(phrase):
 
     stemmed_phrase = ""
 
-    if not variables.stem_function_used:
-        for word in words:
-            stemmed_phrase += stem(word) + " "               
+    #if not variables.stem_function_used:
+    for word in words:
+        stemmed_phrase += stem(word) + " "               
 
-    variables.stem_function_used = True
+    #variables.stem_function_used = True
     return stemmed_phrase.strip()
 
 
@@ -471,27 +471,41 @@ def lemmingText(phrase):
 
 
 def removeLinks(phrase):
-    if not variables.remove_links_function_used:
-        return re.sub(r'http\S+', '', phrase, flags=re.MULTILINE)
+    phrase_copy = phrase
+    #if not variables.remove_links_function_used:
+    phrase_return = re.sub(r'http\S+', '', phrase_copy, flags=re.MULTILINE)
     variables.remove_links_function_used = True
+    return phrase_return
+
+    #return phrase
 
 
 def removeEllipsis(phrase):
-    if not variables.remove_ellipsis_function_used:
-        return re.sub('\.{3}', ' ', phrase)
+    phrase_copy = phrase
+    #if not variables.remove_ellipsis_function_used:
+    phrase_return = re.sub('\.{3}', ' ', phrase_copy)
     variables.remove_ellipsis_function_used = True
+    return phrase_return
+    
+    #return phrase
 
 
 def removeDots(phrase):
-    if not variables.remove_dots_function_used:
-        return re.sub('\.', ' ', phrase)
+    phrase_copy = phrase
+    #if not variables.remove_dots_function_used:
     variables.remove_dots_function_used = True
+    return re.sub('\.', ' ', phrase_copy)
+    
+    #return phrase
 
 
 def removeAllPonctuation(phrase):
-    if not variables.remove_all_ponctuaction_function_used:
-        return phrase.translate(str.maketrans('','',string.punctuation))
+    phrase_copy = phrase
+    #if not variables.remove_all_ponctuaction_function_used:
     variables.remove_all_ponctuaction_function_used = True
+    return phrase_copy.translate(str.maketrans('','',string.punctuation))
+
+    #return phrase
 
 ### End functions (improve this - import the functions of the other file)
 
@@ -665,8 +679,6 @@ def evaluateMessages(base, model):
 
     f1_positive_negative_avg = (f1_positive + f1_negative) / 2         
 
-    restartCacheVariables()
-
     print("\n")
     print("[" + base + " messages]")
     print("[messages evaluated]: " + str(len(messages)))
@@ -693,14 +705,3 @@ def evaluateMessages(base, model):
     print("[true_neutral]: " + str(true_neutral))
     print("[false_neutral]: " + str(false_neutral))
     print("\n")
-
-
-def restartCacheVariables():
-    variables.stem_function_used = False
-    variables.stop_words_function_used = False
-    variables.remove_dots_function_used = False
-    variables.remove_links_function_used = False
-    variables.remove_ellipsis_function_used = False
-    variables.remove_all_ponctuaction_function_used = False
-    variables.negative_words_quantity_cache = -1
-    variables.positive_words_quantity_cache = -1

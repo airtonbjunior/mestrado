@@ -1,6 +1,8 @@
 # mestrado
 Repository of the projects developed for the [Computer Science UFG master's program](http://www.inf.ufg.br/mestrado/).
 
+**Note:** The Opinion Mining project was moved [here](https://github.com/airtonbjunior/opinionMining)
+
 * Disciplines (2017.1)
   * [Computational Intelligence](https://airtonbjunior.github.io/mestrado/computational-intelligence/)
     * Heuristics, metaheuristics and bio inspired algorithms 

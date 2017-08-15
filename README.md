@@ -33,5 +33,8 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * [Research Documentation](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/systematic%20review/research-documentation/docfontes.pdf)
       * [Full Systematic Review](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/systematic%20review/systematic-review-full/main.pdf)
 
+* Disciplines (2017.2)
+
 * Sentiment Analysis
   * [Presentation](https://airtonbjunior.github.io/mestrado/sentiment-analysis/presentation/project-presentation.pdf)
+

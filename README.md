@@ -20,7 +20,8 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * Presentation [[Scribd]](https://pt.scribd.com/document/349050954/Redes-Neurais-Artificiais) [[Browser]](https://airtonbjunior.github.io/mestrado/computational-intelligence/neural-networks/presentation/IC_5.pdf)
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/computational-intelligence/neural-networks/project) [[Demo]](https://airtonbjunior.github.io/mestrado/computational-intelligence/neural-networks/project/)
      * Final Project
-       * [Article](https://airtonbjunior.github.io/mestrado/computational-intelligence/final-project/article/main.pdf)
+       * [Paper](https://airtonbjunior.github.io/mestrado/computational-intelligence/final-project/article/main.pdf)
+       * [Poster](https://airtonbjunior.github.io/mestrado/computational-intelligence/final-project/poster/PosterIA.pdf)
  
   * Data Structure and Algorithm Analysis
     * [Huffman Tree presentation](https://airtonbjunior.github.io/mestrado/analysis-algorithms/presentation/huffman-tree.pdf)

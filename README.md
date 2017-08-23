@@ -36,6 +36,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
 
 * Disciplines (2017.2)
   * Metaheuristics
+  * Seminars
   
   
 * Sentiment Analysis

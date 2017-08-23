@@ -35,7 +35,9 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * [Full Systematic Review](https://airtonbjunior.github.io/mestrado/sentiment-analysis/articles/systematic%20review/systematic-review-full/main.pdf)
 
 * Disciplines (2017.2)
-
+  * Metaheuristics
+  
+  
 * Sentiment Analysis
   * [Presentation](https://airtonbjunior.github.io/mestrado/sentiment-analysis/presentation/project-presentation.pdf)
 

@@ -36,6 +36,8 @@ Repository of the projects developed for the [Computer Science UFG master's prog
 
 * Disciplines (2017.2)
   * Metaheuristics
+    * Problem Solving and Search
+      * Presentation [Scribd][[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/problem-solving-search/presentation/MH_1.pdf)
   * Seminars
   
   

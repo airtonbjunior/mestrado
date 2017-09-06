@@ -39,6 +39,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
     * Problem Solving and Search
       * Presentation [Scribd][[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/problem-solving-search/presentation/MH_1.pdf)
     * Simulated Annealing
+      * Presentation [Scribd][[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/simulated-annealing/presentation/MH_2.pdf)
   * Seminars
   
   

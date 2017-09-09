@@ -16,7 +16,7 @@ BEST_KNOW_SOLUTION = "";
 INITIAL_SOLUTION = [] // only for log and comparsion
 ACTUAL_SOLUTION = []
 
-BAG_CAPACITY = 150;
+BAG_CAPACITY = 180;
 ITENS_QUANTITY = itens.length;
 
 
@@ -33,7 +33,7 @@ function initializeSolution() {
 
 /* Value of the solution */
 function valueSolution(solution) {
-	sum = 0;
+	var sum = 0;
 	for (var i = 0; i < solution.length; i++) {
 		if(solution[i] == 1) {
 			sum += parseInt(itens[i].value);
@@ -44,13 +44,27 @@ function valueSolution(solution) {
 
 /* Weight of the solution */
 function weightSolution(solution) {
-	sum = 0;
+	var sum = 0;
 	for (var i = 0; i < solution.length; i++) {
 		if(solution[i] == 1) {
 			sum += parseInt(itens[i].weight);
 		}
 	}
 	return sum;
+}
+
+/* Evaluate the solution */
+function evaluateSolution(solution) {
+	var weight = weightSolution(solution)
+	var value  = valueSolution(solution)
+
+	/* if the items can put in the bag, return the value */
+	if (weight < BAG_CAPACITY) {
+		return value;
+	} 
+	else {
+		return BAG_CAPACITY - weight;
+	}
 }
 
 /* Get the neighbors of a solution */
@@ -63,8 +77,9 @@ function getNeighbors(actual_solution) {
 		if (solution[i] == "0") { solution[i] = "1" } else { solution[i] = "0" }
 		
 		neighbor.solution = solution;
-		neighbor.value = valueSolution(solution)
+		neighbor.value  = valueSolution(solution)
 		neighbor.weight = weightSolution(solution)
+		neighbor.result = evaluateSolution(solution)
 
 		neighbors.push(neighbor)
 
@@ -75,6 +90,28 @@ function getNeighbors(actual_solution) {
 	return neighbors;
 }
 
+/* Get the best neighbor of the actual solution */
+function getBestNeighbor(actual_solution) {
+	var neighbors = getNeighbors(actual_solution)
+	var bestNeighbor = neighbors[0].result
+
+	for (var i = 1; i < neighbors.length; i++) {
+		if(neighbors[i].result > bestNeighbor) { 
+			bestNeighbor = neighbors[i].result; 
+		}
+	}
+
+	return bestNeighbor;
+}
+
+/* Move to the next solution on the search space */
+function moveNextSolution(actual_solution) {
+	var neighbors = getNeighbors(actual_solution)
+	// ...
+}
+
+
 initializeSolution();
 
 console.log(getNeighbors(INITIAL_SOLUTION))
+console.log(getBestNeighbor(INITIAL_SOLUTION))

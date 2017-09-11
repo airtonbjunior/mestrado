@@ -84,11 +84,11 @@ function evaluateSolution(solution) {
 
 /* Get the neighbors of a solution */
 function getNeighbors(actual_solution) {
-	console.log("[LOG][FUNCTION getNeighbors] [Get neighbors of solution] [" + actual_solution + "]")
+	console.log("[LOG][FUNCTION getNeighbors] [Get neighbors of solution] [" + actual_solution.solution + "]")
 
 	var neighbors = []
-	var neighbor = {}
-	var solution = actual_solution.solution.join().split(",")
+	var neighbor  = {}
+	var solution  = actual_solution.solution.join().split(",")
 	
 	for (var i = 0; i < solution.length; i++) {
 		if (solution[i] == "0") { solution[i] = "1" } else { solution[i] = "0" }

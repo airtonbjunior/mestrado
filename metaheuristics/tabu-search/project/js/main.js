@@ -123,20 +123,19 @@ function getBestNeighbor(actual_solution) {
 
 /* Move to the next solution on the search space */
 function moveNextSolution(actual_solution) {
-	console.log("[LOG][FUNCTION moveNextSolution] [Moving to the next solution]")
-	if(TABU_LIST.length <= TABU_LIST_SIZE) {
+	console.log("[LOG][FUNCTION moveNextSolution][Moving to the next solution]")
+	if(TABU_LIST.length < TABU_LIST_SIZE) {
 		TABU_LIST.unshift(actual_solution);
 	}
 	else {
-		var removed = TABU_LIST.pop() 
-		console.log("[LOG] [Removed the older value from TABU_LIST] [" + removed.solution + "]")
+		var removed = TABU_LIST.pop(); // Remove the older value
+		console.log("[LOG][Removed the older value from TABU_LIST][" + removed.solution + "]")
 		TABU_LIST.unshift(actual_solution)
-		// remove the older value
 	}
 
 	var bestNeighbor = getBestNeighbor(actual_solution);
 	if(containsSolution(bestNeighbor, TABU_LIST)) {
-		console.log("Solution already in Tabu List");
+		console.log("[LOG][Solution already in Tabu List]");
 		// get the other best
 	} else {		
 		ACTUAL_SOLUTION = bestNeighbor;
@@ -150,11 +149,12 @@ function moveNextSolution(actual_solution) {
 /* TEST THIS FUNCTION */
 function containsSolution(obj, list) {
     for (var i = 0; i < list.length; i++) {
-        if (list[i] === obj) {
-            return true;
-        }
+        console.log("[LOG][Function containsSolution] Compare the obj [" + obj.solution + "] with the TABU_LIST [" + list[i].solution + "]")
+        
+		if(JSON.stringify(list[i].solution) === JSON.stringify(obj.solution)) {
+			return true;
+		}
     }
-
     return false;
 }
 
@@ -170,7 +170,7 @@ function start() {
 		moveNextSolution(ACTUAL_SOLUTION)
 		console.log("Tabu List size: " + TABU_LIST.length)
 		console.log("Tabu List: " + TABU_LIST)
-		console.log(TABU_LIST)
+		//console.log(TABU_LIST)
 	}
 
 	/* Restart the default screen */

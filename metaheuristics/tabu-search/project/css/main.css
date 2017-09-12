@@ -61,7 +61,8 @@ p, span {
 
 .btn-start {
 	padding: 10px;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
+	margin-bottom: 20px;
 	width: 100%;
 
 	background: var(--btn-color);

@@ -41,7 +41,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
     * Simulated Annealing
       * Presentation [[Scribd]](https://pt.scribd.com/document/358391779/Simulated-Annealing-Tempera-Simulada) [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/simulated-annealing/presentation/MH_2.pdf)
     * Tabu Search
-      * Presentation [[Scribd]]() [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/tabu-search/presentation/MH_3.pdf)
+      * Presentation [[Scribd]](https://pt.scribd.com/document/358725373/Busca-Tabu) [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/tabu-search/presentation/MH_3.pdf)
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/metaheuristics/tabu-search/project) [[Demo]](https://airtonbjunior.github.io/mestrado/metaheuristics/tabu-search/project/)
   * Seminars
   

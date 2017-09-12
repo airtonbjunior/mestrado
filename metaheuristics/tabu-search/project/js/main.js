@@ -112,11 +112,22 @@ function getBestNeighbor(actual_solution) {
 	var neighbors = getNeighbors(actual_solution)
 	var bestNeighbor = neighbors[0];
 
-	for (var i = 1; i < neighbors.length; i++) {
-		if(neighbors[i].result > bestNeighbor.result) { 
-			bestNeighbor = neighbors[i]; 
+	var sortedNeighbors = neighbors;
+	sortedNeighbors.sort(function(a, b) { 
+    	return b.result - a.result;
+	});
+
+	for (var i = 0; i < sortedNeighbors.length; i++) {
+		if(containsSolution(sortedNeighbors[i], TABU_LIST)) {
+			console.log("[LOG][Solution already in Tabu List on " + i + " position]");
+		}
+		else {
+			return sortedNeighbors[i];
 		}
 	}
+
+	console.log("Sorted Neighbors")
+	console.log(sortedNeighbors)
 
 	return bestNeighbor;
 }
@@ -134,16 +145,20 @@ function moveNextSolution(actual_solution) {
 	}
 
 	var bestNeighbor = getBestNeighbor(actual_solution);
-	if(containsSolution(bestNeighbor, TABU_LIST)) {
-		console.log("[LOG][Solution already in Tabu List]");
-		// get the other best
-	} else {		
-		ACTUAL_SOLUTION = bestNeighbor;
-		if (ACTUAL_SOLUTION.result > BEST_KNOW_SOLUTION.result) {
-			BEST_KNOW_SOLUTION = ACTUAL_SOLUTION;
-		}
-		console.log("The actual soluction now is: [" + ACTUAL_SOLUTION.solution + "] with weight " + ACTUAL_SOLUTION.weight + ", value " + ACTUAL_SOLUTION.value + " and evaluate result of " + ACTUAL_SOLUTION.result);
+	
+	ACTUAL_SOLUTION = bestNeighbor;
+	if (ACTUAL_SOLUTION.result > BEST_KNOW_SOLUTION.result) {
+		BEST_KNOW_SOLUTION = ACTUAL_SOLUTION;
 	}
+	console.log("The actual soluction now is: [" + ACTUAL_SOLUTION.solution + "] with weight " + ACTUAL_SOLUTION.weight + ", value " + ACTUAL_SOLUTION.value + " and evaluate result of " + ACTUAL_SOLUTION.result);
+}
+
+function sortNeighbors(neighbors_list) {
+	var sorted_neighbors;
+	neighbors_list.sort(function(a, b) { 
+    	sorted_neighbors = b.result - a.result;
+	})
+	return sorted_neighbors;
 }
 
 /* TEST THIS FUNCTION */

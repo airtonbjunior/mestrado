@@ -45,6 +45,9 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * Code - [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/metaheuristics/tabu-search/project) [[Demo]](https://airtonbjunior.github.io/mestrado/metaheuristics/tabu-search/project/)
     * Iterated Local Search
       * Presentation [[Scribd]](https://www.scribd.com/document/359760390/Iterated-Local-Search) [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/iterated-local-search/presentation/MH_4.pdf)
+    * GRASP
+      * Presentation
+      * Code
   * Seminars
   
   

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GRASP</title>
+</head>
+<body>
+	<h1>Tabu Search</h1>
+	<div class="container">
+		<div class="params-inputs">
+			<h2>Algorithm Parameters</h2>
+			<div class="input-value">
+				<p>Bag Capacity</p>
+				<input id="bag-capacity" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Iterations</p>
+				<input id="iterations" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Iterations with no improve</p>
+				<input id="iterations-no-improve" type="number" pattern="[1-100]"/> 
+			</div>			
+			<div class="input-value">
+				<p>Tabu List Size</p>
+				<input id="tabu-list-size" type="number" pattern="[1-100]"/> 
+			</div>			
+			<div class="min-max-func-label">
+				<span id="min-func"></span>
+				<span id="max-func"></span>
+			</div>
+			<button id="btn-start" class="btn-start">Start</button>
+		</div>
+
+		<div id="ct-chart" class="ct-chart ct-perfect-fourth">
+			<div id="loading-icon">
+				<i class=""></i>
+				<span class="sr-only">Loading...</span>
+			</div>
+			<div id="result">
+				&nbsp
+			</div>
+		</div>
+	</div>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/itens.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

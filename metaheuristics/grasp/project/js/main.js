@@ -18,12 +18,18 @@ MAX_ITERATIONS_NO_IMPROVE = 50;
 INITIAL_SOLUTION = {} // only for log and comparsion
 ACTUAL_SOLUTION  = {}
 
-BAG_CAPACITY = 180;
+BAG_CAPACITY = 180; /* GRASP feasible limit */
 ITENS_QUANTITY = itens.length;
 
-VALUE_PER_WEIGHT = []
-SCHEMA = []
+/* GRASP parameters */
+VALUE_PER_WEIGHT = []  /* parameter used to calc the "fitness" of an item is value/weight (LC) */
+SCHEMA = [] /* hight quality schema */
+LRC = []
+GRASP_INITIAL_SOLUTION = []
+ALPHA = 0.6
+LIMIT_VALUE = 0
 
+/* Preprocess the schema with the best(s) "chromossome(s)" */
 function preProcessingSchema() {
 	var value = 0;
 	var bestValue = 0;
@@ -36,19 +42,59 @@ function preProcessingSchema() {
 		VALUE_PER_WEIGHT.push(value);
 	}
 
+	/* Separated for didact reasons */
+	for (var i = 0; i< ITENS_QUANTITY; i++) {
+		SCHEMA.push(0)
+	}
+
 	for (var i = 0; i< ITENS_QUANTITY; i++) {
 		if(VALUE_PER_WEIGHT[i] == bestValue) {
-			SCHEMA.push(1)
-		}
-		else {
-			SCHEMA.push("*")
+			SCHEMA[i] = 1;
+			if (weightSolution(SCHEMA) > BAG_CAPACITY) {
+				SCHEMA[i] = 0;
+			}
 		}
 	}
 
-	console.log("Value per weight below")
-	console.log(VALUE_PER_WEIGHT)
-	console.log("SCHEMA below")
-	console.log(SCHEMA)
+	console.log("Value per weight below (LC)");
+	console.log(VALUE_PER_WEIGHT);
+	console.log("SCHEMA below");
+	console.log(SCHEMA);
+	console.log("Solution evaluation: " + evaluateSolution(SCHEMA));
+}
+
+/* Create the initial solution */
+function createInitialSolution() {
+	var solution = SCHEMA;
+	var randomIndex = 0;
+
+	LIMIT_VALUE = getMaxValue(VALUE_PER_WEIGHT) - ALPHA * (getMaxValue(VALUE_PER_WEIGHT) - getMinValue(VALUE_PER_WEIGHT));
+	for (var i = 0; i < ITENS_QUANTITY; i++) {
+		if(VALUE_PER_WEIGHT[i] >= LIMIT_VALUE && SCHEMA[i] == 0) { /* if already has on the schema, don't consider */
+			LRC.push(i) /* store the index of the values */
+		}
+	}
+
+	for (var i = 0; i < LRC.length; i++) {
+		randomIndex = getRandomInt(0, LRC.length-1);
+
+		solution[LRC[randomIndex]] = 1;
+		
+		if (weightSolution(solution) > BAG_CAPACITY) {
+			solution[LRC[randomIndex]] = 0;
+			break;
+		}
+	}
+
+	GRASP_INITIAL_SOLUTION = solution;
+
+	console.log("LIMIT_VALUE: " + LIMIT_VALUE);
+	console.log("LRC below (indexes)");
+	console.log(LRC);
+	console.log("The initial solution below");
+	console.log(GRASP_INITIAL_SOLUTION);
+	console.log("Initial solution weight: " + weightSolution(GRASP_INITIAL_SOLUTION));
+	console.log("Initial solution evaluation: " + evaluateSolution(GRASP_INITIAL_SOLUTION));
 }
 
 /* Choose a start solution. Default: randomly */
@@ -202,12 +248,26 @@ function containsSolution(obj, list) {
     return false;
 }
 
+function getMaxValue(arr) {
+	return Math.max.apply(null, arr);
+}
+
+function getMinValue(arr) {
+	return Math.min.apply(null, arr);
+}
+
+/* [1] */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 /* Initialize the UI with the user params */
 intializeUI();
 
 function start() {
 	initializeSolution();
 	preProcessingSchema();
+	createInitialSolution();
 	
 	/* Main loop. Encapsulate this on start function */
 	for (var i = 0; i < MAX_ITERATIONS; i++) {
@@ -236,6 +296,7 @@ function startPreparation() {
 	MAX_ITERATIONS= document.getElementById("iterations").value;
 	MAX_ITERATIONS_NO_IMPROVE= document.getElementById("iterations-no-improve").value;
 	TABU_LIST_SIZE= document.getElementById("tabu-list-size").value;
+	ALPHA = document.getElementById("alpha-grasp").value;
 	
 	/* Restart variables */
 	TABU_LIST = [];
@@ -261,5 +322,10 @@ function intializeUI() {
 	document.getElementById("iterations").value = MAX_ITERATIONS;
 	document.getElementById("iterations-no-improve").value = MAX_ITERATIONS_NO_IMPROVE;
 	document.getElementById("tabu-list-size").value = TABU_LIST_SIZE;
+	document.getElementById("alpha-grasp").value = ALPHA;
 }
 
+
+/*
+	[1]: https://stackoverflow.com/a/1527820
+*/

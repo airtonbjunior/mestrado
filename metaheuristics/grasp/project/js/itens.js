@@ -97,5 +97,12 @@ itens = [
     unityMeasure: "Kg", 
     value: "75", 
     currency: "R$"
+  },
+  {
+    name: "Item 15", 
+    weight: "20", 
+    unityMeasure: "Kg", 
+    value: "160", 
+    currency: "R$"
   }  
 ];

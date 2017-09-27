@@ -89,7 +89,7 @@ function createInitialSolution() {
 	GRASP_INITIAL_SOLUTION = solution;
 
 	console.log("LIMIT_VALUE: " + LIMIT_VALUE);
-	console.log("LRC below (indexes)");
+	console.log("LRC below (indexes): Values > LIMIT_VALUE");
 	console.log(LRC);
 	console.log("The initial solution below");
 	console.log(GRASP_INITIAL_SOLUTION);
@@ -110,7 +110,8 @@ function initializeSolution() {
 		initialSolution.push(Math.round(Math.random()));
 	}
 	
-	INITIAL_SOLUTION.solution = initialSolution;
+	//INITIAL_SOLUTION.solution = initialSolution;
+	INITIAL_SOLUTION.solution = GRASP_INITIAL_SOLUTION;
 	INITIAL_SOLUTION.weight = -99999; // improve this inicialization
 	INITIAL_SOLUTION.value  = -99999;
 	INITIAL_SOLUTION.result = -99999;
@@ -118,7 +119,7 @@ function initializeSolution() {
 	ACTUAL_SOLUTION    = INITIAL_SOLUTION;
 	BEST_KNOW_SOLUTION = ACTUAL_SOLUTION;
 	
-	console.log("[START INITIAL SOLUTION]: " + INITIAL_SOLUTION.solution)
+	console.log("[START RANDOMIZED INITIAL SOLUTION {DEPRECATED IN GRASP}]: " + INITIAL_SOLUTION.solution)
 }
 
 /* Value of the solution */
@@ -265,9 +266,13 @@ function getRandomInt(min, max) {
 intializeUI();
 
 function start() {
-	initializeSolution();
+	/* GRASP */
 	preProcessingSchema();
 	createInitialSolution();
+	/* GRASP */
+	
+	/* LOCAL SEARCH - TABU SEARCH*/
+	initializeSolution();
 	
 	/* Main loop. Encapsulate this on start function */
 	for (var i = 0; i < MAX_ITERATIONS; i++) {
@@ -303,6 +308,11 @@ function startPreparation() {
 	BEST_KNOW_SOLUTION = null;
 	INITIAL_SOLUTION = {}
 	ACTUAL_SOLUTION  = {}
+
+	VALUE_PER_WEIGHT = []
+	SCHEMA = []
+	LRC = []
+	GRASP_INITIAL_SOLUTION = []
 
 	document.getElementById("result").innerHTML = "&nbsp";
 

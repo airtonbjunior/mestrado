@@ -48,6 +48,8 @@ Repository of the projects developed for the [Computer Science UFG master's prog
     * GRASP
       * Presentation [Scribd] [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/grasp/presentation/MH_5.pdf)
       * Code
+    * Genetic Algorithm
+    * Genetic Programming
   * Seminars
   
   

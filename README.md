@@ -46,8 +46,10 @@ Repository of the projects developed for the [Computer Science UFG master's prog
     * Iterated Local Search
       * Presentation [[Scribd]](https://www.scribd.com/document/359760390/Iterated-Local-Search) [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/iterated-local-search/presentation/MH_4.pdf)
     * GRASP
-      * Presentation [Scribd] [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/grasp/presentation/MH_5.pdf)
-      * Code
+      * Presentation [[Scribd]](https://pt.scribd.com/document/361205206/GRASP) [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/grasp/presentation/MH_5.pdf)
+      * Code [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/metaheuristics/grasp/project) [[Demo]](https://airtonbjunior.github.io/mestrado/metaheuristics/grasp/project/)
+    * Genetic Algorithm
+    * Genetic Programming
   * Seminars
   
   

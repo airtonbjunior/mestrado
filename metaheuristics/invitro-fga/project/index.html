@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>InVitro Fertilization Genetic Algorithm</title>
+</head>
+<body ng-app="AG" ng-controller="AGController">
+	<h1>InVitro Fertilization GA</h1>
+	<div class="container">
+		<div class="params-inputs">
+			<div class="input-value">
+				<p>Generations</p>
+				<input value={{generations}} ng-model="generations" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Population Size</p>
+				<input value={{populationSize}} ng-model="populationSize" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Crossover Probability %</p>		
+				<input value={{crossoverProbability}} ng-model="crossoverProbability" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Mutation Probability %</p>			
+				<input value={{mutationProability}} ng-model="mutationProability" type="number"/> 
+			</div>
+			<div class="input-value">
+				<p>Max Weight Bag</p>
+				<input value={{maxSizeBag}} ng-model="maxSizeBag" type="number"/> 
+			</div>
+			<p>IFGA operator </p>
+			<select id="ifga-operator-type" class="input-value">
+  				<option value="ar">AR</option>
+  				<option value="eart">EAR-T</option>
+  				<option value="earp">EAR-P</option>
+  				<option value="earn">EAR-N</option>
+			</select>
+			<div class="input-checkbox">
+				<span>Elitism</span>
+				<input type="checkbox" ng-model="elitism" /> 
+			</div>
+
+			<button class="btn-start" ng-click="startGA();">{{startButtonLabel}}</button>
+		</div>
+
+		<div id="ct-chart" class="ct-chart ct-perfect-fourth">
+			<div id="loading-icon">
+				<i class=""></i>
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div id="result">
+		 &nbsp			
+	</div>
+	
+	<div class="container-itens">
+		<div id="{{item.name}}" class="itens {{item.name}}" data-ng-repeat="item in itens">
+			<div id="{{item.name}}">
+				<p class="title-iten-bag">{{item.name}}</p>
+				<p><span>Weigth: </span>{{item.weight}}</p>
+				<p><span>Value: </span>{{item.value}}</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Third-part code -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="css/lib-graph/chartist.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="js/lib-graph/chartist.min.js"></script>
+
+	<script type="text/javascript" src="js/itens.js"></script>
+	<script type="text/javascript" src="js/GA.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/main.css">	
+</body>
+</html>

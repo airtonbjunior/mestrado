@@ -1,0 +1,37 @@
+{
+  "item0": {
+	"nome": "Item 1"
+    "peso": "20",
+    "unidadeMedida": "kg"
+    "valor": "50", 
+    "moeda": "R$"
+  },
+  "item1": {
+	"nome": "Item 2"
+    "peso": "20",
+    "unidadeMedida": "kg"
+    "valor": "50", 
+    "moeda": "R$"
+  }
+  "item2": {
+	"nome": "Item 2"
+    "peso": "20",
+    "unidadeMedida": "kg"
+    "valor": "50", 
+    "moeda": "R$"
+  }
+  "item3": {
+	"nome": "Item 2"
+    "peso": "20",
+    "unidadeMedida": "kg"
+    "valor": "50", 
+    "moeda": "R$"
+  }
+  "item4": {
+	"nome": "Item 2"
+    "peso": "20",
+    "unidadeMedida": "kg"
+    "valor": "50", 
+    "moeda": "R$"
+  }
+}

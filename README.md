@@ -51,6 +51,11 @@ Repository of the projects developed for the [Computer Science UFG master's prog
     * Genetic Algorithm
       * Presentation [[Scribd]](https://pt.scribd.com/document/343821183/Algoritmos-Geneticos) [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/genetic-algorithm/presentation/MH_6.pdf)
     * Genetic Programming
+      * Presentation
+      * Code
+    * InVitro Fertilization Genetic Algorithm
+      * Presentation
+      * Code
   * Seminars
     * [Presentation 1](https://airtonbjunior.github.io/mestrado/seminars/presentations/1/SeminariosAirton.pdf)
   

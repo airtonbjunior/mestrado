@@ -54,7 +54,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * Presentation
       * Code
     * InVitro Fertilization Genetic Algorithm
-      * Presentation [Scribd] [[Browser]]((https://airtonbjunior.github.io/mestrado/metaheuristics/invitro-fga/presentation/MH_8.pdf))
+      * Presentation [Scribd] [[Browser]](https://airtonbjunior.github.io/mestrado/metaheuristics/invitro-fga/presentation/MH_8.pdf)
       * Code
   * Seminars
     * [Presentation 1](https://airtonbjunior.github.io/mestrado/seminars/presentations/1/SeminariosAirton.pdf)

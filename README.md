@@ -60,7 +60,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * Presentation
   * Seminars
     * [Presentation 1](https://airtonbjunior.github.io/mestrado/seminars/presentations/1/SeminariosAirton.pdf)
-    * [Presentation 2](https://airtonbjunior.github.io/mestrado/seminars/presentations/1/Presentation2AirtonV1.pdf)
+    * [Presentation 2](https://airtonbjunior.github.io/mestrado/seminars/presentations/2/Presentation2AirtonV1.pdf)
   
 * Sentiment Analysis
   * [Presentation](https://airtonbjunior.github.io/mestrado/sentiment-analysis/presentation/project-presentation.pdf)

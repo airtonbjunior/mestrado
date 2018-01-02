@@ -58,6 +58,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
       * Code [[Repository]](https://github.com/airtonbjunior/mestrado/tree/master/metaheuristics/invitro-fga/project) [[Demo]](https://airtonbjunior.github.io/mestrado/metaheuristics/invitro-fga/project/)
     * Algoritmos culturais [Scribd] [Browser]
       * Presentation
+    * Final Project
   * Seminars
     * [Presentation 1](https://airtonbjunior.github.io/mestrado/seminars/presentations/1/SeminariosAirton.pdf)
     * [Presentation 2](https://airtonbjunior.github.io/mestrado/seminars/presentations/2/Presentation2AirtonV1.pdf)

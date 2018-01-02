@@ -59,6 +59,7 @@ Repository of the projects developed for the [Computer Science UFG master's prog
     * Algoritmos culturais [Scribd] [Browser]
       * Presentation
     * Final Project
+      * Paper
   * Seminars
     * [Presentation 1](https://airtonbjunior.github.io/mestrado/seminars/presentations/1/SeminariosAirton.pdf)
     * [Presentation 2](https://airtonbjunior.github.io/mestrado/seminars/presentations/2/Presentation2AirtonV1.pdf)

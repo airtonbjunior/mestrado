@@ -67,4 +67,5 @@ Repository of the projects developed for the [Computer Science UFG master's prog
   
 * Sentiment Analysis
   * [Presentation](https://airtonbjunior.github.io/mestrado/sentiment-analysis/presentation/project-presentation.pdf)
-
+  
+* Thesis

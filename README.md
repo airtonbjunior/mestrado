@@ -69,3 +69,4 @@ Repository of the projects developed for the [Computer Science UFG master's prog
   * [Presentation](https://airtonbjunior.github.io/mestrado/sentiment-analysis/presentation/project-presentation.pdf)
   
 * Thesis
+  * [Final Thesis](https://repositorio.bc.ufg.br/tede/bitstream/tede/9211/5/Disserta%C3%A7%C3%A3o%20-%20Airton%20Bordin%20Junior%20-%202018.pdf)
